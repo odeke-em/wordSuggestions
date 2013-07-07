@@ -1,0 +1,40 @@
+cc { 	
+ceca:-1 chic:-1 choc:-1 coca:-1 cock:-1 coco:-1 croc:-1 }
+
+gcc cc { 	
+ceca:-1 chic:-1 choc:-1 coca:-1 cock:-1 coco:-1 croc:-1 }
+
+flags o g wall autocorrect { 	
+autoerotic:-1 autoroute:-1 }
+
+makefile { 	
+filename:-1 lakeside:-1 madefied:-1 madefies:-1 makeable:0 malefic:0 malefice:3 maleficent:1 malefices:2 wakerife:-1 }
+
+wordlist { 	
+lordliest:0 modalist:-1 moralist:0 moralists:-1 rowdiest:1 royalist:-1 wildoats:-1 woodiest:-1 wordiest:3 wordily:-1 wordish:-1 wordless:0 wordsmith:1 wordsmiths:0 worldliest:1 worlds:-1 wormiest:-1 worrits:-1 wortles:0 }
+
+txt { 	
+tat:-1 tettix:-1 text:0 texts:-1 tit:-1 tot:-1 tut:-1 tutrix:-1 }
+
+wordsearch { 	
+hardcovers:-1 horsecar:0 shoreward:0 shorewards:-1 }
+
+h wsearch { 	
+archwise:-1 creaghs:-1 demarches:-1 eschar:-1 menarches:-1 mesarch:1 prewash:-1 shear:-1 swear:-1 thwackers:-1 washer:-1 watchers:0 wearish:-1 whackers:0 whereas:-1 wreathes:-1 wreaths:0 }
+
+c node h wordtransition o cc { 	
+ceca:-1 chic:-1 choc:-1 coca:-1 cock:-1 coco:-1 croc:-1 }
+
+cc { 	
+ceca:-1 chic:-1 choc:-1 coca:-1 cock:-1 coco:-1 croc:-1 }
+
+flags dallprintwords wsearch c wordtransition o o autocorrect lpthread { 	
+enthraldom:-1 lathed:-1 lather:-1 lathered:1 lathier:-1 thrappled:-1 unthread:0 unthreads:-1 }
+
+wordtransition o wordtransition h wordtransition c makefile cc { 	
+ceca:-1 chic:-1 choc:-1 coca:-1 cock:-1 coco:-1 croc:-1 }
+
+c wordtransition c o wordtransition o clean rm { 	
+amir:-1 arm:-1 emir:-1 mar:-1 mir:-1 mor:-1 omer:-1 ram:0 rami:-1 ramp:-1 rams:-1 ream:-1 rem:0 rems:-1 riem:-1 rim:0 rima:-1 rime:-1 rims:-1 rimu:-1 rimy:-1 roam:-1 rom:0 roma:-1 romp:-1 roms:-1 room:-1 rum:0 rump:-1 rums:-1 smir:-1 smur:-1 }
+
+autocorrect  17 seconds spent 
