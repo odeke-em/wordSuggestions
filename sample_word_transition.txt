@@ -1,0 +1,45 @@
+Getting morp from monk
+Replace w2[2] n with r
+Replace w2[3] k with p
+nAdditions 2 nDeletions 2 nMoves 0
+Rank -4
+
+Getting morp from brag
+Replace w2[0] b with m
+Replace w2[1] r with o
+move w2[1] r to w2[2]
+Replace w2[3] g with p
+nAdditions 3 nDeletions 3 nMoves 1
+Rank -8
+
+Getting morp from tatsambone
+move w2[5] m to w2[0]
+move w2[7] o to w2[1]
+Replace w2[2] t with r
+Replace w2[3] s with p
+nAdditions 2 nDeletions 8 nMoves 2
+Rank -10
+
+Getting morp from satton
+Replace w2[0] s with m
+move w2[4] o to w2[1]
+Replace w2[2] t with r
+Replace w2[3] t with p
+nAdditions 3 nDeletions 5 nMoves 1
+Rank -10
+
+Getting morp from suttons
+Replace w2[0] s with m
+move w2[4] o to w2[1]
+Replace w2[2] t with r
+Replace w2[3] t with p
+nAdditions 3 nDeletions 6 nMoves 1
+Rank -11
+
+Getting morp from konrad
+Replace w2[0] k with m
+move w2[3] r to w2[2]
+Replace w2[3] r with p
+nAdditions 2 nDeletions 4 nMoves 1
+Rank -6
+
