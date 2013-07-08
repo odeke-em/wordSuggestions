@@ -33,7 +33,7 @@ int countNodes(numSList *tree){
   int nNodes = 0;
   while (tmp != NULL){
     ++nNodes;
-    tree = tree->next;
+    tmp = tmp->next;
   }
 
   return nNodes;
