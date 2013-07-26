@@ -40,7 +40,7 @@ void *timeScreen(void *data){
   int i=0;
   fprintf(stderr, "%c[2K",27);
   while (*(p->processDone) == False){
-    fprintf(stderr,"%ld/%ld\r", *(p->curPos), *(p->fileSize));
+    fprintf(stderr,"Processed %ld/%ld bytes\r", *(p->curPos), *(p->fileSize));
     ++i;
     sleep(1);
   }
