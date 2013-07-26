@@ -120,7 +120,7 @@ int main(int argc, char *argv[]){
     }else
       fprintf(stderr,"Non-existant path %s\n",path);
     #ifndef MULTIPLE_PROC
-      return 0;
+      break;
     #endif
   }
   free(path);
