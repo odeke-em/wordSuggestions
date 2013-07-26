@@ -3,13 +3,13 @@
 #For now the learnt words are added to 'learnt_words.txt'.
 
 #To test current setup: 
-#First run:	gcc -c wordTransition.c -o wordTransition.o
+#First run:	make
+#
 # For an interactive session:
-#       gcc spellCorrect.c wordTransition.o -o spellCorrect -lpthread && ./spellCorrect
+#  ./spellCorrect 
 #
 #For testing out with a file:
-#Run: make OR
-#       gcc -DALLPRINTWORDS wSearch.c wordTransition.o -o autoCorrect -lpthread && ./autoCorrect > suggestions.txt
+#  ./autoCorrect <sourcePath> <destinationOfLearntWords> > suggestions.txt
 #
 #Sample output file 'suggestions.txt' included as the result of passing in 
 #'waroftheworlds.txt' as the subject file.

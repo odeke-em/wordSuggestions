@@ -14,13 +14,13 @@ static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(FILE*,char *);
+  void (*func)(FILE*, char *);
   char *queryWord;
   FILE *dictFP;
 } funcStruct;
 
 
-void *runFunc( void *data ){
+void *runFunc(void *data ){
   funcStruct *f = (funcStruct *)data;
   pthread_mutex_lock(&main_tx);
   f->func(f->dictFP, f->queryWord);
@@ -37,7 +37,7 @@ void *timeScreen(void *data){
   struct procStruct *p = (struct procStruct *)data;
   int i=0;
   int nDots=0, MAX_DOTS=4;
-  while ( *(p->processDone) == False ){
+  while (*(p->processDone) == False ){
     if (nDots >= MAX_DOTS){
        fprintf(stderr, "%c[2K",27);
        nDots = 0;
@@ -48,6 +48,7 @@ void *timeScreen(void *data){
     int tempI;
     for (tempI=0; tempI<nDots; ++tempI)
       fprintf(stderr,".");
+
     fprintf(stderr, "\r");
     fflush(stderr);
     sleep(1);
@@ -58,25 +59,25 @@ void *timeScreen(void *data){
   return NULL;
 }
 
-void  autoCorrect(FILE *, char *); 
+void  spellCheck(FILE *, char *); 
 char *getWord(FILE *fp);
 
 int getLine(char *s, int max){
   int i=0;
-  char c;
+  char c = '\0';
   while ((i < max) && (((c = getchar()) != EOF))){
-      if ((c == ' ') || (c == '\n' && putchar(c))){
+    if ((c == ' ') || (c == '\n' && putchar(c))){
+	s[i] = '\0';
 	break;
-      }
-      s[i] = c;	
-      i++;
+    }
+    s[i] = c;	
+    ++i;
   }
-  s[i] = '\0';
-  return (( c == EOF ) ? EOF : i );
+  return ((c == EOF ) ? EOF : i );
 }
 
 int main(){
-  Bool doneReading = False, validfile, LEN_MATCH=True;
+  Bool doneReading = False;
   pthread_t timer_t;
   pthread_t main_th;
 
@@ -86,7 +87,7 @@ int main(){
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
 
   funcStruct p;
-  p.func= autoCorrect;
+  p.func= spellCheck;
   p.dictFP = dictFP;
 
   struct procStruct procSt;
@@ -125,9 +126,10 @@ int main(){
   return 0;
 }
 
-void autoCorrect(FILE *dictFP, char *srcWord){
+void spellCheck(FILE *dictFP, char *srcWord){
   #ifdef DEBUG
     fprintf(stderr,"Query %s func %s\n",srcWord,__func__);
+    fflush(stderr);
   #endif
 
   Node *storage = NULL;

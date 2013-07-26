@@ -11,17 +11,15 @@
   #include "wordTransition.h"
 
   #define BUF_SIZ 30
-  #define MAX_LEN        80
-  #define THRESHOLD_PASS 70
-  #define MAX_CHAR_DIFF  2
-  #define NULL_WORD_PARAM_IN -256
+  #define THRESHOLD_RANK -2
+  #define THRESHOLD_LEN  2
   
   typedef unsigned int uint32;
 
   char *getWord(FILE *);
   int wordSimilarity(const char *query, const char *src,Bool LEN_MATCH_BOOL);
 
-  Bool isValidFile(char *path){
+  Bool isValidFile(char *path, long *fileSize){
     //Input: A path 
     //Returns: True iff a path exists and is not a directory else False
     struct stat statInfo;
@@ -31,15 +29,17 @@
     if ((statInfo.st_mode <= 0))
       return False;
 
-    if (! S_ISDIR(statInfo.st_mode))
+    if (! S_ISDIR(statInfo.st_mode)){
+      *fileSize = statInfo.st_size;
       return True;
+    }
 
     return False;
   }
 
   Node *loadWord(FILE *fp,Node *storageNode,const char *query,
-      Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH){
-     /*
+    Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH){
+    /*
       Find words whose similarity to the query word is above the threshold 
       match percentage. Add these similar words to the singly linked list:
 	  'storageNode'.
@@ -73,22 +73,25 @@
 	    (query[0] != wordBuf[0]))
 	  goto freeWordBuf;
 	else{
-	  uint32 srcLen = strlen(wordBuf);
+	  int srcLen = strlen(wordBuf)/sizeof(char);
+	  int queryLen = strlen(query)/sizeof(char);
 	  int wRank = wordSimilarity(query, wordBuf, LEN_MATCH_BOOL);
 
-	  if ((wRank== strlen(query)) && (srcLen == strlen(query))){ 
+	  if ((wRank== queryLen) && (srcLen == queryLen)){ 
 	    //Absolute match found
 	    matchFound = True;
 	    break; 
 	  }
-	  if ((wRank > -2) && (strlen(wordBuf) > 2)){
-	    wordNode	= addWord(wordNode,wordBuf,wRank);
+	  int wordBufLen = strlen(wordBuf)/sizeof(char);
+	  if ((wRank > THRESHOLD_RANK) && (wordBufLen > THRESHOLD_LEN)){
+	    wordNode = addWord(wordNode,wordBuf,wRank);
 	  }
 	}
-	freeWordBuf:{
+      }
+      freeWordBuf:{
+	if (wordBuf != NULL){
 	  free(wordBuf); 
 	  wordBuf = NULL;
-	  continue;
 	}
       }
     }
@@ -97,7 +100,7 @@
     //If the exact match was found, no need to display the suggested matches
 
     if ((alreadyInStorage != 1) && (!matchFound)){
-      int queryLen = strlen(query);
+      size_t queryLen = strlen(query);
 
       if (queryLen > 2)
 	storageNode = addWord(storageNode,query,queryLen);
@@ -123,12 +126,11 @@
     return storageNode;
   }
 
-  int wordSimilarity(const char *query, const char *src, 
-		  Bool LEN_MATCH_TRUE){
-    //Do a distance transformation to determine how much work is required to
-    //transform word 'src' to 'query' where: 
+  int wordSimilarity(const char *query, const char *src, Bool LEN_MATCH_TRUE){
+    //Determine how much work is required to  transform word 'src' to 'query' 
+    //where: 
     //    (nAddedChars*-2)+((nDeletedChars+nMovedChars)*-1)+(nReUsedChars)
-    //is the receipe to determine the work done, which is returned
+    // is the receipe to determine the work done/rank, which is returned
     if ((query == NULL) || (src == NULL)) return 0;
 
     uint32 queryLen = strlen(query), srcLen = strlen(src),
@@ -147,14 +149,14 @@
 	    &nMovedChars,&nReUsedChars);
     freeSList(tree);
 
-    int nDeletions = strlen(src)-nReUsedChars;
+    size_t nDeletions = (strlen(src)-nReUsedChars);
     int rank = (nAddedChars*-2)+(nReUsedChars)+((nDeletions+nMovedChars)*-1);
      
     return rank; 
   }
 
   void toLower(char *s){
-    int len = strlen(s);
+    int len = strlen(s)/sizeof(char);
     int i=0;
 
     char c;
