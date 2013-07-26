@@ -126,6 +126,8 @@ int main(int argc, char *argv[]){
   free(path);
   free(learntPath);
   free(procDone);
+  free(curPos);
+  free(fileSize);
 
   pthread_mutex_destroy(&main_tx);
   pthread_cond_destroy(&cond_t);
