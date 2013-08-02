@@ -3,17 +3,19 @@
 #include <stdio.h>
 #include <pthread.h>
 #include "wordSearch.h"
-#include <sys/signal.h>
 
 #define EXIT_CHAR '-'
 #define LEARNT_WORDS_PATH "learnt_words.txt"
+
+void  autoCorrect(FILE *, char *, char *, long *); 
 
 static size_t MAX_PATH = 110;
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(char *, char *, long *);
+  void (*func)(FILE *, char *, char *, long *);
+  FILE *destFP;
   char *path;
   char *learntPath;
   long *curPos;
@@ -23,7 +25,7 @@ typedef struct{
 void *runFunc(void *data){
   funcStruct *f = (funcStruct *)data;
   pthread_mutex_lock(&main_tx);
-  f->func(f->path,f->learntPath, f->curPos);
+  f->func(f->destFP, f->path,f->learntPath, f->curPos);
   pthread_cond_signal(&cond_t);
 
   pthread_mutex_unlock(&main_tx);
@@ -44,31 +46,15 @@ void *timeScreen(void *data){
     ++i;
     sleep(1);
   }
-  fprintf(stderr,"\n");
-  fprintf(stdout," %d second%c spent ",i, (i != 1 ? 's' : ' '));
+  //fprintf(stderr,"\n");
+  fprintf(stdout,"\n %d second%c spent \n",i, (i != 1 ? 's' : ' '));
   return NULL;
 }
 
-void  autoCorrect(char *, char *, long *); 
-char *getWord(FILE *fp);
-
-int getLine(char *s, int max){
-  int i=0;
-  char c=EOF;
-  while ((i < max) && ((c = getchar()) != EOF)){
-    if ((c == ' ') || (c == '\n' && putchar(c))){
-      s[i] = '\0';
-      break;
-    }
-    s[i] = c;	
-    i++;
-  }
-  return ((c == EOF) ? EOF : i);
-}
-
 int main(int argc, char *argv[]){
-  if (argc != 3){
-    fprintf(stderr,"Usage: <srcFile> <storageForLearntPath>\n");
+  if (argc < 3){
+    fprintf(stderr,
+      "Usage: <srcFile> <storageForLearntPath> [optional correctedTxtPath]\n");
     exit(-1);
   }
   Bool doneReading = False, validfile;
@@ -77,6 +63,7 @@ int main(int argc, char *argv[]){
 
   char *s = "wordlist.txt";
   FILE *fp = fopen(s, "r");
+  
   char *path=(char *)malloc(sizeof(char)*MAX_PATH);
   char *learntPath=(char *)malloc(sizeof(char)*MAX_PATH);
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
@@ -100,6 +87,12 @@ int main(int argc, char *argv[]){
       fprintf(stderr,"Could not read in the learnt path\n");
       exit(-1);
     }
+    FILE *correctedDest = NULL;
+
+    if (argc == 4){
+      //Time to fetch the path to write the corrected text to
+      correctedDest = fopen(argv[3], "w");
+    }
 
     validfile = isValidFile(path, fileSize);
     if(validfile){
@@ -107,12 +100,10 @@ int main(int argc, char *argv[]){
       p.path = path;
       p.learntPath = learntPath;
       p.curPos = procSt.curPos;
+      p.destFP = correctedDest;
       pthread_create(&main_th, NULL, runFunc, &p);
       pthread_create(&timer_t, NULL, timeScreen, &procSt);
       pthread_cond_wait(&cond_t, &main_tx);
-
-      //pthread_kill(timer_t,SIGINT);
-      //pthread_kill(main_th,SIGINT);
 
       *procDone = True;
       sleep(1);
@@ -136,7 +127,7 @@ int main(int argc, char *argv[]){
   return 0;
 }
 
-void autoCorrect(char *srcTextPath, char *learntPath, long *curPos){
+void autoCorrect(FILE *correctedDest, char *srcTextPath, char *learntPath, long *curPos){
   #ifdef DEBUG
     fprintf(stderr,"srcTextPath %s func %s\n",srcTextPath,__func__);
   #endif
@@ -172,12 +163,12 @@ void autoCorrect(char *srcTextPath, char *learntPath, long *curPos){
     #endif
 
     //Definition of function 'loadWord(...)'
-    //Node *loadWord(FILE *,Node *,char *query,Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH);
+    //Node *loadWord(FILE *,FILE*, Node *,char *query,Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH);
 
     //Therefore: Searching for words that have the same letter length, and same first letter
     //Add to 'storage' those words that have a ranked similarity to the word 
     //under scrutiny
-    storage  = loadWord(dictFP, storage, srcWord, False, False);
+    storage  = loadWord(dictFP, correctedDest, storage, srcWord, False, False);
 
     if (srcWord != NULL)
       free(srcWord);

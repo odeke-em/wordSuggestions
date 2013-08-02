@@ -83,14 +83,17 @@ int findIndex(numSList *tree, int queryIndex){
 }
 
 numSList *wordTransition( const char *w1, int w1Index, const char *w2,
-  numSList *foundIndices, int *nAdditions, int *nMoves, int *nReUsable){
+  numSList *foundIndices, editStatStruct *statStruct){ // int *nAdditions, int *nMoves, int *nReUsable){
   /*
     Prints step by step modifications in order to re-create the base string 'w1'
     from the subject string 'w2'
   */
-  if ((w1 == NULL) || (w2 == NULL)) return foundIndices;
+  if ((w1 == NULL) || (w2 == NULL) || (statStruct == NULL)) return foundIndices;
 
-  if (w1Index >= strlen(w1)){ return foundIndices; }
+  if (w1Index >= strlen(w1)){ 
+    statStruct->stringLen = strlen(w2);
+    return foundIndices; 
+  }
 
   char cW1 = w1[w1Index];
   int i=0,foundCh=0;
@@ -106,10 +109,12 @@ numSList *wordTransition( const char *w1, int w1Index, const char *w2,
 	  #ifdef TEST
             printf("move w2[%d] %c to w2[%d]\n",i,w2[i],w1Index);
 	  #endif
-          ++*nMoves;
+	  ++(statStruct->moves);
+          //++*nMoves;
         }
 
-	++*nReUsable;
+	++(statStruct->reuses);
+	//++*nReUsable;
         foundCh = 1;
 
         break;
@@ -120,36 +125,73 @@ numSList *wordTransition( const char *w1, int w1Index, const char *w2,
       #ifdef TEST
         printf("Replace w2[%d] %c with %c\n",w1Index,w2[w1Index],cW1);
       #endif
-      ++*nAdditions;
+      ++(statStruct->additions);
+      //++*nAdditions;
   }
   
-  return wordTransition(w1, ++w1Index, w2,foundIndices,nAdditions,
-	  nMoves,nReUsable);
+  return wordTransition(w1, ++w1Index, w2,foundIndices, statStruct); 
+}
+void printStatStruct(const editStatStruct *statStruct){
+  if (statStruct == NULL) return;
+
+  int stringLen = statStruct->stringLen;
+  printf("Moves: %d\nReUses: %d\nDeletions: %d\n",
+    statStruct->moves,statStruct->reuses, 
+    abs(stringLen-statStruct->reuses));
+}
+
+void freeEditStat(editStatStruct *statStruct){
+  if (statStruct != NULL) 
+    free(statStruct);
+}
+
+editStatStruct *allocEditStat(void){
+  return (editStatStruct *)malloc(sizeof(editStatStruct));
+}
+
+void initStatStruct(editStatStruct *statStruct){
+  if (statStruct != NULL){
+    statStruct->additions = 0;
+    statStruct->reuses = 0;
+    statStruct->moves = 0;
+    statStruct->stringLen = 0;
+  }
+}
+
+int statStructRank(editStatStruct *statStruct){
+  int rank = ERROR_RANK;
+  if (statStruct != NULL){
+    int moves = statStruct->moves;
+    int reuses = statStruct->reuses;
+    int additions = statStruct->additions;
+    int deletions = statStruct->stringLen - reuses;
+
+    rank = (additions*-2)+(reuses)+((deletions+moves)*-1);
+    //printf("rank %d\n", rank);
+  }
+  return rank;
 }
 
 #ifdef SAMPLE_RUN
   int main(){
     char *baseName = "morp"; 
     char *trials[] = {"monk","brag","tatsambone","satton",
-	  "suttons","konrad"};
+	  "suttons","konrad","morp"};
 
     int i, nTrials = sizeof(trials)/sizeof(trials[0]);
-    int *nTransitions = (int *)malloc(sizeof(int)),
-	*nMoves       = (int *)malloc(sizeof(int)),
-	*nReUsable    = (int *)malloc(sizeof(int));
 
+    editStatStruct statStruct;
     for (i=0; i<nTrials; ++i){
       numSList *tree = NULL;
       *nTransitions = 0, *nMoves=0, *nReUsable=0;
       printf("Getting %s from %s\n",baseName,trials[i]);
 
-      tree = wordTransition(baseName,0,trials[i],tree,
-		  nTransitions,nMoves,nReUsable);
+      initStatStruct(&statStruct);
+      tree = wordTransition(baseName,0,trials[i],tree, &statStruct);
 
-      int nDeletions = strlen(trials[i])-*nReUsable;
-      printf("\033[32mnAdditions %d nDeletions %d nMoves %d\033[00m\n\n",
-	*nTransitions, nDeletions,*nMoves);
-      printf("Rank %d\n", ((*nTransitions *-2)+(*nReUsable)+(nDeletions*-1)));
+      printStatStruct(&statStruct);
+      
+      //printf("Rank %d\n", statStructRank(&statStruct));
      
       freeSList(tree);
     }

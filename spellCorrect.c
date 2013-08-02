@@ -10,6 +10,8 @@
 
 #define LEARNT_WORDS_PATH "learnt_words.txt"
 
+void  spellCheck(FILE *, char *); 
+
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
@@ -18,7 +20,6 @@ typedef struct{
   char *queryWord;
   FILE *dictFP;
 } funcStruct;
-
 
 void *runFunc(void *data ){
   funcStruct *f = (funcStruct *)data;
@@ -59,23 +60,6 @@ void *timeScreen(void *data){
   return NULL;
 }
 
-void  spellCheck(FILE *, char *); 
-char *getWord(FILE *fp);
-
-int getLine(char *s, int max){
-  int i=0;
-  char c = '\0';
-  while ((i < max) && (((c = getchar()) != EOF))){
-    if ((c == ' ') || (c == '\n' && putchar(c))){
-	s[i] = '\0';
-	break;
-    }
-    s[i] = c;	
-    ++i;
-  }
-  return ((c == EOF ) ? EOF : i );
-}
-
 int main(){
   Bool doneReading = False;
   pthread_t timer_t;
@@ -96,7 +80,7 @@ int main(){
     fprintf(stderr,"\n");
     fprintf(stderr, 
       "%c as the first character exists the program\n",EXIT_CHAR);
-    fprintf(stderr,"Query "); 
+    fprintf(stderr,"\nQuery "); 
 
     if (getLine(query, MAX_PATH) == EOF ){
       fprintf(stderr,"EOF encountered. Done reading\n");
@@ -143,7 +127,7 @@ void spellCheck(FILE *dictFP, char *srcWord){
 
   //Add to 'storage' those words that have a ranked similarity to the word 
   //under scrutiny
-  storage  = loadWord(dictFP, storage, srcWord, False, False);
+  storage  = loadWord(dictFP, stdout, storage, srcWord, False, False);
   //nodePrint(storage);
 
   //And give unto OS, what belongs to OS -- release memory

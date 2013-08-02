@@ -37,7 +37,7 @@
     return False;
   }
 
-  Node *loadWord(FILE *fp,Node *storageNode,const char *query,
+  Node *loadWord(FILE *fp, FILE *correctedDest, Node *storageNode,const char *query,
     Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH){
     /*
       Find words whose similarity to the query word is above the threshold 
@@ -96,16 +96,20 @@
       }
     }
 
-    printf("%s ",query);
-    //If the exact match was found, no need to display the suggested matches
+    FILE *correctedTxtFP = correctedDest;
+    if (correctedTxtFP == NULL)
+      correctedTxtFP = stdout;
 
+    fprintf(correctedTxtFP, "%s ",query);
+
+    //If the exact match was found, no need to display the suggested matches
     if ((alreadyInStorage != 1) && (!matchFound)){
       size_t queryLen = strlen(query);
 
       if (queryLen > 2)
 	storageNode = addWord(storageNode,query,queryLen);
 
-      if (nodePrint(wordNode)  && putchar('\n'));
+      if (nodePrint(correctedTxtFP, wordNode));
       else{
 	#ifdef INTERACTIVE
 	  fprintf(stderr, "No suggestions\n");
@@ -114,9 +118,10 @@
     } else { 
       #ifdef INTERACTIVE
       if (alreadyInStorage == 1) fprintf(stderr,"following along %s\n", query);
-	printf(" in dictionary "); 
+	fprintf(correctedTxtFP, " in dictionary "); 
       #endif
     }
+    fflush(correctedTxtFP);
 
     if (wordBuf != NULL) free(wordBuf);
 
@@ -140,17 +145,17 @@
       return 0;
  
     numSList *tree = NULL;
-    int nAddedChars=0, nMovedChars=0,nReUsedChars=0;
     #ifdef TEST
       printf("\033[32mTransforming %s to %s\033[00m\n",src,query);
     #endif
 
-    tree = wordTransition(query,0,src,tree, &nAddedChars, 
-	    &nMovedChars,&nReUsedChars);
+    editStatStruct statStruct;
+    initStatStruct(&statStruct);
+
+    tree = wordTransition(query,0,src,tree, &statStruct);
     freeSList(tree);
 
-    size_t nDeletions = (strlen(src)-nReUsedChars);
-    int rank = (nAddedChars*-2)+(nReUsedChars)+((nDeletions+nMovedChars)*-1);
+    int rank = statStructRank(&statStruct);
      
     return rank; 
   }
@@ -198,5 +203,18 @@
       fprintf(stderr,"got_word %s\n",buf);
     #endif
     return buf;
+  }
+  int getLine(char *s, int max){
+    int i=0;
+    char c=EOF;
+    while ((i < max) && ((c = getchar()) != EOF)){
+      if ((c == ' ') || (c == '\n' && putchar(c))){
+	s[i] = '\0';
+	break;
+      }
+      s[i] = c;	
+      i++;
+    }
+    return ((c == EOF) ? EOF : i);
   }
 #endif

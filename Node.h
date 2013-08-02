@@ -43,12 +43,13 @@
     tree = NULL;
   }
 
-  int nodePrint(Node *tree){
+  int nodePrint(FILE *fp, Node *tree){
     /*
       Input: a singly linked list 'tree'
       Output: printed attributes of the tree, 'match', matchrankage
       Returns: the number of non-NULL nodes in the tree
     */
+    if (fp == NULL) fp =stdout;
     int nPrints = 0;
     Node *tmp;
     int maxPrintPerLine=4;
@@ -57,15 +58,15 @@
 	fprintf(stderr," Suggestions: \033[32m");
       #endif
 
-      printf("{ \t\n");
+      fprintf(fp, "{ \t\n");
       for (tmp = tree; tmp != NULL; tmp=tmp->next){
-        printf("%s:%d ",tmp->match,tmp->matchrank);
+        fprintf(fp, "%s:%d ",tmp->match,tmp->matchrank);
 
         ++nPrints;
-	if (! nPrints%maxPrintPerLine) printf("\n");
+	if (! nPrints%maxPrintPerLine) fprintf(fp, "\n");
       }
 
-      printf("}\n");
+      fprintf(fp, "}\n");
       #ifdef INTERACTIVE
 	fprintf(stderr,"\t\n\033[00m");
       #endif
@@ -116,7 +117,17 @@
     
     struct node *tmp;
     for (tmp=tree; tmp != NULL; tmp=tmp->next){
-      if (strcmp(word,tmp->match) == 0) return 1;
+      //Let's check if the length, first and last letters are the same
+      const char *tmpW = tmp->match;
+      int tmpLen = strlen(tmpW), queryLen = strlen(word);
+      int lastIdx = tmpLen-1;
+
+      if (! ((tmpW[0] == word[0]) && (tmpW[lastIdx] == word[lastIdx]))) 
+	continue;
+
+      if (tmpLen != queryLen) continue;
+
+      if (strcmp(word, tmpW) == 0) return 1;
     }
     return -1;
   }
