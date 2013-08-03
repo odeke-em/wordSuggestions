@@ -3,10 +3,6 @@
  *  Algorithm to transition one string to another: 
  *  ie to create "barg" from "brag" re-organize letters 'r' and 'a'
  */
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include "wordTransition.h"
 
 int abs(int a){
@@ -51,7 +47,7 @@ int printSList(numSList *tree){
   return nPrints;
 }
 
-numSList *addIndex(numSList *tree,int newIndex){
+numSList *addIndex(numSList *tree, int newIndex){
   if (tree == NULL){ //New index has arrived, add it to the list
     tree = allocNode();
     tree->index = newIndex;
@@ -82,8 +78,8 @@ int findIndex(numSList *tree, int queryIndex){
   return NOTFOUND;
 }
 
-numSList *wordTransition( const char *w1, int w1Index, const char *w2,
-  numSList *foundIndices, editStatStruct *statStruct){ // int *nAdditions, int *nMoves, int *nReUsable){
+numSList *wordTransition( const word w1, int w1Index, const word w2,
+  numSList *foundIndices, editStatStruct *statStruct){
   /*
     Prints step by step modifications in order to re-create the base string 'w1'
     from the subject string 'w2'
@@ -104,39 +100,39 @@ numSList *wordTransition( const char *w1, int w1Index, const char *w2,
     if (w2[i] == cW1){
       if (alreadyVisited == NOTFOUND){
         //Mark the index as now visited
-        foundIndices = addIndex(foundIndices,i);
+        foundIndices = addIndex(foundIndices, i);
         if (i != w1Index){
 	  #ifdef TEST
-            printf("move w2[%d] %c to w2[%d]\n",i,w2[i],w1Index);
+            printf("move w2[%d] %c to w2[%d]\n", i, w2[i], w1Index);
 	  #endif
 	  ++(statStruct->moves);
-          //++*nMoves;
-        }
+        }else
+	  ++(statStruct->inplace);
 
 	++(statStruct->reuses);
-	//++*nReUsable;
         foundCh = 1;
 
         break;
       }
-    } //Otherwise we need to add that character
+    }//Otherwise we need to add that character
   }
+
   if (foundCh != 1){
       #ifdef TEST
         printf("Replace w2[%d] %c with %c\n",w1Index,w2[w1Index],cW1);
       #endif
       ++(statStruct->additions);
-      //++*nAdditions;
   }
   
   return wordTransition(w1, ++w1Index, w2,foundIndices, statStruct); 
 }
+
 void printStatStruct(const editStatStruct *statStruct){
   if (statStruct == NULL) return;
 
   int stringLen = statStruct->stringLen;
-  printf("Moves: %d\nReUses: %d\nDeletions: %d\n",
-    statStruct->moves,statStruct->reuses, 
+  printf("nInPlace %d\nMoves: %d\nReUses: %d\nDeletions: %d\n",
+    statStruct->inplace, statStruct->moves,statStruct->reuses, 
     abs(stringLen-statStruct->reuses));
 }
 
@@ -154,6 +150,7 @@ void initStatStruct(editStatStruct *statStruct){
     statStruct->additions = 0;
     statStruct->reuses = 0;
     statStruct->moves = 0;
+    statStruct->inplace= 0;
     statStruct->stringLen = 0;
   }
 }
@@ -164,18 +161,17 @@ int statStructRank(editStatStruct *statStruct){
     int moves = statStruct->moves;
     int reuses = statStruct->reuses;
     int additions = statStruct->additions;
+    int inplace = statStruct->inplace;
     int deletions = statStruct->stringLen - reuses;
-
-    rank = (additions*-2)+(reuses)+((deletions+moves)*-1);
-    //printf("rank %d\n", rank);
+    rank = (inplace+reuses)+((deletions+moves)*-1)+(additions*-2);
   }
   return rank;
 }
 
 #ifdef SAMPLE_RUN
   int main(){
-    char *baseName = "morp"; 
-    char *trials[] = {"monk","brag","tatsambone","satton",
+    word baseName = "morp"; 
+    word trials[] = {"monk","brag","tatsambone","satton",
 	  "suttons","konrad","morp"};
 
     int i, nTrials = sizeof(trials)/sizeof(trials[0]);
@@ -183,7 +179,6 @@ int statStructRank(editStatStruct *statStruct){
     editStatStruct statStruct;
     for (i=0; i<nTrials; ++i){
       numSList *tree = NULL;
-      *nTransitions = 0, *nMoves=0, *nReUsable=0;
       printf("Getting %s from %s\n",baseName,trials[i]);
 
       initStatStruct(&statStruct);
@@ -191,15 +186,11 @@ int statStructRank(editStatStruct *statStruct){
 
       printStatStruct(&statStruct);
       
-      //printf("Rank %d\n", statStructRank(&statStruct));
+      printf("Rank %d\n", statStructRank(&statStruct));
      
       freeSList(tree);
     }
   
-    free(nMoves);
-    free(nTransitions);
-    free(nReUsable);
-
     return 0;
   }
 #endif

@@ -4,25 +4,17 @@
   #include <string.h>
   #include <assert.h>
   #include <stdlib.h>
-  typedef enum{
-    False=0,
-    True=1
-  } Bool;
 
-  typedef struct node{
-    char *match;
-    int matchrank;
-    struct node *next;   
-  }Node;
-
+  #include "customTypes.h"
+  int wordInNode(Node *, const word);
+  Bool sameWord(const word, const word);
   int sortFunc(const void *, const void *);
   int rankComparison(const void *, const void *);
-  int wordInNode(Node *tree, const char *word);
   
-  char *wordCopy(const char *orig){
+  word wordCopy(const word orig){
     if (orig == NULL) return NULL;
 
-    char *copy = strdup(orig);
+    word copy = strdup(orig);
     assert(copy != NULL);
 
     return copy;
@@ -74,23 +66,36 @@
    return nPrints;
   }
 
-  Node *addWord(Node *tree, const char *word, int rankMatch){
-    if ( word == NULL) return tree;
+  Node *addWord(Node *tree, const word query, int rankMatch){
+    if (query == NULL) return tree;
 
     if (tree == NULL){
       tree = nodeAlloc();
-      tree->match = wordCopy(word);
+      tree->match = wordCopy(query);
       if (tree->match == NULL) printf("found null word\n");
       assert(tree);
 
       tree->matchrank = rankMatch;
       tree->next  = NULL;
     }
-    else if ((tree->match != NULL) && (strcmp(tree->match,word) != 0)){
-      tree->next = addWord(tree->next,word,rankMatch);
+    else if (sameWord(tree->match, query) == False){
+	tree->next = addWord(tree->next, query, rankMatch);
     }
   
     return tree; 
+  }
+
+  Bool sameWord(const word w1, const word w2){
+    if (w1 == NULL || w2 == NULL) return Invalid;
+    int w1Len = strlen(w1), queryLen = strlen(w2);
+
+    if (w1Len != queryLen) return False;
+
+    int lastIdx = w1Len-1;
+    Bool extremeLetterMatch = (w1[0] == w2[0]) && (w1[lastIdx] == w2[lastIdx]);
+    if (extremeLetterMatch == False) return False;
+
+    return (strcmp(w1, w2) == 0);
   }
 
   Bool serializeNode(Node *tree, FILE *outfp){
@@ -106,29 +111,21 @@
     return wroteToFileBool;
   }
 
-  int wordInNode(Node *tree, const char *word){
+  Bool wordInNode(Node *tree, const word query){
     /*
       Returns: 
-	   0  if tree or word are NULL
-	   1  if word was found
-	  -1 if word was not found
+	   Invalid  if either tree or word is NULL
+	   True  if word was found
+	   False otherwise
     */
-    if ((word == NULL) || (tree == NULL)) return 0;
+    if ((query == NULL) || (tree == NULL)) return Invalid;
     
     struct node *tmp;
     for (tmp=tree; tmp != NULL; tmp=tmp->next){
-      //Let's check if the length, first and last letters are the same
-      const char *tmpW = tmp->match;
-      int tmpLen = strlen(tmpW), queryLen = strlen(word);
-      int lastIdx = tmpLen-1;
-
-      if (! ((tmpW[0] == word[0]) && (tmpW[lastIdx] == word[lastIdx]))) 
-	continue;
-
-      if (tmpLen != queryLen) continue;
-
-      if (strcmp(word, tmpW) == 0) return 1;
+      Bool stringMatch = sameWord(query, tmp->match);
+      if (stringMatch == True) return True;
+      else if (stringMatch == Invalid) return Invalid;
     }
-    return -1;
+    return False;
   }
 #endif 

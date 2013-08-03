@@ -8,29 +8,15 @@
   #include <stdio.h>
   #include <string.h>
   #include <stdlib.h>
+  #include "customTypes.h"
 
   #define NOTFOUND -1
   #define ERROR_RANK -0xffff //Arbitrary value here
 
-  int abs(int );
-
-  //Singly linked list to store indices of found letters
-  typedef struct indexNode{
-    int index;
-    int count;
-    struct indexNode *next;
-  }numSList;
-
-  typedef struct{
-    //Number of deletions = stringLength - additions
-    int additions;
-    int moves;
-    int reuses;
-    int stringLen;
-  }editStatStruct;
+  int abs(int);
 
   //Frees the singly-linked list
-  void freeSList(numSList *tree);
+  void freeSList(numSList *);
 
   //Requests for a node's worth of memory
   struct indexNode* allocNode(void);
@@ -50,21 +36,22 @@
   void initStatStruct(editStatStruct *);
 
   //Returns the count of non-NULL indexNodes
-  int countNodes(numSList *tree);
+  int countNodes(numSList *);
 
   //Prints each indexNodeIndex and the number of times it was seen
   //Returns the number of non-NULL indexNodes printed
-  int printSList(numSList *tree);
+  int printSList(numSList *);
 
   //Add indices to the list or increment their visit count
-  numSList *addIndex(numSList *tree,int newIndex);
+  numSList *addIndex(numSList *,int);
 
   //Returns the index of a query, else return 'NOTFOUND'
-  int findIndex(numSList *tree, int queryIndex);
+  int findIndex(numSList *, int);
 
   //Prints step by step modifications in order to re-create the base string 'w1'
   //from the subject string 'w2'. Stores information on the number of chars to
   //be added, removed or added to accomplish the mission
-  numSList *wordTransition( const char *w1, int w1Index, const char *w2,
-    numSList *foundIndices, editStatStruct *); //int *nAdditions, int *nMoves, int *nReUsable);
+  numSList *wordTransition( 
+    const word, int, const word, numSList *, editStatStruct *
+  );
 #endif

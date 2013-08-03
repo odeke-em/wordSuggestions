@@ -10,14 +10,14 @@
 
 #define LEARNT_WORDS_PATH "learnt_words.txt"
 
-void  spellCheck(FILE *, char *); 
+void  spellCheck(FILE *, word); 
 
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(FILE*, char *);
-  char *queryWord;
+  void (*func)(FILE*, word);
+  word queryWord;
   FILE *dictFP;
 } funcStruct;
 
@@ -44,7 +44,7 @@ void *timeScreen(void *data){
        nDots = 0;
     }
 
-    fprintf(stderr,"\nProcessing");
+    fprintf(stderr,"Processing");
     
     int tempI;
     for (tempI=0; tempI<nDots; ++tempI)
@@ -65,7 +65,7 @@ int main(){
   pthread_t timer_t;
   pthread_t main_th;
 
-  char *s = "wordlist.txt";
+  word s = "wordlist.txt";
   FILE *dictFP = fopen(s, "r");
   char query[MAX_PATH];
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
@@ -110,7 +110,7 @@ int main(){
   return 0;
 }
 
-void spellCheck(FILE *dictFP, char *srcWord){
+void spellCheck(FILE *dictFP, word srcWord){
   #ifdef DEBUG
     fprintf(stderr,"Query %s func %s\n",srcWord,__func__);
     fflush(stderr);
@@ -122,7 +122,7 @@ void spellCheck(FILE *dictFP, char *srcWord){
   #endif
 
   //Definition of function 'loadWord(...)'
-  //Node *loadWord(FILE *,Node *,char *query,Bool LEN_MATCH_BOOL, 
+  //Node *loadWord(FILE *,Node *,word query,Bool LEN_MATCH_BOOL, 
   //                             Bool FIRST_LETTER_MATCH);
 
   //Add to 'storage' those words that have a ranked similarity to the word 

@@ -7,17 +7,17 @@
 #define EXIT_CHAR '-'
 #define LEARNT_WORDS_PATH "learnt_words.txt"
 
-void  autoCorrect(FILE *, char *, char *, long *); 
+void  autoCorrect(FILE *, word , word , long *); 
 
 static size_t MAX_PATH = 110;
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(FILE *, char *, char *, long *);
+  void (*func)(FILE *, word , word , long *);
   FILE *destFP;
-  char *path;
-  char *learntPath;
+  word path;
+  word learntPath;
   long *curPos;
 } funcStruct;
 
@@ -31,6 +31,7 @@ void *runFunc(void *data){
   pthread_mutex_unlock(&main_tx);
   return NULL;
 }
+
 struct procStruct{
   Bool *processDone;
   long *curPos;
@@ -51,7 +52,7 @@ void *timeScreen(void *data){
   return NULL;
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, word argv[]){
   if (argc < 3){
     fprintf(stderr,
       "Usage: <srcFile> <storageForLearntPath> [optional correctedTxtPath]\n");
@@ -61,11 +62,11 @@ int main(int argc, char *argv[]){
   pthread_t timer_t;
   pthread_t main_th;
 
-  char *s = "wordlist.txt";
+  word s = "wordlist.txt";
   FILE *fp = fopen(s, "r");
   
-  char *path=(char *)malloc(sizeof(char)*MAX_PATH);
-  char *learntPath=(char *)malloc(sizeof(char)*MAX_PATH);
+  word path=(word )malloc(sizeof(char)*MAX_PATH);
+  word learntPath=(word )malloc(sizeof(char)*MAX_PATH);
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
 
   long *curPos = (long *)malloc(sizeof(long));
@@ -127,7 +128,7 @@ int main(int argc, char *argv[]){
   return 0;
 }
 
-void autoCorrect(FILE *correctedDest, char *srcTextPath, char *learntPath, long *curPos){
+void autoCorrect(FILE *correctedDest, word srcTextPath, word learntPath, long *curPos){
   #ifdef DEBUG
     fprintf(stderr,"srcTextPath %s func %s\n",srcTextPath,__func__);
   #endif
@@ -137,7 +138,7 @@ void autoCorrect(FILE *correctedDest, char *srcTextPath, char *learntPath, long 
   //A collective list of possible syntactically correct words is produced and 
   //written to the outpath whose file pointer is 'words_learnt_ifp'
 
-  char *dictPath = "wordlist.txt";
+  word dictPath = "wordlist.txt";
   FILE *dictFP = fopen(dictPath, "r");
 
   //File to be corrected
@@ -152,9 +153,8 @@ void autoCorrect(FILE *correctedDest, char *srcTextPath, char *learntPath, long 
   Node *storage = NULL;
 
   while (! feof(srcfp)){
-    char *srcWord = getWord(srcfp);
+    word srcWord = getWord(srcfp);
     if (srcWord == NULL) continue;
-
     //Word Comparison will be done in lower case
     toLower(srcWord);
 
@@ -162,34 +162,29 @@ void autoCorrect(FILE *correctedDest, char *srcTextPath, char *learntPath, long 
       fprintf(stderr,"srcWord %s\n",srcWord);
     #endif
 
-    //Definition of function 'loadWord(...)'
-    //Node *loadWord(FILE *,FILE*, Node *,char *query,Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH);
-
-    //Therefore: Searching for words that have the same letter length, and same first letter
-    //Add to 'storage' those words that have a ranked similarity to the word 
-    //under scrutiny
-    storage  = loadWord(dictFP, correctedDest, storage, srcWord, False, False);
+    storage = loadWord(dictFP, correctedDest, storage, srcWord, False, False);
 
     if (srcWord != NULL)
       free(srcWord);
 
     *curPos= ftell(srcfp);
+
+    skipSpaces(srcfp);
   }
 
   //Time to write to memory words that had a high match percentage
-  fprintf(words_learnt_ifp,"#Words learnt from examining file %s\n",
-	  srcTextPath);
+  fprintf(
+    words_learnt_ifp,"#Words learnt from examining file %s\n", srcTextPath
+  );
 
   if(serializeNode(storage,words_learnt_ifp) == True){
-    fprintf(stderr,"\033[32mWrote the learnt words to file \"%s\"\033[00m\n",
-	  learntPath);
+    fprintf(
+      stderr,"\033[32mWrote the learnt words to file \"%s\"\033[00m\n", learntPath
+    );
   }
 
   //And give unto OS, what belongs to OS -- release memory
-  if (storage != NULL)
-    nodeFree(storage);
-
-  fprintf(words_learnt_ifp,"%c",EOF); 
+  if (storage != NULL)  nodeFree(storage);
 
   fclose(dictFP);
   fclose(srcfp);
