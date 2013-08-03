@@ -4,6 +4,7 @@
 #ifndef _WORD_SEARCH_H
 #define _WORD_SEARCH_H
   #include <ctype.h>
+  #include <stdio.h>
   #include <unistd.h>
   #include <stdlib.h>
   #include <string.h>
@@ -178,7 +179,7 @@
 
   word getWord(FILE *fp){
     //Copies only alphabetic characters. A non-alphabetic character signals 
-    //the function to return the current content
+    //the function to stop reading and return the already found content
     word buf = (word)malloc(sizeof(char)*(BUF_SIZ));
     char c='0';
     int i=0;
@@ -194,13 +195,14 @@
 
       int nRead = fread(&c,1,sizeof(char), fp);
       if (nRead == -1){
-        fprintf(stderr,"Failed to read a char from fp in function %s in file %s\n",
+        fprintf(
+         stderr,"Failed to read a char from fp in function %s in file %s\n",
           __func__, __FILE__
         );
         exit(-2);
       }
  
-      if (! isalpha(c)){//Reading done on finding a non-alphabetic character
+      if (! isalpha(c)){
         buf[i] = '\0';
         break;
       }else{

@@ -1,14 +1,12 @@
-/*Author: Emmanuel Odeke <odeke@ualberta.ca>*/
-
-#include <stdio.h>
+/*
+  Author: Emmanuel Odeke <odeke@ualberta.ca>
+*/
 #include <pthread.h>
 #include "wordSearch.h"
 
 #define EXIT_CHAR '-'
 #define BUF_SIZ 30
 #define MAX_PATH 60
-
-#define LEARNT_WORDS_PATH "learnt_words.txt"
 
 void  spellCheck(FILE *, word); 
 

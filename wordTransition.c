@@ -53,7 +53,7 @@ numSList *addIndex(numSList *tree, int newIndex){
     tree->index = newIndex;
     tree->count = 1;
     tree->next  = NULL;
-  }else if (tree->index == newIndex) //Found the index, increment it's count
+  }else if (tree->index == newIndex)//Found the index, increment it's count
     ++(tree->count);
 
    //Try the next node in the list

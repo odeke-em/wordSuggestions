@@ -6,6 +6,7 @@
   #include <stdlib.h>
 
   #include "customTypes.h"
+
   int wordInNode(Node *, const word);
   Bool sameWord(const word, const word);
   int sortFunc(const void *, const void *);

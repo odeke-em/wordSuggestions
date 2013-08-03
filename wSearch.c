@@ -1,31 +1,27 @@
 /*Author: Emmanuel Odeke <odeke@ualberta.ca>*/
 
-#include <stdio.h>
 #include <pthread.h>
 #include "wordSearch.h"
 
-#define EXIT_CHAR '-'
-#define LEARNT_WORDS_PATH "learnt_words.txt"
-
-void  autoCorrect(FILE *, word , word , long *); 
+void  autoCorrect(FILE *, const word , const word , long *); 
 
 static size_t MAX_PATH = 110;
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(FILE *, word , word , long *);
+  void (*func)(FILE *, word, word, long *);
   FILE *destFP;
   word path;
   word learntPath;
-  long *curPos;
+  long *freaderPosition;
 } funcStruct;
 
 
 void *runFunc(void *data){
   funcStruct *f = (funcStruct *)data;
   pthread_mutex_lock(&main_tx);
-  f->func(f->destFP, f->path,f->learntPath, f->curPos);
+  f->func(f->destFP, f->path,f->learntPath, f->freaderPosition);
   pthread_cond_signal(&cond_t);
 
   pthread_mutex_unlock(&main_tx);
@@ -34,7 +30,7 @@ void *runFunc(void *data){
 
 struct procStruct{
   Bool *processDone;
-  long *curPos;
+  long *freaderPosition;
   long *fileSize;
 };
 
@@ -43,7 +39,9 @@ void *timeScreen(void *data){
   int i=0;
   fprintf(stderr, "%c[2K",27);
   while (*(p->processDone) == False){
-    fprintf(stderr,"Processed %ld/%ld bytes\r", *(p->curPos), *(p->fileSize));
+    fprintf(
+      stderr,"Processed %ld/%ld bytes\r", *(p->freaderPosition), *(p->fileSize)
+    );
     ++i;
     sleep(1);
   }
@@ -65,11 +63,11 @@ int main(int argc, word argv[]){
   word s = "wordlist.txt";
   FILE *fp = fopen(s, "r");
   
-  word path=(word )malloc(sizeof(char)*MAX_PATH);
-  word learntPath=(word )malloc(sizeof(char)*MAX_PATH);
+  word path=(word)malloc(sizeof(char)*MAX_PATH);
+  word learntPath=(word)malloc(sizeof(char)*MAX_PATH);
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
 
-  long *curPos = (long *)malloc(sizeof(long));
+  long *freaderPosition = (long *)malloc(sizeof(long));
   long *fileSize = (long *)malloc(sizeof(long));
 
   funcStruct p;
@@ -77,7 +75,7 @@ int main(int argc, word argv[]){
 
   struct procStruct procSt;
   procSt.processDone = procDone; 
-  procSt.curPos = curPos;
+  procSt.freaderPosition = freaderPosition;
   procSt.fileSize = fileSize;
   while (! doneReading){
     if ((sscanf(argv[1],"%s",path) != 1) || (*path == EOF)){ 
@@ -100,7 +98,7 @@ int main(int argc, word argv[]){
       *procDone = False;
       p.path = path;
       p.learntPath = learntPath;
-      p.curPos = procSt.curPos;
+      p.freaderPosition = procSt.freaderPosition;
       p.destFP = correctedDest;
       pthread_create(&main_th, NULL, runFunc, &p);
       pthread_create(&timer_t, NULL, timeScreen, &procSt);
@@ -118,7 +116,7 @@ int main(int argc, word argv[]){
   free(path);
   free(learntPath);
   free(procDone);
-  free(curPos);
+  free(freaderPosition);
   free(fileSize);
 
   pthread_mutex_destroy(&main_tx);
@@ -128,11 +126,14 @@ int main(int argc, word argv[]){
   return 0;
 }
 
-void autoCorrect(FILE *correctedDest, word srcTextPath, word learntPath, long *curPos){
+void autoCorrect(
+    FILE *correctedDest, const word srcTextPath, 
+    const word learntPath, long *freaderPosition
+  ){
   #ifdef DEBUG
     fprintf(stderr,"srcTextPath %s func %s\n",srcTextPath,__func__);
   #endif
-  //Compares all the words in the source text path against a dictionary of words.
+  //Compares all words in the source text path against a dictionary of words.
   //For each word in the source text, a singly linked list of possible matches 
   //from the dictionary is produced.
   //A collective list of possible syntactically correct words is produced and 
@@ -167,12 +168,12 @@ void autoCorrect(FILE *correctedDest, word srcTextPath, word learntPath, long *c
     if (srcWord != NULL)
       free(srcWord);
 
-    *curPos= ftell(srcfp);
+    *freaderPosition= ftell(srcfp);
 
     skipSpaces(srcfp);
   }
 
-  //Time to write to memory words that had a high match percentage
+  //Time to write to memory matched words
   fprintf(
     words_learnt_ifp,"#Words learnt from examining file %s\n", srcTextPath
   );
@@ -184,7 +185,7 @@ void autoCorrect(FILE *correctedDest, word srcTextPath, word learntPath, long *c
   }
 
   //And give unto OS, what belongs to OS -- release memory
-  if (storage != NULL)  nodeFree(storage);
+  nodeFree(storage);
 
   fclose(dictFP);
   fclose(srcfp);
