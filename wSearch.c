@@ -170,7 +170,7 @@ void autoCorrect(
 
     *freaderPosition= ftell(srcfp);
 
-    skipSpaces(srcfp);
+    skipTillCondition(srcfp, notSpace);
   }
 
   //Time to write to memory matched words

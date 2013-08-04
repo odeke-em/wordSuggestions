@@ -31,5 +31,17 @@
     struct node *next;   
   }Node;
 
+  typedef struct{
+    uint32 start;
+    uint32 end;
+    uint32 fileSize;
+    FILE *fp;
+  }navigator;
+
+  typedef struct{
+    FILE *srcfp;
+    int nPartitions;
+    navigator *navList;
+  }navigatorList;
 
 #endif

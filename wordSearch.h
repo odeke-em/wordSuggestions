@@ -3,42 +3,19 @@
 */
 #ifndef _WORD_SEARCH_H
 #define _WORD_SEARCH_H
-  #include <ctype.h>
   #include <stdio.h>
   #include <unistd.h>
   #include <stdlib.h>
   #include <string.h>
-  #include <sys/stat.h>
 
   #include "Node.h"
+  #include "utilityFuncs.h"
   #include "wordTransition.h"
 
-  #define BUF_SIZ 30
   #define THRESHOLD_RANK 2
   #define THRESHOLD_LEN  2
   
-  word getWord(FILE *);
-  int skipSpaces(FILE *);
   int wordSimilarity(const word, const word, Bool );
-
-  Bool isValidFile(const word path, long *fileSize){
-    //Input: A path 
-    //Returns: True iff a path exists and is not a directory else False
-    struct stat statInfo;
-    if (stat(path, &statInfo) != 0) //Path doesn't exist or is null
-      return False;
-
-    if ((statInfo.st_mode <= 0))
-      return False;
-
-    if (! S_ISDIR(statInfo.st_mode)){
-      *fileSize = statInfo.st_size;
-      return True;
-    }
-
-    return False;
-  }
-
   Node *loadWord(FILE *fp, FILE *correctedDest, Node *storageNode,
     const word query, Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH){
     /*
@@ -65,7 +42,7 @@
 
     while (! feof(fp)){
       wordBuf = getWord(fp);
-      skipSpaces(fp);
+      skipTillCondition(fp, notSpace);
       //First letter match
       if (wordBuf != NULL){
         alreadyInStorage = wordInNode(storageNode,query);
@@ -164,89 +141,5 @@
     int rank = statStructRank(&statStruct);
      
     return rank; 
-  }
-
-  void toLower(word s){
-    int len = strlen(s)/sizeof(char);
-    int i=0;
-
-    char c;
-    while ((i<len) && (c = s[i])){
-      if (isalpha(c)) s[i] = tolower(c); 
-      ++i;
-    }
-  }
-
-  word getWord(FILE *fp){
-    //Copies only alphabetic characters. A non-alphabetic character signals 
-    //the function to stop reading and return the already found content
-    word buf = (word)malloc(sizeof(char)*(BUF_SIZ));
-    char c='0';
-    int i=0;
-
-    if (buf == NULL){
-      fprintf(stderr, "Run out of memory in func %s on line %d in file %s\n",
-          __func__,__LINE__,__FILE__
-      );
-      exit(-1);
-    }
-    while (! feof(fp)){
-      if (i>BUF_SIZ) break;
-
-      int nRead = fread(&c,1,sizeof(char), fp);
-      if (nRead == -1){
-        fprintf(
-         stderr,"Failed to read a char from fp in function %s in file %s\n",
-          __func__, __FILE__
-        );
-        exit(-2);
-      }
- 
-      if (! isalpha(c)){
-        buf[i] = '\0';
-        break;
-      }else{
-        buf[i] = c;
-        ++i;
-      }
-    }
-
-    #ifdef DEBUG
-      fprintf(stderr,"got_word %s\n",buf);
-    #endif
-    return buf;
-  }
-
-  int getLine(word s, int max){
-    int i=0;
-    char c=EOF;
-    while ((i < max) && ((c = getchar()) != EOF)){
-      if ((c == ' ') || (c == '\n' && putchar(c))){
-        s[i] = '\0';
-        break;
-      }
-      s[i] = c;    
-      i++;
-    }
-    return ((c == EOF) ? EOF : i);
-  }
-
-  int skipSpaces(FILE *ifp){
-    if (ifp == NULL) return EOF;
-
-    char c;
-    int nSkips=0;
-
-    while((c = getc(ifp)) != EOF){
-      if (! isspace(c)){
-        //Push back the character to the stream
-        ungetc(c, ifp);
-        break; 
-      }
-
-      ++nSkips;
-    }
-
-    return nSkips;
   }
 #endif
