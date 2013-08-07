@@ -12,8 +12,9 @@
   #include "utilityFuncs.h"
   #include "wordTransition.h"
 
-  #define THRESHOLD_RANK 2
+  #define THRESHOLD_RANK 5
   #define THRESHOLD_LEN  2
+  #define THRESHOLD_PERCENT_RANK 68
   
   int wordSimilarity(const word, const word, Bool );
   Node *loadWord(FILE *fp, FILE *correctedDest, Node *storageNode,
@@ -39,7 +40,7 @@
     #ifdef DEBUG
       fprintf(stderr,"reading %s started\n",__func__);
     #endif
-
+    int maxCutOffRank = wordSimilarity(query, query, LEN_MATCH_BOOL);
     while (! feof(fp)){
       wordBuf = getWord(fp);
       skipTillCondition(fp, notSpace);
@@ -59,13 +60,15 @@
           int queryLen = strlen(query)/sizeof(char);
           int wRank = wordSimilarity(query, wordBuf, LEN_MATCH_BOOL);
 
-          if ((srcLen == queryLen) && (wRank == queryLen<<1)){ 
+          if ((srcLen == queryLen) && (wRank == maxCutOffRank)){ 
             //Absolute match found
             matchFound = True;
             break; 
           }
+	  double percentRank = 100*(((double)(wRank))/(double)(maxCutOffRank));
           int wordBufLen = strlen(wordBuf)/sizeof(char);
-          if ((wRank > THRESHOLD_RANK) && (wordBufLen > THRESHOLD_LEN)){
+          if ((percentRank >= THRESHOLD_PERCENT_RANK) && \
+	    (wordBufLen > THRESHOLD_LEN)){
             wordNode = addWord(wordNode,wordBuf,wRank);
             nMatches += 1;
           }
@@ -117,8 +120,8 @@
   int wordSimilarity(const word query, const word src, Bool LEN_MATCH_TRUE){
     //Determine how much work is required to  transform word 'src' to 'query' 
     //where: 
-    //    (nAddedChars*-2)+((nDeletedChars+nMovedChars)*-1)+(nReUsedChars)
-    // is the receipe to determine the work done/rank, which is returned
+    // rank = (inplace*3)+(moves*2)+(deletions*-1)+(additions*-1);
+
     if ((query == NULL) || (src == NULL)) return 0;
 
     uint32 queryLen = strlen(query), srcLen = strlen(src),
@@ -127,18 +130,13 @@
     if ((LEN_MATCH_TRUE == True) && (! lenSimilarity))
       return 0;
  
-    numSList *tree = NULL;
     #ifdef TEST
       printf("\033[32mTransforming %s to %s\033[00m\n",src,query);
     #endif
 
-    editStatStruct statStruct;
-    initStatStruct(&statStruct);
+    editStatStruct *statStruct = wordTranspose(query,src);
 
-    tree = wordTransition(query,0,src,tree, &statStruct);
-    freeSList(tree);
-
-    int rank = statStructRank(&statStruct);
+    int rank = statStructRank(statStruct);
      
     return rank; 
   }

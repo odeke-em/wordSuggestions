@@ -57,7 +57,7 @@
       exit(-1);
     }
     while (! feof(fp)){
-      if (i>=BUF_SIZ) break;
+      if (i>BUF_SIZ) break;
 
       int nRead = fread(&c,1,sizeof(char), fp);
       if (nRead == -1){

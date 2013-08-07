@@ -28,7 +28,7 @@
   //Returns the 'rank' from that statistics stored in the statStruct
   //Recipe for rank:
   //  rank = (additions*-2)+(reuses)+((deletions+moves)*-1)
-  int statStructRank(editStatStruct *);
+  int statStructRank(const editStatStruct *);
 
   void printStatStruct(const editStatStruct *);
 
@@ -43,15 +43,19 @@
   int printSList(numSList *);
 
   //Add indices to the list or increment their visit count
-  numSList *addIndex(numSList *,int);
+  numSList *addIndex(numSList *, const int, const char);
 
   //Returns the index of a query, else return 'NOTFOUND'
-  int findIndex(numSList *, int);
+  int findIndex(numSList *, const int);
 
   //Prints step by step modifications in order to re-create the base string 'w1'
   //from the subject string 'w2'. Stores information on the number of chars to
   //be added, removed or added to accomplish the mission
-  numSList *wordTransition( 
-    const word, int, const word, numSList *, editStatStruct *
+  editStatStruct *wordTranspose(const word, const word);
+
+  int countValueOccurances(numSList *, const char);
+
+  numSList *mapIndices(
+    const int i, const word ,const word, editStatStruct *, numSList *
   );
 #endif

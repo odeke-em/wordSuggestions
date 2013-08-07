@@ -11,5 +11,7 @@
 #For testing out with a file:
 #  ./autoCorrect <sourcePath> <destinationOfLearntWords> > suggestions.txt
 #
+#To test out the multi-threaded autoCorrection:
+#  ./workSplitter <sourcePath> <nThreads_or_Cores_available>
 #Sample output file 'suggestions.txt' included as the result of passing in 
 #'waroftheworlds.txt' as the subject file.

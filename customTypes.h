@@ -14,6 +14,7 @@
   typedef struct indexNode{
     int index;
     int count;
+    char value;
     struct indexNode *next;
   }numSList;
 
@@ -31,11 +32,14 @@
     struct node *next;   
   }Node;
 
+  //Struct used to navigate a file with the purpose of 
+  //partitioning it thus enabling multi-threading
   typedef struct{
     uint32 start;
     uint32 end;
     uint32 fileSize;
-    FILE *fp;
+    FILE *srcfp;
+    char *toPath;
   }navigator;
 
   typedef struct{
@@ -43,5 +47,11 @@
     int nPartitions;
     navigator *navList;
   }navigatorList;
+
+  typedef struct{
+   char wi, wj;
+   int i, j;
+   Bool *foundCh;
+  }transientStruct;
 
 #endif

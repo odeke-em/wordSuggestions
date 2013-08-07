@@ -1,45 +1,56 @@
-Getting morp from monk
-Replace w2[2] n with r
-Replace w2[3] k with p
-nAdditions 2 nDeletions 2 nMoves 0
+Getting dreamer from monk
+nInPlace 0
+Moves: 1
+ReUses: 1
+Deletions: 3
+Additions: 6
+Rank: -7
+Rank -7
+Getting dreamer from bolton
+nInPlace 0
+Moves: 0
+ReUses: 0
+Deletions: 6
+Additions: 7
+Rank: -13
+Rank -13
+Getting dreamer from tatsambone
+nInPlace 0
+Moves: 3
+ReUses: 3
+Deletions: 7
+Additions: 3
+Rank: -4
 Rank -4
-
-Getting morp from brag
-Replace w2[0] b with m
-Replace w2[1] r with o
-move w2[1] r to w2[2]
-Replace w2[3] g with p
-nAdditions 3 nDeletions 3 nMoves 1
-Rank -8
-
-Getting morp from tatsambone
-move w2[5] m to w2[0]
-move w2[7] o to w2[1]
-Replace w2[2] t with r
-Replace w2[3] s with p
-nAdditions 2 nDeletions 8 nMoves 2
-Rank -10
-
-Getting morp from satton
-Replace w2[0] s with m
-move w2[4] o to w2[1]
-Replace w2[2] t with r
-Replace w2[3] t with p
-nAdditions 3 nDeletions 5 nMoves 1
-Rank -10
-
-Getting morp from suttons
-Replace w2[0] s with m
-move w2[4] o to w2[1]
-Replace w2[2] t with r
-Replace w2[3] t with p
-nAdditions 3 nDeletions 6 nMoves 1
-Rank -11
-
-Getting morp from konrad
-Replace w2[0] k with m
-move w2[3] r to w2[2]
-Replace w2[3] r with p
-nAdditions 2 nDeletions 4 nMoves 1
-Rank -6
-
+Getting dreamer from satton
+nInPlace 0
+Moves: 1
+ReUses: 1
+Deletions: 5
+Additions: 6
+Rank: -9
+Rank -9
+Getting dreamer from suttons
+nInPlace 0
+Moves: 0
+ReUses: 0
+Deletions: 7
+Additions: 7
+Rank: -14
+Rank -14
+Getting dreamer from agonies
+nInPlace 1
+Moves: 1
+ReUses: 2
+Deletions: 5
+Additions: 4
+Rank: -4
+Rank -4
+Getting dreamer from beamer
+nInPlace 0
+Moves: 5
+ReUses: 5
+Deletions: 1
+Additions: 1
+Rank: 8
+Rank 8

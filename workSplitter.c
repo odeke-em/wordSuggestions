@@ -1,20 +1,39 @@
+/*
+  Author: Emmanuel Odeke <odeke@ualberta.ca
+   Module to enable fragmenting of file into almost equal parts. 
+   For each divided part, a file is created and it's content is written.
+   This enables multi-threaded autoCorrection of the various fragments,
+   that can be later on joined together
+*/
 #include <pthread.h>
 #include "workSplitter.h"
+#include "Node.h"
+#include "wordSearch.h"
 
-int cat(const navigator *nav, const char *dest){
-  if ((nav == NULL) || (nav->fp == NULL)) return EOF;
+void navFree(navigator *nav){
+  if (nav == NULL) return;
+  if (nav->toPath != NULL) free(nav->toPath);
+}
 
+void *cat(void *data){
+  navigator *nav =(navigator *)data;
+  int *nBytes = (int *)malloc(sizeof(int));
+  *nBytes = EOF;
+  if ((nav == NULL) || (nav->srcfp == NULL)) return nBytes;
+
+  word dest = nav->toPath;
   FILE *destfp = fopen(dest, "w"); 
-  if (destfp == NULL) return EOF; 
+  if (destfp == NULL) return nBytes; 
 
   int i=nav->start, end=nav->end;
-  if (i >= end) return EOF;
+  if (i >= end) return nBytes;
 
-  int originalPosition = ftell(nav->fp);
-  fseek(nav->fp, i, SEEK_SET);
+  //printf("in %s path %s\n",__func__, dest);
+  int originalPosition = ftell(nav->srcfp);
+  fseek(nav->srcfp, i, SEEK_SET);
 
   char c;
-  FILE *fp = nav->fp;
+  FILE *fp = nav->srcfp;
   while (i < end){
    c = getc(fp); 
    if (c == EOF) break;
@@ -24,9 +43,9 @@ int cat(const navigator *nav, const char *dest){
   }
 
   //Move the reader back to its original position
-  fseek(nav->fp, originalPosition, SEEK_SET);
+  fseek(nav->srcfp, originalPosition, SEEK_SET);
   fclose(destfp);
-  return i;
+  return nBytes;
 }
 
 void printNavigator(navigator *nav){
@@ -57,21 +76,24 @@ size_t fileSize(FILE *fp){
   return fSize;
 }
 
-void initNavList(navigatorList *navContainer, const FILE *fp, const int *n){
+void initNavList(navigatorList *navContainer, const int *n){
   if (navContainer == NULL){
     fprintf(
       stderr, "Error: Null navigatorlist passed in for initialization\n"
     );
     exit(-2);
   }
-
+  navContainer->srcfp = NULL;
   navContainer->nPartitions = *n;
   navContainer->navList = (navigator *)malloc(sizeof(navigator)*(*n));
 }
 
 void navListFree(navigatorList *navL){
   if (navL == NULL) return;
-
+  int i;
+  for (i=0; i<navL->nPartitions; ++i){
+    navFree(&(navL->navList[i]));
+  }
   if (navL->navList != NULL) free(navL->navList);
   free(navL);
 }
@@ -85,22 +107,26 @@ void initNavigator(navigator *nav){
   }
   nav->start = 0;
   nav->end   = 0;
-  nav->fp    = NULL;
+  nav->srcfp = NULL;
+  nav->toPath = NULL;
   nav->fileSize = 0;
 }
 
-void setNavigator(navigator *nav, FILE *tfp, const int *start, const int *end){
+void setNavigator(
+  navigator *nav, FILE *tfp, const int *start, const int *end, const word path
+  ){
   if (nav == NULL){
     fprintf(stderr, "Null navigator struct passed in %s\n", __func__);
   }
 
-  nav->fp = tfp;
+  nav->srcfp = tfp;
   nav->start = *start;
   nav->end   = *end;
   nav->fileSize = fileSize(tfp);
+  nav->toPath = strdup(path);
 }
 
-navigatorList *partitionFile(FILE *tfp, const int *nPartitions){
+navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
   if (tfp == NULL){
     fprintf(stderr, "Null file pointer passed in for partitioning\n");
     return NULL;
@@ -115,7 +141,7 @@ navigatorList *partitionFile(FILE *tfp, const int *nPartitions){
 
   size_t fSize = fileSize(tfp);
   navigatorList *navContainer = navListAlloc();
-  initNavList(navContainer, tfp, nPartitions);
+  initNavList(navContainer, nPartitions);
  
   int aveChunckSize = (fSize/(*nPartitions)); 
   int start=0, end, i=0;
@@ -129,12 +155,12 @@ navigatorList *partitionFile(FILE *tfp, const int *nPartitions){
     }
 
     fseek(tfp, end, SEEK_SET);
-    int nSkips = skipTillCondition(tfp, isspace);
+    skipTillCondition(tfp, isspace);
 
     end = ftell(tfp);
-    //printf("start %d end %d nSkips %d\n", start, end, nSkips);
-
-    setNavigator(&(navContainer->navList[i]), tfp, &start, &end);
+    word allocatedPath = (word)malloc(sizeof(char)*5);
+    sprintf(allocatedPath, "txt%d", i);
+    setNavigator(&(navContainer->navList[i]), tfp, &start, &end, allocatedPath);
     start = end;
     ++i;
   } 
@@ -143,7 +169,7 @@ navigatorList *partitionFile(FILE *tfp, const int *nPartitions){
   return navContainer; 
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, word argv[]){
   if (argc != 3){
     fprintf(stderr,"Usage <filePath> <n_threads>\n");
     exit(-2);
@@ -154,27 +180,104 @@ int main(int argc, char *argv[]){
     fprintf(stderr,"Failed to parse an integer as argument 2\n");
     exit(-2);
   }
-
-  navigator nav;
-  initNavigator(&nav);
-
+  printf("argv[2] %s\n", argv[2]);
   FILE *ifp = fopen(argv[1], "r");
-  size_t fSize = fileSize(ifp);
-
-  navigatorList *navL = partitionFile(ifp, &n);
+  navigatorList *navL = fragmentFile(ifp, &n);
 
   int nParts = navL->nPartitions;
   int i;
 
+  pthread_t storage_th[nParts];
+  
+  //Fragmentation of file going on here
   for (i=0; i<nParts; ++i){
-    char *sp = (char *)malloc(sizeof(char)*4);
-    sprintf(sp, "txt%d", i);
-    printNavigator(&(navL->navList[i]));
-    cat(&(navL->navList[i]), sp);
-    free(sp);
+    pthread_create(&(storage_th[i]), NULL, cat, &(navL->navList[i]));
+  }
+
+  for (i=0; i<nParts; ++i){
+    pthread_join(storage_th[i], NULL);
+  }
+
+  //Now autoCorrection of each fragmented file
+  for (i=0; i<nParts; ++i){
+    pthread_create(&(storage_th[i]), NULL, autoC, &(navL->navList[i]));
+  }
+  for (i=0; i<nParts; ++i){
+    pthread_join(storage_th[i], NULL);
   }
 
   fclose(ifp);
   navListFree(navL);
   return 0;
+}
+
+void *autoC(void *data){
+  navigator *nav = (navigator *)data;
+  word srcPath = nav->toPath;
+  int pathLen = strlen(srcPath)/sizeof(char);
+
+  #ifdef DEBUG
+    fprintf(stderr,"srcPath %s func %s\n",srcPath,__func__);
+  #endif
+
+  word dictPath = "wordlist.txt";
+  
+  word learntPath = (word)malloc(sizeof(char)*(pathLen+1));
+  word correctedPath = (word)malloc(sizeof(char)*(pathLen+1));
+
+  sprintf(learntPath, "%sL", srcPath);
+  sprintf(correctedPath, "%sC", srcPath);
+
+  FILE *srcfp = fopen(srcPath,"r");
+  FILE *words_learnt_ifp = fopen(learntPath,"r+w");
+  FILE *correctedfp = fopen(correctedPath,"w");
+
+  FILE *dictFP = fopen(dictPath, "r");
+
+  if (words_learnt_ifp == NULL){
+   words_learnt_ifp = fopen(learntPath,"w");
+  } 
+  Node *storage = NULL;
+
+  while (! feof(srcfp)){
+    word srcWord = getWord(srcfp);
+    if (srcWord == NULL) continue;
+    //Word Comparison will be done in lower case
+    toLower(srcWord);
+
+    #ifdef DEBUG
+      fprintf(stderr,"srcWord %s\n",srcWord);
+    #endif
+
+    storage = loadWord(dictFP, correctedfp, storage, srcWord, False, False);
+
+    if (srcWord != NULL)
+      free(srcWord);
+
+    skipTillCondition(srcfp, notSpace);
+  }
+
+  //Time to write to memory matched words
+  fprintf(
+    words_learnt_ifp,"#Words learnt from examining file %s\n", srcPath
+  );
+
+  if(serializeNode(storage,words_learnt_ifp) == True){
+    fprintf(
+      stderr,"\033[32mWrote the learnt words to file \"%s\"\033[00m\n", learntPath
+    );
+  }
+
+  //And give unto OS, what belongs to OS -- release memory
+  nodeFree(storage);
+
+  free(learntPath);
+  free(correctedPath);
+
+  fclose(dictFP);
+  fclose(srcfp);
+  fclose(correctedfp);
+  fclose(words_learnt_ifp);
+
+  return NULL;
 }
