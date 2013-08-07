@@ -156,9 +156,6 @@ editStatStruct *wordTranspose(const word w1, const word w2){
     foundIndices = mapIndices(i, w1, w2,statSt, foundIndices);
     iExtreme = w1MidLen+i;
     if (iExtreme >= w1Len) break;
-    #ifdef TEST
-    printf("i %d iExtreme %d\n", i, iExtreme);
-    #endif
     foundIndices = mapIndices(
       iExtreme, w1, w2,statSt, foundIndices
     );
@@ -241,9 +238,7 @@ int statStructRank(const editStatStruct *statStruct){
       editStatStruct *statStruct = wordTranspose(baseName,trials[i]);
 
       printStatStruct(statStruct);
-      
-      printf("Rank %d\n", statStructRank(statStruct));
-     
+      printf("\n");      
       freeSList(tree);
     }
   
