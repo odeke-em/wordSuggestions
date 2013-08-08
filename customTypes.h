@@ -35,10 +35,22 @@
   //Struct used to navigate a file with the purpose of 
   //partitioning it thus enabling multi-threading
   typedef struct{
+   char wi, wj;
+   int i, j;
+   Bool *foundCh;
+  }transientStruct;
+
+  typedef struct{
+    word *wordArray;
+    int n;
+  }wordArrayStruct;
+
+  typedef struct{
     uint32 start;
     uint32 end;
     uint32 fileSize;
     FILE *srcfp;
+    wordArrayStruct *dictWArrayStruct;
     char *toPath;
   }navigator;
 
@@ -47,11 +59,5 @@
     int nPartitions;
     navigator *navList;
   }navigatorList;
-
-  typedef struct{
-   char wi, wj;
-   int i, j;
-   Bool *foundCh;
-  }transientStruct;
 
 #endif

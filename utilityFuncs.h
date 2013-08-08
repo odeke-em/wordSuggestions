@@ -1,5 +1,8 @@
 #ifndef _UTILITY_FUNCS_H
 #define _UTILITY_FUNCS_H
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <assert.h>
   #include <ctype.h>
   #include <string.h>
   #include <sys/stat.h>
@@ -94,6 +97,16 @@
     }
   }
 
+  Bool freeWord(word w){
+    if (w == NULL) return False;
+    free(w);
+    return True;
+  }
+
+  int printWord(word w){
+    return printf("%s", w);
+  }
+
   Bool isValidFile(const word path, long *fileSize){
     //Input: A path 
     //Returns: True iff a path exists and is not a directory else False
@@ -112,4 +125,67 @@
     return False;
   }
 
+  wordArrayStruct *wordArrStructAlloc(const int n){
+    if (n <= 0) return NULL;
+    wordArrayStruct *wArrSt = (wordArrayStruct *)malloc(sizeof(wordArrayStruct));
+    assert(wArrSt != NULL);
+
+    wArrSt->wordArray = (word *)malloc(sizeof(word)*n);
+    wArrSt->n = n;
+
+    return wArrSt;
+  }
+
+  wordArrayStruct *wordArrStructReSize(wordArrayStruct *wASt, const int newN){
+    if ((newN > 0) && (wASt != NULL) && (wASt->wordArray != NULL)){
+      if (newN != wASt->n){
+	wASt->wordArray = (word *)realloc(wASt->wordArray, sizeof(word)*newN);
+	wASt->n = newN;
+      }
+    }
+    return wASt; 
+  }
+
+  void freeWordArrayStruct(wordArrayStruct *wASt){
+    if (wASt == NULL) return;
+    if (wASt->wordArray != NULL){
+      int i;
+      for (i=0; i<wASt->n; ++i){
+	word tmp;
+	tmp = (wASt->wordArray)[i];
+	freeWord(tmp);
+      }
+      free(wASt->wordArray);
+    }
+  }
+
+  int printWordArrayStruct(const wordArrayStruct *wASt){
+    if ((wASt == NULL) || (wASt->wordArray == NULL)) return -1;
+    int i, n = wASt->n;
+    for (i=0; i<n; ++i){
+      printWord((wASt->wordArray)[i]);
+      printWord("\n");
+    }
+    return i;
+  }
+
+  wordArrayStruct *wordsInFile(FILE *fp){
+    int arraySize = 100;
+    wordArrayStruct *wArrSt = wordArrStructAlloc(arraySize);
+    if (fp == NULL) return NULL;
+    int wordIndex = 0;
+    while (!feof(fp)){
+      if (wordIndex >= arraySize){
+	arraySize *= 2;
+	wArrSt = wordArrStructReSize(wArrSt, arraySize);
+      }
+      word theWord = getWord(fp);
+      wArrSt->wordArray[wordIndex] = strdup(theWord);
+      free(theWord);
+      ++wordIndex;
+    }
+    wArrSt = wordArrStructReSize(wArrSt, wordIndex);
+
+    return wArrSt;
+  }
 #endif

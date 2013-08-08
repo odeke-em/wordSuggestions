@@ -103,7 +103,10 @@ numSList *mapIndices(
   numSList *w1IndicesInw2 = indicesInWord(w1i, w2);
   if (w1IndicesInw2 == NULL){
     #ifdef TEST
-    printf("Add %c to w2[%d] replacing %c\n", w1i, i, w2[i]);
+    printf("Add %c to w2[%d] ", w1i, i);
+    if (w2Len > i)
+      printf("replacing %c",  w2[i]);
+    printf("\n");
     #endif
     ++(statSt->additions);
     freeSList(w1IndicesInw2);

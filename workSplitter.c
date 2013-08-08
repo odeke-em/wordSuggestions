@@ -28,7 +28,6 @@ void *cat(void *data){
   int i=nav->start, end=nav->end;
   if (i >= end) return nBytes;
 
-  //printf("in %s path %s\n",__func__, dest);
   int originalPosition = ftell(nav->srcfp);
   fseek(nav->srcfp, i, SEEK_SET);
 
@@ -182,6 +181,8 @@ int main(int argc, word argv[]){
   }
   printf("argv[2] %s\n", argv[2]);
   FILE *ifp = fopen(argv[1], "r");
+  FILE *dictFP = fopen("wordlist.txt", "r");
+  wordArrayStruct *wArrSt = wordsInFile(dictFP);
   navigatorList *navL = fragmentFile(ifp, &n);
 
   int nParts = navL->nPartitions;
@@ -200,13 +201,18 @@ int main(int argc, word argv[]){
 
   //Now autoCorrection of each fragmented file
   for (i=0; i<nParts; ++i){
-    pthread_create(&(storage_th[i]), NULL, autoC, &(navL->navList[i]));
+    navigator *navPtr = &(navL->navList[i]);
+    navPtr->dictWArrayStruct = wArrSt;
+    pthread_create(&(storage_th[i]), NULL, autoC, navPtr);
   }
   for (i=0; i<nParts; ++i){
     pthread_join(storage_th[i], NULL);
   }
 
   fclose(ifp);
+  fclose(dictFP);
+
+  freeWordArrayStruct(wArrSt);
   navListFree(navL);
   return 0;
 }
@@ -220,8 +226,6 @@ void *autoC(void *data){
     fprintf(stderr,"srcPath %s func %s\n",srcPath,__func__);
   #endif
 
-  word dictPath = "wordlist.txt";
-  
   word learntPath = (word)malloc(sizeof(char)*(pathLen+1));
   word correctedPath = (word)malloc(sizeof(char)*(pathLen+1));
 
@@ -232,16 +236,17 @@ void *autoC(void *data){
   FILE *words_learnt_ifp = fopen(learntPath,"r+w");
   FILE *correctedfp = fopen(correctedPath,"w");
 
-  FILE *dictFP = fopen(dictPath, "r");
-
+  wordArrayStruct *dictWArrStruct = nav->dictWArrayStruct;
   if (words_learnt_ifp == NULL){
    words_learnt_ifp = fopen(learntPath,"w");
   } 
+
   Node *storage = NULL;
 
   while (! feof(srcfp)){
     word srcWord = getWord(srcfp);
     if (srcWord == NULL) continue;
+
     //Word Comparison will be done in lower case
     toLower(srcWord);
 
@@ -249,12 +254,11 @@ void *autoC(void *data){
       fprintf(stderr,"srcWord %s\n",srcWord);
     #endif
 
-    storage = loadWord(dictFP, correctedfp, storage, srcWord, False, False);
+    storage = loadWord(
+      dictWArrStruct, correctedfp, storage, srcWord, False, False
+    );
 
-    if (srcWord != NULL)
-      free(srcWord);
-
-    skipTillCondition(srcfp, notSpace);
+    if (srcWord != NULL)  free(srcWord);
   }
 
   //Time to write to memory matched words
@@ -264,7 +268,8 @@ void *autoC(void *data){
 
   if(serializeNode(storage,words_learnt_ifp) == True){
     fprintf(
-      stderr,"\033[32mWrote the learnt words to file \"%s\"\033[00m\n", learntPath
+      stderr,"\033[32mWrote the learnt words to file \"%s\"\033[00m\n", 
+      learntPath
     );
   }
 
@@ -274,7 +279,6 @@ void *autoC(void *data){
   free(learntPath);
   free(correctedPath);
 
-  fclose(dictFP);
   fclose(srcfp);
   fclose(correctedfp);
   fclose(words_learnt_ifp);

@@ -12,25 +12,47 @@
   #include "utilityFuncs.h"
   #include "wordTransition.h"
 
-  #define THRESHOLD_RANK 5
   #define THRESHOLD_LEN  2
-  #define THRESHOLD_PERCENT_RANK 68
-  
+  #define THRESHOLD_PERCENT_RANK 70
+
+ int bSearch(const wordArrayStruct *wArrStruct, const word query){
+    if ((wArrStruct == NULL) || (wArrStruct->wordArray == NULL)) return -1;
+    int start=0, end=wArrStruct->n - 1;
+    word *wArray = wArrStruct->wordArray;
+    int mid;
+    while (start < end){
+      if (strcmp(query, wArray[start]) == 0) return start;
+      if (strcmp(query, wArray[end]) == 0) return end;
+      mid = (start+end)/2;
+      word midWord = wArray[mid];
+      int midWordComparison = strcmp(query, midWord);
+      if (midWordComparison == 0) return mid;
+      else if (midWordComparison < 0){
+	start += 1;
+	end = mid;
+      }else{
+	start = mid;
+	end -= 1;
+      }
+    }
+    
+    return -1;
+  }
+
   int wordSimilarity(const word, const word, Bool );
-  Node *loadWord(FILE *fp, FILE *correctedDest, Node *storageNode,
+  Node *loadWord(
+    const wordArrayStruct *wArrSt, FILE *correctedDest, Node *storageNode,
     const word query, Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH){
     /*
       Find words whose similarity to the query word is above the threshold 
       match percentage. Add these similar words to the singly linked list:
       'storageNode'.
     */
-    if ((fp == NULL) || (query == NULL) || (strlen(query) == 0))
+    if ((wArrSt == NULL) || (query == NULL) || (strlen(query) == 0))
       return storageNode;
 
-    //Rewind file to the very beginning
-    fseek(fp, 0, SEEK_SET);
     Bool alreadyInStorage = False; 
-    word wordBuf = NULL; 
+    word wordBuf; 
     Node *wordNode = NULL;
 
     int nMatches = 0;
@@ -40,45 +62,36 @@
     #ifdef DEBUG
       fprintf(stderr,"reading %s started\n",__func__);
     #endif
-    int maxCutOffRank = wordSimilarity(query, query, LEN_MATCH_BOOL);
-    while (! feof(fp)){
-      wordBuf = getWord(fp);
-      skipTillCondition(fp, notSpace);
-      //First letter match
-      if (wordBuf != NULL){
-        alreadyInStorage = wordInNode(storageNode,query);
-        if ((strlen(query)< THRESHOLD_LEN) || (alreadyInStorage == True)){
-         //This word doesn't need to be added to the tree
-         //fprintf(stderr,"%s already in storage\n",query);
-         break;
-        }
 
-        if ((FIRST_LETTER_MATCH == True) && (query[0] != wordBuf[0]))
-          goto freeWordBuf;
-        else{
-          int srcLen = strlen(wordBuf)/sizeof(char);
+    int foundInDict = bSearch(wArrSt, query);
+    if (foundInDict != -1){
+      matchFound = True;
+    }else{
+      int maxCutOffRank = wordSimilarity(query, query, LEN_MATCH_BOOL);
+      int i, nElems = wArrSt->n;
+      for (i=0; i<nElems; ++i){
+        wordBuf = wArrSt->wordArray[i];
+        //First letter match
+	if ((FIRST_LETTER_MATCH == True) && (query[0] != wordBuf[0])) continue;
+        if (wordBuf != NULL){
           int queryLen = strlen(query)/sizeof(char);
+          alreadyInStorage = wordInNode(storageNode,query);
+          if ((queryLen< THRESHOLD_LEN) || (alreadyInStorage == True)){
+            //This word doesn't need to be added to the tree
+            //fprintf(stderr,"%s already in storage\n",query);
+            break;
+          }
+
           int wRank = wordSimilarity(query, wordBuf, LEN_MATCH_BOOL);
 
-          if ((srcLen == queryLen) && (wRank == maxCutOffRank)){ 
-            //Absolute match found
-            matchFound = True;
-            break; 
-          }
 	  double percentRank = 100*(((double)(wRank))/(double)(maxCutOffRank));
+	  
           int wordBufLen = strlen(wordBuf)/sizeof(char);
           if ((percentRank >= THRESHOLD_PERCENT_RANK) && \
 	    (wordBufLen > THRESHOLD_LEN)){
             wordNode = addWord(wordNode,wordBuf,wRank);
             nMatches += 1;
           }
-        }
-      }
-
-      freeWordBuf:{
-        if (wordBuf != NULL){
-          free(wordBuf); 
-          wordBuf = NULL;
         }
       }
     }
@@ -109,8 +122,6 @@
       #endif
     }
     fflush(correctedTxtFP);
-
-    if (wordBuf != NULL) free(wordBuf);
 
     if (wordNode != NULL) nodeFree(wordNode);
 

@@ -8,21 +8,21 @@
 #define BUF_SIZ 30
 #define MAX_PATH 60
 
-void  spellCheck(FILE *, word); 
+void  spellCheck(const wordArrayStruct *, const word); 
 
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(FILE*, word);
+  void (*func)(const wordArrayStruct *, const word);
   word queryWord;
-  FILE *dictFP;
+  wordArrayStruct *wordArraySt;
 } funcStruct;
 
 void *runFunc(void *data ){
   funcStruct *f = (funcStruct *)data;
   pthread_mutex_lock(&main_tx);
-  f->func(f->dictFP, f->queryWord);
+  f->func(f->wordArraySt, f->queryWord);
   pthread_cond_signal(&cond_t);
 
   pthread_mutex_unlock(&main_tx);
@@ -70,7 +70,15 @@ int main(){
 
   funcStruct p;
   p.func= spellCheck;
-  p.dictFP = dictFP;
+
+  wordArrayStruct *wASt = wordsInFile(dictFP);
+  /*
+  qsort(
+    wASt->wordArray, wASt->n, sizeof(word), wordComp
+  );
+  */
+
+  p.wordArraySt= wASt;
 
   struct procStruct procSt;
   procSt.processDone = procDone; 
@@ -108,7 +116,7 @@ int main(){
   return 0;
 }
 
-void spellCheck(FILE *dictFP, word srcWord){
+void spellCheck(const wordArrayStruct *wASt, const word srcWord){ 
   #ifdef DEBUG
     fprintf(stderr,"Query %s func %s\n",srcWord,__func__);
     fflush(stderr);
@@ -125,7 +133,7 @@ void spellCheck(FILE *dictFP, word srcWord){
 
   //Add to 'storage' those words that have a ranked similarity to the word 
   //under scrutiny
-  storage  = loadWord(dictFP, stdout, storage, srcWord, False, False);
+  storage  = loadWord(wASt, stdout, storage, srcWord, False, False);
   //nodePrint(storage);
 
   //And give unto OS, what belongs to OS -- release memory

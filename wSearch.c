@@ -3,25 +3,26 @@
 #include <pthread.h>
 #include "wordSearch.h"
 
-void  autoCorrect(FILE *, const word , const word , long *); 
+void  autoCorrect(const wordArrayStruct *, FILE *, const word , const word , long *); 
 
 static size_t MAX_PATH = 110;
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct{
-  void (*func)(FILE *, word, word, long *);
-  FILE *destFP;
+  void (*func)(const wordArrayStruct *, FILE *, const word,const word, long *);
   word path;
   word learntPath;
+  FILE *destFP;
   long *freaderPosition;
+  wordArrayStruct *wordArraySt;
 } funcStruct;
 
 
 void *runFunc(void *data){
   funcStruct *f = (funcStruct *)data;
   pthread_mutex_lock(&main_tx);
-  f->func(f->destFP, f->path,f->learntPath, f->freaderPosition);
+  f->func(f->wordArraySt, f->destFP, f->path,f->learntPath, f->freaderPosition);
   pthread_cond_signal(&cond_t);
 
   pthread_mutex_unlock(&main_tx);
@@ -77,6 +78,7 @@ int main(int argc, word argv[]){
   procSt.processDone = procDone; 
   procSt.freaderPosition = freaderPosition;
   procSt.fileSize = fileSize;
+  wordArrayStruct *wASt = NULL;
   while (! doneReading){
     if ((sscanf(argv[1],"%s",path) != 1) || (*path == EOF)){ 
       fprintf(stderr,"EOF encountered. Done reading\n");
@@ -95,8 +97,10 @@ int main(int argc, word argv[]){
 
     validfile = isValidFile(path, fileSize);
     if(validfile){
+      wASt =wordsInFile(fp);
       *procDone = False;
       p.path = path;
+      p.wordArraySt = wASt;
       p.learntPath = learntPath;
       p.freaderPosition = procSt.freaderPosition;
       p.destFP = correctedDest;
@@ -118,6 +122,7 @@ int main(int argc, word argv[]){
   free(procDone);
   free(freaderPosition);
   free(fileSize);
+  freeWordArrayStruct(wASt);
 
   pthread_mutex_destroy(&main_tx);
   pthread_cond_destroy(&cond_t);
@@ -127,7 +132,7 @@ int main(int argc, word argv[]){
 }
 
 void autoCorrect(
-    FILE *correctedDest, const word srcTextPath, 
+    const wordArrayStruct *wASt, FILE *correctedDest, const word srcTextPath, 
     const word learntPath, long *freaderPosition
   ){
   #ifdef DEBUG
@@ -138,9 +143,6 @@ void autoCorrect(
   //from the dictionary is produced.
   //A collective list of possible syntactically correct words is produced and 
   //written to the outpath whose file pointer is 'words_learnt_ifp'
-
-  word dictPath = "wordlist.txt";
-  FILE *dictFP = fopen(dictPath, "r");
 
   //File to be corrected
   FILE *srcfp = fopen(srcTextPath,"r");
@@ -163,14 +165,13 @@ void autoCorrect(
       fprintf(stderr,"srcWord %s\n",srcWord);
     #endif
 
-    storage = loadWord(dictFP, correctedDest, storage, srcWord, False, False);
+    storage = loadWord(wASt, correctedDest, storage, srcWord, False, False);
 
     if (srcWord != NULL)
       free(srcWord);
 
     *freaderPosition= ftell(srcfp);
-
-    skipTillCondition(srcfp, notSpace);
+    //skipTillCondition(srcfp, notSpace);
   }
 
   //Time to write to memory matched words
@@ -187,7 +188,6 @@ void autoCorrect(
   //And give unto OS, what belongs to OS -- release memory
   nodeFree(storage);
 
-  fclose(dictFP);
   fclose(srcfp);
   fclose(words_learnt_ifp);
 }
