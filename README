@@ -3,15 +3,19 @@
 #For now the learnt words are added to 'learnt_words.txt'.
 
 #To test current setup: 
-#First run:	make
+#First run:	
+#    make
 #
 # For an interactive session:
+#  cd exec
 #  ./spellCorrect 
 #
 #For testing out with a file:
+#  cd exec
 #  ./autoCorrect <sourcePath> <destinationOfLearntWords> > suggestions.txt
 #
 #To test out the multi-threaded autoCorrection:
+#  cd exec
 #  ./workSplitter <sourcePath> <nThreads_or_Cores_available>
-#Sample output file 'suggestions.txt' included as the result of passing in 
-#'waroftheworlds.txt' as the subject file.
+#Sample output file samples/warOWCorrected.txt and samples/warOWLearnt.txt included as the result
+#of passing in 'waroftheworlds.txt' as the subject file.

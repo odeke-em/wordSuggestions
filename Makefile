@@ -1,12 +1,12 @@
 CC := gcc
 CC_FLAGS := -O3 -g -Wall -Wextra
 
-autoCorrect:	Makefile wordlist.txt wordSearch.h wSearch.c Node.h wordTransition.o spellCorrect.c workSplitter.h workSplitter.c
-	$(CC) $(CC_FLAGS) -DALLPRINTWORDS wSearch.c wordTransition.o -o autoCorrect -lpthread
-	$(CC) $(CC_FLAGS) spellCorrect.c wordTransition.o -o spellCorrect -lpthread
-	$(CC) $(CC_FLAGS) wordTransition.o workSplitter.c -o workSplitter -lpthread
+autoCorrect:	Makefile resources/wordlist.txt include/wordSearch.h src/wSearch.c include/Node.h wordTransition.o src/spellCorrect.c include/workSplitter.h src/workSplitter.c
+	$(CC) $(CC_FLAGS) -DALLPRINTWORDS src/wSearch.c exec/wordTransition.o -o exec/autoCorrect -lpthread
+	$(CC) $(CC_FLAGS) src/spellCorrect.c exec/wordTransition.o -o exec/spellCorrect -lpthread
+	$(CC) $(CC_FLAGS) exec/wordTransition.o src/workSplitter.c -o exec/workSplitter -lpthread
 
-wordTransition.o:   wordTransition.h wordTransition.c Makefile
-	$(CC) -c wordTransition.c -o wordTransition.o
+wordTransition.o:   include/wordTransition.h src/wordTransition.c Makefile
+	$(CC) -c src/wordTransition.c -o exec/wordTransition.o
 clean:
-	rm autoCorrect spellCorrect workSplitter *.o
+	cd exec && rm autoCorrect spellCorrect workSplitter *.o
