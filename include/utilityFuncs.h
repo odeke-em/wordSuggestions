@@ -2,12 +2,12 @@
 #define _UTILITY_FUNCS_H
   #include <stdio.h>
   #include <stdlib.h>
-  #include <assert.h>
   #include <ctype.h>
   #include <string.h>
   #include <sys/stat.h>
 
   #include "customTypes.h"
+  #include "errors.h"
 
   #define BUF_SIZ 30
 
@@ -32,6 +32,12 @@
     return nSkips;
   }
 
+  //Returns n characters-worth of  memory
+  word newWord(int n){
+    if (n <= 0) return NULL;
+    return (word)malloc(sizeof(char)*n);
+  }
+
   int getLine(word s, int max){
     int i=0;
     char c=EOF;
@@ -49,7 +55,7 @@
   word getWord(FILE *fp){
     //Copies only alphabetic characters. A non-alphabetic character signals 
     //the function to stop reading and return the already found content
-    word buf = (word)malloc(sizeof(char)*(BUF_SIZ));
+    word buf = newWord(BUF_SIZ);
     char c='0';
     int i=0;
 
@@ -127,8 +133,9 @@
 
   wordArrayStruct *wordArrStructAlloc(const int n){
     if (n <= 0) return NULL;
-    wordArrayStruct *wArrSt = (wordArrayStruct *)malloc(sizeof(wordArrayStruct));
-    assert(wArrSt != NULL);
+    wordArrayStruct *wArrSt = \
+	(wordArrayStruct *)malloc(sizeof(wordArrayStruct));
+    assert(wArrSt);
 
     wArrSt->wordArray = (word *)malloc(sizeof(word)*n);
     wArrSt->n = n;
@@ -169,10 +176,11 @@
     return i;
   }
 
-  wordArrayStruct *wordsInFile(FILE *fp){
+  wordArrayStruct *wordsInFile(word filePath){
+    FILE *fp = fopen(filePath, "r");
+    if (fp == NULL) return NULL;
     int arraySize = 100;
     wordArrayStruct *wArrSt = wordArrStructAlloc(arraySize);
-    if (fp == NULL) return NULL;
     int wordIndex = 0;
     while (!feof(fp)){
       if (wordIndex >= arraySize){

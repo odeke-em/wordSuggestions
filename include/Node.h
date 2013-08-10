@@ -2,9 +2,9 @@
 #ifndef _NODE_H
 #define _NODE_H
   #include <string.h>
-  #include <assert.h>
   #include <stdlib.h>
 
+  #include "errors.h"
   #include "customTypes.h"
 
   int wordInNode(Node *, const word);
@@ -16,7 +16,7 @@
     if (orig == NULL) return NULL;
 
     word copy = strdup(orig);
-    assert(copy != NULL);
+    assert(copy);
 
     return copy;
   }

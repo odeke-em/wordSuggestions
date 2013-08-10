@@ -14,7 +14,7 @@
   navigator *navAlloc(void);
   void navFree(navigator *);
 
-  void setNavigator(navigator *, FILE *, const int *,const int *, const word );
+  void setNavigator(navigator *, FILE *, const int *,const int *, const word);
   void printNavigator(navigator *);
 
   //Paritition a file into n parts and return the list

@@ -63,28 +63,20 @@ int main(){
   pthread_t timer_t;
   pthread_t main_th;
 
-  FILE *dictFP = fopen(DICTIONARY_PATH, "r");
   char query[MAX_PATH];
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
 
   funcStruct p;
   p.func= spellCheck;
 
-  wordArrayStruct *wASt = wordsInFile(dictFP);
-  /*
-  qsort(
-    wASt->wordArray, wASt->n, sizeof(word), wordComp
-  );
-  */
-
+  wordArrayStruct *wASt = wordsInFile(DICTIONARY_PATH);
   p.wordArraySt= wASt;
 
   struct procStruct procSt;
   procSt.processDone = procDone; 
   while (! doneReading){
-    fprintf(stderr,"\n");
     fprintf(stderr, 
-      "%c as the first character exists the program\n",EXIT_CHAR);
+      "\n%c as the first character exists the program\n",EXIT_CHAR);
     fprintf(stderr,"\nQuery "); 
 
     if (getLine(query, MAX_PATH) == EOF ){
@@ -111,7 +103,6 @@ int main(){
   pthread_mutex_destroy(&main_tx);
   pthread_cond_destroy(&cond_t);
 
-  fclose(dictFP);
   return 0;
 }
 
@@ -126,15 +117,7 @@ void spellCheck(const wordArrayStruct *wASt, const word srcWord){
     fprintf(stderr,"srcWord %s\n",srcWord);
   #endif
 
-  //Definition of function 'loadWord(...)'
-  //Node *loadWord(FILE *,Node *,word query,Bool LEN_MATCH_BOOL, 
-  //                             Bool FIRST_LETTER_MATCH);
-
-  //Add to 'storage' those words that have a ranked similarity to the word 
-  //under scrutiny
   storage  = loadWord(wASt, stdout, storage, srcWord, False, False);
-  //nodePrint(storage);
 
-  //And give unto OS, what belongs to OS -- release memory
   nodeFree(storage);
 }

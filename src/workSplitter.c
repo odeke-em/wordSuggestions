@@ -138,7 +138,7 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
     return NULL;
   }
 
-  size_t fSize = fileSize(tfp);
+  int fSize = fileSize(tfp)/1;
   navigatorList *navContainer = navListAlloc();
   initNavList(navContainer, nPartitions);
  
@@ -157,7 +157,7 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
     skipTillCondition(tfp, isspace);
 
     end = ftell(tfp);
-    word allocatedPath = (word)malloc(sizeof(char)*5);
+    word allocatedPath = newWord(5);
     sprintf(allocatedPath, "txt%d", i);
     setNavigator(&(navContainer->navList[i]), tfp, &start, &end, allocatedPath);
     start = end;
@@ -181,8 +181,7 @@ int main(int argc, word argv[]){
   }
   printf("argv[2] %s\n", argv[2]);
   FILE *ifp = fopen(argv[1], "r");
-  FILE *dictFP = fopen(DICTIONARY_PATH, "r");
-  wordArrayStruct *wArrSt = wordsInFile(dictFP);
+  wordArrayStruct *wArrSt = wordsInFile(DICTIONARY_PATH);
   navigatorList *navL = fragmentFile(ifp, &n);
 
   int nParts = navL->nPartitions;
@@ -210,7 +209,6 @@ int main(int argc, word argv[]){
   }
 
   fclose(ifp);
-  fclose(dictFP);
 
   freeWordArrayStruct(wArrSt);
   navListFree(navL);
@@ -226,8 +224,8 @@ void *autoC(void *data){
     fprintf(stderr,"srcPath %s func %s\n",srcPath,__func__);
   #endif
 
-  word learntPath = (word)malloc(sizeof(char)*(pathLen+1));
-  word correctedPath = (word)malloc(sizeof(char)*(pathLen+1));
+  word learntPath = newWord(pathLen+1);
+  word correctedPath = newWord(pathLen+1);
 
   sprintf(learntPath, "%sL", srcPath);
   sprintf(correctedPath, "%sC", srcPath);

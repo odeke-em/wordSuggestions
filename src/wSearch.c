@@ -60,11 +60,10 @@ int main(int argc, word argv[]){
   Bool doneReading = False, validfile;
   pthread_t timer_t;
   pthread_t main_th;
-
-  FILE *fp = fopen(DICTIONARY_PATH, "r");
   
-  word path=(word)malloc(sizeof(char)*MAX_PATH);
-  word learntPath=(word)malloc(sizeof(char)*MAX_PATH);
+  word path= newWord(MAX_PATH);
+  word learntPath= newWord(MAX_PATH);
+
   Bool *procDone = (Bool *)malloc(sizeof(Bool));
 
   long *freaderPosition = (long *)malloc(sizeof(long));
@@ -96,7 +95,7 @@ int main(int argc, word argv[]){
 
     validfile = isValidFile(path, fileSize);
     if(validfile){
-      wASt =wordsInFile(fp);
+      wASt = wordsInFile(DICTIONARY_PATH);
       *procDone = False;
       p.path = path;
       p.wordArraySt = wASt;
@@ -116,17 +115,17 @@ int main(int argc, word argv[]){
       break;
     #endif
   }
-  free(path);
-  free(learntPath);
   free(procDone);
   free(freaderPosition);
   free(fileSize);
+
+  freeWord(path);
+  freeWord(learntPath);
   freeWordArrayStruct(wASt);
 
   pthread_mutex_destroy(&main_tx);
   pthread_cond_destroy(&cond_t);
 
-  fclose(fp);
   return 0;
 }
 
@@ -184,7 +183,6 @@ void autoCorrect(
     );
   }
 
-  //And give unto OS, what belongs to OS -- release memory
   nodeFree(storage);
 
   fclose(srcfp);
