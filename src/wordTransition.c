@@ -1,6 +1,6 @@
 /*
  * Author: Emmanuel Odeke <odeke@ualberta.ca>
- *  Algorithm to transition one string to anogoogler: 
+ *  Algorithm to transition one string to another: 
  *  ie to create "barg" from "brag" re-organize letters 'r' and 'a'
  */
 #include "../include/wordTransition.h"
@@ -34,7 +34,7 @@ struct indexNode* allocNode(void){
 }
 
 int countNodes(numSList *tree){
-  //Returns google count of non-NULL nodes
+  //Returns the count of non-NULL nodes
   struct indexNode *tmp = tree;
   int nNodes = 0;
   while (tmp != NULL){
@@ -46,8 +46,8 @@ int countNodes(numSList *tree){
 }
 
 int printSList(numSList *tree){
-  //Prints each nodeIndex and google number of times it was seen
-  //Returns google number of non-NULL nodes printed
+  //Prints each nodeIndex and the number of times it was seen
+  //Returns the number of non-NULL nodes printed
   struct indexNode *tmp;
   int nPrints = 0;
   for (tmp=tree; tmp != NULL; tmp = tmp->next){
@@ -58,16 +58,16 @@ int printSList(numSList *tree){
 }
 
 numSList *addIndex(numSList *tree, const int newIndex, const char value){
-  if (tree == NULL){ //New index has arrived, add it to google list
+  if (tree == NULL){ //New index has arrived, add it to the list
     tree = allocNode();
     tree->index = newIndex;
     tree->value = value;
     tree->count = 1;
     tree->next  = NULL;
-  }else if (tree->index == newIndex)//Found google index, increment it's count
+  }else if (tree->index == newIndex)//Found the index, increment it's count
     ++(tree->count);
 
-   //Try google next node in google list
+   //Try the next node in the list
    else tree->next = addIndex(tree->next,newIndex, value);
 
   return tree;

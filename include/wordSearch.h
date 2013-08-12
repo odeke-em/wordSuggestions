@@ -21,7 +21,7 @@
     int start=0, end=wArrStruct->n - 1;
     word *wArray = wArrStruct->wordArray;
     int mid;
-    while (start < end){
+    while (start <= end){
       if (strcmp(query, wArray[start]) == 0) return start;
       if (strcmp(query, wArray[end]) == 0) return end;
       mid = (start+end)/2;
@@ -30,9 +30,9 @@
       if (midWordComparison == 0) return mid;
       else if (midWordComparison < 0){
 	start += 1;
-	end = mid;
+	end = mid-1;
       }else{
-	start = mid;
+	start = mid+1;
 	end -= 1;
       }
     }
@@ -72,7 +72,7 @@
       int i, nElems = wArrSt->n;
       for (i=0; i<nElems; ++i){
         wordBuf = wArrSt->wordArray[i];
-        //First letter match
+
 	if ((FIRST_LETTER_MATCH == True) && (query[0] != wordBuf[0])) continue;
         if (wordBuf != NULL){
           int queryLen = strlen(query)/sizeof(char);
@@ -84,7 +84,10 @@
           }
 
           int wRank = wordSimilarity(query, wordBuf, LEN_MATCH_BOOL);
-
+	  if (wRank == maxCutOffRank){
+	    matchFound= True;
+	    break;
+	  }
 	  double percentRank = 100*(((double)(wRank))/(double)(maxCutOffRank));
 	  
           int wordBufLen = strlen(wordBuf)/sizeof(char);
