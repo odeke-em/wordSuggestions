@@ -59,5 +59,4 @@
     int nPartitions;
     navigator *navList;
   }navigatorList;
-
 #endif

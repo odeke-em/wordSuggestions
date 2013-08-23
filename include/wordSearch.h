@@ -11,39 +11,40 @@
   #include "Node.h"
   #include "utilityFuncs.h"
   #include "wordTransition.h"
+  #include "wordLib.h"
 
   #define DICTIONARY_PATH "../resources/wordlist.txt"
   #define THRESHOLD_LEN  2
   #define THRESHOLD_PERCENT_RANK 70
 
- int bSearch(const wordArrayStruct *wArrStruct, const word query){
-    if ((wArrStruct == NULL) || (wArrStruct->wordArray == NULL)) return -1;
-    int start=0, end=wArrStruct->n - 1;
-    word *wArray = wArrStruct->wordArray;
-    int mid;
-    while (start <= end){
-      if (strcmp(query, wArray[start]) == 0) return start;
-      if (strcmp(query, wArray[end]) == 0) return end;
-      mid = (start+end)/2;
-      word midWord = wArray[mid];
-      int midWordComparison = strcmp(query, midWord);
-      if (midWordComparison == 0) return mid;
-      else if (midWordComparison < 0){
-	start += 1;
-	end = mid-1;
-      }else{
-	start = mid+1;
-	end -= 1;
-      }
-    }
-    
-    return -1;
+  int wordSimilarity(const word query, const word src, Bool LEN_MATCH_TRUE){
+    //Determine how much work is required to  transform word 'src' to 'query' 
+    //where: 
+    // rank = (inplace*3)+(moves*2)+(deletions*-1)+(additions*-1);
+
+    if ((query == NULL) || (src == NULL)) return 0;
+
+    uint32 queryLen = strlen(query), srcLen = strlen(src),
+      lenSimilarity = ((queryLen == srcLen) ? True : False);
+
+    if ((LEN_MATCH_TRUE == True) && (! lenSimilarity))
+      return 0;
+ 
+    #ifdef TEST
+      printf("\033[32mTransforming %s to %s\033[00m\n",src,query);
+    #endif
+
+    editStatStruct *statStruct = wordTranspose(query,src);
+
+    int rank = statStructRank(statStruct);
+     
+    return rank; 
   }
 
-  int wordSimilarity(const word, const word, Bool );
   Node *loadWord(
     const wordArrayStruct *wArrSt, FILE *correctedDest, Node *storageNode,
-    const word query, Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH){
+    const word query, Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH
+  ){
     /*
       Find words whose similarity to the query word is above the threshold 
       match percentage. Add these similar words to the singly linked list:
@@ -130,29 +131,5 @@
     if (wordNode != NULL) nodeFree(wordNode);
 
     return storageNode;
-  }
-
-  int wordSimilarity(const word query, const word src, Bool LEN_MATCH_TRUE){
-    //Determine how much work is required to  transform word 'src' to 'query' 
-    //where: 
-    // rank = (inplace*3)+(moves*2)+(deletions*-1)+(additions*-1);
-
-    if ((query == NULL) || (src == NULL)) return 0;
-
-    uint32 queryLen = strlen(query), srcLen = strlen(src),
-      lenSimilarity = ((queryLen == srcLen) ? True : False);
-
-    if ((LEN_MATCH_TRUE == True) && (! lenSimilarity))
-      return 0;
- 
-    #ifdef TEST
-      printf("\033[32mTransforming %s to %s\033[00m\n",src,query);
-    #endif
-
-    editStatStruct *statStruct = wordTranspose(query,src);
-
-    int rank = statStructRank(statStruct);
-     
-    return rank; 
   }
 #endif

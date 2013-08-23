@@ -5,6 +5,7 @@
 
   #include "customTypes.h"
   #include "utilityFuncs.h"
+  #include "wordLib.h"
 
   //Return the size of a file
   size_t fileSize(FILE *);
