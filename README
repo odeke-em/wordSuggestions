@@ -7,15 +7,15 @@
 #    make
 #
 # For an interactive session:
-#  cd exec
+#  cd exec OR make spellCorrect && cd exec
 #  ./spellCorrect 
 #
 #For testing out with a file:
-#  cd exec
+#  cd exec OR make autoCorrect && cd exec
 #  ./autoCorrect <sourcePath> <destinationOfLearntWords> > suggestions.txt
 #
 #To test out the multi-threaded autoCorrection:
-#  cd exec
+#  cd exec OR make workSplitter && cd exec
 #  ./workSplitter <sourcePath> <nThreads_or_Cores_available>
 #Sample output file samples/warOWCorrected.txt and samples/warOWLearnt.txt included as the result
 #of passing in 'waroftheworlds.txt' as the subject file.
