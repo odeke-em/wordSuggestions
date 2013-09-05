@@ -3,6 +3,7 @@
   typedef char *word;
 
   typedef unsigned int uint32;
+  typedef long int hash;
 
   typedef enum{
     Invalid=-1,
@@ -59,4 +60,25 @@
     int nPartitions;
     navigator *navList;
   }navigatorList;
+
+  typedef struct{
+    word wordValue;
+    hash hashValue;
+  }hashElem;
+
+  typedef struct{
+    hashElem *hEArray;
+    uint32 arrSize;
+    uint32 currentIndex;
+  }hashList;
+
+  //Comparator results
+  typedef enum{
+    HASH_LT=-1, HASH_EQ=0, HASH_GT=1
+  } HashComparison;
+
+
+  typedef struct{
+    uint32 start, end;
+  }sliceStruct;
 #endif
