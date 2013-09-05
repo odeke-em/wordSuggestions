@@ -71,6 +71,7 @@ Getting dreamer from agonies
 Add d to w2[0] replacing a
 Add m to w2[4] replacing i
 Add r to w2[1] replacing g
+Keep e at w2[5] in place
 Add r to w2[6] replacing s
 nInPlace 1
 Moves: 1

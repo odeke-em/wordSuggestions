@@ -14,10 +14,10 @@
   #include "wordLib.h"
 
   #define DICTIONARY_PATH "../resources/wordlist.txt"
-  #define THRESHOLD_LEN  2
-  #define THRESHOLD_PERCENT_RANK 70
+  #define THRESHOLD_LEN  2 //Arbitrary value here
+  #define THRESHOLD_PERCENT_RANK 70 //To be auto-calibrated in the future
 
-  int wordSimilarity(const word query, const word src, Bool LEN_MATCH_TRUE){
+  int wordSimilarity(const word query, const word src, const Bool LEN_MATCH_TRUE){
     //Determine how much work is required to  transform word 'src' to 'query' 
     //where: 
     // rank = (inplace*3)+(moves*2)+(deletions*-1)+(additions*-1);
@@ -43,7 +43,7 @@
 
   Node *loadWord(
     const wordArrayStruct *wArrSt, FILE *correctedDest, Node *storageNode,
-    const word query, Bool LEN_MATCH_BOOL, Bool FIRST_LETTER_MATCH
+    const word query, const Bool LEN_MATCH_BOOL, const Bool FIRST_LETTER_MATCH
   ){
     /*
       Find words whose similarity to the query word is above the threshold 
@@ -123,7 +123,7 @@
     } else{ 
       #ifdef INTERACTIVE
       if (alreadyInStorage == 1) fprintf(stderr,"following along %s\n", query);
-        fprintf(correctedTxtFP, " in dictionary "); 
+        fprintf(correctedTxtFP, "\033[34m in dictionary \033[00m"); 
       #endif
     }
     fflush(correctedTxtFP);

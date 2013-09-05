@@ -4,7 +4,7 @@ CC_FLAGS := -O3 -g -Wall -Wextra
 all:	Makefile autoCorrect workSplitter spellCorrect
 
 spellCorrect:	Makefile wordLib.o wordTransition.o resources/wordlist.txt include/wordSearch.h src/spellCorrect.c
-	$(CC) $(CC_FLAGS) exec/wordLib.o src/spellCorrect.c exec/wordTransition.o -o exec/spellCorrect -lpthread
+	$(CC) $(CC_FLAGS) -DINTERACTIVE exec/wordLib.o src/spellCorrect.c exec/wordTransition.o -o exec/spellCorrect -lpthread
 
 workSplitter:	Makefile resources/wordlist.txt include/wordSearch.h include/Node.h wordTransition.o wordLib.o
 	$(CC) $(CC_FLAGS) exec/wordLib.o exec/wordTransition.o src/workSplitter.c -o exec/workSplitter -lpthread

@@ -55,7 +55,9 @@
 
   int countValueOccurances(numSList *, const char);
 
+  //Break down and perform actual editing of word A to form word B
+  //Store the steps in editStatStruct
   numSList *mapIndices(
-    const int i, const word ,const word, editStatStruct *, numSList *
+    const int i, const word, const word, editStatStruct *, numSList *
   );
 #endif

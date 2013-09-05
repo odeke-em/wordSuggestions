@@ -3,6 +3,7 @@
  *  Algorithm to transition one string to another: 
  *  ie to create "barg" from "brag" re-organize letters 'r' and 'a'
  */
+
 #include "../include/wordTransition.h"
 int abs(int a){
   return (a >= 0) ? a : -1*a;
@@ -93,12 +94,12 @@ numSList *indicesInWord(char elem, word container){
 }
 
 numSList *mapIndices(
-    const int i, word w1, word w2, 
+    const int i, const word w1, const word w2, 
     editStatStruct *statSt, numSList *foundIndices
   ){
   char w1i = w1[i];
-  int w1Len = strlen(w1);
-  int w2Len = strlen(w2);
+  int w1Len = strlen(w1)/sizeof(char);
+  int w2Len = strlen(w2)/sizeof(char);
 
   numSList *w1IndicesInw2 = indicesInWord(w1i, w2);
   if (w1IndicesInw2 == NULL){
@@ -118,13 +119,16 @@ numSList *mapIndices(
   int foundIndex = findIndex(w1IndicesInw2, i);
   if (foundIndex != NOTFOUND){
     foundIndices = addIndex(foundIndices, i, w1i);
+    #ifdef TEST
+    printf("Keep %c at w2[%d] in place\n", w2[i], i);
+    #endif
     ++(statSt->inplace);
     reUseDetected = True;
   }else{
     int w1CountInW2 = countNodes(w1IndicesInw2);
     int w1CountInFoundIndices = countValueOccurances(foundIndices, w1i);
     Bool moveNeeded = w1CountInW2 && (w1CountInW2 > w1CountInFoundIndices);
-    if (moveNeeded){//We need to add that element 
+    if (moveNeeded){
       ++(statSt->moves);
       reUseDetected = True;
     }
@@ -144,7 +148,9 @@ editStatStruct *wordTranspose(const word w1, const word w2){
 
   int w1Len = strlen(w1)/sizeof(char),
       w2Len = strlen(w2)/sizeof(char);
+
   int w1MidLen = (w1Len/2);
+
   statSt->stringLen = w2Len;
   w1MidLen += (w1Len & 1 ? 1 : 0);
 
