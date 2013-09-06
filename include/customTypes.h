@@ -77,7 +77,6 @@
     HASH_LT=-1, HASH_EQ=0, HASH_GT=1
   } HashComparison;
 
-
   typedef struct{
     uint32 start, end;
   }sliceStruct;

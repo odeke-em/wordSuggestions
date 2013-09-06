@@ -36,6 +36,9 @@ void addHash(hashList *hL, const word query){
     hL->arrSize = INIT_N_HASH_ELEMS;
     hL->hEArray = (hashElem *)malloc(sizeof(hashElem)*(hL->arrSize));
     hL->currentIndex = 0;
+  }else{
+    hash queryHash = hashFunc(query);
+    if (hFind(hL, queryHash) == True) return;
   }
 
   if (hL->currentIndex >= hL->arrSize){
@@ -44,10 +47,26 @@ void addHash(hashList *hL, const word query){
       hL->hEArray, sizeof(hashElem)*(hL->arrSize)
     );
   }
+
   uint32 currentIndex = hL->currentIndex;
 
   setHash(&(hL->hEArray[currentIndex]), query);
   ++(hL->currentIndex);
+}
+
+Bool hFind(hashList *hL, const hash queryHash){
+  if (hL == NULL || hL->hEArray == NULL) return False;
+
+  hashElem *hArray = hL->hEArray;
+  uint32 index=0, maxIndex = hL->currentIndex;
+  while(index < maxIndex){
+    hashElem tmpElem = hArray[index];
+    //printf("qH %d ", queryHash, printHashElem(&tmpElem)); 
+    if (hashComp(tmpElem.hashValue, queryHash) == HASH_EQ) return True;
+    ++index;
+  }
+
+  return False;
 }
 
 hashElem *allocHashElem(void){
@@ -271,12 +290,16 @@ hashList *hMerge(hashList *left, hashList *right){
 }
 
 int main(){
-  hashList *hL = fileToHashList("resources/wordlist.txt");
+  hashList *hL = fileToHashList("src/hashLib.c");
 
   hashList *merged = hMergeSort(hL);
-  hashElem *foundIndex = hSearch(merged, "google");
-  printHashElem(foundIndex);
+  word query = "odrex";
+  hashElem *foundIndex = hSearch(merged, query);
+  printHashList(hL);
+  if (foundIndex == NULL)  printHashElem(foundIndex);
+  else printf("%s not found\n", query);
 
+  printf("query %s in hL %s\n", query, (hFind(hL, hashFunc(query)) == True ? "true" : "false"));
   freeHashList(merged);
   freeHashList(hL);
   return 0;
