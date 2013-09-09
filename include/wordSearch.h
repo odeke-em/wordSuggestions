@@ -41,6 +41,22 @@
     return rank; 
   }
 
+  /*
+  void getMatches(
+    const hashList *wordList, FILE *correctedDest, hashList *storage,
+    const String query, const Bool LEN_MATCH_BOOL, const Bool FIRST_LETTER_MATCH
+  ){
+    if (correctedDest == NULL) 
+      throwException(IOException, "A null file path for corrections was passed in");
+    if (LEN_MATCH_BOOL && query.len != tmpWord.len) return; 
+    else if (hSearch(wordList, query) != NULL) return;
+    Bool searchOn = True;
+    while (searchOn){
+      word wordIn = getWord;
+    } 
+  }
+  */
+
   Node *loadWord(
     const wordArrayStruct *wArrSt, FILE *correctedDest, Node *storageNode,
     const word query, const Bool LEN_MATCH_BOOL, const Bool FIRST_LETTER_MATCH

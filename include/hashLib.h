@@ -33,5 +33,5 @@
   void freeHashList(hashList *);
 
   hashList *hMergeSort(hashList *hL);
-  hashList *hMerge(hashList *, hashList *);
+  hashList *hMerge(const hashList *, const hashList *);
 #endif

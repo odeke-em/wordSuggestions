@@ -112,7 +112,9 @@ int printHashList(hashList *hL){
   if (hL == NULL || hL->hEArray == NULL) return -1;
   int i=0, end=hL->currentIndex;
   for (i=0; i<end; ++i){
+    printf("\t");
     printHashElem(&(hL->hEArray[i]));
+    printf("\n");
   }
   printf("\n");
 
@@ -140,11 +142,14 @@ hashList *fileToHashList(const word filePath){
 
 void freeHashList(hashList *hL){
   if (hL == NULL || hL->hEArray == NULL) return;
-  int i, maxElems = hL->arrSize;
+  int i, maxElems = hL->currentIndex;
 
   for (i=0; i<maxElems; ++i){
     freeHashElem(hL->hEArray[i]);
   }
+
+  free(hL->hEArray);
+  free(hL);
 }
 
 hashElem *hSearch(const hashList *hL, const word query){
@@ -163,14 +168,16 @@ hashElem *hSearch(const hashList *hL, const word query){
     tmp = &(hL->hEArray[end]);
     if (hashComp(tmp->hashValue, queryHash) == HASH_EQ) return tmp;
 
-    mid = (start+end)/2;
+    int startEndSum = start+end;
+    mid = startEndSum/2;
+    mid += (startEndSum & 1 ? 1: 0);
     tmp = &(hL->hEArray[mid]);
     
     int midComparison = hashComp(queryHash, tmp->hashValue);
     if (midComparison == HASH_EQ) return tmp;
   
     else if (midComparison == HASH_GT){
-      start = mid-1; 
+      start = mid+1; 
       end -= 1; 
     }else{
       end = mid-1; 
@@ -213,27 +220,30 @@ hashList *hMergeSort(hashList *hL){
   left->hEArray = NULL;
   right->hEArray = NULL;
 
-  int iL=0, iR=mid-1;
+  int iL=0;
   while (iL < mid){
     hashElem tmpElem = hL->hEArray[iL];
     addHash(left, tmpElem.wordValue);
-
-    if (iR >= hL->currentIndex) break;
-
-    tmpElem = hL->hEArray[iR];
-    addHash(right, tmpElem.wordValue);
-    ++iR;
-
     ++iL;
   }
 
-  return hMerge(hMergeSort(left), hMergeSort(right));
+  int iR=mid;
+  while (iR < hL->currentIndex){
+    hashElem tmpElem = hL->hEArray[iR];
+    addHash(right, tmpElem.wordValue);
+    ++iR;
+  }
+
+  //printf("Left ", printHashList(left));
+  //printf("Right ", printHashList(right));
+  hashList *merged = hMerge(hMergeSort(left), hMergeSort(right));
+  freeHashList(left);
+  freeHashList(right);
+
+  return merged;
 }
 
-hashList *hMerge(hashList *left, hashList *right){
-  if (left == NULL) return right;
-  if (right == NULL) return left;
-
+hashList *hMerge(const hashList *left, const hashList *right){
   hashList *hCombo = (hashList *)malloc(sizeof(hashList));
   hCombo->hEArray = NULL;
 
@@ -242,8 +252,8 @@ hashList *hMerge(hashList *left, hashList *right){
 
   i = 0;
   j = 0;
-  iEnd = left->currentIndex;
-  jEnd = right->currentIndex;
+  iEnd = left != NULL ? left->currentIndex : 0;
+  jEnd = right != NULL ? right->currentIndex : 0;
 
   while ((i < iEnd) && (j < jEnd)){
     hashElem tmpL = left->hEArray[i];
@@ -284,23 +294,25 @@ hashList *hMerge(hashList *left, hashList *right){
     ++j;
   }
    
-  freeHashList(left); 
-  freeHashList(right); 
   return hCombo;
 }
 
 int main(){
-  hashList *hL = fileToHashList("src/hashLib.c");
+  hashList *hL = fileToHashList("resources/wordList.txt");
 
   hashList *merged = hMergeSort(hL);
   word query = "odrex";
   hashElem *foundIndex = hSearch(merged, query);
+
   printHashList(hL);
-  if (foundIndex == NULL)  printHashElem(foundIndex);
+  printHashList(merged);
+
+  if (foundIndex != NULL)  printHashElem(foundIndex);
   else printf("%s not found\n", query);
 
   printf("query %s in hL %s\n", query, (hFind(hL, hashFunc(query)) == True ? "true" : "false"));
   freeHashList(merged);
   freeHashList(hL);
+
   return 0;
 }

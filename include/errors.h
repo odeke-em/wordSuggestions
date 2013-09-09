@@ -1,20 +1,15 @@
 #ifndef _ERRORS_H
 #define _ERRORS_H
   #include <stdio.h>
-  #define TypeError	  0xf0
-  #define ValueError	  0xf1
-  #define IndexError	  0xf2
-  #define SyntaxError	  0xf3
-  #define BufferOverFlow  0xf4
-  #define AssertionError  0xf5
-  #define NullPointerException  0xf6
-  #define OutOfBoundsException  0xf7
-  #define ZeroDivisionException 0xf8
 
-  #define CorruptedDataException 0xf9
+  typedef enum{
+    TypeError, ValueError, IndexError, SyntaxError, BufferOverFlow,
+    AssertionError, NullPointerException, IndexOutOfBoundsException,
+    ZeroDivisionException, CorruptedDataException
+  }Exception;
   
   #define raiseWarning(errMsg){\
-    fprintf(stderr,"%s on line %d in function '%s' file '%s'\n",\
+    fprintf(stderr,"\033[31m%s on line %d in function '%s' file '%s'\033[00m\n",\
       errMsg,__LINE__,__func__,__FILE__);\
   }
 
