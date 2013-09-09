@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/string.h"
+#include "../include/custString.h"
 
 void initString(String *s){
   if (s == NULL){
