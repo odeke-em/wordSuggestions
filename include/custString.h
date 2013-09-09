@@ -10,11 +10,6 @@
   #define ADVERB
   #define PRONOUN
 
-  typedef struct{
-    int startIndex, endIndex, len; 
-    word content;
-  }String;
-
   //Initializes a string, setting the start and endIndices to zero,
   //String content to NULL and string length to zero 
   void initString(String *);
@@ -38,4 +33,10 @@
 
   //Returns a string containing characters within range start and end 
   String *slice(const String *, const int, const int);
+
+  //Set the string's content to the word argument
+  void setStringContent(String *, const word);
+
+  //word to string converter
+  String *toString(const word);
 #endif

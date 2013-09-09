@@ -1,6 +1,9 @@
 #ifndef _UTILITY_FUNCS_H
 #define _UTILITY_FUNCS_H
+  #include <stdio.h>
   #include <sys/stat.h>
+
+  #include "customTypes.h"
 
   Bool isValidFile(const word path, long *fileSize){
     //Input: A path 

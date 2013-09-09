@@ -18,7 +18,11 @@ wordLib.o:    include/wordLib.h src/wordLib.c
 wordTransition.o:   include/wordTransition.h src/wordTransition.c Makefile
 	$(CC) -c src/wordTransition.c -o exec/wordTransition.o
 
-hashLib:    exec/wordLib.o include/hashLib.h src/hashLib.c
+hashLib:    wordLib.o include/hashLib.h src/hashLib.c
 	$(CC) -DSAMPLE_RUN exec/wordLib.o src/hashLib.c -o hashLib
+
+stringLib:   wordLib.o src/custString.c include/custString.h
+	$(CC) -c src/custString.c -o exec/custString.o
+
 clean:
 	cd exec && rm autoCorrect spellCorrect workSplitter *.o

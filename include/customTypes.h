@@ -80,4 +80,9 @@
   typedef struct{
     uint32 start, end;
   }sliceStruct;
+
+  typedef struct{
+    int startIndex, endIndex, len; 
+    word content;
+  }String;
 #endif

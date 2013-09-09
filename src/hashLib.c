@@ -298,7 +298,7 @@ hashList *hMerge(const hashList *left, const hashList *right){
 }
 
 int main(){
-  hashList *hL = fileToHashList("resources/wordList.txt");
+  hashList *hL = fileToHashList("resources/wordlist.txt");
 
   hashList *merged = hMergeSort(hL);
   word query = "odrex";

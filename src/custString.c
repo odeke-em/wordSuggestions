@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "../include/custString.h"
 
 void initString(String *s){
@@ -23,6 +24,14 @@ void freeString(String *s){
 
 String *allocString(void){
   return (String *)malloc(sizeof(String));
+}
+
+String *toString(const word w){
+  String *newString = allocString();
+  assert(newString);
+
+  setStringContent(newString, w);
+  return newString;
 }
 
 void setStringContent(String *st, const word w){
@@ -133,7 +142,7 @@ String *slice(const String *s, const int start, const int end){
   newSlice->content = newWord(range);
 
   int i, midRange = range/2;
-  for (i=0; i<=range/2; ++i){
+  for (i=0; i<=midRange; ++i){
     (newSlice->content)[i] = (s->content)[i+start];
     volatile int iExtreme = i+midRange;
     if (iExtreme >= end) continue;
@@ -143,6 +152,7 @@ String *slice(const String *s, const int start, const int end){
   return newSlice; 
 }
 
+#ifdef SAMPLE_RUN
 int main(){
   String *st1 = allocString();
   String *st2 = allocString();
@@ -157,8 +167,8 @@ int main(){
 
   st2->endIndex = st1->endIndex;
 
-  printf("%c at \n", charAt(st2, st2->endIndex));
-  printf("%c at \n", charAt(st1, st1->endIndex));
+  printf("%c at %d\n", charAt(st2, st2->endIndex), st2->endIndex);
+  printf("%c at %d\n", charAt(st1, st1->endIndex), st1->endIndex);
 
   Bool isSub = isSubString(st1, st2);
   printf("IsSubS %d\n", isSub);
@@ -173,3 +183,4 @@ int main(){
 
   return 0;
 }
+#endif
