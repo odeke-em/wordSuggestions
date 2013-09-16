@@ -191,7 +191,7 @@ hashElem *hSearch(const hashList *hL, const word query){
 void swap(void *a, void *b){
   void *tmp = a;
   a = b;
-  b = a;
+  b = tmp;
 }
 
 HashComparison hashElemComp(const hashElem *hA, const hashElem *hB){
