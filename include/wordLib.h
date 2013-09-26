@@ -44,4 +44,6 @@
 
   //Binary-search for a word-array struct
   int bSearch(const wordArrayStruct *wArrStruct, const word query);
+
+  Bool sameWord(const word, const word);
 #endif

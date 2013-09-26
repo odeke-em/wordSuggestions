@@ -2,7 +2,6 @@
 #define _CONJUGATOR_H
   #include "errors.h"
   #include "customTypes.h"
-  #include "utilityFuncs.h"
 
   /**Conjugations starting here**/
   #define NOUN
@@ -20,7 +19,7 @@
   String *allocString(void);
 
   //Similar to indexing the String's contents -> contents[n]
-  char charAt(const String *, const int ); 
+  char charAt(const String *, const int); 
 
   //Returns True if the given string's start is less than or equal to 
   //endIndex. Also the length of the content should be what it is 

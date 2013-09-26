@@ -2,6 +2,7 @@
 
 #include <pthread.h>
 #include "../include/wordSearch.h"
+#include "../include/utilityFuncs.h"
 
 void  autoCorrect(const wordArrayStruct *, FILE *, const word , const word , long *); 
 

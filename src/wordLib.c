@@ -169,6 +169,34 @@ void toLower(word s){
   }
 }
 
+Bool sameWord(const word w1, const word w2){
+  if (w1 == NULL || w2 == NULL){
+    return w1 == w2 ? Invalid : True;
+  }
+
+  int w1Len = strlen(w1), w2Len = strlen(w2);
+
+  if (w1Len != w2Len) return False;
+
+  int mid = w1Len/2;
+
+  //If w1Len is odd, we'll move the mid index 
+  //one position past the floor of w1Len/2
+  mid += (w1Len&1) ? 1: 0; 
+
+  int i=0, end;
+  while (i < mid){
+    end = mid+i-1;
+
+    if ((w1[i] != w2[i]) && (w1[end] != w2[end])) return False;
+
+    ++i;
+  }
+
+  return True;
+}
+
+
 int bSearch(const wordArrayStruct *wArrStruct, const word query){
   if ((wArrStruct == NULL) || (wArrStruct->wordArray == NULL)) return -1;
   int start = 0, end = wArrStruct->n - 1;

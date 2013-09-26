@@ -1,5 +1,6 @@
 #ifndef _CUSTOM_TYPES_H
 #define _CUSTOM_TYPES_H
+  #include <stdio.h>
   typedef char *word;
 
   typedef unsigned int uint32;

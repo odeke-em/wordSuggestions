@@ -3,26 +3,34 @@ CC_FLAGS := -O3 -g -Wall -Wextra
 
 all:	Makefile autoCorrect workSplitter spellCorrect
 
-spellCorrect:	Makefile wordLib.o wordTransition.o resources/wordlist.txt include/wordSearch.h src/spellCorrect.c
-	$(CC) $(CC_FLAGS) -DINTERACTIVE exec/wordLib.o src/spellCorrect.c exec/wordTransition.o -o exec/spellCorrect -lpthread
+spellCorrect:	Makefile wordLib wordTransition wordSearch resources/wordlist.txt src/spellCorrect.c Node utilityFuncs
+	$(CC) $(CC_FLAGS) -DINTERACTIVE exec/wordLib.o src/spellCorrect.c exec/wordTransition.o exec/wordSearch.o exec/utilityFuncs.o exec/Node.o -o exec/spellCorrect -lpthread
 
-workSplitter:	Makefile resources/wordlist.txt include/wordSearch.h include/Node.h wordTransition.o wordLib.o
-	$(CC) $(CC_FLAGS) exec/wordLib.o exec/wordTransition.o src/workSplitter.c -o exec/workSplitter -lpthread
+workSplitter:	Makefile resources/wordlist.txt include/Node.h wordTransition wordLib wordSearch Node utilityFuncs
+	$(CC) $(CC_FLAGS) exec/wordLib.o exec/wordTransition.o src/workSplitter.c exec/wordSearch.o exec/Node.o exec/utilityFuncs.o -o exec/workSplitter -lpthread
 
-autoCorrect:	Makefile resources/wordlist.txt include/wordSearch.h src/autoCorrect.c include/Node.h wordTransition.o wordLib.o
-	$(CC) $(CC_FLAGS) -DALLPRINTWORDS exec/wordLib.o src/autoCorrect.c exec/wordTransition.o -o exec/autoCorrect -lpthread
+autoCorrect:	Makefile resources/wordlist.txt src/autoCorrect.c include/Node.h wordTransition wordLib wordSearch utilityFuncs Node
+	$(CC) $(CC_FLAGS) -DALLPRINTWORDS exec/wordLib.o src/autoCorrect.c exec/wordTransition.o exec/wordSearch.o exec/Node.o exec/utilityFuncs.o -o exec/autoCorrect -lpthread
 
-wordLib.o:    include/wordLib.h src/wordLib.c
+wordLib:    include/wordLib.h src/wordLib.c
 	$(CC) $(CC_FLAGS) -c src/wordLib.c -o exec/wordLib.o
 
-wordTransition.o:   include/wordTransition.h src/wordTransition.c Makefile
+wordTransition:   include/wordTransition.h src/wordTransition.c Makefile
 	$(CC) -c src/wordTransition.c -o exec/wordTransition.o
 
-hashLib:    wordLib.o include/hashLib.h src/hashLib.c
+hashLib:    wordLib include/hashLib.h src/hashLib.c
 	$(CC) -DSAMPLE_RUN exec/wordLib.o src/hashLib.c -o hashLib
 
-stringLib:   wordLib.o src/custString.c include/custString.h
+wordSearch: wordLib include/wordSearch.h src/wordSearch.c 
+	$(CC) -c src/wordSearch.c -o exec/wordSearch.o
+
+stringLib:   wordLib src/custString.c include/custString.h
 	$(CC) -c src/custString.c -o exec/custString.o
 
+utilityFuncs:	include/customTypes.h src/utilityFuncs.c include/utilityFuncs.h
+	$(CC) -c src/utilityFuncs.c -o exec/utilityFuncs.o
+
+Node:	  include/Node.h src/Node.c
+	$(CC) -c src/Node.c -o exec/Node.o
 clean:
 	cd exec && rm autoCorrect spellCorrect workSplitter *.o
