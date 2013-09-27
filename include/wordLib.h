@@ -11,7 +11,7 @@
   #define BUF_SIZ 30
   //Copy the string of alphabetic characters first 
   //encountered by the file reader's latest position
-  word getWord(FILE *);
+  word getWord(FILE *fp, int (*)(int));
 
   int printWord(const word);
 

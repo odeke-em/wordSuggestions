@@ -242,7 +242,7 @@ void *autoC(void *data){
   Node *storage = NULL;
 
   while (! feof(srcfp)){
-    word srcWord = getWord(srcfp);
+    word srcWord = getWord(srcfp, isalpha);
     if (srcWord == NULL) continue;
 
     //Word Comparison will be done in lower case
@@ -252,8 +252,12 @@ void *autoC(void *data){
       fprintf(stderr,"srcWord %s\n",srcWord);
     #endif
 
+    wordMatchCriteria matchCriteria;
+    matchCriteria.lenMatch_bool = False; 
+    matchCriteria.firstLetterMatch_bool = False; 
+
     storage = loadWord(
-      dictWArrStruct, correctedfp, storage, srcWord, False, False
+      dictWArrStruct, correctedfp, storage, srcWord, matchCriteria
     );
 
     if (srcWord != NULL)  free(srcWord);

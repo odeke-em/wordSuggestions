@@ -155,7 +155,7 @@ void autoCorrect(
   Node *storage = NULL;
 
   while (! feof(srcfp)){
-    word srcWord = getWord(srcfp);
+    word srcWord = getWord(srcfp, isalpha);
     if (srcWord == NULL) continue;
     //Word Comparison will be done in lower case
     toLower(srcWord);
@@ -164,7 +164,11 @@ void autoCorrect(
       fprintf(stderr,"srcWord %s\n",srcWord);
     #endif
 
-    storage = loadWord(wASt, correctedDest, storage, srcWord, False, False);
+    wordMatchCriteria matchCriteria;
+    matchCriteria.lenMatch_bool = False; 
+    matchCriteria.firstLetterMatch_bool = False; 
+
+    storage = loadWord(wASt, correctedDest, storage, srcWord, matchCriteria);
 
     if (srcWord != NULL)
       free(srcWord);

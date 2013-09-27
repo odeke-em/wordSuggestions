@@ -30,7 +30,11 @@ stringLib:   wordLib src/custString.c include/custString.h
 utilityFuncs:	include/customTypes.h src/utilityFuncs.c include/utilityFuncs.h
 	$(CC) -c src/utilityFuncs.c -o exec/utilityFuncs.o
 
+Tree:	  include/bTree.h src/bTree.c
+	$(CC) -c src/bTree.c -o exec/BTree.o
+
 Node:	  include/Node.h src/Node.c
 	$(CC) -c src/Node.c -o exec/Node.o
+
 clean:
 	cd exec && rm autoCorrect spellCorrect workSplitter *.o

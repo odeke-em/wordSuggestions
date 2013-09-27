@@ -5,7 +5,7 @@
 #include "../include/wordLib.h"
 #include "../include/hashLib.h"
 
-HashComparison hashComp(const hash subject, const hash query){
+ElemComparison hashComp(const hash subject, const hash query){
   if (subject == query) return HASH_EQ;
   else if (subject < query) return HASH_LT;
   return HASH_GT;
@@ -132,7 +132,7 @@ hashList *fileToHashList(const word filePath){
 
   hashList *hL = (hashList *)malloc(sizeof(hashList));
   while (! feof(ifp)){
-    word wordIn = getWord(ifp);
+    word wordIn = getWord(ifp, isalpha);
     addHash(hL, wordIn);
     freeWord(wordIn);
   }
@@ -194,7 +194,7 @@ void swap(void *a, void *b){
   b = tmp;
 }
 
-HashComparison hashElemComp(const hashElem *hA, const hashElem *hB){
+ElemComparison hashElemComp(const hashElem *hA, const hashElem *hB){
   if (hA == NULL) return HASH_LT;
   if (hB == NULL) return HASH_GT;
 
@@ -206,7 +206,7 @@ hashList *hMergeSort(hashList *hL){
   else if (hL->currentIndex == 1){
     hashElem *hA = &(hL->hEArray[0]);
     hashElem *hB = &(hL->hEArray[1]);
-    HashComparison hComp = hashElemComp(hA, hB); 
+    ElemComparison hComp = hashElemComp(hA, hB); 
 
     if (hComp == HASH_GT)  swap(hA, hB);
     return hL;
@@ -259,7 +259,7 @@ hashList *hMerge(const hashList *left, const hashList *right){
     hashElem tmpL = left->hEArray[i];
     hashElem tmpR = right->hEArray[j];
 
-    HashComparison comp = hashElemComp(&tmpL, &tmpR);
+    ElemComparison comp = hashElemComp(&tmpL, &tmpR);
     switch(comp){
       case HASH_LT:{
 	addHash(hCombo, tmpL.wordValue);

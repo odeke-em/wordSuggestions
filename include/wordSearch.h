@@ -12,6 +12,7 @@
   #include "utilityFuncs.h"
   #include "wordTransition.h"
   #include "wordLib.h"
+  #include "bTree.h"
 
   #define DICTIONARY_PATH "../resources/wordlist.txt"
   #define THRESHOLD_LEN  2 //Arbitrary value here
@@ -20,7 +21,12 @@
   int wordSimilarity(const word, const word, const Bool);
 
   Node *loadWord(
-    const wordArrayStruct *, FILE *, Node *, 
-    const word, const Bool, const Bool 
+    const wordArrayStruct *, FILE *, Node *,
+    const word, const wordMatchCriteria
+  );
+
+  Tree *getMatches(
+    const wordArrayStruct, const Tree *, FILE *, 
+    Tree *, const word, const Bool, const Bool
   );
 #endif

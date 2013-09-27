@@ -4,7 +4,6 @@ int notSpace(const int c){
   return (! isspace(c));
 }
 
-
 int printWord(const word w){
   return printf("%s", w);
 }
@@ -28,7 +27,7 @@ int getLine(word s, const int max){
   return ((c == EOF) ? EOF : i);
 }
 
-word getWord(FILE *fp){
+word getWord(FILE *fp, int cond(int)){
   //Copies only alphabetic characters. A non-alphabetic character signals 
   //the function to stop reading and return the already found content
   word buf = newWord(BUF_SIZ);
@@ -47,25 +46,25 @@ word getWord(FILE *fp){
 
     int nRead = fread(&c,1,sizeof(char), fp);
     if (nRead == -1){
-    fprintf(
-     stderr,"Failed to read a char from fp in function %s in file %s\n",
-      __func__, __FILE__
-    );
-    exit(-2);
+      fprintf(
+	stderr,"Failed to read a char from fp in function %s in file %s\n",
+	__func__, __FILE__
+      );
+      exit(-2);
     }
  
-    if (! isalpha(c)){
-    buf[i] = '\0';
-    break;
+    if (! cond(c)){
+      buf[i] = '\0';
+      break;
     }else{
-    buf[i] = c;
-    ++i;
+      buf[i] = c;
+      ++i;
     }
   }
 
-  #ifdef DEBUG
-    fprintf(stderr,"got_word %s\n",buf);
-  #endif
+#ifdef DEBUG
+  fprintf(stderr,"got_word %s\n",buf);
+#endif
   return buf;
 }
 
@@ -74,10 +73,11 @@ void freeWordArrayStruct(wordArrayStruct *wASt){
   if (wASt->wordArray != NULL){
     int i;
     for (i=0; i<wASt->n; ++i){
-	word tmp;
-	tmp = (wASt->wordArray)[i];
-	freeWord(tmp);
+      word tmp;
+      tmp = (wASt->wordArray)[i];
+      freeWord(tmp);
     }
+
     free(wASt->wordArray);
   }
 }
@@ -85,10 +85,12 @@ void freeWordArrayStruct(wordArrayStruct *wASt){
 int printWordArrayStruct(const wordArrayStruct *wASt){
   if ((wASt == NULL) || (wASt->wordArray == NULL)) return -1;
   int i, n = wASt->n;
+
   for (i=0; i<n; ++i){
     printWord((wASt->wordArray)[i]);
     printWord("\n");
   }
+
   return i;
 }
 
@@ -126,7 +128,7 @@ wordArrayStruct *wordsInFile(const word filePath){
 	arraySize *= 2;
 	wArrSt = wordArrStructReSize(wArrSt, arraySize);
     }
-    word theWord = getWord(fp);
+    word theWord = getWord(fp, isalpha);
     wArrSt->wordArray[wordIndex] = strdup(theWord);
     free(theWord);
     ++wordIndex;

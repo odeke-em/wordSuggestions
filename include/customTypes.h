@@ -73,11 +73,6 @@
     uint32 currentIndex;
   }hashList;
 
-  //Comparator results
-  typedef enum{
-    HASH_LT=-1, HASH_EQ=0, HASH_GT=1
-  } HashComparison;
-
   typedef struct{
     uint32 start, end;
   }sliceStruct;
@@ -86,4 +81,15 @@
     int startIndex, endIndex, len; 
     word content;
   }String;
+
+  //Comparator results
+  typedef enum{
+    LT=-1, EQ=0, GT=1
+  }ElemComparison;
+
+  typedef struct{
+    Bool lenMatch_bool;
+    Bool firstLetterMatch_bool;
+  } wordMatchCriteria; //Struct to pass a pair of Bools 
+	      //eg, LEN_MATCH_BOOL and FIRST_LETTER_MATCH
 #endif

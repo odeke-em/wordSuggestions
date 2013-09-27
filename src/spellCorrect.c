@@ -117,7 +117,11 @@ void spellCheck(const wordArrayStruct *wASt, const word srcWord){
     fprintf(stderr,"srcWord %s\n",srcWord);
   #endif
 
-  storage  = loadWord(wASt, stdout, storage, srcWord, False, False);
+
+  wordMatchCriteria matchCriteria;
+  matchCriteria.lenMatch_bool = False; 
+  matchCriteria.firstLetterMatch_bool = False; 
+  storage  = loadWord(wASt, stdout, storage, srcWord, matchCriteria);
 
   nodeFree(storage);
 }

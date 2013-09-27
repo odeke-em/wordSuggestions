@@ -29,7 +29,7 @@ Usage:
 
        cd exec OR make autoCorrect && cd exec
 
-      ./autoCorrect <sourcePath> <destinationOfLearntWords> > suggestions.txt
+      ./autoCorrect <sourcePath> <destinationOfLearntWords> [optional correctedTxtPath]
 
     +To test out the multi-threaded autoCorrection:
 

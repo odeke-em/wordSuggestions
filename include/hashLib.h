@@ -8,7 +8,7 @@
   #define INIT_N_HASH_ELEMS 20
 
   hash hashFunc(const word);
-  HashComparison hashComp(const hash, const hash);
+  ElemComparison hashComp(const hash, const hash);
 
   void addHash(hashList *, const word);
 
