@@ -2,23 +2,29 @@
   Author: Emmanuel Odeke <odeke@ualberta.ca
    Module to enable fragmenting of file into almost equal parts. 
    For each divided part, a file is created and it's content is written.
-   This enables multi-threaded autoCorrection of the various fragments,
-   that can be later on joined together
+   This enables distributed autoCorrection of the various fragments,
+   that can be later on be re-combined
 */
 #include <pthread.h>
-#include "../include/workSplitter.h"
+
 #include "../include/Node.h"
+#include "../include/constants.h"
 #include "../include/wordSearch.h"
+#include "../include/workSplitter.h"
 
 void navFree(navigator *nav){
   if (nav == NULL) return;
-  if (nav->toPath != NULL) free(nav->toPath);
+  freeWord(nav->toPath);
 }
 
 void *cat(void *data){
+  //Given a navigator, copy the data from the infile's
+  //start to end positions to the outfile
   navigator *nav =(navigator *)data;
+
   int *nBytes = (int *)malloc(sizeof(int));
   *nBytes = EOF;
+
   if ((nav == NULL) || (nav->srcfp == NULL)) return nBytes;
 
   word dest = nav->toPath;
@@ -44,6 +50,7 @@ void *cat(void *data){
   //Move the reader back to its original position
   fseek(nav->srcfp, originalPosition, SEEK_SET);
   fclose(destfp);
+
   return nBytes;
 }
 
@@ -145,8 +152,9 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
   int aveChunckSize = (fSize/(*nPartitions)); 
   int start=0, end, i=0;
   while (i < *nPartitions){
-    //Move the file pointer until the current end then move until 
-    //the next non-space token is found
+    //For each partition, we'll have a start and end position
+    //Move the file pointer until the current 'end'. From there
+    // then move until the next non-space token is found
     end = start+aveChunckSize;
     //printf("ostart %d oend %d\n", start, end);
     if (end > fSize){
@@ -161,6 +169,8 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
     sprintf(allocatedPath, "txt%d", i);
     setNavigator(&(navContainer->navList[i]), tfp, &start, &end, allocatedPath);
     start = end;
+
+    freeWord(allocatedPath);
     ++i;
   } 
 
@@ -256,7 +266,7 @@ void *autoC(void *data){
     matchCriteria.lenMatch_bool = False; 
     matchCriteria.firstLetterMatch_bool = False; 
 
-    storage = loadWord(
+    storage = getSuggestions(
       dictWArrStruct, correctedfp, storage, srcWord, matchCriteria
     );
 

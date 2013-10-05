@@ -1,4 +1,5 @@
 #include "../include/Node.h"
+#include "../include/constants.h"
   
 word wordCopy(const word orig) {
   if (orig == NULL) return NULL;
@@ -14,51 +15,59 @@ Node *nodeAlloc(void) {
 }
 
 void nodeFree(Node *tree){
-  Node *tmp;
-  while(tree != NULL){
-    tmp = tree->next;
-    if (tree->match != NULL)
-      free(tree->match);
+  if (tree != NULL) {
 
-    free(tree);
-    tree = tmp;
+    Node *tmp;
+    while(tree != NULL) {
+      tmp = tree->next;
+      if (tree->match != NULL)
+	free(tree->match);
+
+      free(tree);
+      tree = tmp;
+    }
+    tree = NULL;
   }
-  tree = NULL;
 }
 
-int nodePrint(FILE *fp, Node *tree){
+LLInt nodePrint(FILE *fp, Node *tree){
   /*
     Input: a singly linked list 'tree'
     Output: printed attributes of the tree, 'match', matchrankage
     Returns: the number of non-NULL nodes in the tree
   */
   if (fp == NULL) fp =stdout;
-  int nPrints = 0;
   Node *tmp;
   int maxPrintPerLine=4;
+
+  LLInt printCount = 0;
   if (tree != NULL){
   #ifdef INTERACTIVE
-    fprintf(stderr," Suggestions: \033[32m");
+    fprintf(fp," Suggestions: \033[32m");
   #endif
 
-    fprintf(fp, "{ \t\n");
-    for (tmp = tree; tmp != NULL; tmp=tmp->next){
-      fprintf(fp, "%s:%d ",tmp->match,tmp->matchrank);
+    fprintf(fp, "{ \n\t");
+    for (tmp = tree, printCount=0; tmp != NULL; tmp=tmp->next){
+      printCount += tmp->len;
+      if (printCount > MAX_CHARS_PER_LINE) {
+	fprintf(fp, "\n\t");
+	printCount = 0;
+      }
 
-      ++nPrints;
-      if (! nPrints%maxPrintPerLine) fprintf(fp, "\n");
+      printCount += fprintf(fp, "%s:%d ",tmp->match,tmp->matchrank);
+
     }
 
-    fprintf(fp, "}\n");
+    fprintf(fp, "\n} ");
   #ifdef INTERACTIVE
-    fprintf(stderr,"\t\n\033[00m");
+    fprintf(fp,"\t\n\033[00m");
   #endif
   }
 
-  return nPrints;
+  return printCount;
 }
 
-Node *addWord(Node *tree, const word query, int rankMatch){
+Node *addWord(Node *tree, const word query, const int queryLen, int rankMatch){
   if (query == NULL) return tree;
 
   if (tree == NULL){
@@ -68,9 +77,10 @@ Node *addWord(Node *tree, const word query, int rankMatch){
     assert(tree);
 
     tree->matchrank = rankMatch;
+    tree->len = queryLen;
     tree->next  = NULL;
   }else if (sameWord(tree->match, query) == False){
-    tree->next = addWord(tree->next, query, rankMatch);
+    tree->next = addWord(tree->next, query, queryLen, rankMatch);
   }
   
   return tree; 

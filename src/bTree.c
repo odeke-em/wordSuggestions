@@ -1,7 +1,7 @@
 /*
   Author: Emmanuel Odeke <odeke@ualberta.ca>
   Balanced tree:
-    Theory for balancing trees mostly learnt from: www.geeksforgeeks.org
+    Theory for balanced tree mostly learnt from: www.geeksforgeeks.org
 */
 
 #include <string.h>
@@ -9,7 +9,7 @@
 
 #include "../include/bTree.h"
 
-int max(const int a, const int b) {
+uint32 max(const int a, const int b) {
   return a > b ? a : b;
 }
 

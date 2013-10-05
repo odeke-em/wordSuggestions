@@ -3,8 +3,9 @@
   #include <stdio.h>
   typedef char *word;
 
-  typedef unsigned int uint32;
   typedef long int hash;
+  typedef unsigned int uint32;
+  typedef long long int LLInt;
 
   typedef enum{
     Invalid=-1,
@@ -30,6 +31,7 @@
 
   typedef struct node{
     word match;
+    uint32 len;
     int matchrank;
     struct node *next;   
   }Node;

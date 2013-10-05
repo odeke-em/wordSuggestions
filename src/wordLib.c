@@ -1,19 +1,19 @@
 #include "../include/wordLib.h"
 
-int notSpace(const int c){
+int notSpace(const int c) {
   return (! isspace(c));
 }
 
-int printWord(const word w){
+int printWord(const word w) {
   return printf("%s", w);
 }
 
-word newWord(const int n){
+word newWord(const int n) {
   if (n <= 0) return NULL;
   return (word)malloc(sizeof(char)*n);
 }
 
-int getLine(word s, const int max){
+int getLine(word s, const int max) {
   int i=0;
   char c=EOF;
   while ((i < max) && ((c = getchar()) != EOF)){
@@ -27,7 +27,7 @@ int getLine(word s, const int max){
   return ((c == EOF) ? EOF : i);
 }
 
-word getWord(FILE *fp, int cond(int)){
+word getWord(FILE *fp, int cond(int)) {
   //Copies only alphabetic characters. A non-alphabetic character signals 
   //the function to stop reading and return the already found content
   word buf = newWord(BUF_SIZ);
@@ -68,7 +68,7 @@ word getWord(FILE *fp, int cond(int)){
   return buf;
 }
 
-void freeWordArrayStruct(wordArrayStruct *wASt){
+void freeWordArrayStruct(wordArrayStruct *wASt) {
   if (wASt == NULL) return;
   if (wASt->wordArray != NULL){
     int i;
@@ -82,7 +82,7 @@ void freeWordArrayStruct(wordArrayStruct *wASt){
   }
 }
 
-int printWordArrayStruct(const wordArrayStruct *wASt){
+int printWordArrayStruct(const wordArrayStruct *wASt) {
   if ((wASt == NULL) || (wASt->wordArray == NULL)) return -1;
   int i, n = wASt->n;
 
@@ -94,8 +94,7 @@ int printWordArrayStruct(const wordArrayStruct *wASt){
   return i;
 }
 
-
-wordArrayStruct *wordArrStructAlloc(const int n){
+wordArrayStruct *wordArrStructAlloc(const int n) {
   if (n <= 0) return NULL;
   wordArrayStruct *wArrSt = \
 	(wordArrayStruct *)malloc(sizeof(wordArrayStruct));
@@ -107,7 +106,7 @@ wordArrayStruct *wordArrStructAlloc(const int n){
   return wArrSt;
 }
 
-wordArrayStruct *wordArrStructReSize(wordArrayStruct *wASt, const int newN){
+wordArrayStruct *wordArrStructReSize(wordArrayStruct *wASt, const int newN) {
   if ((newN > 0) && (wASt != NULL) && (wASt->wordArray != NULL)){
     if (newN != wASt->n){
 	wASt->wordArray = (word *)realloc(wASt->wordArray, sizeof(word)*newN);
@@ -117,7 +116,7 @@ wordArrayStruct *wordArrStructReSize(wordArrayStruct *wASt, const int newN){
   return wASt; 
 }
 
-wordArrayStruct *wordsInFile(const word filePath){
+wordArrayStruct *wordsInFile(const word filePath) {
   FILE *fp = fopen(filePath, "r");
   if (fp == NULL) return NULL;
   int arraySize = 100;
@@ -138,7 +137,7 @@ wordArrayStruct *wordsInFile(const word filePath){
   return wArrSt;
 }
 
-int skipTillCondition(FILE *ifp, int(*condFunc)(int)){
+int skipTillCondition(FILE *ifp, int(*condFunc)(int)) {
   if (ifp == NULL) return EOF;
   
   char c;
@@ -155,13 +154,13 @@ int skipTillCondition(FILE *ifp, int(*condFunc)(int)){
   return nSkips;
 }
 
-Bool freeWord(word w){
+Bool freeWord(word w) {
   if (w == NULL) return False;
   free(w);
   return True;
 }
 
-void toLower(word s){
+void toLower(word s) {
   int len = strlen(s)/sizeof(char), i=0;
 
   char c;
@@ -171,7 +170,7 @@ void toLower(word s){
   }
 }
 
-Bool sameWord(const word w1, const word w2){
+Bool sameWord(const word w1, const word w2) {
   if (w1 == NULL || w2 == NULL){
     return w1 == w2 ? Invalid : True;
   }
@@ -199,7 +198,7 @@ Bool sameWord(const word w1, const word w2){
 }
 
 
-int bSearch(const wordArrayStruct *wArrStruct, const word query){
+int bSearch(const wordArrayStruct *wArrStruct, const word query) {
   if ((wArrStruct == NULL) || (wArrStruct->wordArray == NULL)) return -1;
   int start = 0, end = wArrStruct->n - 1;
   word *wArray = wArrStruct->wordArray;
