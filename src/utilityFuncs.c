@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
-Bool isValidFile(const word path, long *fileSize){
+Bool isValidFile(const word path, long *savFileSize){
   //Input: A path 
   //Returns: True iff a path exists and is not a directory else False
   struct stat statInfo;
@@ -14,7 +14,7 @@ Bool isValidFile(const word path, long *fileSize){
     return False;
 
   if (! S_ISDIR(statInfo.st_mode)){
-    *fileSize = statInfo.st_size;
+    *savFileSize = statInfo.st_size;
     return True;
   }
 
