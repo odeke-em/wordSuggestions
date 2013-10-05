@@ -41,11 +41,11 @@ word getWord(FILE *fp, int cond(int)) {
     exit(-1);
   }
 
-  while (! feof(fp)){
+  while (! feof(fp)) {
     if (i>=BUF_SIZ) break;
 
-    int nRead = fread(&c,1,sizeof(char), fp);
-    if (nRead == -1){
+    int nRead = fread(&c, 1, sizeof(char), fp);
+    if (nRead == -1) {
       fprintf(
 	stderr,"Failed to read a char from fp in function %s in file %s\n",
 	__func__, __FILE__
@@ -62,6 +62,7 @@ word getWord(FILE *fp, int cond(int)) {
     }
   }
 
+  buf[i] = '\0';
 #ifdef DEBUG
   fprintf(stderr,"got_word %s\n",buf);
 #endif
@@ -157,6 +158,7 @@ int skipTillCondition(FILE *ifp, int(*condFunc)(int)) {
 Bool freeWord(word w) {
   if (w == NULL) return False;
   free(w);
+  w = NULL; //No longer points to de-allocated memory
   return True;
 }
 
