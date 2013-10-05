@@ -1,3 +1,4 @@
+#include "../include/constants.h"
 #include "../include/wordSearch.h"
 
 int wordSimilarity(const word query, const word src, const Bool LEN_MATCH_TRUE){
@@ -24,15 +25,10 @@ int wordSimilarity(const word query, const word src, const Bool LEN_MATCH_TRUE){
   return rank; 
 }
 
-Node *loadWord(
+Node *getSuggestions(
   const wordArrayStruct *dictWordArraySt, FILE *correctedDest, 
   Node *storageNode, const word query, const wordMatchCriteria matchCriteria
 ){
-  /*
-   Find words whose similarity to the query word is above the threshold 
-   match percentage. Add these similar words to the singly linked list:
-   'storageNode'.
-  */
   if ((dictWordArraySt == NULL) || (query == NULL) || (strlen(query) == 0))
     return storageNode;
 
@@ -79,7 +75,7 @@ Node *loadWord(
         int wordBufLen = strlen(wordBuf)/sizeof(char);
         if  ((percentRank >= THRESHOLD_PERCENT_RANK) 
 	 && (wordBufLen >= THRESHOLD_LEN)){
-          wordNode = addWord(wordNode,wordBuf,wRank);
+          wordNode = addWord(wordNode, wordBuf, wordBufLen, wRank);
           nMatches += 1;
         }
       }
@@ -97,24 +93,24 @@ Node *loadWord(
     size_t queryLen = strlen(query);
 
     if (nMatches) //Add words whose likely corrections were found
-      storageNode = addWord(storageNode,query,queryLen);
+      storageNode = addWord(storageNode, query, queryLen, queryLen);
 
     if (nodePrint(correctedTxtFP, wordNode));
     else{
     #ifdef INTERACTIVE
-       fprintf(stderr, "No suggestions\n");
+       fprintf(correctedTxtFP, "\033[31m%s: No suggestions\033[00m\n", query);
     #endif
     }
   } else{ 
   #ifdef INTERACTIVE
-    if (alreadyInStorage == 1) fprintf(stderr,"following along %s\n", query);
+    if (alreadyInStorage == True); //fprintf(stderr,"following along %s\n", query);
       fprintf(correctedTxtFP, "\033[34m in dictionary \033[00m"); 
   #endif
   }
 
   fflush(correctedTxtFP);
 
-  if (wordNode != NULL) nodeFree(wordNode);
+  nodeFree(wordNode);
 
   return storageNode;
 }

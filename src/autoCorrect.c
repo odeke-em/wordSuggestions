@@ -1,12 +1,17 @@
-/*Author: Emmanuel Odeke <odeke@ualberta.ca>*/
+/*
+  Author: Emmanuel Odeke <odeke@ualberta.ca>
+*/
 
 #include <pthread.h>
+
+#include "../include/constants.h"
 #include "../include/wordSearch.h"
 #include "../include/utilityFuncs.h"
 
-void  autoCorrect(const wordArrayStruct *, FILE *, const word , const word , long *); 
+void  autoCorrect(
+  const wordArrayStruct *, FILE *, const word , const word , long *
+); 
 
-static size_t MAX_PATH = 110;
 static pthread_cond_t cond_t = PTHREAD_COND_INITIALIZER;
 static pthread_mutex_t main_tx = PTHREAD_MUTEX_INITIALIZER;
 
@@ -54,18 +59,20 @@ void *timeScreen(void *data){
 
 int main(int argc, word argv[]){
   if (argc < 3){
-    fprintf(stderr,
-      "Usage: <srcFile> <storageForLearntPath> [optional correctedTxtPath]\n");
+    fprintf(stderr,"%s\n", AUTOCORRECTION_USAGE);
     exit(-1);
   }
-  Bool doneReading = False, validfile;
+
+  Bool doneCorrecting = False; 
+  Bool validfile = False;
+
   pthread_t timer_t;
   pthread_t main_th;
   
   word path= newWord(MAX_PATH);
   word learntPath= newWord(MAX_PATH);
 
-  Bool *procDone = (Bool *)malloc(sizeof(Bool));
+  Bool *procComplete = (Bool *)malloc(sizeof(Bool));
 
   long *freaderPosition = (long *)malloc(sizeof(long));
   long *fileSize = (long *)malloc(sizeof(long));
@@ -74,11 +81,13 @@ int main(int argc, word argv[]){
   p.func= autoCorrect;
 
   struct procStruct procSt;
-  procSt.processDone = procDone; 
+  procSt.processDone = procComplete; 
   procSt.freaderPosition = freaderPosition;
   procSt.fileSize = fileSize;
+
   wordArrayStruct *wASt = NULL;
-  while (! doneReading){
+
+  while (! doneCorrecting){
     if ((sscanf(argv[1],"%s",path) != 1) || (*path == EOF)){ 
       fprintf(stderr,"EOF encountered. Done reading\n");
       exit(0);
@@ -89,7 +98,7 @@ int main(int argc, word argv[]){
     }
     FILE *correctedDest = NULL;
 
-    if (argc == 4){
+    if (argc >= 4){
       //Time to fetch the path to write the corrected text to
       correctedDest = fopen(argv[3], "w");
     }
@@ -97,7 +106,7 @@ int main(int argc, word argv[]){
     validfile = isValidFile(path, fileSize);
     if(validfile){
       wASt = wordsInFile(DICTIONARY_PATH);
-      *procDone = False;
+      *procComplete = False;
       p.path = path;
       p.wordArraySt = wASt;
       p.learntPath = learntPath;
@@ -107,7 +116,7 @@ int main(int argc, word argv[]){
       pthread_create(&timer_t, NULL, timeScreen, &procSt);
       pthread_cond_wait(&cond_t, &main_tx);
 
-      *procDone = True;
+      *procComplete = True;
       sleep(1);
       fprintf(stderr,"Done.\n");
     }else
@@ -116,7 +125,8 @@ int main(int argc, word argv[]){
       break;
     #endif
   }
-  free(procDone);
+
+  free(procComplete);
   free(freaderPosition);
   free(fileSize);
 
@@ -168,7 +178,9 @@ void autoCorrect(
     matchCriteria.lenMatch_bool = False; 
     matchCriteria.firstLetterMatch_bool = False; 
 
-    storage = loadWord(wASt, correctedDest, storage, srcWord, matchCriteria);
+    storage = getSuggestions(
+	  wASt, correctedDest, storage, srcWord, matchCriteria
+    );
 
     if (srcWord != NULL)
       free(srcWord);

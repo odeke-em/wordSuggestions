@@ -3,10 +3,6 @@
   #include "customTypes.h"
   #include "errors.h"
 
-  #define INIT_HASH_VALUE 0
-  #define UNDEF_HASH_VALUE -1
-  #define INIT_N_HASH_ELEMS 20
-
   hash hashFunc(const word);
   ElemComparison hashComp(const hash, const hash);
 

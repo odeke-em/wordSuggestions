@@ -14,13 +14,12 @@
   #include "wordLib.h"
   #include "bTree.h"
 
-  #define DICTIONARY_PATH "../resources/wordlist.txt"
-  #define THRESHOLD_LEN  2 //Arbitrary value here
-  #define THRESHOLD_PERCENT_RANK 70 //To be auto-calibrated in the future
-
   int wordSimilarity(const word, const word, const Bool);
 
-  Node *loadWord(
+  //Find words whose similarity to the query word is above the threshold 
+  // match percentage. Add these similar words to the singly linked list:
+  //argument 3 -- storageNode.
+  Node *getSuggestions(
     const wordArrayStruct *, FILE *, Node *,
     const word, const wordMatchCriteria
   );

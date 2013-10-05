@@ -4,6 +4,7 @@
 
 #include "../include/wordLib.h"
 #include "../include/hashLib.h"
+#include "../include/constants.h"
 
 ElemComparison hashComp(const hash subject, const hash query){
   if (subject == query) return HASH_EQ;

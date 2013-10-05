@@ -13,7 +13,9 @@
   int sortFunc(const void *, const void *);
   int rankComparison(const void *, const void *);
 
-  int nodePrint(FILE *, Node *);
+  LLInt nodePrint(FILE *, Node *);
   Bool serializeNode(Node *, FILE *);
-  Node *addWord(Node *, const word query, int);
+  
+  //Arguments storageNode, query, queryLen, matchRankage
+  Node *addWord(Node *, const word query, const int queryLen, int);
 #endif 
