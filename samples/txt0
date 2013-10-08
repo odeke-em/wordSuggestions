@@ -1,0 +1,65 @@
+/*
+  Author: Emmanuel Odeke <odeke@ualberta.ca
+   Module to enable fragmenting of file into almost equal parts. 
+   For each divided part, a file is created and it's content is written.
+   This enables distributed autoCorrection of the various fragments,
+   that can be later on be re-combined
+*/
+#include <pthread.h>
+
+#include "../include/Node.h"
+#include "../include/errors.h"
+#include "../include/constants.h"
+#include "../include/wordSearch.h"
+#include "../include/workSplitter.h"
+
+void navFree(navigator *nav){
+  if (nav == NULL) return;
+  freeWord(nav->toPath);
+}
+
+void *cat(void *data){
+  //Given a navigator, copy the data from the infile's
+  //start to end positions to the outfile
+  navigator *nav =(navigator *)data;
+
+  int *nBytes = (int *)malloc(sizeof(int));
+  *nBytes = EOF;
+
+  if ((nav == NULL) || (nav->srcfp == NULL)) return nBytes;
+
+  word dest = nav->toPath;
+  FILE *destfp = fopen(dest, "w"); 
+  if (destfp == NULL) return nBytes; 
+
+  int i=nav->start, end=nav->end;
+  if (i >= end) return nBytes;
+
+  int originalPosition = ftell(nav->srcfp);
+  fseek(nav->srcfp, i, SEEK_SET);
+
+  char c;
+  FILE *fp = nav->srcfp;
+  while (i < end){
+   c = getc(fp); 
+   if (c == EOF) break;
+
+    fputc(c, destfp);
+    ++i;
+  }
+
+  //Move the reader back to its original position
+  fseek(nav->srcfp, originalPosition, SEEK_SET);
+  fclose(destfp);
+
+  return nBytes;
+}
+
+void printNavigator(navigator *nav){
+  if (nav == NULL) return;
+
+  printf("start %d end %d fSize %d\n", nav->start, nav->end, nav->fileSize);
+}
+
+navigatorList *navListAlloc(void){
+  navigatorList *navList = (navigatorList

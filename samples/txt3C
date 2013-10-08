@@ -1,0 +1,56 @@
+arg { 
+	areg:7 argal:7 rag:7 
+} exit const { 
+	cantos:11 cenotes:11 coasting:11 confest:11 cons:11 consents:11 
+	constable:11 contras:11 counts:12 creston:11 tocsin:11 tonics:11 
+} word sourcepath argv { 
+	grave:9 
+} file ifp fopen sourcepath r if ifp null raisewarning invalid input file exit wordarraystruct warrst { 
+	straw:14 straws:13 tarrows:14 waratahs:13 wards:13 wariest:14 
+	warrants:14 wars:13 warsted:14 warsting:13 warsts:15 wartiest:13 
+} wordsinfile { 
+	forewinds:24 
+} dictionary path navigatorlist { 
+	navigator:28 navigators:31 
+} navl { 
+	naval:10 navels:9 
+} fragmentfile ifp n if navl null exit int { 
+	anti:7 inter:7 nit:7 
+} nparts { 
+	apartness:13 spart:13 sparts:13 spirant:13 sportsman:13 
+} navl npartitions { 
+	ascription:25 crispation:24 prestation:25 stupration:24 
+	transition:25 
+} printf { 
+	driftpin:13 print:14 prints:13 
+} splitting the file m s m of zdbytes into d chunks of which n sourcepath getfilesize ifp nparts pthread { 
+	preheated:15 
+} t storage th { 
+	the:5 
+} nparts int i fragmentation { 
+	fragment:28 
+} of file going on here for i i nparts i navigator navptr navl navlist i printf tpartition { 
+	absorption:21 adaptation:22 apparition:23 attraction:21 
+	crispation:21 depuration:21 parotitis:21 permeation:21 praetorian:21 
+	precaution:21 readoption:22 rhapontic:21 tritiation:21 
+} d d bytes n i getfragmentsize navptr pthread create storage th i null cat navptr printf n for i i nparts i pthread join storage th i null now autocorrection of each fragmented file for i i nparts i navigator navptr navl navlist i navptr dictwarraystruct warrst printf now autocorrecting partition d on thread d n i i pthread create storage th i null autoc { 
+	autacoid:11 auto:11 autocade:12 autocades:11 autocar:13 outact:12 
+	outacts:11 turaco:11 
+} navptr for i i nparts i pthread join storage th i null printf mthread d returned m n i fclose { 
+	filose:13 
+} ifp freewordarraystruct warrst navlistfree navl return void autoc void data navigator nav { 
+	naval:7 nave:8 van:7 
+} navigator data word srcpath nav topath { 
+	naphthol:13 pooftah:13 towpath:13 
+} int pathlen { 
+	enthalpy:15 pathless:15 phthalein:15 
+} strlen { 
+	antlers:13 runlets:13 saltern:13 sternal:13 stolen:13 strangle:13 
+} srcpath sizeof char ifdef { 
+	fifed:11 
+} debug fprintf stderr { 
+	duster:13 sidetrack:13 starred:14 statured:13 steward:14 
+	stewards:13 tedders:13 
+} srcpathh { 
+	dispatcher:18 heptarchs:17 
+} 

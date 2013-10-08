@@ -1,0 +1,39 @@
+malloc { 
+	calomel:13 malicho:14 mallecho:15 mallow:13 millocracy:13 
+	millocrat:14 
+} sizeof navigatorlist { 
+	navigator:28 navigators:31 
+} return navlist size t getfilesize file fp if fp null return eof { 
+	foe:7 
+} const { 
+	cantos:11 cenotes:11 coasting:11 confest:11 cons:11 consents:11 
+	constable:11 contras:11 counts:12 creston:11 tocsin:11 tonics:11 
+} size t originalposition ftell { 
+	featly:11 feedlot:11 fetal:12 fillet:11 futile:11 itself:11 
+	stellify:11 stifle:11 
+} fp moving read head to the end of the file fseek { 
+	flecks:12 freaks:12 skelf:11 
+} fp l seek end const size t fsize { 
+	fizzers:11 fizzes:12 frizzes:11 
+} ftell fp moving back to the original position fseek fp originalposition seek set return fsize void initnavlist navigatorlist navcontainer { 
+	chevrotain:27 
+} const int { 
+	anti:7 inter:7 nit:7 
+} n if navcontainer null fprintf stderr { 
+	duster:13 sidetrack:13 starred:14 statured:13 steward:14 
+	stewards:13 tedders:13 
+} error null navigatorlist passed in for initialization n exit navcontainer srcfp null navcontainer npartitions { 
+	ascription:25 crispation:24 prestation:25 stupration:24 
+	transition:25 
+} n navcontainer navlist navigator malloc sizeof navigator n void navlistfree navigatorlist navl { 
+	naval:10 navels:9 
+} if navl null return int i for i i navl npartitions i navfree navl navlist i if navl navlist null free navl navlist free navl void initnavigator navigator nav { 
+	naval:7 nave:8 van:7 
+} if nav null fprintf stderr error null navigator struct { 
+	cruset:13 curvets:13 relucts:14 scrunt:16 scrunts:15 straucht:13 
+	strict:13 stricture:14 strictured:13 strumatic:13 strut:13 
+} passed in for initialization n exit nav start nav end nav srcfp null nav topath { 
+	naphthol:13 pooftah:13 towpath:13 
+} null nav filesize { 
+	fabulizes:19 finalize:17 solecize:17 
+} void setnavigator navigator nav file tfp const int start const int end const word path if nav null fprintf stderr null navigator struct passed in s n func nav srcfp tfp nav start start nav end end nav filesize getfilesize tfp nav topath strdup path int getfragmentsize const navigator nav 

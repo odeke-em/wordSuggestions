@@ -1,0 +1,17 @@
+#Words learnt from examining file txt4
+endif
+newword
+pathlen
+correctedpath
+sprintf
+correctedfp
+nav
+feof
+isalpha
+tolower
+ifdef
+stderr
+bool
+serializenode
+nodefree
+fclose

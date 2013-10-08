@@ -1,0 +1,55 @@
+if nav { 
+	naval:7 nave:8 van:7 
+} null return return nav end nav start navigatorlist { 
+	navigator:28 navigators:31 
+} fragmentfile file tfp const { 
+	cantos:11 cenotes:11 coasting:11 confest:11 cons:11 consents:11 
+	constable:11 contras:11 counts:12 creston:11 tocsin:11 tonics:11 
+} int { 
+	anti:7 inter:7 nit:7 
+} npartitions { 
+	ascription:25 crispation:24 prestation:25 stupration:24 
+	transition:25 
+} if tfp null fprintf stderr { 
+	duster:13 sidetrack:13 starred:14 statured:13 steward:14 
+	stewards:13 tedders:13 
+} null file pointer passed in for partitioning { 
+	largition:27 largitions:26 
+} n return null if npartitions null npartitions raisewarning only non null and positive numbers of partition allowed return null int fsize { 
+	fizzers:11 fizzes:12 frizzes:11 
+} getfilesize tfp navigatorlist navcontainer { 
+	chevrotain:27 
+} navlistalloc initnavlist navcontainer npartitions int avechuncksize fsize npartitions int start end i while i npartitions for each partition we ll { 
+	el:5 fl:5 gl:5 sl:5 
+} have a start and end position move the file pointer until the current end from there then move until the next non space token is found end start avechuncksize printf { 
+	driftpin:13 print:14 prints:13 
+} ostart { 
+	aorist:13 apports:13 assertor:13 assort:15 assorted:13 attorns:13 
+	esparto:15 espartos:14 oleaster:13 orgeats:13 ottar:13 ottars:16 
+	outrates:13 rotates:13 troats:13 votarist:13 yaourts:13 
+} d oend { 
+	done:9 kendo:10 onned:9 tendon:9 
+} d n start end if end fsize end fsize fseek { 
+	flecks:12 freaks:12 skelf:11 
+} tfp end seek set skiptillcondition tfp isspace { 
+	aseptics:15 auspicate:15 auspice:18 auspices:17 capiases:15 
+	dispace:19 dispaced:18 inscape:18 inscapes:17 pastiche:15 spadices:15 
+} end ftell { 
+	featly:11 feedlot:11 fetal:12 fillet:11 futile:11 itself:11 
+	stellify:11 stifle:11 
+} tfp word allocatedpath { 
+	allocated:31 
+} newword { 
+	browned:16 keyword:15 networked:17 
+} sprintf { 
+	sprint:17 sprinted:15 sprints:16 
+} allocatedpath txt d i setnavigator navcontainer navlist i tfp start end allocatedpath start end freeword { 
+	codeword:17 foreward:21 forewards:20 forewarned:18 
+} allocatedpath i navcontainer npartitions i return navcontainer int main int argc { 
+	crag:9 grace:9 
+} word argv if argc fprintf stderr usage m filepath { 
+	felspathic:20 
+} numberofthreads m n exit int n if sscanf argv d n raisewarning failed to parse the number of threads as an integerr { 
+	deterring:17 enregister:17 ingathered:17 integer:21 integers:20 
+	integrals:17 integrator:19 intergrade:19 intergrew:20 triggermen:17 
+} 

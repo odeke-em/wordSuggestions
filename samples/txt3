@@ -1,0 +1,71 @@
+ [arg 2]"
+    );
+    exit(-2);
+  }
+
+  const word sourcePath = argv[1];
+
+  FILE *ifp = fopen(sourcePath, "r");
+  if (ifp == NULL) {
+    raiseWarning("Invalid input file");
+    exit(-3);
+  }
+
+  wordArrayStruct *wArrSt = wordsInFile(DICTIONARY_PATH);
+  navigatorList *navL = fragmentFile(ifp, &n);
+
+  if (navL == NULL) {
+    exit(-4);
+  }
+
+  int nParts = navL->nPartitions;
+
+  printf(
+    "Splitting the file \033[33m%s\033[00m of %zdbytes into %d chunks of which\n", 
+    sourcePath, getFileSize(ifp), nParts
+  );
+
+  pthread_t storage_th[nParts];
+  
+  int i;
+  //Fragmentation of file going on here
+  for (i=0; i<nParts; ++i){
+    navigator *navPtr = &(navL->navList[i]);
+    printf("\tPartition %d :: %d bytes\n", i+1, getFragmentSize(navPtr));
+    pthread_create(&(storage_th[i]), NULL, cat, navPtr);
+  }
+
+  printf("\n");
+
+  for (i=0; i<nParts; ++i){
+    pthread_join(storage_th[i], NULL);
+  }
+
+  //Now autoCorrection of each fragmented file
+  for (i=0; i<nParts; ++i){
+    navigator *navPtr = &(navL->navList[i]);
+    navPtr->dictWArrayStruct = wArrSt;
+    printf("Now autoCorrecting partition %d on thread %d\n", i+1, i+1);
+    pthread_create(&(storage_th[i]), NULL, autoC, navPtr);
+  }
+
+  for (i=0; i<nParts; ++i){
+    pthread_join(storage_th[i], NULL);
+
+    printf("\033[32mThread %d returned\033[00m\n", i+1);
+  }
+
+  fclose(ifp);
+
+  freeWordArrayStruct(wArrSt);
+  navListFree(navL);
+  return 0;
+}
+
+void *autoC(void *data){
+  navigator *nav = (navigator *)data;
+  word srcPath = nav->toPath;
+  int pathLen = strlen(srcPath)/sizeof(char);
+
+  #ifdef DEBUG
+    fprintf(stderr,"srcPath

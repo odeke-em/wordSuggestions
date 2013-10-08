@@ -7,8 +7,7 @@
   #include "utilityFuncs.h"
   #include "wordLib.h"
 
-  //Return the size of a file
-  size_t fileSize(FILE *);
+  size_t getFileSize(FILE *);
 
   void initNavigator(navigator *);
 
@@ -21,6 +20,7 @@
   //Paritition a file into n parts and return the list
   //of the navigators to manage those partitions 
   navigatorList *fragmentFile(FILE *, const int *);
+  int getFragmentSize(const navigator *);
 
   navigatorList *navListAlloc(void);
   void navListFree(navigatorList *);

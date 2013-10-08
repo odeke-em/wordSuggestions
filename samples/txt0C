@@ -1,0 +1,50 @@
+author emmanuel { 
+	numerable:17 unmaidenly:17 unmailed:19 
+} odeke { 
+	doek:13 doeks:12 evoked:11 ode:11 
+} odeke ualberta { 
+	balustrade:17 burletta:19 burlettas:18 butterball:17 trabecula:17 
+} ca module to enable fragmenting of file into almost equal parts for each divided part a file is created and it s content is written this enables distributed { 
+	distribute:30 disturbed:26 
+} autocorrection of the various fragments that can be later on be re combined include pthread { 
+	preheated:15 
+} h include include node h include include errors h include include constants h include include wordsearch h include include worksplitter h void navfree navigator nav { 
+	naval:7 nave:8 van:7 
+} if nav null return freeword { 
+	codeword:17 foreward:21 forewards:20 forewarned:18 
+} nav topath { 
+	naphthol:13 pooftah:13 towpath:13 
+} void cat void data given a navigator copy the data from the infile { 
+	defiling:13 elfin:15 elfins:14 enfiladed:13 enfiled:16 feline:14 
+	felines:13 infelt:13 infidelity:13 infidels:15 infielder:13 
+	infiltered:13 lenify:13 
+} s start to end positions to the outfile { 
+	outfield:18 outfielder:16 outfields:17 outlie:15 outline:15 
+	outrelief:16 
+} navigator nav navigator data int { 
+	anti:7 inter:7 nit:7 
+} nbytes int malloc { 
+	calomel:13 malicho:14 mallecho:15 mallow:13 millocracy:13 
+	millocrat:14 
+} sizeof int nbytes eof { 
+	foe:7 
+} if nav null nav srcfp null return nbytes word dest { 
+	bestad:9 deaths:9 debts:10 deist:9 deltas:9 destine:9 teds:9 
+} nav topath file destfp fopen dest w if destfp null return nbytes int i nav start end nav end if i end return nbytes int originalposition ftell { 
+	featly:11 feedlot:11 fetal:12 fillet:11 futile:11 itself:11 
+	stellify:11 stifle:11 
+} nav srcfp fseek { 
+	flecks:12 freaks:12 skelf:11 
+} nav srcfp i seek set char c file fp nav srcfp while i end c getc fp if c eof break fputc c destfp i move the reader back to its original position fseek nav srcfp originalposition seek set fclose { 
+	filose:13 
+} destfp return nbytes void printnavigator navigator nav if nav null return printf { 
+	driftpin:13 print:14 prints:13 
+} start d end d fsize { 
+	fizzers:11 fizzes:12 frizzes:11 
+} d n nav start nav end nav filesize { 
+	fabulizes:19 finalize:17 solecize:17 
+} navigatorlist { 
+	navigator:28 navigators:31 
+} navlistalloc void navigatorlist navlist navigatorlistt { 
+	navigators:31 
+} 

@@ -8,6 +8,7 @@
 #include <pthread.h>
 
 #include "../include/Node.h"
+#include "../include/errors.h"
 #include "../include/constants.h"
 #include "../include/wordSearch.h"
 #include "../include/workSplitter.h"
@@ -66,7 +67,7 @@ navigatorList *navListAlloc(void){
   return navList;
 }
 
-size_t fileSize(FILE *fp){
+size_t getFileSize(FILE *fp){
   if (fp == NULL) return EOF;
 
   const size_t originalPosition = ftell(fp);
@@ -128,8 +129,14 @@ void setNavigator(
   nav->srcfp = tfp;
   nav->start = *start;
   nav->end   = *end;
-  nav->fileSize = fileSize(tfp);
+  nav->fileSize = getFileSize(tfp);
   nav->toPath = strdup(path);
+}
+
+int getFragmentSize(const navigator *nav) {
+  if (nav == NULL) return -1;
+
+  return nav->end - nav->start;
 }
 
 navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
@@ -139,13 +146,13 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
   }
 
   if ((nPartitions == NULL) || (*nPartitions < 0)){
-    fprintf(
-      stderr, "Only non-NULL and positive numbers of partition allowed\n"
+    raiseWarning(
+      "Only non-NULL and positive numbers of partition allowed"
     );
     return NULL;
   }
 
-  int fSize = fileSize(tfp)/1;
+  int fSize = getFileSize(tfp)/1;
   navigatorList *navContainer = navListAlloc();
   initNavList(navContainer, nPartitions);
  
@@ -180,29 +187,51 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
 
 int main(int argc, word argv[]){
   if (argc != 3){
-    fprintf(stderr,"Usage <filePath> <n_threads>\n");
+    fprintf(stderr,"Usage:\033[33m <filePath> <numberOfThreads>\033[00m\n");
     exit(-2);
   }
 
   int n;
   if (sscanf(argv[2],"%d", &n) != 1){
-    fprintf(stderr,"Failed to parse an integer as argument 2\n");
+    raiseWarning(
+      "Failed to parse the number of threads as an integer [arg 2]"
+    );
     exit(-2);
   }
-  printf("argv[2] %s\n", argv[2]);
-  FILE *ifp = fopen(argv[1], "r");
+
+  const word sourcePath = argv[1];
+
+  FILE *ifp = fopen(sourcePath, "r");
+  if (ifp == NULL) {
+    raiseWarning("Invalid input file");
+    exit(-3);
+  }
+
   wordArrayStruct *wArrSt = wordsInFile(DICTIONARY_PATH);
   navigatorList *navL = fragmentFile(ifp, &n);
 
+  if (navL == NULL) {
+    exit(-4);
+  }
+
   int nParts = navL->nPartitions;
-  int i;
+
+  printf(
+    "Splitting the file \033[33m%s\033[00m of %zdbytes into %d chunks of which\n", 
+    sourcePath, getFileSize(ifp), nParts
+  );
 
   pthread_t storage_th[nParts];
   
+  int i;
   //Fragmentation of file going on here
   for (i=0; i<nParts; ++i){
-    pthread_create(&(storage_th[i]), NULL, cat, &(navL->navList[i]));
+    navigator *navPtr = &(navL->navList[i]);
+    printf("\tPartition %d :: %d bytes\n", i+1, getFragmentSize(navPtr));
+    pthread_create(&(storage_th[i]), NULL, cat, navPtr);
   }
+
+  printf("\n");
 
   for (i=0; i<nParts; ++i){
     pthread_join(storage_th[i], NULL);
@@ -212,10 +241,14 @@ int main(int argc, word argv[]){
   for (i=0; i<nParts; ++i){
     navigator *navPtr = &(navL->navList[i]);
     navPtr->dictWArrayStruct = wArrSt;
+    printf("Now autoCorrecting partition %d on thread %d\n", i+1, i+1);
     pthread_create(&(storage_th[i]), NULL, autoC, navPtr);
   }
+
   for (i=0; i<nParts; ++i){
     pthread_join(storage_th[i], NULL);
+
+    printf("\033[32mThread %d returned\033[00m\n", i+1);
   }
 
   fclose(ifp);
