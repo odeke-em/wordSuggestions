@@ -1,5 +1,8 @@
 #ifndef _HASHLIB_H
 #define _HASHLIB_H
+  /*
+    String interning utility
+  */
   #include "customTypes.h"
   #include "errors.h"
 
