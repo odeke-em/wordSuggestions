@@ -58,7 +58,7 @@ Node *getSuggestions(
       if (wordBuf != NULL){
         int queryLen = strlen(query)/sizeof(char);
         alreadyInStorage = wordInNode(storageNode,query);
-        if ((queryLen< THRESHOLD_LEN) || (alreadyInStorage == True)){
+        if ((queryLen < THRESHOLD_LEN) || (alreadyInStorage == True)){
           //This word doesn't need to be added to the tree
           //fprintf(stderr,"%s already in storage\n",query);
           break;
@@ -73,8 +73,9 @@ Node *getSuggestions(
 	double percentRank = 100*(((double)(wRank))/(double)(maxCutOffRank));
 	  
         int wordBufLen = strlen(wordBuf)/sizeof(char);
-        if  ((percentRank >= THRESHOLD_PERCENT_RANK) 
-	 && (wordBufLen >= THRESHOLD_LEN)){
+        if (
+	  percentRank >= THRESHOLD_PERCENT_RANK && wordBufLen >= THRESHOLD_LEN
+	){
           wordNode = addWord(wordNode, wordBuf, wordBufLen, wRank);
           nMatches += 1;
         }
@@ -101,7 +102,7 @@ Node *getSuggestions(
        fprintf(correctedTxtFP, "\033[31m%s: No suggestions\033[00m\n", query);
     #endif
     }
-  } else{ 
+  } else { 
   #ifdef INTERACTIVE
     if (alreadyInStorage == True); //fprintf(stderr,"following along %s\n", query);
       fprintf(correctedTxtFP, "\033[34m in dictionary \033[00m"); 

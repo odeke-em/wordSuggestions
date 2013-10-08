@@ -79,8 +79,11 @@ Node *addWord(Node *tree, const word query, const int queryLen, int rankMatch){
     tree->matchrank = rankMatch;
     tree->len = queryLen;
     tree->next  = NULL;
-  }else if (sameWord(tree->match, query) == False){
-    tree->next = addWord(tree->next, query, queryLen, rankMatch);
+  }else {
+    Bool queryIsMatch = sameWord(tree->match, query);
+    if (queryIsMatch == False){
+      tree->next = addWord(tree->next, query, queryLen, rankMatch);
+    }
   }
   
   return tree; 

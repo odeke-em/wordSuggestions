@@ -1,5 +1,5 @@
 author emmanuel { 
-	numerable:17 unmaidenly:17 unmailed:19 
+	numerable:17 unmaidenly:17 unmailed:19 unmannerly:18 
 } odeke { 
 	doek:13 doeks:12 evoked:11 ode:11 
 } odeke ualberta { 
@@ -9,30 +9,39 @@ author emmanuel {
 } autocorrection of the various fragments that can be later on be re combined include pthread { 
 	preheated:15 
 } h include include node h include include errors h include include constants h include include wordsearch h include include worksplitter h void navfree navigator nav { 
-	naval:7 nave:8 van:7 
+	naval:7 nave:8 navel:7 naves:7 navew:7 navvy:7 navy:8 nova:7 
+	van:7 
 } if nav null return freeword { 
-	codeword:17 foreward:21 forewards:20 forewarned:18 
+	codeword:17 firewood:18 firework:17 fireworm:17 fluework:17 
+	foreward:21 forewards:20 forewarned:18 forewind:17 foreword:22 
+	forewords:21 
 } nav topath { 
-	naphthol:13 pooftah:13 towpath:13 
+	naphthol:13 pooftah:13 pouftah:13 towpath:13 
 } void cat void data given a navigator copy the data from the infile { 
-	defiling:13 elfin:15 elfins:14 enfiladed:13 enfiled:16 feline:14 
-	felines:13 infelt:13 infidelity:13 infidels:15 infielder:13 
-	infiltered:13 lenify:13 
+	defiling:13 elfin:15 elfins:14 enfilade:14 enfiladed:13 
+	enfilades:13 enfiled:16 feline:14 felines:13 infelt:13 infidel:16 
+	infidelity:13 infidels:15 infield:15 infielder:13 infields:14 infill:13 
+	infilled:15 infilter:15 infiltered:13 infilters:14 infiltrate:13 
+	lenify:13 refiling:13 tefillin:13 unfiled:16 unfilled:14 unfilmed:14 
+	unwifely:13 
 } s start to end positions to the outfile { 
-	outfield:18 outfielder:16 outfields:17 outlie:15 outline:15 
-	outrelief:16 
+	outfield:18 outfielder:16 outfields:17 outflies:18 outlie:15 
+	outline:15 outlive:15 outrelief:16 
 } navigator nav navigator data int { 
-	anti:7 inter:7 nit:7 
+	anti:7 inter:7 inti:8 intil:7 intis:7 into:8 intro:7 nit:7 inte:8 
 } nbytes int malloc { 
 	calomel:13 malicho:14 mallecho:15 mallow:13 millocracy:13 
-	millocrat:14 
+	millocrat:14 millocrats:13 
 } sizeof int nbytes eof { 
 	foe:7 
 } if nav null nav srcfp null return nbytes word dest { 
-	bestad:9 deaths:9 debts:10 deist:9 deltas:9 destine:9 teds:9 
+	bestad:9 bested:9 bestud:9 deaths:9 debts:10 deist:9 deltas:9 
+	dents:10 depths:9 derths:9 desalt:9 desert:9 desist:9 despot:9 
+	destine:9 destiny:9 destroy:9 diets:9 duets:9 dusted:9 duster:9 
+	jested:9 nested:9 rested:9 teds:9 tested:9 vested:9 wested:9 
 } nav topath file destfp fopen dest w if destfp null return nbytes int i nav start end nav end if i end return nbytes int originalposition ftell { 
-	featly:11 feedlot:11 fetal:12 fillet:11 futile:11 itself:11 
-	stellify:11 stifle:11 
+	featly:11 feedlot:11 fetal:12 fettle:11 fillet:11 footle:11 
+	futile:11 itself:11 stellify:11 stifle:11 
 } nav srcfp fseek { 
 	flecks:12 freaks:12 skelf:11 
 } nav srcfp i seek set char c file fp nav srcfp while i end c getc fp if c eof break fputc c destfp i move the reader back to its original position fseek nav srcfp originalposition seek set fclose { 
@@ -40,9 +49,10 @@ author emmanuel {
 } destfp return nbytes void printnavigator navigator nav if nav null return printf { 
 	driftpin:13 print:14 prints:13 
 } start d end d fsize { 
-	fizzers:11 fizzes:12 frizzes:11 
+	fizzers:11 fizzes:12 frizes:13 frizzes:11 
 } d n nav start nav end nav filesize { 
-	fabulizes:19 finalize:17 solecize:17 
+	fabulizes:19 finalize:17 finalizes:20 fluidizes:19 focalizes:19 
+	solecize:17 
 } navigatorlist { 
 	navigator:28 navigators:31 
 } navlistalloc void navigatorlist navlist navigatorlistt { 

@@ -23,5 +23,3 @@ strlen
 ifdef
 stderr
 srcpathh
-
-nodefree

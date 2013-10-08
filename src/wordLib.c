@@ -181,17 +181,13 @@ Bool sameWord(const word w1, const word w2) {
 
   if (w1Len != w2Len) return False;
 
-  int mid = w1Len/2;
+  int i=0; 
+  int end = w2Len; //Arbitrary initializer
 
-  //If w1Len is odd, we'll move the mid index 
-  //one position past the floor of w1Len/2
-  mid += (w1Len&1) ? 1: 0; 
+  while (i <= end){
+    end = w2Len-i-1;
 
-  int i=0, end;
-  while (i < mid){
-    end = mid+i-1;
-
-    if ((w1[i] != w2[i]) && (w1[end] != w2[end])) return False;
+    if ((w1[i] != w2[i]) || (w1[end] != w2[end])) return False;
 
     ++i;
   }

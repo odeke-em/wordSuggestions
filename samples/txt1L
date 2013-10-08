@@ -15,4 +15,4 @@ nav
 struct
 topath
 filesize
-spacee
+strdup
