@@ -323,6 +323,7 @@ void *autoC(void *data){
 
   free(learntPath);
   free(correctedPath);
+  freeWordArrayStruct(dictWArrStruct);
 
   fclose(srcfp);
   fclose(correctedfp);

@@ -116,20 +116,19 @@ Node *getSuggestions(
   return storageNode;
 }
 
-/*
 Tree *getMatches(
-  const wordArrayStruct dictWArray, FILE *correctedDest, Tree *memoizeTree,
-  const word query, const wordMatchCriteria matchCriteria
+  const wordArrayStruct *dictWArray, FILE *correctedDest, 
+  Tree *memoizeTree, const word query, const wordMatchCriteria matchCriteria, 
+  const ElemFuncStruct ElemFuncSt
 ){
-  //
+  /*
    Find words whose similarity to the query word is above the threshold 
    match percentage. Add these similar words to the tree 'memoizeTree'
-  /
+  */
   if ((dictWArray == NULL) || (query == NULL) || (strlen(query) == 0))
     return memoizeTree;
 
   Bool alreadyInStorage = False; 
-  word wordBuf; 
   Tree *matches_tree = NULL;
 
   int nMatches = 0;
@@ -139,30 +138,32 @@ Tree *getMatches(
 #ifdef DEBUG
   fprintf(stderr,"reading %s started\n",__func__);
 #endif
-
-  TElem found = treeSearch(tree, "whom", ElemFuncSt);
+  printf("in %s\n", __FILE__);
+  TElem queryElem = (TElem)query;
+  TElem foundInDict = treeSearch(memoizeTree, queryElem, ElemFuncSt);
   if (foundInDict != NULL_ELEM){
     matchFound = True;
-  }else{
+  } else {
     int maxCutOffRank = wordSimilarity(query, query, matchCriteria.lenMatch_bool);
-    int i, nElems = dictWordArraySt->n;
+    word wordBuf = NULL; 
+    int i, nElems = dictWArray->n;
     for (i=0; i<nElems; ++i){
-      wordBuf = dictWordArraySt->wordArray[i];
+      wordBuf = dictWArray->wordArray[i];
 
-      if ((matchCriteria.firstLetterMatch_bool == True) && (query[0] != wordBuf[0])) 
+      if (matchCriteria.firstLetterMatch_bool == True && query[0] != wordBuf[0])
 	continue;
 
-      if (wordBuf != NULL){
+      if (wordBuf != NULL) {
         int queryLen = strlen(query)/sizeof(char);
-        TElem isMemoized = treeSearch(matches_tree , query);
-        if ((queryLen< THRESHOLD_LEN) || isMemoized){
+        TElem isMemoized = treeSearch(matches_tree , query, ElemFuncSt);
+        if ((queryLen< THRESHOLD_LEN) || isMemoized) {
           //This word doesn't need to be added to the tree
           //fprintf(stderr,"%s already in storage\n",query);
           break;
         }
 
-        int wRank = wordSimilarity(query, wordBuf, LEN_MATCH_BOOL);
-	if (wRank == maxCutOffRank){
+        int wRank = wordSimilarity(query, wordBuf, matchCriteria.lenMatch_bool);
+	if (wRank == maxCutOffRank) {
 	  matchFound= True;
 	  break;
 	}
@@ -172,9 +173,17 @@ Tree *getMatches(
         int wordBufLen = strlen(wordBuf)/sizeof(char);
         if  ((percentRank >= THRESHOLD_PERCENT_RANK) 
 	 && (wordBufLen >= THRESHOLD_LEN)){
-          //memoizeTree = insert(memoizeTree, wordBuf, wRank);
-	  matches_tree = insert(matches_tree, wordBuf);
-          nMatches += 1;
+	  TElem isMemoized = treeSearch(matches_tree, wordBuf, ElemFuncSt);
+	  if (isMemoized == NULL_ELEM) { //Not stored yet
+	    memoizeTree = insert(memoizeTree, wordBuf, ElemFuncSt);
+
+	    //Will implement tree merging => should collect all the 
+	    //temporary matches into matches_tree, then finally merge 
+	    //them into memoize_tree
+
+	    matches_tree = insert(matches_tree, wordBuf, ElemFuncSt);
+	    nMatches += 1;
+	  }
         }
       }
     }
@@ -189,9 +198,9 @@ Tree *getMatches(
   //If the exact match was found, no need to display the suggested matches
   if ((alreadyInStorage != True) && (!matchFound)){
     if (nMatches) //Add words whose likely corrections were found
-      storageNode = addWord(storageNode,query, strlen(query));
+      memoizeTree = insert(memoizeTree, query, ElemFuncSt);
 
-    if (serialize(matches_tree, correctedTxtFP, DFS_TRAV));
+    if (serializeTree(matches_tree, correctedTxtFP, BFS_TRAV));
     else{
     #ifdef INTERACTIVE
        fprintf(stderr, "No suggestions\n");
@@ -206,8 +215,9 @@ Tree *getMatches(
 
   fflush(correctedTxtFP);
 
-  if (matches_tree != NULL) freeTree(matches_tree);
+  preOrder(matches_tree, stdout);
+  printf("Done preordering\n");
+  if (matches_tree != NULL) freeTree(matches_tree, ElemFuncSt);
 
   return memoizeTree;
 }
-*/

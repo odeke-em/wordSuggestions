@@ -177,17 +177,29 @@ Bool sameWord(const word w1, const word w2) {
     return w1 == w2 ? Invalid : True;
   }
 
-  int w1Len = strlen(w1), w2Len = strlen(w2);
+  int w1Len = strlen(w1)/1, w2Len = strlen(w2)/1; 
+  /*
+    strlen(...)/1, to enable type conversion of the result of strlen(...) 
+    from size_t to an integer. 
+    Assigning int x = strlen("foo"); could raise warnings if they are turned on
+  */
 
   if (w1Len != w2Len) return False;
 
-  int i=0; 
-  int end = w2Len; //Arbitrary initializer
+  int i=0, mid = w2Len/2;
+  mid += (w2Len & 1 ? 1 : 0); //mid +1 if len is odd
 
-  while (i <= end){
-    end = w2Len-i-1;
+  volatile int rHS; //Right hand side
 
-    if ((w1[i] != w2[i]) || (w1[end] != w2[end])) return False;
+  for (i=0; i < mid; ++i) {
+    if (w1[i] != w2[i]) return False;
+
+    rHS = mid+i;
+
+    if (rHS >= w2Len) continue;
+
+    if (w1[rHS] != w2[rHS]) return False;
+
 
     ++i;
   }

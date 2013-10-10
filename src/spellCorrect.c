@@ -103,6 +103,8 @@ int main() {
   }
 
   free(procComplete);
+  freeWordArrayStruct(wASt);
+
   pthread_mutex_destroy(&main_tx);
   pthread_cond_destroy(&cond_t);
 

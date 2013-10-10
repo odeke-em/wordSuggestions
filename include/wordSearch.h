@@ -25,7 +25,7 @@
   );
 
   Tree *getMatches(
-    const wordArrayStruct, const Tree *, FILE *, 
-    Tree *, const word, const Bool, const Bool
+    const wordArrayStruct *, FILE *, Tree *, const word,
+    const wordMatchCriteria, const ElemFuncStruct
   );
 #endif

@@ -54,4 +54,16 @@
   void freeTree(Tree *, const ElemFuncStruct);
 
   Tree *addTElem(Tree *, const TElem, const ElemFuncStruct);
+
+  ElemComparison wordComp(const TElem, const TElem);
+
+  //Tree traversal methods
+  void preOrder(Tree *, FILE *);
+  void dfsOrder(Tree *, FILE *);
+  void bfsOrder(const Tree *root, const Tree *parent, FILE *) ;
+
+  
+  int serializeTree(Tree *, FILE *, TraverseMode);
+
+  Tree *deserializeTree(FILE *);
 #endif
