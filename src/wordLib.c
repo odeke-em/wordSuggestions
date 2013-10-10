@@ -199,9 +199,6 @@ Bool sameWord(const word w1, const word w2) {
     if (rHS >= w2Len) continue;
 
     if (w1[rHS] != w2[rHS]) return False;
-
-
-    ++i;
   }
 
   return True;
