@@ -13,12 +13,12 @@
 #include "../include/wordSearch.h"
 #include "../include/workSplitter.h"
 
-void navFree(navigator *nav){
+void navFree(navigator *nav) {
   if (nav == NULL) return;
   freeWord(nav->toPath);
 }
 
-void *cat(void *data){
+void *cat(void *data) {
   //Given a navigator, copy the data from the infile's
   //start to end positions to the outfile
   navigator *nav =(navigator *)data;
@@ -55,19 +55,19 @@ void *cat(void *data){
   return nBytes;
 }
 
-void printNavigator(navigator *nav){
+void printNavigator(navigator *nav) {
   if (nav == NULL) return;
 
   printf("start %d end %d fSize %d\n", nav->start, nav->end, nav->fileSize);
 }
 
-navigatorList *navListAlloc(void){
+navigatorList *navListAlloc(void) {
   navigatorList *navList = (navigatorList *)malloc(sizeof(navigatorList));
 
   return navList;
 }
 
-size_t getFileSize(FILE *fp){
+size_t getFileSize(FILE *fp) {
   if (fp == NULL) return EOF;
 
   const size_t originalPosition = ftell(fp);
@@ -83,7 +83,7 @@ size_t getFileSize(FILE *fp){
   return fSize;
 }
 
-void initNavList(navigatorList *navContainer, const int *n){
+void initNavList(navigatorList *navContainer, const int *n) {
   if (navContainer == NULL){
     fprintf(
       stderr, "Error: Null navigatorlist passed in for initialization\n"
@@ -95,7 +95,7 @@ void initNavList(navigatorList *navContainer, const int *n){
   navContainer->navList = (navigator *)malloc(sizeof(navigator)*(*n));
 }
 
-void navListFree(navigatorList *navL){
+void navListFree(navigatorList *navL) {
   if (navL == NULL) return;
   int i;
   for (i=0; i<navL->nPartitions; ++i){
@@ -105,7 +105,7 @@ void navListFree(navigatorList *navL){
   free(navL);
 }
 
-void initNavigator(navigator *nav){
+void initNavigator(navigator *nav) {
   if (nav == NULL){
     fprintf(
       stderr, "Error: Null navigator struct passed in for initialization\n"
@@ -121,8 +121,8 @@ void initNavigator(navigator *nav){
 
 void setNavigator(
   navigator *nav, FILE *tfp, const int *start, const int *end, const word path
-  ){
-  if (nav == NULL){
+  ) {
+  if (nav == NULL) {
     fprintf(stderr, "Null navigator struct passed in %s\n", __func__);
   }
 
@@ -139,7 +139,7 @@ int getFragmentSize(const navigator *nav) {
   return nav->end - nav->start;
 }
 
-navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
+navigatorList *fragmentFile(FILE *tfp, const int *nPartitions) {
   if (tfp == NULL){
     fprintf(stderr, "Null file pointer passed in for partitioning\n");
     return NULL;
@@ -185,7 +185,7 @@ navigatorList *fragmentFile(FILE *tfp, const int *nPartitions){
   return navContainer; 
 }
 
-int main(int argc, word argv[]){
+int main(int argc, word argv[]) {
   if (argc != 3){
     fprintf(stderr,"Usage:\033[33m <filePath> <numberOfThreads>\033[00m\n");
     exit(-2);
@@ -258,7 +258,7 @@ int main(int argc, word argv[]){
   return 0;
 }
 
-void *autoC(void *data){
+void *autoC(void *data) {
   navigator *nav = (navigator *)data;
   word srcPath = nav->toPath;
   int pathLen = strlen(srcPath)/sizeof(char);
@@ -274,17 +274,17 @@ void *autoC(void *data){
   sprintf(correctedPath, "%sC", srcPath);
 
   FILE *srcfp = fopen(srcPath,"r");
-  FILE *words_learnt_ifp = fopen(learntPath,"r+w");
+  FILE *words_learnt_ifp = fopen(learntPath,"w");
   FILE *correctedfp = fopen(correctedPath,"w");
 
   wordArrayStruct *dictWArrStruct = nav->dictWArrayStruct;
-  if (words_learnt_ifp == NULL){
+  if (words_learnt_ifp == NULL) {
    words_learnt_ifp = fopen(learntPath,"w");
   } 
 
   Node *storage = NULL;
 
-  while (! feof(srcfp)){
+  while (! feof(srcfp)) {
     word srcWord = getWord(srcfp, isalpha);
     if (srcWord == NULL) continue;
 
@@ -311,7 +311,7 @@ void *autoC(void *data){
     words_learnt_ifp,"#Words learnt from examining file %s\n", srcPath
   );
 
-  if(serializeNode(storage,words_learnt_ifp) == True){
+  if (serializeNode(storage,words_learnt_ifp) == True) {
     fprintf(
       stderr,"\033[32mWrote the learnt words to file \"%s\"\033[00m\n", 
       learntPath
@@ -319,11 +319,10 @@ void *autoC(void *data){
   }
 
   //And give unto OS, what belongs to OS -- release memory
-  nodeFree(storage);
+  if (storage != NULL) nodeFree(storage);
 
   free(learntPath);
   free(correctedPath);
-  freeWordArrayStruct(dictWArrStruct);
 
   fclose(srcfp);
   fclose(correctedfp);
