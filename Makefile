@@ -21,11 +21,8 @@ wordLib:    include/wordLib.h src/wordLib.c
 wordTransition:   include/wordTransition.h src/wordTransition.c Makefile
 	$(CC) -c src/wordTransition.c -o exec/wordTransition.o
 
-hashLib:    wordLib include/hashLib.h src/hashLib.c
-	$(CC) -DSAMPLE_RUN exec/wordLib.o src/hashLib.c -o hashLib
-
 wordSearch: wordLib include/wordSearch.h src/wordSearch.c 
-	$(CC) -DDEBUG -c src/wordSearch.c -o exec/wordSearch.o
+	$(CC) -c src/wordSearch.c -o exec/wordSearch.o
 
 stringLib:   wordLib src/custString.c include/custString.h
 	$(CC) -c src/custString.c -o exec/custString.o
