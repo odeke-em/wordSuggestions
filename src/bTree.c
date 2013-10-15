@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "../include/bTree.h"
+#include "../include/wordLib.h"
 
 uint32 max(const int a, const int b) {
   return a > b ? a : b;
@@ -26,11 +27,6 @@ int printTElem(FILE *outFile, const TElem e, DataType dT) {
   }
 
   switch(dT) {
-    case INT: {
-      fprintf(dest, "%d \n", e);
-      break;
-    }
-
     case WORD: {
       fprintf(dest, "%s\n", e);
       break;
@@ -224,13 +220,6 @@ void freeTree(Tree *tree, const ElemFuncStruct ElemFuncSt) {
   }
 
   free(tree);
-}
-
-void freeWord(word w) {
-  if (w != NULL) {
-    free(w);
-    w = NULL;
-  }
 }
 
 TElem intCopy(const TElem e) {
