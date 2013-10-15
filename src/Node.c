@@ -70,22 +70,16 @@ LLInt nodePrint(FILE *fp, Node *tree){
 Node *addWord(Node *tree, const word query, const int queryLen, int rankMatch){
   if (query == NULL) return tree;
 
-  if (tree == NULL){
-    tree = nodeAlloc();
-    tree->match = wordCopy(query);
-    if (tree->match == NULL) printf("found null word\n");
-    assert(tree);
+  Node *newNode = nodeAlloc();
+  assert(newNode);
 
-    tree->matchrank = rankMatch;
-    tree->len = queryLen;
-    tree->next  = NULL;
-  }else {
-    Bool queryIsMatch = sameWord(tree->match, query);
-    if (queryIsMatch == False){
-      tree->next = addWord(tree->next, query, queryLen, rankMatch);
-    }
-  }
-  
+  newNode->match = wordCopy(query);
+
+  newNode->next = tree;
+  newNode->matchrank = rankMatch;
+  newNode->len = queryLen;
+  tree = newNode;
+
   return tree; 
 }
 
