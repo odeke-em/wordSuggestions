@@ -66,4 +66,8 @@
   int serializeTree(Tree *, FILE *, TraverseMode);
 
   Tree *deserializeTree(FILE *);
+
+  Tree *insert(Tree *, const TElem, const ElemFuncStruct);
+
+  TElem treeSearch(Tree *, const TElem , const ElemFuncStruct);
 #endif
