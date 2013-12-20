@@ -29,13 +29,13 @@ int main() {
 
     Element *match = getCloseMatches(inW, dict, 0.8);
     printf("%s {\n", inW);
-    if (inW != NULL) free(inW);
     while (match != NULL) {
       printf("\t%s\n", (char *)match->value);
       match = getNext(match);
     } 
     printf("}\n");
     memoizeTrie = addSequence(memoizeTrie, inW);
+    if (inW != NULL) free(inW);
   }
 
 #ifdef DEBUG
