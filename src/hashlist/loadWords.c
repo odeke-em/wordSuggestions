@@ -1,0 +1,124 @@
+// Author: Emmanuel Odeke <odeke@ualberta.ca>
+#include <stdio.h>
+#include <stdlib.h>
+#include "loadWords.h"
+
+#define tolower(x) (x | 'a' - 'A')
+
+#define BUF_SIZ 10 // Starting element size for buffers
+
+#define DEBUG_MATCH
+
+char *getWord(FILE *ifp) {
+  int bufLen = BUF_SIZ;
+  char *wordIn = (char *)malloc(sizeof(char) * bufLen);
+  assert(wordIn);
+
+  char c;
+  int idx = 0;
+  while ((! feof(ifp)) && (c = getc(ifp)) != EOF) {
+    if ((idx + 1) >= bufLen) {
+      bufLen += BUF_SIZ;
+      wordIn = (char *)realloc(wordIn, sizeof(char) * bufLen);
+    }
+
+    if (isalpha(c)) { 
+      wordIn[idx++] = tolower(c);
+    } else break;
+  }
+
+  if (idx) {
+    wordIn[idx++] = '\0';
+    wordIn = (char *)realloc(wordIn, sizeof(char) * idx);
+    return wordIn;
+  } else {
+    free(wordIn);
+    return NULL;
+  }
+}
+
+HashList *loadWordsInFile(const char *filePath) {
+  HashList *hl = NULL;
+
+  if (filePath != NULL) {
+    hl = initHashListWithSize(hl, 10000001);
+    FILE *ifp = fopen(filePath, "r");
+    assert(ifp);
+
+    while (! feof(ifp)) {
+      char *wordIn = getWord(ifp);
+      if (wordIn != NULL) insertElem(hl, wordIn, pjwCharHash(wordIn));
+      // Note we won't be freeing any memory yet as it
+      // will be stored in the hashList
+    }
+
+    fclose(ifp);
+  }
+
+  return hl;
+}
+
+// Do not free data returned from this function as it just contains pointers
+// to data associated with the dictionary that will be explicitly freed
+Element *matches(const char *query, HashList *dict, const int threshHold) {
+  Element **matchList = NULL;
+  if (query != NULL && dict != NULL) {
+    // First check if the query exists in the dict
+    matchList = get(dict, pjwCharHash(query)); 
+    if (*matchList == NULL) { // Not found time to do ranking
+      Element **trav = dict->list, **end = trav + getSize(dict);
+      Element *matchL = NULL;
+      while (trav != end) {
+     
+	if (*trav != NULL && (*trav)->value != NULL) {
+	  int rank = getRank(query, (*trav)->value);
+	  // printf("%s %s :: %d\n", query, (char *)(*trav)->value, rank);
+	  if (rank >= threshHold) {
+	    *matchList = addToTail(*matchList, (*trav)->value, True);
+	  } 
+	}
+	++trav;
+      }
+
+      return *matchList;
+    } else return NULL;
+  } else 
+    return NULL;
+}
+
+Element *getCloseMatches(
+  const char *query, HashList *dict, const double percentMatch
+) {
+  if (query == NULL || dict == NULL) {
+    return NULL;
+  } else {
+    int ownRank = getRank(query, query);
+    return matches(query, dict, ownRank * percentMatch);
+  }
+}
+
+#ifdef SAMPLE_RUN
+int main() {
+  HashList *hl = loadWordsInFile("../../resources/wordlist.txt");
+  HashList *curFileHL = loadWordsInFile("../../resources/waroftheworlds.txt");
+
+  int i;
+  printf("hl: %p\n", hl);
+  printf("curFileHl: %p\n", curFileHL);
+  for (i = 0; i < getSize(curFileHL); ++i) {
+    if (curFileHL->list[i] != NULL) {
+      char *value = (char *)(curFileHL->list[i]->value);
+      Element *match = getCloseMatches(value, hl, 0.7);
+      // printf("For: %s\n", value);
+      while (match != NULL) {
+	//printf("\t%s\n", (char *)match->value);
+	match = getNext(match);
+      }
+    }
+  }
+
+  // destroyHashList(hl);
+  destroyHashList(curFileHL);
+  return 0;
+}
+#endif

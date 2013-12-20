@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "Trie.h"
 #include "errors.h"
@@ -9,7 +10,6 @@
 #ifdef DEBUG
   #undef DEBUG
 #endif
-
 
 Trie *createTrie(const int index) {
   Trie *freshTrie = allocTrie();
@@ -114,24 +114,19 @@ Trie *allocTrie() {
 int resolveIndex(const char c) {
   int resIndex = -1;
   if (isalpha(c)) {
-    resIndex = c-radixStart;
+    resIndex = tolower(c) - radixStart;
   }
 
   return resIndex;
 }
+
+#ifdef RUN_TRIE
 int main() {
   Trie *tR = createTrie(0);
-  printf("tR->index: %d\n", tR->index);
-  tR = addSequence(tR, "abc\0");
-  tR = addSequence(tR, "mbc\0");
-  tR = addSequence(tR, "mac\0");
-  printf("tR->index: %d\n", tR->index);
-  int found = searchTrie(tR, "mb\0");
-  printf("\033[%dmFound: %d\033[00m\n", found == 1 ? 33 : 31, found);
 
-  // Consume self
-  FILE *ifp = fopen(__FILE__, "r");
-  int BUF_STEP = 10, MAX_SINGLE_ALLOC_SZ = 60;
+  // Consume a file
+  FILE *ifp = fopen("../../resources/waroftheworlds.txt", "r");
+  int BUF_STEP = 10, MAX_SINGLE_ALLOC_SZ = 80;
   char c;
 
   while (! feof(ifp)) {
@@ -152,6 +147,10 @@ int main() {
       tR = addSequence(tR, wordIn);
     }
 
+    int found = searchTrie(tR, wordIn);
+    printf(
+      "%s:: \033[%dmFound: %d\033[00m\n", wordIn, found == 1 ? 33 : 31, found
+    );
     free(wordIn);
   }
 
@@ -160,3 +159,4 @@ int main() {
   fclose(ifp);
   return 0;
 }
+#endif

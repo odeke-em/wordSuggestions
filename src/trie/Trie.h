@@ -11,12 +11,13 @@
     struct Trie_ **keys;
   } Trie;
 
-  // Get a heap's worth of a Trie
+  // Get a Trie's worth off the heap
   Trie *allocTrie();
 
   Trie *destroyTrie(Trie *tr);
 
   Trie *createTrie(const int index);
+  Trie *addSequence(Trie *tr, const char *seq);
  
   // Utilities here 
 

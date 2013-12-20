@@ -7,7 +7,7 @@
 #include "hashList.h"
 #include "wordTransition.h"
 
-#define DEBUG
+// #define DEBUG
 
 void initEditStat(EditStat *est) {
   if (est != NULL) {
@@ -46,11 +46,9 @@ EditStat *getEditStats(const char *subject, const char *base) {
 
   int i, baseLen = strlen(base);
 
-  unsigned int hashSize = baseLen + 'a' - 'A'; 
   // Note 'a' - 'A' to account for collisions that will result from 
   // alphabetic characters wrapping over the small hashlist size
-
-  baseIndices = initHashListWithSize(baseIndices, hashSize);
+  baseIndices = initHashListWithSize(baseIndices, baseLen + 'a' - 'A');
 
   for (i=0; i < baseLen; ++i) {
     int *indexCopy = (int *)malloc(sizeof(int));
@@ -61,35 +59,37 @@ EditStat *getEditStats(const char *subject, const char *base) {
   EditStat *est = allocAndInitEditStat();
   int subjectLen = strlen(subject);
 
+#ifdef DEBUG
+  printf("SubjectLen: %d\n", subjectLen);
+#endif
   est->stringLen = subjectLen;
 
   for (i=0; i < subjectLen; ++i) {
     int subIndex = subject[i] - 'a';
     Element **found = get(baseIndices, subIndex);
     if (*found != NULL) {
-      ++est->reuses;
-      Element *curHead = (*found);
-      *found = (*found)->next;
+      Element *trav = *found;
+      while (trav != NULL && trav->dTag != False) 
+	trav = trav->next;
 
-      int storedIndex = *(int *)curHead->value;
-      if (storedIndex == i) {
-	++est->inplace;
-      } else {
-      #ifdef DEBUG
-	printf("Move %c from %d to %d\n", subject[i], i, storedIndex);
+      if (trav != NULL) {
+	++est->reuses;
+	trav->dTag = True;
+
+	int storedIndex = *(int *)trav->value;
+	if (storedIndex == i) {
+	  ++est->inplace;
+	} else {
+	#ifdef DEBUG
+	  printf("Move %c from %d to %d\n", subject[i], i, storedIndex);
+	#endif
+	  ++est->moves;
+	}
+
+      #ifdef DEBUG_STORED_INDICES
+	printf("Found %c at i %d: %d\n", subject[i], i, storedIndex);
       #endif
-	++est->moves;
       }
-
-    #ifdef DEBUG_STORED_INDICES
-      printf("Found %c at i %d: %d\n", subject[i], i, storedIndex);
-    #endif
-
-      if (curHead->value != NULL) {
-	free(curHead->value);
-      }
-
-      free(curHead);
     } else { // Element not in base
     #ifdef DEBUG
       printf("Delete %c from %d\n", subject[i], i);
@@ -116,21 +116,18 @@ int getRank(const char *query, const char *from) {
   return rank;
 }
 
-#ifdef SAMPLE_WORD_TRANSITION
+#ifdef SAMPLE
 int main() {
 
-  char *w = "emmanlue\0", *base[] = {
-    "space\0", "doekee\0", "emmanuel\0", "talons\0", "hashlist\0"
+  char *w = "dreamer\0", *base[] = {
+    "monk\0", "bolton\0", "tatsambone\0", "satton\0", "suttons\0", "agonies\0"
   };
 
   char **trav = base, **end = base + sizeof(base)/sizeof(base[0]);
   while (trav != end) {
     printf("\033[33mTo get %s from %s\033[00m\n", w, *trav);
-    EditStat *et = getEditStats(w, *trav);
-    printStat(et);
-    if (et != NULL) {
-      free(et);
-    }
+    int rank = getRank(*trav, w); //w, *trav);
+    printf("Rank : %d\n", rank);
     ++trav;
   }
 

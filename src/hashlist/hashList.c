@@ -27,11 +27,11 @@ Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup) {
   } else if (sl->value != data) {
     sl->next = addToTail(sl->next, data, overWriteOnDup);
   } else {
-    if (overWriteOnDup) {
-      sl->value = data;
-    } else {
-      //Do something interesting eg store number of visits
-    }
+    // if (overWriteOnDup) {
+    //   sl->value = data;
+    // } else {
+    //   //Do something interesting eg store number of visits
+    // }
   }
 
   return sl;
@@ -58,6 +58,7 @@ Element *initElement(Element *elem) {
 
   elem->next = NULL;
   elem->value = NULL;
+  elem->dTag = False; // Hasn't been discovered
 
   return elem;
 }
@@ -115,7 +116,7 @@ void insertElem(HashList *hl, void *data, const hashValue hashCode) {
     hl->list[elemIndex] = initElement(hl->list[elemIndex]);
     hl->list[elemIndex]->value = data;
   } else {
-    #ifdef HANDLE_COLLISIONS
+    #ifdef HANDLE_COLLISIONSX
       // Always update to the latest value
       hl->list[elemIndex] = addToTail(hl->list[elemIndex], data, True);
     #else 

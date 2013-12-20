@@ -10,6 +10,7 @@
   } Bool;
 
   typedef struct Element_ {
+    Bool dTag; // Discovery tag
     void *value;
     struct Element_ *next;
   } Element;
