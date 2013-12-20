@@ -3,21 +3,24 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "src/trie/Trie.h"
-#include "src/hashlist/errors.h"
-#include "src/hashlist/hashList.h"
-#include "src/hashlist/loadWords.h"
+#include "trie/Trie.h"
+#include "hashlist/errors.h"
+#include "hashlist/hashList.h"
+#include "hashlist/loadWords.h"
 
 #define tolower(x) (x | 'a' - 'A')
 #define WORD_INCREMENT_LEN 10
 
 int main() {
   HashList *dict = loadWordsInFile("./resources/wordlist.txt");
+
+#ifdef DEBUG
   printf("Dict: %p\n", dict);
+#endif
 
   Trie *memoizeTrie = createTrie(0);
 
-  FILE *ifp = fopen("./resources/waroftheworlds.txt", "r");
+  FILE *ifp = fopen(__FILE__, "r");
   while (! feof(ifp)) {
     char *inW = getWord(ifp);
     if (inW == NULL) continue;
@@ -35,8 +38,14 @@ int main() {
     memoizeTrie = addSequence(memoizeTrie, inW);
   }
 
+#ifdef DEBUG
   printf("Done ici");
+#endif
+
+  // CleanUp
   destroyHashList(dict);
+  destroyTrie(memoizeTrie);
+
   fclose(ifp);
   return 0;
 }

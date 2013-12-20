@@ -1,7 +1,7 @@
 GCC := gcc
 
-wordSuggestion: wMatch.c trie.o hashlist.o loadwords.o wordTransition.o
-	$(CC) wMatch.c exec/loadWords.o exec/trie.o exec/hashlist.o exec/wordTransition.o -o wMatch
+wordSuggestion: src/autoCorrect.c trie.o hashlist.o loadwords.o wordTransition.o
+	$(CC) src/autoCorrect.c exec/loadWords.o exec/trie.o exec/hashlist.o exec/wordTransition.o -o exec/autoCorrect
 
 trie.o:	  src/trie/Trie.*
 	$(CC) -c src/trie/Trie.c -o exec/trie.o
@@ -16,4 +16,4 @@ wordTransition.o: src/hashlist/wordTransition.*
 	$(CC) -c src/hashlist/wordTransition.c -o exec/wordTransition.o
 
 clean:
-	rm exec/*.o
+	rm exec/*.o exec/autoCorrect
