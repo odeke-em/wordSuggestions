@@ -6,9 +6,10 @@
   } Comparison;
 
   typedef struct Node_ {
-    struct Node_ *next;
     void *data;
+    struct Node_ *next;
     unsigned int tag:1;
+    int (*freeData)(void *data);
   } Node;
 
   typedef struct List_ {
@@ -30,7 +31,7 @@
   inline void *getNextNode(const Node *n);
   inline int getListSize(const List *l);
 
-  List *append(List *l, void *data);
+  List *prepend(List *l, void *data);
   Node *find(List *l, void *query, Comparator comp);
   List *removeElem(List *l, void *query, Comparator comp);
 
