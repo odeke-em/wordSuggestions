@@ -1,5 +1,8 @@
 GCC := gcc
 
+hq:	src/hq.c trie.o hashlist.o loadwords.o wordTransition.o
+	$(CC) src/hq.c exec/trie.o exec/hashlist.o exec/wordTransition.o exec/loadWords.o -o exec/hq
+
 wordSuggestion: src/autoCorrect.c trie.o hashlist.o loadwords.o wordTransition.o
 	$(CC) src/autoCorrect.c exec/loadWords.o exec/trie.o exec/hashlist.o exec/wordTransition.o -o exec/autoCorrect
 

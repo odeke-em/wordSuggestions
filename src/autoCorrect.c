@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     char *inW = getWord(ifp);
     if (inW != NULL && searchTrie(memoizeTrie, inW) == -1) {
       // Word already discovered
-      Element *match = getCloseMatches(inW, dict, 0.8);
+      Element *match = getCloseMatches(inW, dict, 0.80);
       printf("%s {\n", inW);
       while (match != NULL) {
 	printf("\t%s\n", (char *)match->value);

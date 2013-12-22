@@ -78,6 +78,9 @@ EditStat *getEditStats(const char *subject, const char *base) {
 
 	int storedIndex = *(int *)trav->value;
 	if (storedIndex == i) {
+	#ifdef DEBUG
+	  printf("Reusing: %c at %d\n", subject[i], i);
+	#endif
 	  ++est->inplace;
 	} else {
 	#ifdef DEBUG
@@ -93,8 +96,9 @@ EditStat *getEditStats(const char *subject, const char *base) {
     } else { // Element not in base
     #ifdef DEBUG
       printf("Delete %c from %d\n", subject[i], i);
+      ++est->additions; // Correct calculation obtained in ranking process
     #endif
-      ++est->deletions;
+      // ++est->deletions; // Correct calculation obtained in ranking process
     }
   }
 
@@ -108,6 +112,7 @@ int getRank(const char *query, const char *from) {
 
   EditStat *et = getEditStats(query, from);
   if (et != NULL) {
+    et->deletions =  et->stringLen - et->reuses;
     rank = (et->inplace*3)+(et->moves*2)+((et->deletions+et->additions)*-1);
 
     free(et);
@@ -119,8 +124,8 @@ int getRank(const char *query, const char *from) {
 #ifdef SAMPLE
 int main() {
 
-  char *w = "dreamer\0", *base[] = {
-    "monk\0", "bolton\0", "tatsambone\0", "satton\0", "suttons\0", "agonies\0"
+  char *w = "googre\0", *base[] = {
+    "monk\0", "bolton\0", "google\0", "tatsambone\0", "satton\0", "suttons\0", "agonies\0"
   };
 
   char **trav = base, **end = base + sizeof(base)/sizeof(base[0]);

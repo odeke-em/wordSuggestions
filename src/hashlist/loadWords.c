@@ -73,9 +73,9 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
       Element *matchL = NULL;
       while (trav != end) {
 	if (*trav != NULL && (*trav)->value != NULL) {
-	  int rank = getRank(query, (*trav)->value);
-	  // printf("%s %s :: %d\n", query, (char *)(*trav)->value, rank);
+	  int rank = getRank((*trav)->value, query);
 	  if (rank >= threshHold) {
+	    printf("Threshold: %d %s %s :: %d\n", threshHold, query, (char *)(*trav)->value, rank);
 	    matchL = addToHead(matchL, (*trav)->value);
 	  } 
 	}

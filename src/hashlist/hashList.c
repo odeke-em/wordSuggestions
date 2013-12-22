@@ -117,7 +117,7 @@ void insertElem(HashList *hl, void *data, const hashValue hashCode) {
     hl->list[elemIndex] = initElement(hl->list[elemIndex]);
     hl->list[elemIndex]->value = data;
   } else {
-    #ifdef HANDLE_COLLISIONSX
+    #ifdef HANDLE_COLLISIONS
       // Always update to the latest value
       hl->list[elemIndex] = addToTail(hl->list[elemIndex], data, True);
     #else 
