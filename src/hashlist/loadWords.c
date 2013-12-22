@@ -43,7 +43,10 @@ HashList *loadWordsInFile(const char *filePath) {
   if (filePath != NULL) {
     hl = initHashListWithSize(hl, 10000001);
     FILE *ifp = fopen(filePath, "r");
-    assert(ifp);
+    if (ifp == NULL) {
+      raiseWarning("Invalid filePath");
+      return NULL;
+    }
 
     while (! feof(ifp)) {
       char *wordIn = getWord(ifp);
@@ -69,18 +72,17 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
       Element **trav = dict->list, **end = trav + getSize(dict);
       Element *matchL = NULL;
       while (trav != end) {
-     
 	if (*trav != NULL && (*trav)->value != NULL) {
 	  int rank = getRank(query, (*trav)->value);
 	  // printf("%s %s :: %d\n", query, (char *)(*trav)->value, rank);
 	  if (rank >= threshHold) {
-	    *matchList = addToTail(*matchList, (*trav)->value, True);
+	    matchL = addToHead(matchL, (*trav)->value);
 	  } 
 	}
 	++trav;
       }
 
-      return *matchList;
+      return matchL;
     } else return NULL;
   } else 
     return NULL;

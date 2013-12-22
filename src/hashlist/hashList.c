@@ -38,15 +38,16 @@ Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup) {
 }
 
 Element *addToHead(Element *sl, void *data) {
-  if (sl != NULL) {
+  if (sl == NULL) {
     sl = initElement(sl);
+    sl->value = data;
+  } else {
+    Element *newElem = NULL;
+    newElem = initElement(newElem);
+    newElem->value = data;
+    newElem->next = sl;
+    sl = newElem;
   }
-
-  Element *newElem = NULL;
-  newElem = initElement(newElem);
-  newElem->value = data;
-  newElem->next = sl;
-  sl = newElem;
 
   return sl;
 }

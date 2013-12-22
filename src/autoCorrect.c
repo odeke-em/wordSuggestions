@@ -11,8 +11,28 @@
 #define tolower(x) (x | 'a' - 'A')
 #define WORD_INCREMENT_LEN 10
 
-int main() {
-  HashList *dict = loadWordsInFile("./resources/wordlist.txt");
+int main(int argc, char *argv[]) {
+  const char *dictPath = "./resources/wordlist.txt";
+  if (argc >= 2) {
+    dictPath = argv[1];
+  }
+
+  HashList *dict = loadWordsInFile(dictPath);
+  if (dict == NULL) {
+    fprintf(stderr, "FilePath :: \033[32m%s\033[00m\n", dictPath);
+    return -1;
+  }
+
+  FILE *ifp = stdin; // By default we shall read from standard input
+  if (argc >= 3) {
+    ifp = fopen(argv[2], "r");
+    if (ifp == NULL) { // Revert to stdin
+      fprintf(
+       stderr, "\033[94mWe'll be reading words from standard input\033[00m\n"
+      );
+      ifp = stdin;
+    }
+  }
 
 #ifdef DEBUG
   printf("Dict: %p\n", dict);
@@ -20,28 +40,21 @@ int main() {
 
   Trie *memoizeTrie = createTrie(0);
 
-  FILE *ifp = fopen("src/test.c", "r");
   while (! feof(ifp)) {
     char *inW = getWord(ifp);
-
-    if (inW != NULL) {
-      if  (searchTrie(memoizeTrie, inW) == -1) {
-	// Word not yet discovered
-	Element *match = getCloseMatches(inW, dict, 0.8);
-	printf("%s {\n", inW);
-	while (match != NULL) {
-	  printf("\t%s\n", (char *)match->value);
-	  match = getNext(match);
-	} 
-
-	printf("}\n");
-
-	// Mark the word now as discovered
-	memoizeTrie = addSequence(memoizeTrie, inW);
-      }
-
-      free(inW);
+    if (inW != NULL && searchTrie(memoizeTrie, inW) == -1) {
+      // Word already discovered
+      Element *match = getCloseMatches(inW, dict, 0.8);
+      printf("%s {\n", inW);
+      while (match != NULL) {
+	printf("\t%s\n", (char *)match->value);
+	match = getNext(match);
+      } 
+      printf("}\n");
+      memoizeTrie = addSequence(memoizeTrie, inW);
     }
+
+    if (inW != NULL) free(inW);
   }
 
 #ifdef DEBUG
