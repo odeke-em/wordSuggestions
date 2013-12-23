@@ -96,9 +96,8 @@ EditStat *getEditStats(const char *subject, const char *base) {
     } else { // Element not in base
     #ifdef DEBUG
       printf("Delete %c from %d\n", subject[i], i);
-      ++est->additions; // Correct calculation obtained in ranking process
+      ++est->deletions;
     #endif
-      // ++est->deletions; // Correct calculation obtained in ranking process
     }
   }
 
@@ -112,7 +111,6 @@ int getRank(const char *query, const char *from) {
 
   EditStat *et = getEditStats(query, from);
   if (et != NULL) {
-    et->deletions =  et->stringLen - et->reuses;
     rank = (et->inplace*3)+(et->moves*2)+((et->deletions+et->additions)*-1);
 
     free(et);
@@ -129,10 +127,11 @@ int main() {
   };
 
   char **trav = base, **end = base + sizeof(base)/sizeof(base[0]);
+  int setRank = getRank(w, w);
   while (trav != end) {
     printf("\033[33mTo get %s from %s\033[00m\n", w, *trav);
     int rank = getRank(*trav, w); //w, *trav);
-    printf("Rank : %d\n", rank);
+    printf("Base: %d Rank : %d\n", setRank, rank);
     ++trav;
   }
 

@@ -75,8 +75,8 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
 	if (*trav != NULL && (*trav)->value != NULL) {
 	  int rank = getRank((*trav)->value, query);
 	  if (rank >= threshHold) {
-	    printf("Threshold: %d %s %s :: %d\n", threshHold, query, (char *)(*trav)->value, rank);
-	    matchL = addToHead(matchL, (*trav)->value);
+	    // printf("Threshold: %d %s %s :: %d\n", threshHold, query, (char *)(*trav)->value, rank);
+	    matchL = addToHeadWithRank(matchL, (*trav)->value, rank);
 	  } 
 	}
 	++trav;
@@ -110,7 +110,7 @@ int main() {
   for (i = 0; i < getSize(curFileHL); ++i) {
     if (curFileHL->list[i] != NULL) {
       char *value = (char *)(curFileHL->list[i]->value);
-      Element *match = getCloseMatches(value, hl, 0.7);
+      Element *match = getCloseMatches(value, hl, 0.6);
       // printf("For: %s\n", value);
       while (match != NULL) {
 	//printf("\t%s\n", (char *)match->value);

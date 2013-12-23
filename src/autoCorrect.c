@@ -34,20 +34,30 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  float thresholdMatch = 0.8;
+  if (argc >= 4) {
+    if (sscanf(argv[3], "%f", &thresholdMatch) != 1) {
+    #ifdef DEBUG
+      raiseWarning("Couldn't parse the threshold rank");;
+    #endif
+    }
+  }
+
 #ifdef DEBUG
   printf("Dict: %p\n", dict);
 #endif
 
   Trie *memoizeTrie = createTrie(0);
 
+  printf("Threshold rank: %.2f\n", thresholdMatch);
   while (! feof(ifp)) {
     char *inW = getWord(ifp);
     if (inW != NULL && searchTrie(memoizeTrie, inW) == -1) {
       // Word already discovered
-      Element *match = getCloseMatches(inW, dict, 0.80);
+      Element *match = getCloseMatches(inW, dict, thresholdMatch);
       printf("%s {\n", inW);
       while (match != NULL) {
-	printf("\t%s\n", (char *)match->value);
+	printf("\t%s :: %d\n", (char *)match->value, match->rank);
 	match = getNext(match);
       } 
       printf("}\n");

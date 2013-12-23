@@ -10,6 +10,7 @@
   } Bool;
 
   typedef struct Element_ {
+    int rank;
     Bool dTag; // Discovery tag
     void *value;
     struct Element_ *next;
@@ -32,6 +33,10 @@
   HashList *initHashList(HashList *);
 
   Element *addToHead(Element *sl, void *data);
+
+  // Adds the data as well as it's rank to the head 
+  Element *addToHeadWithRank(Element *sl, void *data, unsigned int rank);
+
   Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup);
 
   Element **get(HashList *hl, hashValue hashCode);

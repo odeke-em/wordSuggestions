@@ -37,6 +37,15 @@ Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup) {
   return sl;
 }
 
+Element *addToHeadWithRank(Element *sl, void *data, unsigned int rank) {
+  sl = addToHead(sl, data);
+  if (sl != NULL) {
+    sl->rank = rank;
+  }
+
+  return sl;
+}
+
 Element *addToHead(Element *sl, void *data) {
   if (sl == NULL) {
     sl = initElement(sl);
@@ -59,6 +68,7 @@ Element *initElement(Element *elem) {
 
   elem->next = NULL;
   elem->value = NULL;
+  elem->rank = -1000;
   elem->dTag = False; // Hasn't been discovered
 
   return elem;
