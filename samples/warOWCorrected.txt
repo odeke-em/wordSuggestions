@@ -1,3 +1,4 @@
+Threshold rank: 0.80
 the {
 }
 project {
@@ -15,12 +16,10 @@ worlds {
 by {
 }
 h {
-	hoo
-	ho
-	hn
-	hi
-	he
-	ha
+	ho :: 1
+	hn :: 1
+	hi :: 1
+	ha :: 1
 }
 wells {
 }
@@ -49,29 +48,6 @@ with {
 almost {
 }
 restrictions {
-	doctrines
-	sectoring
-	reactions
-	centurions
-	reconvicts
-	contrives
-	centroids
-	resections
-	containers
-	rections
-	erections
-	cortisones
-	contrivers
-	disconcert
-	centrioles
-	ventricose
-	ventricous
-	resection
-	tortrices
-	cortisone
-	criterions
-	restocking
-	cornetcies
 }
 whatsoever {
 }
@@ -98,88 +74,10 @@ license {
 included {
 }
 online {
-	olein
-	onliest
-	molimen
-	oiliness
-	doline
-	moline
+	ondine :: 9
+	unline :: 9
 }
 www {
-	wanna
-	walla
-	weeded
-	wedded
-	wynn
-	wuss
-	wull
-	woos
-	woon
-	wool
-	woof
-	wood
-	will
-	whee
-	were
-	well
-	weet
-	wees
-	weer
-	weep
-	ween
-	weem
-	weel
-	week
-	weed
-	watt
-	wall
-	waka
-	waff
-	wyn
-	wye
-	wus
-	wud
-	wry
-	wow
-	wot
-	wos
-	wop
-	woo
-	won
-	wok
-	wog
-	woe
-	wit
-	wis
-	win
-	why
-	wig
-	who
-	wha
-	wey
-	wet
-	wen
-	wem
-	wee
-	wed
-	web
-	way
-	wax
-	waw
-	wat
-	was
-	war
-	wap
-	wan
-	wag
-	wae
-	wad
-	ewe
-	awa
-	wo
-	we
-	ow
-	aw
 }
 net {
 }
@@ -200,7 +98,6 @@ recently {
 updated {
 }
 october {
-	botcher
 }
 language {
 }
@@ -213,19 +110,7 @@ set {
 encoding {
 }
 ascii {
-	attics
-	aspics
-	ascian
-	ischia
-	accites
-	aspic
-	ascites
-	ascitic
-	ascidia
-	ascians
-	ascesis
-	facias
-	asci
+	asci :: 8
 }
 start {
 }
@@ -276,11 +161,7 @@ one {
 coming {
 }
 martians {
-	martins
-	martinis
-	varmints
-	martinets
-	martin
+	martinis :: 12
 }
 chapter {
 }
@@ -313,9 +194,6 @@ keenly {
 closely {
 }
 intelligences {
-	steelings
-	selecting
-	steeling
 }
 greater {
 }
@@ -346,10 +224,9 @@ concerns {
 were {
 }
 scrutinised {
-	scrutinize
-	scrutinise
-	scrutinies
-	scrutineer
+	scrutinize :: 17
+	scrutinise :: 20
+	scrutinies :: 18
 }
 studied {
 }
@@ -376,7 +253,7 @@ water {
 infinite {
 }
 complacency {
-	complacent
+	complacent :: 17
 }
 went {
 }
@@ -453,28 +330,6 @@ departed {
 days {
 }
 terrestrial {
-	terais
-	periplasts
-	talliers
-	retails
-	realistic
-	realist
-	terminals
-	tirasse
-	tariffless
-	strelitzia
-	earliest
-	retrials
-	realists
-	retirals
-	trailers
-	tertials
-	periplast
-	seriality
-	serialist
-	aerialist
-	serialists
-	aerialists
 }
 fancied {
 }
@@ -609,35 +464,12 @@ seventh {
 volume {
 }
 accelerated {
-	dilacerate
-	clattered
-	accelerate
-	scarleted
-	decolorate
+	accelerate :: 20
 }
 cooling {
 }
 temperature {
-	tropaeolum
-	tamperer
-	tampered
-	tamper
-	petrolatum
-	tampers
-	tempuras
-	permutate
-	temporal
-	temporary
-	temporally
-	temperance
-	temperable
-	temperate
-	temperated
-	temperates
-	tepidarium
-	tempura
-	templar
-	tempera
+	temperate :: 17
 }
 which {
 }
@@ -670,267 +502,6 @@ end {
 expressed {
 }
 intelligent {
-	stealing
-	telegnosis
-	nestlings
-	kneeling
-	tanglier
-	entangling
-	glistening
-	tireling
-	relegating
-	intangible
-	allegation
-	delegating
-	listening
-	retiringly
-	tingle
-	tunneling
-	legatine
-	alginate
-	singlet
-	glisten
-	glinted
-	negligent
-	metalizing
-	beetling
-	minglement
-	anglesite
-	inlets
-	ingest
-	infelt
-	steerling
-	singletree
-	singletons
-	athelings
-	gangliated
-	relentings
-	inlet
-	ingle
-	indulgent
-	steelings
-	gentling
-	entitle
-	gentilic
-	gentiles
-	untiled
-	untiles
-	valeting
-	galenite
-	jinglet
-	belting
-	tirelings
-	reletting
-	letting
-	valetings
-	tweedling
-	alerting
-	indigolite
-	relenting
-	sklenting
-	splenting
-	lentigo
-	alienating
-	legendists
-	metalling
-	trebling
-	fettlings
-	settlings
-	retailing
-	entailing
-	telegonic
-	neglecting
-	telegenic
-	allegiant
-	integer
-	gleeting
-	fleeting
-	sleeting
-	invigilate
-	lettering
-	littering
-	selecting
-	electing
-	atingle
-	glittering
-	cleating
-	bleating
-	pleating
-	gantlines
-	latening
-	gentilize
-	gentility
-	gentilise
-	untiling
-	televising
-	gainliest
-	gelatinate
-	eluting
-	retitling
-	entitling
-	winglet
-	interval
-	interlay
-	internal
-	entering
-	intently
-	smeltings
-	integral
-	stingless
-	jinglets
-	kinglets
-	winglets
-	tinglers
-	singlets
-	tingling
-	tinglier
-	lingiest
-	ingests
-	toweling
-	vigilante
-	gentilises
-	tingled
-	tingles
-	tingler
-	gentilesse
-	tellings
-	clientage
-	ignitible
-	genitalia
-	gmelinite
-	exulting
-	regelating
-	regelation
-	telexing
-	deleting
-	lentigines
-	inelegant
-	felting
-	teazling
-	tinselling
-	tringle
-	elating
-	delating
-	belating
-	gelatine
-	relating
-	oenologist
-	trellising
-	kinglet
-	ingrately
-	unsettling
-	gnarliest
-	resettling
-	englutting
-	velveting
-	etiolating
-	entoil
-	glutelin
-	entail
-	ettling
-	fettling
-	settling
-	pettling
-	nettling
-	lettings
-	exalting
-	guillotine
-	tellingly
-	pelting
-	antilogies
-	lamenting
-	tellering
-	pelleting
-	billeting
-	galleting
-	filleting
-	atheling
-	metheglin
-	melting
-	smelting
-	diligent
-	stealings
-	lightening
-	retiling
-	teagling
-	ingestible
-	girtlines
-	pestling
-	nestling
-	intaglioes
-	intaglioed
-	fleetingly
-	letching
-	belittling
-	metaling
-	tituling
-	eglantine
-	galantine
-	tittling
-	littling
-	eliciting
-	ringleted
-	singleton
-	gangliate
-	gangliest
-	kingliest
-	jingliest
-	tingliest
-	tangliest
-	interregal
-	interreges
-	enticingly
-	interramal
-	altering
-	lutein
-	ringlet
-	vitellin
-	retooling
-	steerlings
-	gentile
-	agential
-	extolling
-	enlisting
-	glistens
-	genital
-	legendist
-	interlard
-	leafleting
-	sterling
-	sterlings
-	welting
-	swelting
-	towelling
-	towelings
-	entoiling
-	gelatin
-	libeling
-	tangential
-	intercalar
-	intellect
-	retelling
-	telling
-	stelling
-	undelight
-	inte
-	tweeling
-	untile
-	genetical
-	genteelize
-	genteelise
-	integrals
-	integrally
-	integrable
-	lignite
-	gelignite
-	lighten
-	antliae
-	gantline
-	enlighten
-	girtline
-	tunnelling
-	steeling
-	gimleting
 }
 developed {
 }
@@ -961,6 +532,7 @@ area {
 remoter {
 }
 necessarily {
+	necessary :: 17
 }
 follows {
 }
@@ -1047,7 +619,7 @@ either {
 pole {
 }
 periodically {
-	periodical
+	periodical :: 20
 }
 inundate {
 }
@@ -1068,16 +640,7 @@ present {
 problem {
 }
 inhabitants {
-	inhabitors
-	inhabiting
-	inhabiters
-	inbreathes
-	inhabit
-	inhabitor
-	inhabited
-	inhabiter
-	inhibits
-	inhabits
+	inhabitant :: 20
 }
 immediate {
 }
@@ -1098,7 +661,7 @@ hearts {
 looking {
 }
 instruments {
-	instrument
+	instrument :: 20
 }
 such {
 }
@@ -1161,10 +724,6 @@ monkeys {
 lemurs {
 }
 intellectual {
-	inculcates
-	inculcated
-	inculpate
-	inculcate
 }
 side {
 }
@@ -1219,51 +778,6 @@ dodo {
 races {
 }
 tasmanians {
-	animations
-	mattins
-	animist
-	masting
-	timpanists
-	martins
-	animalists
-	shamanists
-	tampings
-	stamnoi
-	stamina
-	manzanitas
-	sigmating
-	staminate
-	imitants
-	saturnism
-	machinist
-	mattings
-	tamings
-	staminal
-	catmints
-	maintains
-	tsunami
-	harmonist
-	imaginists
-	saintism
-	raiments
-	martinis
-	animists
-	timpanist
-	varmints
-	trimarans
-	animatism
-	animalist
-	mammonists
-	mammonites
-	harmonists
-	teamings
-	imaginist
-	machinists
-	mammonist
-	mismating
-	matins
-	mantis
-	tsunamis
 }
 spite {
 }
@@ -1276,8 +790,6 @@ swept {
 out {
 }
 extermination {
-	examinator
-	extermine
 }
 waged {
 }
@@ -1306,8 +818,7 @@ amazing {
 subtlety {
 }
 mathematical {
-	megalithic
-	mathematic
+	mathematic :: 20
 }
 learning {
 }
@@ -1318,9 +829,6 @@ excess {
 carried {
 }
 preparations {
-	prestation
-	predations
-	prelations
 }
 nigh {
 }
@@ -1361,7 +869,7 @@ interpret {
 fluctuating {
 }
 appearances {
-	appearance
+	appearance :: 20
 }
 markings {
 }
@@ -1374,9 +882,9 @@ during {
 opposition {
 }
 illuminated {
-	delaminate
-	albuminate
-	illuminate
+	illuminato :: 17
+	illuminati :: 17
+	illuminate :: 20
 }
 part {
 }
@@ -1387,22 +895,12 @@ first {
 lick {
 }
 observatory {
-	observant
-	observator
-	observancy
-	observants
-	observably
+	observator :: 20
 }
 then {
 }
 perrotin {
-	prenotion
-	pontonier
-	perdition
-	repotting
-	reporting
-	protogine
-	periotic
+	parroting :: 12
 }
 nice {
 }
@@ -1453,81 +951,7 @@ next {
 two {
 }
 oppositions {
-	aspiration
-	nepotist
-	sorptions
-	optimism
-	optimist
-	options
-	topspins
-	opsonin
-	positions
-	stoppings
-	spittoon
-	pistons
-	sopiting
-	spinouts
-	speciation
-	spooniest
-	potations
-	sponsions
-	offprints
-	pointings
-	spongiest
-	spinosity
-	spottiness
-	sinopite
-	spotlit
-	mispoints
-	petitions
-	opposite
-	supination
-	points
-	appoints
-	spinout
-	postillion
-	tinpots
-	optimists
-	pitons
-	piston
-	optimising
-	penistone
-	spouting
-	spotting
-	nepotists
-	potions
-	sporting
-	opticians
-	sponsion
-	sponsing
-	opinionist
-	pipestone
-	spallation
-	epithetons
-	inspection
-	spottings
-	spittoons
-	outpoints
-	sportiness
-	saponite
-	opposition
-	imposition
-	reposition
-	pinpoints
-	exposition
-	apposition
-	deposition
-	topspin
-	stopping
-	stooping
-	positing
-	position
-	mispoint
-	sinopites
-	sorption
-	opuntias
-	spoliation
-	resorption
+	opposition :: 20
 }
 storm {
 }
@@ -1540,152 +964,22 @@ ago {
 approached {
 }
 lavelle {
-	valvule
-	javelin
-	alveoli
-	alveole
-	valvelet
-	alveary
-	valve
-	value
-	valse
-	valet
-	vales
-	salve
-	ravel
-	lavishes
-	navel
-	reveals
-	laverock
-	lavender
-	lavement
-	ravelled
-	saveloys
-	waveless
-	laveered
-	loave
-	lever
-	level
-	levee
-	leavy
-	leave
-	laves
-	laver
-	laved
-	lases
-	laded
-	salves
-	javel
-	lavatera
-	wavelet
-	halve
-	gavel
-	favel
-	elvan
-	cavel
-	calve
-	avale
-	reveal
-	lavendered
-	ravels
-	foveola
-	levitate
-	gavels
-	foveal
-	reversal
-	severals
-	leverage
-	revealer
-	reversals
-	several
-	haverel
-	favela
-	alveolar
-	valveless
-	ravelin
-	laveers
-	lavages
-	navels
-	lovage
-	novella
-	veleta
-	cavels
-	varvel
-	valves
-	valved
-	valses
-	valley
-	valets
-	valete
-	valeta
-	valent
-	vakeel
-	favelas
-	vela
-	veal
-	vale
-	love
-	live
-	leve
-	leva
-	laze
-	lave
-	late
-	lase
-	lare
-	lane
-	lame
-	lake
-	lade
-	lace
-	levant
-	leaves
-	leaver
-	leaven
-	leaved
-	saveloy
-	lavers
-	laveer
-	lavage
-	larvae
-	lev
-	lav
 }
 java {
-	javel
 }
 wires {
 }
 astronomical {
-	astronomic
+	astronomic :: 20
 }
 exchange {
 }
 palpitating {
-	patting
-	panting
-	palmitin
-	placating
-	palpating
-	pantiling
-	pantingly
-	pantilings
-	platting
-	platings
-	planting
-	plaiting
-	plicating
-	paltering
-	pulsating
-	palliating
-	plantling
-	plating
 }
 amazing {
 }
 incandescent {
-	incandesce
-	incased
+	incandesce :: 20
 }
 gas {
 }
@@ -1698,66 +992,6 @@ midnight {
 twelfth {
 }
 spectroscope {
-	recaptors
-	proctorise
-	spectators
-	periprocts
-	retrospect
-	cerotypes
-	protects
-	prospect
-	preciosity
-	spaceport
-	sprocket
-	procreates
-	sprockets
-	prorectors
-	isentropic
-	erectors
-	plectrons
-	electrons
-	plectron
-	electros
-	spectator
-	stonecrop
-	spotter
-	sporter
-	prospector
-	spectre
-	spectra
-	specter
-	copters
-	turcopoles
-	cooperates
-	receptors
-	exceptors
-	acceptors
-	precentors
-	spaceports
-	preceptors
-	prosectors
-	spectral
-	spectres
-	spectrum
-	specters
-	porticoes
-	splotchier
-	potchers
-	sportances
-	prospects
-	persicots
-	persicot
-	sceptre
-	sceptry
-	susceptor
-	prosector
-	sportance
-	speculator
-	porrects
-	overcrops
-	spectrally
-	operatics
-	protectors
 }
 once {
 }
@@ -1808,15 +1042,6 @@ rushed {
 singularly {
 }
 appropriate {
-	parrotries
-	hierophant
-	operatic
-	operatises
-	preappoint
-	operatize
-	operatise
-	operative
-	operation
 }
 phrase {
 }
@@ -2093,9 +1318,6 @@ outline {
 just {
 }
 chronometer {
-	chromite
-	chromene
-	chromate
 }
 struck {
 }
@@ -2168,7 +1390,6 @@ down {
 below {
 }
 chertsey {
-	cherty
 }
 hundreds {
 }
@@ -2245,55 +1466,6 @@ firing {
 caused {
 }
 inconvenience {
-	innocence
-	incohesive
-	connivers
-	connivent
-	incurves
-	incurved
-	inconnue
-	involves
-	involved
-	invoices
-	invoiced
-	unvoiced
-	unvoices
-	invocate
-	incloses
-	income
-	incave
-	unvoice
-	anchovies
-	convives
-	convived
-	convince
-	connives
-	conniver
-	connived
-	involve
-	invoice
-	conceive
-	inforce
-	incurve
-	incomes
-	incomer
-	inclose
-	incorrect
-	corvine
-	involucre
-	involucel
-	involucels
-	connivance
-	insolvency
-	connivence
-	convive
-	reconvict
-	connive
-	invocated
-	invocates
-	recovering
-	novice
-	biconvex
 }
 dense {
 }
@@ -2342,8 +1514,7 @@ political {
 cartoon {
 }
 unsuspected {
-	unsceptred
-	unsuspect
+	unsuspect :: 18
 }
 missiles {
 }
@@ -2366,21 +1537,13 @@ did {
 jubilant {
 }
 markham {
-	markhor
-	marsh
-	marks
-	march
-	marah
-	markhors
-	mark
 }
 securing {
 }
 photograph {
 }
 illustrated {
-	balustrade
-	illustrate
+	illustrate :: 20
 }
 edited {
 }
@@ -2435,9 +1598,6 @@ home {
 party {
 }
 excursionists {
-	extrusion
-	excursions
-	excursion
 }
 isleworth {
 }
@@ -2500,11 +1660,10 @@ high {
 ordinary {
 }
 albin {
-	albino
-	albinos
-	albinic
-	blain
-	albiness
+	albino :: 9
+	albinos :: 8
+	albinic :: 8
+	blain :: 8
 }
 described {
 }
@@ -2565,12 +1724,11 @@ hissing {
 myself {
 }
 berkshire {
-	kirbehs
 }
 surrey {
 }
 middlesex {
-	middles
+	middles :: 14
 }
 descended {
 }
@@ -2591,31 +1749,19 @@ common {
 between {
 }
 horsell {
-	torsel
-	hostelers
-	howlers
-	holster
-	hollers
-	holders
-	herself
-	horse
-	housel
-	hirsel
-	hovellers
-	horselaugh
-	norsel
-	dorsel
-	morsel
-	hostelry
-	hosteler
-	horsetail
-	horseless
-	horseplay
-	horsefly
-	hornless
 }
 woking {
-	woning
+	toking :: 9
+	joking :: 9
+	roking :: 9
+	hoking :: 9
+	poking :: 9
+	yoking :: 9
+	wowing :: 9
+	wooing :: 9
+	waking :: 9
+	coking :: 9
+	boking :: 9
 }
 rose {
 }
@@ -2678,8 +1824,6 @@ dun {
 coloured {
 }
 incrustation {
-	incrust
-	incubators
 }
 diameter {
 }
@@ -2738,7 +1882,7 @@ design {
 arrival {
 }
 wonderfully {
-	wonderful
+	wonderful :: 18
 }
 clearing {
 }
@@ -2911,8 +2055,6 @@ drove {
 equally {
 }
 unsuccessful {
-	unscale
-	funicles
 }
 potman {
 }
@@ -2937,71 +2079,8 @@ sobered {
 when {
 }
 henderson {
-	vendors
-	handers
-	hinders
-	hindermost
-	donders
-	dehorns
 }
 london {
-	noddled
-	noddles
-	anodal
-	mandola
-	soldan
-	nould
-	nodal
-	rondels
-	lownd
-	loden
-	lownded
-	loudens
-	rondel
-	lordkin
-	lording
-	holden
-	lodging
-	loading
-	golden
-	sondelis
-	noddling
-	fondly
-	fondle
-	fondled
-	fondles
-	fondler
-	condyle
-	condole
-	sondeli
-	soldans
-	mondial
-	noodle
-	noddle
-	loudness
-	loudened
-	donzel
-	dongle
-	lardoon
-	gondola
-	gonadal
-	lownds
-	louden
-	longed
-	lodens
-	loaned
-	loaden
-	yond
-	bolden
-	pond
-	long
-	lone
-	hond
-	fond
-	cond
-	bond
-	lardon
-	don
 }
 journalist {
 }
@@ -3188,30 +2267,6 @@ carrying {
 baby {
 }
 gregg {
-	greys
-	greve
-	grego
-	greet
-	grees
-	green
-	greed
-	grece
-	grebe
-	great
-	greyly
-	greese
-	greeses
-	grue
-	grey
-	grew
-	gree
-	goer
-	gere
-	eger
-	dreg
-	areg
-	ger
-	erg
 }
 butcher {
 }
@@ -3226,8 +2281,6 @@ accustomed {
 talking {
 }
 england {
-	angled
-	unglazed
 }
 vaguest {
 }
@@ -3244,7 +2297,7 @@ expectation {
 corpses {
 }
 disappointed {
-	disappoint
+	disappoint :: 20
 }
 inanimate {
 }
@@ -3255,71 +2308,6 @@ got {
 thus {
 }
 strangeness {
-	arranges
-	strawen
-	stearing
-	strange
-	segreant
-	gangster
-	stranglers
-	tanagers
-	starnie
-	sergeants
-	termagants
-	serang
-	strongest
-	agreements
-	parentages
-	garnets
-	endangers
-	sprangle
-	greatens
-	streaking
-	streaming
-	teenagers
-	teratogens
-	stronghead
-	stingaree
-	grainiest
-	stronger
-	seringa
-	serangs
-	stringer
-	stringed
-	transgress
-	straighten
-	strength
-	greatness
-	argents
-	stranded
-	strangle
-	stranger
-	straiten
-	strainer
-	strained
-	straggle
-	stallenger
-	grantees
-	strangles
-	strangler
-	strangled
-	arrangers
-	strangers
-	strangest
-	strangely
-	gangsters
-	staggering
-	errants
-	stringers
-	stringier
-	stringent
-	sternage
-	assurgent
-	sergeant
-	serenate
-	serenata
-	triangles
-	deranges
 }
 object {
 }
@@ -3390,8 +2378,6 @@ manuscript {
 difficulties {
 }
 translation {
-	translucid
-	trinomials
 }
 arise {
 }
@@ -3452,12 +2438,6 @@ basket {
 chaise {
 }
 chobham {
-	choliambic
-	choriamb
-	choliamb
-	choliambs
-	choriambic
-	choriambs
 }
 rather {
 }
@@ -3486,7 +2466,7 @@ breath {
 burning {
 }
 extinguished {
-	extinguish
+	extinguish :: 20
 }
 blackened {
 }
@@ -3497,23 +2477,6 @@ vertical {
 streamers {
 }
 enterprising {
-	persisting
-	springiest
-	presetting
-	taperings
-	presenting
-	estreping
-	separating
-	serpenting
-	pretesting
-	interpose
-	interpage
-	interposes
-	enterings
-	interphase
-	interpages
-	enterprise
-	asperating
 }
 sweet {
 }
@@ -3594,7 +2557,7 @@ serious {
 impediment {
 }
 excavations {
-	excavation
+	excavation :: 20
 }
 especially {
 }
@@ -3607,10 +2570,7 @@ put {
 keep {
 }
 occasionally {
-	scallion
-	scallions
-	occasional
-	salicional
+	occasional :: 20
 }
 case {
 }
@@ -3621,8 +2581,8 @@ grip {
 enormously {
 }
 represented {
-	represent
-	repetends
+	represents :: 17
+	represent :: 18
 }
 noisy {
 }
@@ -3677,12 +2637,13 @@ imaginings {
 screwin {
 }
 ome {
-	omers
-	omens
-	omega
-	omer
-	omen
-	moe
+	omers :: 4
+	omens :: 4
+	omega :: 4
+	omer :: 5
+	omen :: 5
+	moe :: 4
+	om :: 4
 }
 elbowing {
 }
@@ -3787,15 +2748,12 @@ projecting {
 pushing {
 }
 astonishment {
-	astonishes
-	astonished
 }
 horror {
 }
 faces {
 }
 inarticulate {
-	retinacula
 }
 exclamations {
 }
@@ -3836,7 +2794,7 @@ leather {
 regarding {
 }
 steadfastly {
-	steadily
+	steadfast :: 18
 }
 framed {
 }
@@ -3855,8 +2813,7 @@ heaved {
 pulsated {
 }
 convulsively {
-	convulsive
-	consultive
+	convulsive :: 20
 }
 lank {
 }
@@ -3891,13 +2848,10 @@ lungs {
 heaviness {
 }
 painfulness {
-	painfuller
 }
 due {
 }
 gravitational {
-	gravitons
-	graviton
 }
 energy {
 }
@@ -4054,15 +3008,6 @@ emerging {
 kind {
 }
 fascination {
-	fanciest
-	factions
-	fascinator
-	fascinates
-	fascinated
-	fasciation
-	fantastico
-	factionist
-	fascinate
 }
 paralysed {
 }
@@ -4091,7 +3036,7 @@ seeking {
 vantage {
 }
 continually {
-	continual
+	continual :: 18
 }
 comers {
 }
@@ -4106,6 +3051,7 @@ octopus {
 flashed {
 }
 immediately {
+	immediate :: 18
 }
 withdrawn {
 }
@@ -4140,7 +3086,6 @@ accosted {
 articulate {
 }
 conversation {
-	conversant
 }
 ugly {
 }
@@ -4199,138 +3144,6 @@ rate {
 dusk {
 }
 intermittent {
-	reanimate
-	attirement
-	retirement
-	refitment
-	tensimeter
-	remittent
-	remitment
-	invert
-	intire
-	intime
-	inters
-	intern
-	insert
-	niter
-	miter
-	nitrometer
-	metromania
-	mintier
-	minaret
-	inter
-	inert
-	entrism
-	entires
-	enteric
-	increments
-	inurements
-	increment
-	incremate
-	remint
-	inverts
-	entryism
-	entrisms
-	interne
-	interns
-	interim
-	integer
-	inserts
-	minorite
-	intemerate
-	interrex
-	interred
-	intersex
-	intertie
-	interval
-	interwar
-	interlay
-	intermix
-	intermit
-	internet
-	internes
-	internee
-	interned
-	internal
-	intercom
-	intercut
-	interest
-	interess
-	entering
-	interior
-	interims
-	interact
-	inherit
-	instress
-	centimetre
-	centimeter
-	instrument
-	niterie
-	impartment
-	triennium
-	animater
-	untimelier
-	untrimmed
-	detriment
-	nutriment
-	instresses
-	metring
-	entire
-	nemertine
-	unmerited
-	mutineer
-	retiming
-	nitery
-	metering
-	remitments
-	interramal
-	intersexes
-	nemertines
-	minter
-	undertimed
-	tripemen
-	retrimming
-	mitering
-	merriments
-	unmeriting
-	determines
-	determiner
-	determined
-	intermodal
-	endermatic
-	intermixes
-	intermixed
-	intermezzo
-	intermezzi
-	interments
-	intermarry
-	internment
-	terminer
-	undertime
-	intervene
-	enteritis
-	determine
-	extermine
-	intermits
-	interment
-	maternity
-	termini
-	interning
-	intermure
-	internees
-	intercoms
-	intercede
-	interfere
-	interests
-	alternatim
-	interceded
-	immurement
-	inurement
-	iconometer
-	interferer
-	inte
-	merriment
-	innermost
 }
 force {
 }
@@ -4385,12 +3198,6 @@ deputation {
 hasty {
 }
 consultation {
-	consulta
-	consulate
-	consult
-	consultive
-	consulting
-	consultant
 }
 repulsive {
 }
@@ -4409,34 +3216,6 @@ right {
 recognise {
 }
 communication {
-	communisms
-	communists
-	combinate
-	combating
-	continua
-	contagiums
-	columnists
-	continuum
-	continuua
-	computing
-	contagium
-	continuums
-	continuant
-	complaint
-	aconitum
-	romantic
-	cumulation
-	coumarin
-	columnist
-	commuting
-	communism
-	community
-	communist
-	comminute
-	comminate
-	autonomic
-	romantical
-	costuming
 }
 dragged {
 }
@@ -4503,6 +3282,7 @@ sprang {
 impinged {
 }
 momentarily {
+	momentary :: 17
 }
 staggering {
 }
@@ -4581,7 +3361,8 @@ swiftness {
 motionless {
 }
 dumbfounded {
-	dumbfound
+	dumbfound :: 18
+	dumbfounds :: 17
 }
 dazzled {
 }
@@ -4674,18 +3455,14 @@ generate {
 chamber {
 }
 practically {
-	practicals
-	practical
-	cryptical
-	piratical
-	pyritical
+	practicals :: 17
+	practical :: 18
 }
 absolute {
 }
 non {
 }
 conductivity {
-	conductive
 }
 parallel {
 }
@@ -4698,11 +3475,6 @@ parabolic {
 unknown {
 }
 composition {
-	complaints
-	comprints
-	composite
-	compositor
-	composting
 }
 lighthouse {
 }
@@ -4719,7 +3491,6 @@ instead {
 whatever {
 }
 combustible {
-	combustive
 }
 lead {
 }
@@ -4738,8 +3509,6 @@ glass {
 falls {
 }
 incontinently {
-	innocently
-	cyclonite
 }
 explodes {
 }
@@ -4748,24 +3517,6 @@ steam {
 distorted {
 }
 recognition {
-	sectoring
-	vectoring
-	hectoring
-	rocketing
-	recognizer
-	recognized
-	recognises
-	recogniser
-	recognised
-	escorting
-	recondite
-	recoiling
-	recoining
-	recognize
-	recognise
-	recounting
-	gerontic
-	orogenetic
 }
 brightly {
 }
@@ -4848,8 +3599,6 @@ deter {
 booing {
 }
 thoughtless {
-	sloughiest
-	theologues
 }
 excitable {
 }
@@ -4858,15 +3607,13 @@ souls {
 always {
 }
 anticipating {
-	antic
-	catnapping
 }
 collision {
 }
 telegraphed {
-	telegraph
-	telegraphy
-	telegraphs
+	telegraph :: 18
+	telegraphy :: 17
+	telegraphs :: 17
 }
 barracks {
 }
@@ -4881,15 +3628,11 @@ violence {
 fated {
 }
 description {
-	descriptor
 }
 tallies {
 }
 impressions {
-	oppression
-	impression
-	repression
-	imprisoned
+	impression :: 20
 }
 narrower {
 }
@@ -4898,9 +3641,8 @@ hummock {
 heathery {
 }
 intercepted {
-	intercept
-	intercede
-	interceded
+	intercept :: 18
+	intercepts :: 17
 }
 saved {
 }
@@ -4943,6 +3685,7 @@ igniting {
 stricken {
 }
 hesitatingly {
+	hesitating :: 20
 }
 moments {
 }
@@ -5085,32 +3828,15 @@ answered {
 greeting {
 }
 meaningless {
-	meaningly
-	flamingoes
-	leasing
-	leasings
-	meanings
-	leanings
-	sealings
-	seaming
-	sealing
-	measing
-	mealing
 }
 mumble {
 }
 billowing {
 }
 firelit {
-	filbert
-	firelight
-	fertile
-	filter
-	filtrate
+	firelight :: 11
 }
 caterpillar {
-	participle
-	altarpiece
 }
 lighted {
 }
@@ -5133,6 +3859,8 @@ frantic {
 fantastic {
 }
 exceptional {
+	exceptions :: 17
+	exception :: 18
 }
 moods {
 }
@@ -5167,44 +3895,30 @@ eh {
 ain {
 }
 yer {
-	yerks
-	yerds
-	yerba
-	ydred
-	yerded
-	yore
-	yerk
-	yerd
-	year
-	yare
-	very
-	hery
-	eyry
-	eery
-	aery
+	yerks :: 4
+	yerds :: 4
+	yerba :: 4
+	yore :: 4
+	yerk :: 5
+	yerd :: 5
+	year :: 4
+	yare :: 4
+	very :: 4
+	hery :: 4
+	aery :: 4
 }
 silly {
 }
 abart {
-	barrat
-	aburst
-	aborts
-	abortion
-	rabat
-	abutter
-	abetters
-	aborted
-	boart
-	abort
-	abettor
-	abetter
 }
 haven {
 }
 enough {
 }
 thenks {
-	thankees
+	thinks :: 9
+	thanks :: 9
+	thens :: 9
 }
 laughed {
 }
@@ -5215,118 +3929,6 @@ angry {
 sentences {
 }
 ll {
-	lotto
-	linin
-	levee
-	leses
-	legge
-	leese
-	lessees
-	lulu
-	luff
-	luau
-	loto
-	loss
-	loot
-	loos
-	loor
-	loop
-	loon
-	loom
-	look
-	loof
-	loll
-	logo
-	loco
-	lobo
-	linn
-	lill
-	leve
-	less
-	lere
-	leme
-	leet
-	lees
-	leer
-	leep
-	leek
-	leed
-	lava
-	lass
-	lana
-	lama
-	lessee
-	lye
-	lux
-	luv
-	lur
-	lum
-	lug
-	lud
-	loy
-	lox
-	low
-	lot
-	los
-	lor
-	lop
-	loo
-	log
-	lob
-	lit
-	lis
-	lip
-	lin
-	lig
-	lie
-	lid
-	lib
-	lez
-	ley
-	lex
-	lew
-	lev
-	leu
-	let
-	les
-	lep
-	lem
-	lek
-	lei
-	leg
-	lee
-	led
-	lea
-	lay
-	lax
-	law
-	lav
-	lat
-	las
-	lar
-	lap
-	lam
-	lah
-	lag
-	lad
-	lac
-	lab
-	ill
-	ell
-	eel
-	all
-	ala
-	aal
-	sl
-	lo
-	li
-	lf
-	le
-	la
-	gl
-	fl
-	el
-	l
 }
 doorway {
 }
@@ -5343,6 +3945,7 @@ wine {
 collect {
 }
 sufficiently {
+	sufficient :: 20
 }
 dinner {
 }
@@ -5425,14 +4028,10 @@ likes {
 does {
 }
 invigorating {
-	navigator
-	invigorate
-	invigorant
 }
 indisputably {
 }
 counterbalance {
-	countable
 }
 weight {
 }
@@ -5497,17 +4096,6 @@ cloth {
 furniture {
 }
 philosophical {
-	shopaholic
-	phacoidal
-	sophical
-	chipolata
-	philomaths
-	philopenas
-	phacolites
-	phacoliths
-	chipolatas
-	chilopods
-	philamots
 }
 writers {
 }
@@ -5560,7 +4148,6 @@ friday {
 dovetailing {
 }
 commonplace {
-	complanate
 }
 social {
 }
@@ -5589,8 +4176,10 @@ sensation {
 ultimatum {
 }
 germany {
-	german
-	germanely
+	german :: 12
+	germanely :: 11
+	germans :: 11
+	germane :: 11
 }
 telegram {
 }
@@ -5601,8 +4190,6 @@ canard {
 wiring {
 }
 authentication {
-	authentic
-	autogenic
 }
 receiving {
 }
@@ -5653,20 +4240,7 @@ witness {
 later {
 }
 occurrences {
-	uncurses
-	trounces
-	uncurse
-	unconcerns
-	scourges
-	onscreen
-	trouncers
-	scourge
-	occurrence
-	occurrents
-	recursions
-	occurrent
-	recursion
-	decurions
+	occurrence :: 20
 }
 shouting {
 }
@@ -5715,7 +4289,6 @@ drunkards {
 rattling {
 }
 londonwards {
-	landowners
 }
 peered {
 }
@@ -5752,7 +4325,6 @@ remaining {
 bridges {
 }
 adventurous {
-	adventures
 }
 crawled {
 }
@@ -5787,10 +4359,6 @@ fringe {
 farther {
 }
 inflammation {
-	inflame
-	informant
-	informal
-	inflator
 }
 crept {
 }
@@ -5835,8 +4403,7 @@ inkerman {
 earlier {
 }
 eden {
-	denned
-	end
+	emend :: 6
 }
 reported {
 }
@@ -5847,34 +4414,14 @@ colonel {
 regiment {
 }
 questioning {
-	questionee
-	questioned
-	questioner
-	question
-	questions
-	questings
 }
 military {
 }
 authorities {
-	authorizes
-	authorized
-	authorises
-	authorised
-	authorings
-	authorize
-	authorism
-	authorish
-	authorise
-	authoress
 }
 alive {
 }
 seriousness {
-	senior
-	neurosis
-	serious
-	resinous
 }
 squadron {
 }
@@ -5889,6 +4436,7 @@ aldershot {
 woods {
 }
 northwest {
+	worthiest :: 14
 }
 summer {
 }
@@ -5937,11 +4485,12 @@ troops {
 guns {
 }
 aren {
-	arenas
-	urena
-	frena
-	crena
-	arena
+	arenas :: 6
+	urena :: 6
+	frena :: 6
+	crena :: 6
+	arena :: 7
+	are :: 6
 }
 avoided {
 }
@@ -5964,18 +4513,13 @@ extended {
 handful {
 }
 strawberries {
-	strawberry
-	strawier
-	strawiest
 }
 generous {
 }
 enthusiastic {
-	enthusiasm
-	enthusiast
+	enthusiast :: 20
 }
 byfleet {
-	flybelt
 }
 links {
 }
@@ -6088,70 +4632,30 @@ speaker {
 darned {
 }
 strite {
-	striven
-	strived
-	strives
-	striver
-	striped
-	stripes
-	striper
-	strikes
-	striker
-	strigae
-	strifes
-	strides
-	striate
-	stretti
-	stoiter
-	stirred
-	stirrer
-	stiller
-	stiffer
-	staired
-	stainer
-	staider
-	strive
-	stripe
-	strike
-	strife
-	stride
-	striae
-	sprite
-	sortie
-	stire
-	eeriest
-	retires
-	satire
-	sprites
-	stirrers
-	sorites
-	seriate
-	strivers
-	stripper
-	stripped
-	stripers
-	strikers
-	strigged
-	striddle
-	strident
-	stridden
-	retirers
-	serinette
-	strifeful
-	striddled
+	striate :: 9
+	stretti :: 9
+	stoiter :: 10
+	stinter :: 9
+	stilter :: 9
+	strive :: 9
+	stripe :: 9
+	strike :: 9
+	strife :: 9
+	stride :: 9
+	striae :: 9
+	strident :: 9
+	stoiters :: 9
 }
 finish {
 }
 carn {
-	caranna
-	carny
-	carney
-	carnet
-	carnal
-	careen
-	canner
-	narc
-	cran
+	carny :: 7
+	carney :: 6
+	carnet :: 6
+	carnal :: 6
+	narc :: 6
+	cran :: 6
+	car :: 6
 }
 shells {
 }
@@ -6168,28 +4672,16 @@ towers {
 addressed {
 }
 didn {
-	diene
-	dinner
-	dinned
-	dienes
-	dint
-	dins
-	dink
-	ding
-	dine
-	nid
-	din
+	did :: 6
 }
 presence {
 }
 marshall {
-	marshal
-	marsh
-	marshaller
-	marshalled
-	marshals
-	marshland
-	marshalcy
+	marshal :: 14
+	marshaller :: 14
+	marshalled :: 14
+	marshals :: 13
+	marshalcy :: 12
 }
 tobacconist {
 }
@@ -6218,7 +4710,8 @@ attempts {
 success {
 }
 stereotyped {
-	stereotype
+	stereotypy :: 17
+	stereotype :: 20
 }
 formula {
 }
@@ -6233,12 +4726,6 @@ confess {
 armament {
 }
 imagination {
-	morganite
-	amating
-	morganatic
-	angiomata
-	imaginists
-	imaginist
 }
 belligerent {
 }
@@ -6263,20 +4750,13 @@ measured {
 intervals {
 }
 addlestone {
-	adolescent
+	adderstone :: 16
 }
 shelled {
 }
 destroying {
 }
 summerhouse {
-	humpers
-	hummers
-	humourless
-	humoursome
-	humorless
-	musher
-	mushroomer
 }
 vigorously {
 }
@@ -6351,26 +4831,6 @@ remembered {
 cousins {
 }
 leatherhead {
-	deathly
-	haltered
-	loathed
-	loather
-	deathlier
-	lathered
-	leathered
-	weathered
-	feathered
-	blathered
-	leather
-	dratchell
-	blather
-	leathery
-	leathers
-	leathern
-	diathermal
-	loathers
-	letterhead
-	slather
 }
 downhill {
 }
@@ -6535,11 +4995,12 @@ throughout {
 oppressed {
 }
 forebodings {
-	foreboding
+	foreboding :: 20
 }
 evil {
 }
 reassuringly {
+	reassuring :: 20
 }
 pointing {
 }
@@ -6568,6 +5029,7 @@ afraid {
 fusillade {
 }
 unexpectedly {
+	unexpected :: 20
 }
 stirred {
 }
@@ -6588,37 +5050,17 @@ reverted {
 circumstances {
 }
 precipitated {
-	crepitate
-	practised
-	practiced
-	crepitated
-	forcipated
-	predict
-	predicate
-	predicant
-	predicted
-	predacity
-	paediatric
-	predicates
-	predicated
-	predicants
-	patricide
-	prelatical
-	pederastic
-	replicated
 }
 ockham {
 }
 horizon {
 }
 thunderstorm {
-	thunderous
-	thunders
 }
 masses {
 }
 ripley {
-	ripely
+	ripely :: 10
 }
 escaped {
 }
@@ -6647,17 +5089,7 @@ pierced {
 apparition {
 }
 blindingly {
-	blooding
-	blind
-	bloodying
-	blending
-	bleeding
-	broodingly
-	blindings
-	blindly
-	dabblingly
-	blinding
-	blindage
+	blinding :: 16
 }
 violet {
 }
@@ -6696,7 +5128,10 @@ confusing {
 hail {
 }
 gustily {
-	lustily
+	dustily :: 11
+	rustily :: 11
+	fustily :: 11
+	mustily :: 11
 }
 following {
 }
@@ -6827,23 +5262,7 @@ howl {
 drowned {
 }
 aloo {
-	atoll
-	alowe
-	aloud
-	aloof
-	along
-	alone
-	aloha
-	aloft
-	aloes
-	aloed
-	alods
-	cloaca
-	alto
-	also
-	alow
-	aloe
-	alod
+	aloof :: 7
 }
 companion {
 }
@@ -6946,9 +5365,6 @@ stumbled {
 broadcloth {
 }
 distinguish {
-	distingue
-	dusting
-	distinguee
 }
 sturdy {
 }
@@ -7003,7 +5419,7 @@ pools {
 carpet {
 }
 mechanically {
-	mechanical
+	mechanical :: 20
 }
 whiskey {
 }
@@ -7036,12 +5452,12 @@ scud {
 haze {
 }
 conflagration {
-	conflating
 }
 neither {
 }
 reflections {
-	reflection
+	reflection :: 20
+	deflection :: 17
 }
 ceiling {
 }
@@ -7050,10 +5466,7 @@ resinous {
 tang {
 }
 noiselessly {
-	noiseful
-	noisomely
-	noiseless
-	noisily
+	noiseless :: 18
 }
 ruins {
 }
@@ -7108,7 +5521,7 @@ desk {
 chair {
 }
 particularly {
-	particular
+	particular :: 20
 }
 amazingly {
 }
@@ -7165,7 +5578,8 @@ hatless {
 coat {
 }
 hasn {
-	harns
+	harns :: 6
+	has :: 6
 }
 obscurity {
 }
@@ -7184,7 +5598,7 @@ forgetfulness {
 wondering {
 }
 perplexingly {
-	perplexing
+	perplexing :: 20
 }
 brokenly {
 }
@@ -7243,13 +5657,17 @@ leisurely {
 fugitives {
 }
 headlike {
+	headlines :: 12
+	headliner :: 12
+	headlined :: 12
+	headline :: 13
 }
 exactly {
 }
 cowled {
 }
 complicated {
-	complicate
+	complicate :: 20
 }
 scintillated {
 }
@@ -7368,20 +5786,6 @@ vapour {
 streamed {
 }
 brightening {
-	frightens
-	brightest
-	brightens
-	brightness
-	frightened
-	frightener
-	brightened
-	breathing
-	berthing
-	heighten
-	frighten
-	brighter
-	brighten
-	blighter
 }
 pillars {
 }
@@ -7534,69 +5938,6 @@ dickens {
 armour {
 }
 luminium {
-	mulling
-	mullion
-	mullein
-	alumni
-	aumailing
-	ulmin
-	unmilled
-	rumina
-	mucin
-	lupin
-	lumen
-	luminists
-	unmindful
-	unmingled
-	luminesce
-	luminance
-	luminants
-	luminaire
-	semilunes
-	cumin
-	aumil
-	lemurine
-	lumpkins
-	luminist
-	luminous
-	luminary
-	lumining
-	luminant
-	semilune
-	luminously
-	luminosity
-	luminarist
-	luminarism
-	luminaries
-	lumination
-	fuming
-	bumbling
-	mumbling
-	luminesced
-	luminesces
-	lumpiness
-	luminances
-	luminaires
-	bimanual
-	illinium
-	numina
-	lumpkin
-	lumping
-	lumined
-	lumines
-	luminal
-	muslin
-	murlin
-	cumins
-	musingly
-	lumine
-	lumina
-	luging
-	liming
-	lignum
-	unlime
-	muslins
-	lamina
 }
 mighty {
 }
@@ -7609,11 +5950,8 @@ strikes {
 halfway {
 }
 interrupted {
-	unstripped
-	interrupts
-	interluded
-	interrupt
-	interlude
+	interrupts :: 17
+	interrupt :: 18
 }
 true {
 }
@@ -7622,7 +5960,11 @@ detailed {
 brigadier {
 }
 marvin {
-	varmint
+	mauvin :: 9
+	martin :: 9
+	marlin :: 9
+	margin :: 9
+	varmint :: 9
 }
 southward {
 }
@@ -7645,6 +5987,7 @@ bundles {
 shabby {
 }
 assiduously {
+	assiduous :: 18
 }
 engaged {
 }
@@ -7653,6 +5996,9 @@ desertion {
 packing {
 }
 sunday {
+	sunray :: 9
+	sundry :: 9
+	sundae :: 9
 }
 farm {
 }
@@ -7681,19 +6027,16 @@ arrows {
 anyhow {
 }
 aven {
-	avenue
-	avenir
-	avenge
-	veena
-	avenses
-	avine
-	avens
+	avenue :: 6
+	avenir :: 6
+	avenge :: 6
+	avine :: 6
+	avens :: 7
+	ave :: 6
 }
 actively {
 }
 southwestward {
-	southwards
-	southward
 }
 digging {
 }
@@ -7730,14 +6073,8 @@ expostulating {
 corporal {
 }
 explainin {
-	explains
-	explain
-	exilian
-	explanting
-	explainers
-	explaining
-	explained
-	explainer
+	explain :: 14
+	explaining :: 17
 }
 vallyble {
 }
@@ -7746,24 +6083,14 @@ digest {
 headquarters {
 }
 established {
-	establish
+	establish :: 18
 }
 astonishing {
-	astonish
-	astonishes
-	astonished
 }
 miscellany {
 }
 conveyances {
-	conveyors
-	conveyals
-	conveyers
-	conveyal
-	conveyance
-	conveyable
-	conveys
-	convey
+	conveyance :: 20
 }
 horseflesh {
 }
@@ -7788,7 +6115,8 @@ delighted {
 variation {
 }
 experiences {
-	experience
+	expedience :: 17
+	experience :: 20
 }
 midst {
 }
@@ -7835,8 +6163,9 @@ traffic {
 savage {
 }
 thames {
-	themes
-	shames
+	thymes :: 9
+	thanes :: 9
+	shame :: 9
 }
 spent {
 }
@@ -7901,15 +6230,16 @@ screamed {
 cows {
 }
 unconcernedly {
-	unforcedly
 }
 pollard {
 }
 willows {
 }
 sojers {
-	jokers
-	sorer
+	sowers :: 9
+	solers :: 9
+	sogers :: 9
+	sobers :: 9
 }
 doubtfully {
 }
@@ -7946,8 +6276,6 @@ splashing {
 frightened {
 }
 portmanteau {
-	portmantle
-	portman
 }
 terrified {
 }
@@ -8066,9 +6394,8 @@ tidal {
 bore {
 }
 scaldingly {
-	scalding
-	scaldings
-	scoldingly
+	scalding :: 16
+	scoldingly :: 17
 }
 bend {
 }
@@ -8097,19 +6424,9 @@ downstream {
 submerged {
 }
 tumultuously {
-	tumultuous
-	xylotomous
-	hylotomous
+	tumultuous :: 20
 }
 intermittently {
-	entirely
-	interlay
-	interramal
-	intermodal
-	intermarry
-	internally
-	interlays
-	interplay
 }
 churning {
 }
@@ -8120,8 +6437,6 @@ spray {
 froth {
 }
 purposelessness {
-	purposely
-	purloiners
 }
 wounded {
 }
@@ -8158,7 +6473,7 @@ strides {
 riverbank {
 }
 unavailingly {
-	unavailing
+	unavailing :: 20
 }
 ducked {
 }
@@ -8175,9 +6490,6 @@ frothing {
 comrade {
 }
 laleham {
-	almehs
-	almeh
-	lame
 }
 generators {
 }
@@ -8278,21 +6590,8 @@ destructive {
 earthquake {
 }
 lisbon {
-	billons
 }
 interplanetary {
-	interlay
-	internally
-	paternally
-	interlays
-	interplay
-	interposal
-	interpolar
-	interplead
-	interplays
-	interplant
-	taperingly
-	integrally
 }
 reinforcement {
 }
@@ -8301,38 +6600,9 @@ meanwhile {
 naval {
 }
 antagonists {
-	botanising
-	bostangis
-	abiogenist
-	taglionis
-	totalising
-	monogamist
-	outgassing
-	agronomist
-	intaglios
-	agonistes
-	agonistic
-	assonating
-	gitanos
-	antilogs
-	toastings
-	sagination
-	antipopes
-	stationing
-	agonistics
-	notarising
-	astounding
-	antilogous
-	antilogies
-	agonist
-	intaglioes
-	antagonism
-	antagonise
-	antagonist
-	tangoists
-	agonists
-	agnostics
-	stagnation
+	antagonism :: 17
+	antagonise :: 17
+	antagonist :: 20
 }
 copse {
 }
@@ -8343,8 +6613,6 @@ hilly {
 slopes {
 }
 kingston {
-	kingpost
-	kingposts
 }
 richmond {
 }
@@ -8373,7 +6641,7 @@ devoted {
 scouts {
 }
 heliographs {
-	heliograph
+	heliograph :: 20
 }
 proximity {
 }
@@ -8392,11 +6660,10 @@ towering {
 therefrom {
 }
 merrow {
-	mellower
+	marrowed :: 9
+	marrow :: 9
 }
 banstead {
-	bandiest
-	bedstead
 }
 preparing {
 }
@@ -8419,8 +6686,6 @@ parboiled {
 halliford {
 }
 walton {
-	wanton
-	wantonly
 }
 tediously {
 }
@@ -8453,6 +6718,8 @@ overcame {
 sick {
 }
 wanderingly {
+	wandering :: 18
+	wanderings :: 17
 }
 bitterly {
 }
@@ -8465,6 +6732,7 @@ desire {
 worried {
 }
 excessively {
+	excessive :: 18
 }
 dozed {
 }
@@ -8515,16 +6783,6 @@ blankly {
 vacantly {
 }
 complaining {
-	complaints
-	complained
-	complainer
-	complain
-	complying
-	compliant
-	complaint
-	complains
-	compiling
-	comparing
 }
 tone {
 }
@@ -8533,14 +6791,7 @@ sins {
 roads {
 }
 sodom {
-	sodomy
-	sodium
-	iodism
-	modus
-	modes
-	modems
-	mods
-	sod
+	sodomy :: 9
 }
 gomorrah {
 }
@@ -8567,7 +6818,7 @@ flamed {
 involved {
 }
 sunbury {
-	sunberry
+	sunburn :: 11
 }
 given {
 }
@@ -8584,30 +6835,12 @@ former {
 wandered {
 }
 interrupting {
-	uptearing
-	intrigue
-	uttering
-	intriguer
-	petering
-	interrupts
-	interrupt
-	interpage
 }
 mountains {
 }
 rocks {
 }
 sitteth {
-	kithes
-	tithes
-	sithens
-	sithe
-	shite
-	sithes
-	sithen
-	hithes
-	tithers
-	withes
 }
 throne {
 }
@@ -8618,7 +6851,7 @@ religion {
 collapses {
 }
 earthquakes {
-	earthquake
+	earthquake :: 20
 }
 floods {
 }
@@ -8665,10 +6898,6 @@ brother {
 medical {
 }
 examination {
-	examinant
-	examinate
-	examinator
-	examinates
 }
 lengthy {
 }
@@ -8691,6 +6920,7 @@ leader {
 expanded {
 }
 comfortingly {
+	comforting :: 20
 }
 crammer {
 }
@@ -8711,25 +6941,11 @@ gazette {
 announced {
 }
 interruption {
-	incorrupt
-	entropium
-	importune
-	interrupts
-	interunion
-	interlopes
-	interloper
-	interloped
-	interrupt
-	interlope
-	interpose
-	interpone
-	importuned
-	importunes
-	importuner
-	intercrop
-	interposes
 }
 telegraphic {
+	telegraph :: 18
+	telegraphy :: 17
+	telegraphs :: 17
 }
 anxiety {
 }
@@ -8754,27 +6970,14 @@ breakdown {
 theatre {
 }
 virginia {
-	virginal
-	virginals
-	virga
-	virginally
-	viraginian
-	virgin
-	varying
+	virginal :: 12
+	virginium :: 12
+	virginity :: 12
+	virgin :: 12
 }
 guildford {
 }
 arrangements {
-	strange
-	argentum
-	termagants
-	arguments
-	agreements
-	agrements
-	argents
-	stranger
-	strangers
-	strangest
 }
 route {
 }
@@ -8797,7 +7000,7 @@ manager {
 bears {
 }
 resemblance {
-	resemblant
+	resemblant :: 17
 }
 waylaid {
 }
@@ -8808,7 +7011,6 @@ excepting {
 connected {
 }
 electrified {
-	electrify
 }
 justify {
 }
@@ -8817,20 +7019,6 @@ extravagant {
 plenty {
 }
 londoners {
-	ponderers
-	wonderers
-	rondavels
-	rondels
-	conceders
-	fondlers
-	solderers
-	unsolders
-	drollness
-	solander
-	oleanders
-	solanders
-	colanders
-	looseners
 }
 monday {
 }
@@ -8861,9 +7049,8 @@ useless {
 disabled {
 }
 windsor {
-	windroses
-	windrose
-	windrows
+	windrose :: 11
+	windrows :: 11
 }
 prevails {
 }
@@ -8884,10 +7071,7 @@ menagerie {
 positively {
 }
 expressions {
-	oppression
-	repression
-	expression
-	exposition
+	expression :: 20
 }
 reports {
 }
@@ -8942,16 +7126,8 @@ precise {
 extent {
 }
 information {
-	inamorato
-	inform
-	informant
-	informal
-	informally
-	informants
 }
 disorganised {
-	disorganic
-	disarrange
 }
 expecting {
 }
@@ -8978,11 +7154,6 @@ hosts {
 traps {
 }
 molesey {
-	moles
-	modestly
-	polysemy
-	moyles
-	molest
 }
 hampton {
 }
@@ -8991,65 +7162,26 @@ court {
 clients {
 }
 underground {
-	undertow
-	underdog
-	under
-	ungored
-	underdo
-	undergo
-	ungroomed
-	unrouged
-	ungorged
-	undersongs
-	underwoods
-	unforged
-	undersong
-	undertook
-	undershot
-	underwood
-	underplot
-	underprop
-	undercool
-	undercook
-	underdogs
-	underflow
-	underfoot
-	underfong
-	undergird
-	undergown
-	undergone
-	undergoes
-	undergrad
-	underbough
-	underprops
-	undercools
-	undercooks
-	underdoing
-	undergowns
-	undergoing
-	undoer
-	undergrown
-	undergrove
+	undergrown :: 17
 }
 barnes {
-	bareness
-	barneys
-	banners
+	baryes :: 9
+	barres :: 9
+	barney :: 9
+	barges :: 9
+	barbes :: 9
+	barns :: 9
+	barneys :: 10
 }
 wimbledon {
+	wimbled :: 14
 }
 park {
 }
 kew {
 }
 unnaturally {
-	unnatural
-	untowardly
-	unfatherly
-	unearthly
-	taciturnly
-	unartfully
-	unliterary
+	unnatural :: 18
 }
 hearsay {
 }
@@ -9066,16 +7198,8 @@ crammed {
 woolwich {
 }
 chatham {
-	smatch
-	chats
-	chamlet
-	chartroom
-	chat
-	cham
 }
 pleasantries {
-	pleasantry
-	pleasanter
 }
 tamers {
 }
@@ -9106,7 +7230,6 @@ floating {
 reservist {
 }
 wellington {
-	welting
 }
 roughs {
 }
@@ -9139,8 +7262,7 @@ planted {
 cases {
 }
 annihilated {
-	annihilate
-	lanthanide
+	annihilate :: 20
 }
 losses {
 }
@@ -9161,37 +7283,6 @@ sixteen {
 covering {
 }
 concentration {
-	anorectic
-	accretion
-	recreation
-	carnotite
-	contrite
-	contrate
-	anorectics
-	creation
-	crenation
-	containers
-	concerti
-	creational
-	manticore
-	container
-	consortia
-	concertina
-	manometric
-	centroidal
-	contraries
-	concentric
-	retraction
-	trajection
-	recitation
-	anoretic
-	acieration
-	cameration
-	cinerators
-	cineration
-	cornettino
-	cornetti
-	cinerator
 }
 hoped {
 }
@@ -9200,14 +7291,7 @@ explosives {
 manufactured {
 }
 distributed {
-	disturbers
-	disturb
-	distrouble
-	distribute
-	bistred
-	disturbs
-	disturber
-	disturbed
+	distribute :: 20
 }
 situation {
 }
@@ -9232,8 +7316,6 @@ measures {
 protection {
 }
 southwestern {
-	southern
-	southerner
 }
 suburbs {
 }
@@ -9286,25 +7368,16 @@ maps {
 trafalgar {
 }
 greengrocers {
-	cogeners
-	groschen
-	ergonomics
-	groschens
 }
 westminster {
-	miswritten
-	wintriness
-	westernism
 }
 contrasted {
 }
 conspicuously {
 }
 sabbath {
-	baths
-	bahts
-	habits
-	sublethal
+	sabbats :: 11
+	sabbat :: 12
 }
 fashionable {
 }
@@ -9317,7 +7390,6 @@ cabs {
 undecided {
 }
 workday {
-	workaday
 }
 fashioned {
 }
@@ -9382,11 +7454,10 @@ marylebone {
 portland {
 }
 promenaders {
-	proseman
-	promenade
-	promenaded
-	promenades
-	promenader
+	promenade :: 18
+	promenaded :: 17
+	promenades :: 19
+	promenader :: 20
 }
 couples {
 }
@@ -9429,27 +7500,15 @@ disorderly {
 tocsin {
 }
 illumination {
-	albuminate
-	illuminato
-	illuminati
-	illuminate
+	illuminato :: 19
+	illuminati :: 20
 }
 bursting {
 }
 climax {
 }
 forerunners {
-	foreruns
-	foreseen
-	fourpences
-	forenoons
-	fleurons
-	foundress
-	forerun
-	founders
-	forerunner
-	fourteens
-	fortunes
+	forerunner :: 20
 }
 procession {
 }
@@ -9460,8 +7519,6 @@ loading {
 gradient {
 }
 euston {
-	duotones
-	buttonses
 }
 delivering {
 }
@@ -9500,13 +7557,9 @@ rooms {
 terraces {
 }
 westbourne {
-	westbound
 }
 pancras {
-	pancreas
-	pancratist
-	pancreases
-	parceners
+	pancreas :: 11
 }
 westward {
 }
@@ -9515,7 +7568,6 @@ kilburn {
 john {
 }
 hampstead {
-	heapstead
 }
 shoreditch {
 }
@@ -9528,9 +7580,13 @@ hoxton {
 vastness {
 }
 ealing {
-	malinger
-	malingerer
-	galingale
+	baling :: 9
+	malinger :: 9
+	paling :: 9
+	eating :: 9
+	easing :: 9
+	earing :: 9
+	waling :: 9
 }
 rubbing {
 }
@@ -9567,12 +7623,6 @@ city {
 slipping {
 }
 neighbouring {
-	neighbour
-	neighbors
-	neighbours
-	neighborly
-	neighbored
-	neighbor
 }
 carelessly {
 }
@@ -9611,10 +7661,6 @@ pockets {
 offensive {
 }
 conflicting {
-	conflict
-	conflating
-	conflicts
-	conflicted
 }
 accounts {
 }
@@ -9627,113 +7673,13 @@ volumes {
 communicated {
 }
 sirenlike {
-	sprinkle
-	shrinelike
-	strinkle
-	nurselike
 }
 howls {
 }
 howling {
 }
 george {
-	georgette
-	aegrotat
-	agorae
-	storge
-	glosser
-	gloried
-	glories
-	georgics
-	geordies
-	groveler
-	grousers
-	grossest
-	geometer
-	glossers
-	grove
-	grope
-	grego
-	gorse
-	gorge
-	gores
-	gored
-	goner
-	gofer
-	goers
-	gloriole
-	groggery
-	groggier
-	garrote
-	regroup
-	regorge
-	legroom
-	groyne
-	grower
-	grovet
-	groves
-	grovel
-	grouse
-	groset
-	groser
-	groove
-	gropes
-	groper
-	groped
-	gromet
-	grocer
-	gourde
-	gorier
-	gooier
-	goober
-	goffer
-	glower
-	glover
-	gloire
-	gherao
-	gaoler
-	growler
-	growers
-	grouter
-	grouses
-	grouser
-	grouper
-	grossed
-	grosses
-	grosser
-	grosers
-	grosets
-	gropers
-	groover
-	grommet
-	grodier
-	grocery
-	grocers
-	groaner
-	overgo
-	godrooned
-	orogen
-	garrotte
-	groveller
-	moorage
-	grossness
-	goosier
-	goosery
-	goopier
-	goofier
-	goobers
-	georgic
-	geordie
-	gooseries
-	rego
-	ogre
-	gore
-	goer
-	gear
-	ergo
-	gearbox
-	ger
-	geo
+	georgette :: 9
 }
 unseasoned {
 }
@@ -9748,16 +7694,13 @@ volley {
 serenely {
 }
 painshill {
-	palish
-	clanship
-	planish
 }
 led {
 }
 mettle {
 }
 deliberately {
-	deliberate
+	deliberate :: 20
 }
 paces {
 }
@@ -9802,27 +7745,13 @@ curved {
 dozen {
 }
 ditton {
-	dinmonts
-	diplont
-	dinmont
-	ditone
+	ditto :: 10
+	dittoing :: 9
+	dittos :: 9
+	dotting :: 9
 }
 esher {
-	ashore
-	ashery
-	sphere
-	usher
-	usherette
-	sheer
-	sheers
-	usheress
-	spheres
-	ethers
-	ephors
-	ushered
-	ushers
-	rehs
-	usheresses
+	ethers :: 8
 }
 similarly {
 }
@@ -9843,69 +7772,12 @@ nettles {
 brambles {
 }
 indistinctness {
-	insect
-	incest
-	scientised
-	invested
-	inductees
-	insects
-	inducts
-	indicts
-	indents
-	inspected
-	insisted
-	indictees
-	indicates
-	endosmotic
-	ingested
-	indistinct
-	insistence
-	desistance
-	andesitic
-	intercedes
-	infested
-	indiscreet
-	indiscrete
 }
 staines {
-	stannites
-	patines
-	sanitate
-	steined
-	tisane
-	starnie
-	stannel
-	staniel
-	stained
-	stainer
-	steane
-	stains
-	stein
-	stain
-	starnies
-	stannite
-	staniels
-	stainers
-	matiness
-	satinets
-	seminate
-	tisanes
-	satinettes
-	satinette
-	basinets
-	stainless
-	staidness
-	insanest
-	ratines
-	basinet
-	trainees
-	trainers
-	artiness
-	staggering
-	saginate
-	plainest
-	satined
-	satinet
+	stained :: 11
+	stainer :: 11
+	stains :: 11
+	stainers :: 12
 }
 positions {
 }
@@ -9944,9 +7816,7 @@ grasp {
 organized {
 }
 disciplined {
-	discipline
-	disincline
-	disciple
+	discipline :: 20
 }
 spurts {
 }
@@ -9961,7 +7831,7 @@ hive {
 bees {
 }
 exterminate {
-	extermine
+	extermine :: 17
 }
 needed {
 }
@@ -9980,13 +7850,10 @@ moscow {
 province {
 }
 interminable {
-	interramal
-	intermodal
 }
 discharged {
 }
 gunwise {
-	sunwise
 }
 hurtled {
 }
@@ -10003,21 +7870,13 @@ broader {
 kopjes {
 }
 southeast {
-	softhead
-	southed
-	souther
-	southpaw
-	southers
-	southern
-	soutache
-	housesat
-	soutaches
 }
 hooting {
 }
 ominous {
 }
 gunlike {
+	sunlike :: 11
 }
 canister {
 }
@@ -10090,9 +7949,7 @@ flowing {
 sluggishly {
 }
 reluctantly {
-	reluctance
-	reluctancy
-	reluctant
+	reluctant :: 18
 }
 combined {
 }
@@ -10115,12 +7972,10 @@ dispersion {
 clung {
 }
 precipitation {
-	precaution
 }
 ghosts {
 }
 nothingness {
-	nothings
 }
 starving {
 }
@@ -10147,6 +8002,10 @@ siege {
 brilliant {
 }
 bushey {
+	bushy :: 9
+	bushes :: 9
+	bushel :: 9
+	bushed :: 9
 }
 fitful {
 }
@@ -10157,7 +8016,7 @@ haphazard {
 overwhelm {
 }
 methodically {
-	methodical
+	methodical :: 20
 }
 wasps {
 }
@@ -10166,14 +8025,13 @@ stifling {
 formed {
 }
 hanwell {
-	hansel
-	hansels
 }
 coombe {
 }
 malden {
-	maidenly
-	madden
+	maidenly :: 9
+	milden :: 9
+	maiden :: 9
 }
 possibility {
 }
@@ -10262,7 +8120,6 @@ extinction {
 impenetrable {
 }
 disintegrating {
-	deratings
 }
 organism {
 }
@@ -10281,107 +8138,8 @@ shipping {
 channel {
 }
 organisation {
-	organismal
-	organismic
-	organising
-	organisers
-	trisagion
-	organic
-	trisagions
-	organicist
-	organicism
-	organism
-	organise
-	organity
-	organist
-	rogation
-	rogations
-	organizes
-	organisms
-	organises
-	organiser
-	organised
-	organists
-	troating
-	gitanos
-	roastings
-	originates
-	arsonists
-	notarising
-	aroints
-	gyrations
-	roasting
-	groanings
-	arsonist
-	origans
-	organizers
 }
 organisations {
-	organismal
-	organismic
-	organising
-	organisers
-	ortaniques
-	orgiast
-	trisagion
-	organic
-	signatory
-	tangoist
-	jargonist
-	outstaring
-	trisagions
-	organicist
-	organicism
-	orgiasts
-	orgastic
-	organism
-	organise
-	organity
-	organist
-	rogation
-	gravitons
-	orientates
-	frigatoons
-	rogations
-	ligations
-	negations
-	gradations
-	rotations
-	organizes
-	organisms
-	organises
-	organiser
-	organised
-	organists
-	troating
-	ignaros
-	agronomist
-	gitanos
-	roastings
-	originates
-	transistor
-	assorting
-	grainiest
-	arsonites
-	arsonists
-	organs
-	instigator
-	notarising
-	aroints
-	migrations
-	gyrations
-	garottings
-	roasting
-	amortising
-	groanings
-	arsonite
-	arsonist
-	notarise
-	negotiants
-	jargonists
-	ignorants
-	origans
-	organizers
 }
 losing {
 }
@@ -10466,7 +8224,6 @@ belsize {
 skirting {
 }
 edgware {
-	ragweed
 }
 fasting {
 }
@@ -10499,12 +8256,7 @@ cycles {
 hansom {
 }
 albans {
-	ablins
-	albinos
-	albinism
-	albiness
-	nablas
-	blains
+	ambans :: 9
 }
 chelmsford {
 }
@@ -10515,15 +8267,19 @@ stile {
 crossing {
 }
 northeastward {
-	northwards
 }
 farmhouses {
 }
 names {
 }
 barnet {
-	banneret
-	banter
+	barret :: 9
+	barney :: 9
+	barbet :: 9
+	banter :: 9
+	garnet :: 9
+	burnet :: 9
+	carnet :: 9
 }
 travellers {
 }
@@ -10576,7 +8332,7 @@ retreating {
 jaw {
 }
 bloodstained {
-	bloodstain
+	bloodstain :: 20
 }
 knuckles {
 }
@@ -10585,7 +8341,6 @@ sister {
 surgeon {
 }
 stanmore {
-	starmonger
 }
 pinner {
 }
@@ -10602,17 +8357,6 @@ died {
 uneasy {
 }
 anticipation {
-	optician
-	action
-	actinon
-	antiphonic
-	antic
-	antipope
-	anticous
-	antipopes
-	opticians
-	anthropic
-	capitano
 }
 wayfarers {
 }
@@ -10631,13 +8375,7 @@ suggested {
 broached {
 }
 essex {
-	sexes
-	desex
-	desexed
-	desexes
-	exes
-	sex
-	es
+	esse :: 8
 }
 harwich {
 }
@@ -10712,9 +8450,8 @@ pressing {
 blaze {
 }
 perpetually {
-	perpetual
-	perpetuals
-	pertussal
+	perpetual :: 18
+	perpetuals :: 17
 }
 roared {
 }
@@ -10729,53 +8466,11 @@ fled {
 pent {
 }
 distinctness {
-	destinies
-	distended
-	instanced
-	distances
-	distanced
-	disinfect
-	desiccant
-	disenchant
-	directness
-	denticles
-	distent
-	distend
-	dissent
-	discant
-	instance
-	dietines
-	cretinised
-	distinguee
-	distincter
-	dieticians
-	disconsent
-	discontent
-	disconcert
-	diaconates
-	destines
-	destined
-	desistance
-	distinct
-	disthene
-	listened
-	distends
-	distance
-	discutient
-	dissents
-	destiny
-	destine
-	discanted
-	dispence
-	disjunct
-	tendencies
-	distensive
-	discarnate
-	discinct
 }
 merged {
 }
 individuality {
+	individual :: 20
 }
 irresistibly {
 }
@@ -10794,7 +8489,6 @@ scattering {
 uniform {
 }
 gesticulating {
-	graticules
 }
 crooked {
 }
@@ -10833,9 +8527,10 @@ dray {
 rumbled {
 }
 nity {
-	nitty
-	nitry
-	tiny
+	nitty :: 6
+	nitry :: 6
+	tiny :: 6
+	nit :: 6
 }
 echoing {
 }
@@ -10868,7 +8563,6 @@ clerks {
 shopmen {
 }
 spasmodically {
-	psalmodic
 }
 nightshirt {
 }
@@ -10937,39 +8631,6 @@ speaking {
 gently {
 }
 ellen {
-	alkene
-	alkane
-	ulein
-	pleon
-	inline
-	olein
-	olden
-	neele
-	linen
-	alienee
-	glean
-	elvan
-	elsin
-	eloin
-	elmen
-	elfin
-	eldin
-	eland
-	clean
-	alien
-	eluent
-	eluant
-	elsins
-	eloins
-	oldened
-	elfins
-	eleven
-	eldins
-	elding
-	glen
-	elan
-	blenny
-	el
 }
 mother {
 }
@@ -10982,10 +8643,6 @@ stretcher {
 privet {
 }
 garrick {
-	carking
-	garlic
-	garlicky
-	carsick
 }
 justice {
 }
@@ -11074,6 +8731,7 @@ repeatedly {
 relieved {
 }
 hadley {
+	hayle :: 9
 }
 lull {
 }
@@ -11096,6 +8754,7 @@ hunger {
 dared {
 }
 nearby {
+	nearly :: 9
 }
 fleeing {
 }
@@ -11106,21 +8765,17 @@ aimed {
 counties {
 }
 waltham {
+	maltha :: 11
 }
 abbey {
 }
 southend {
-	southed
+	southed :: 13
+	southern :: 12
 }
 shoeburyness {
 }
 broadstairs {
-	broadsheet
-	broadtails
-	broadish
-	broadest
-	broadside
-	broads
 }
 june {
 }
@@ -11141,7 +8796,7 @@ dots {
 legendary {
 }
 goths {
-	gosht
+	gosht :: 8
 }
 huns {
 }
@@ -11150,15 +8805,9 @@ hugest {
 armies {
 }
 asia {
-	aside
-	amiss
-	sais
-	axis
-	asci
-	anis
-	amis
-	sai
-	ais
+	assai :: 6
+	arias :: 6
+	alias :: 6
 }
 current {
 }
@@ -11169,10 +8818,6 @@ goal {
 unarmed {
 }
 unprovisioned {
-	unprovided
-	unprovides
-	unpromised
-	unprovide
 }
 mankind {
 }
@@ -11193,7 +8838,7 @@ blotted {
 chart {
 }
 incessantly {
-	intestacy
+	incessant :: 18
 }
 ramifications {
 }
@@ -11208,18 +8853,12 @@ laying {
 conquered {
 }
 demoralisation {
-	demoralise
 }
 stores {
 }
 railways {
 }
 hamstringing {
-	hamstrung
-	hamstring
-	hammerings
-	maistring
-	hamstrings
 }
 operations {
 }
@@ -11272,27 +8911,8 @@ colchester {
 confirmed {
 }
 highgate {
-	lichgate
-	heritage
 }
 neasden {
-	deadens
-	standee
-	sneads
-	snead
-	sedan
-	sedans
-	seaned
-	deans
-	standees
-	naiades
-	seasoned
-	elands
-	deadness
-	snashed
-	dedans
-	neds
-	weasand
 }
 morrow {
 }
@@ -11331,15 +8951,11 @@ desertions {
 congestion {
 }
 ongar {
-	angora
-	organ
+	organ :: 8
 }
 announcing {
 }
 neighbourhood {
-	neighbour
-	neighbours
-	neighbored
 }
 distribution {
 }
@@ -11348,32 +8964,9 @@ primrose {
 duty {
 }
 alternately {
-	tolerantly
-	altern
-	alterne
-	enteral
-	alter
-	maternal
-	paternal
-	ardently
-	interlay
-	internal
-	elementary
-	external
-	alterity
-	alternes
-	altering
-	alterant
-	internally
-	maternally
-	paternally
-	interlays
-	alternant
-	interplay
-	alternate
-	externally
-	laterally
-	anteriorly
+	alternate :: 18
+	alternates :: 17
+	alternated :: 17
 }
 wednesday {
 }
@@ -11386,15 +8979,7 @@ seized {
 rumours {
 }
 epping {
-	springes
-	springer
-	sphinges
-	springe
-	pieing
-	impinge
-	pening
-	peeing
-	springers
+	upping :: 9
 }
 preferred {
 }
@@ -11407,8 +8992,6 @@ plunderers {
 amazing {
 }
 clacton {
-	clarionet
-	claytonia
 }
 foulness {
 }
@@ -11437,12 +9020,6 @@ ships {
 colliers {
 }
 merchantmen {
-	merchantry
-	merchanted
-	marchantia
-	parchment
-	merchants
-	merchant
 }
 petroleum {
 }
@@ -11455,16 +9032,15 @@ transport {
 liners {
 }
 hamburg {
-	hamburgers
-	hamburger
+	hamburgers :: 11
+	hamburger :: 12
 }
 blackwater {
 }
 chaffering {
 }
 maldon {
-	mandolin
-	mandola
+	mandola :: 9
 }
 perception {
 }
@@ -11491,17 +9067,21 @@ friendless {
 foreign {
 }
 increasingly {
+	increasing :: 20
 }
 hysterical {
 }
 journeyings {
-	journeying
+	journeying :: 20
+	tourneying :: 17
 }
 steamer {
 }
 bargain {
 }
 ostend {
+	ostent :: 9
+	obtend :: 9
 }
 paid {
 }
@@ -11528,6 +9108,7 @@ picking {
 decks {
 }
 dangerously {
+	dangerous :: 18
 }
 seaward {
 }
@@ -11568,6 +9149,7 @@ stunted {
 shiny {
 }
 mudflat {
+	mudflap :: 11
 }
 stalking {
 }
@@ -11584,7 +9166,6 @@ slowness {
 glancing {
 }
 northwestward {
-	northwards
 }
 broadside {
 }
@@ -11641,7 +9222,6 @@ enabled {
 enemy {
 }
 diminishing {
-	diminish
 }
 horizontal {
 }
@@ -11674,7 +9254,7 @@ surging {
 parts {
 }
 ventilators {
-	ventilator
+	ventilator :: 20
 }
 spouting {
 }
@@ -11713,8 +9293,6 @@ haze {
 vibration {
 }
 distinguished {
-	distingue
-	distinguee
 }
 throbbed {
 }
@@ -11785,8 +9363,8 @@ slamming {
 riverward {
 }
 superheated {
-	superheat
-	superheats
+	superheat :: 18
+	superheats :: 17
 }
 hissed {
 }
@@ -11819,17 +9397,6 @@ luggage {
 thickly {
 }
 pompeii {
-	primero
-	polemises
-	pemoline
-	complice
-	pimiento
-	pompier
-	pommies
-	polemic
-	polemize
-	polemise
-	mopier
 }
 suffocating {
 }
@@ -11854,66 +9421,6 @@ subsequent {
 exposed {
 }
 interpretation {
-	expiration
-	reptation
-	propionate
-	patronizer
-	patronises
-	patroniser
-	inceptor
-	hierophant
-	antiphoner
-	rantipole
-	anterior
-	atropine
-	patronize
-	patronise
-	entropion
-	appertain
-	separation
-	reparation
-	praetorian
-	interzonal
-	reappoint
-	preappoint
-	interspace
-	powertrain
-	interlopes
-	interloper
-	interloped
-	intermodal
-	internodal
-	capernoity
-	importance
-	interlope
-	interpose
-	interpone
-	interplay
-	interpage
-	intercrop
-	interposal
-	interposes
-	interposer
-	interposed
-	interpolar
-	interpones
-	interponed
-	interplead
-	interplays
-	interplant
-	interphone
-	interphase
-	interpages
-	interpaged
-	readoption
-	afterpains
-	intercrops
-	fortepiano
-	operation
-	integrator
-	perorating
-	peroration
-	pejoration
 }
 deserved {
 }
@@ -11966,16 +9473,7 @@ sneaking {
 hedgerows {
 }
 plantations {
-	pianolist
-	planations
-	platinous
-	plantation
-	platinoids
-	spallation
-	positional
-	planetoids
-	pianolists
-	spoliation
+	plantation :: 20
 }
 ashen {
 }
@@ -12064,8 +9562,6 @@ urging {
 imprison {
 }
 instantaneous {
-	unicostate
-	inosculate
 }
 clash {
 }
@@ -12110,9 +9606,6 @@ hardware {
 shone {
 }
 contrasting {
-	contrails
-	congrats
-	contras
 }
 copper {
 }
@@ -12121,7 +9614,7 @@ wallpaper {
 imitating {
 }
 supplements {
-	supplement
+	supplement :: 20
 }
 clearer {
 }
@@ -12154,6 +9647,7 @@ dozed {
 wearisome {
 }
 persistence {
+	persistent :: 17
 }
 hunched {
 }
@@ -12168,7 +9662,7 @@ visited {
 pulverised {
 }
 foundations {
-	foundation
+	foundation :: 20
 }
 vastly {
 }
@@ -12179,16 +9673,7 @@ behaved {
 aspect {
 }
 peephole {
-	plugholes
-	lamphole
-	weepholes
-	loopholed
-	loopholes
-	weephole
-	loophole
-	plughole
-	portholes
-	porthole
+	weephole :: 12
 }
 occupant {
 }
@@ -12217,11 +9702,7 @@ rods {
 plates {
 }
 strengthened {
-	strengths
-	strengthen
-	stronghead
-	stringed
-	strength
+	strengthen :: 20
 }
 extracted {
 }
@@ -12230,9 +9711,7 @@ deposited {
 complex {
 }
 coordinated {
-	coradicate
-	coordinate
-	inordinate
+	coordinate :: 20
 }
 structures {
 }
@@ -12245,7 +9724,6 @@ artists {
 imperfect {
 }
 descriptions {
-	descriptor
 }
 witnesses {
 }
@@ -12254,13 +9732,10 @@ illustration {
 pamphlets {
 }
 consecutive {
-	contusive
-	consultive
 }
 tripods {
 }
 flexibility {
-	flexibly
 }
 misleading {
 }
@@ -12279,8 +9754,6 @@ crablike {
 integument {
 }
 controlling {
-	contrail
-	contralti
 }
 delicate {
 }
@@ -12303,7 +9776,6 @@ realisation {
 nausea {
 }
 observation {
-	observant
 }
 concealed {
 }
@@ -12324,7 +9796,7 @@ tight {
 tympanic {
 }
 anatomically {
-	anatomical
+	anatomical :: 20
 }
 whiplike {
 }
@@ -12391,7 +9863,6 @@ pipette {
 recipient {
 }
 carnivorous {
-	carnivores
 }
 physiological {
 }
@@ -12460,6 +9931,7 @@ upright {
 bone {
 }
 unacquainted {
+	unacquaint :: 20
 }
 physiology {
 }
@@ -12490,67 +9962,18 @@ lilybulbs {
 polyp {
 }
 disappeared {
-	disarmer
-	disparates
-	disappear
-	dispaupers
-	disrepair
-	didappers
-	upraised
-	sprained
-	pedaliers
-	dispraises
-	dispraiser
-	dispreads
-	dispraise
-	deaspirate
-	apprised
-	displayer
-	dispace
-	dispersal
-	disparted
-	disparage
-	disparate
-	dispauper
-	despaired
-	dispersals
-	diapers
-	diapase
-	drappie
-	dispensary
-	paradise
-	drappies
-	didapper
-	traipsed
-	paradises
-	despairs
-	disapprove
-	disappears
-	draperies
-	despair
-	dispread
-	diaspore
-	displayers
-	airspeed
-	disparages
-	disparager
-	disparaged
+	disappear :: 18
+	disappears :: 17
 }
 primitive {
 }
 vertebrated {
-	verberated
-	vartabed
-	vertebral
-	vertebrae
-	vertebras
-	vartabeds
-	vertebra
-	vertebrate
+	vertebrae :: 17
+	vertebrate :: 20
 }
 tunicates {
-	tunicae
-	tunicate
+	tunicate :: 16
+	tunicated :: 15
 }
 superseded {
 }
@@ -12559,7 +9982,7 @@ competitor {
 reverse {
 }
 speculative {
-	spiculate
+	speculate :: 17
 }
 repute {
 }
@@ -12570,8 +9993,6 @@ prophecy {
 november {
 }
 december {
-	uncumbered
-	encumbered
 }
 defunct {
 }
@@ -12610,8 +10031,6 @@ teacher {
 accomplishment {
 }
 suppression {
-	supersonic
-	supertonic
 }
 credible {
 }
@@ -12650,15 +10069,13 @@ morbidities {
 scheme {
 }
 differences {
-	difference
+	differency :: 17
+	difference :: 20
 }
 allude {
 }
 suggestions {
-	outsetting
-	outjesting
-	suggestion
-	sustention
+	suggestion :: 20
 }
 weed {
 }
@@ -12667,29 +10084,15 @@ vegetable {
 seeds {
 }
 intentionally {
-	interlay
-	anteriorly
 }
 accidentally {
-	accidental
-	incidental
-	occidental
+	accidental :: 20
 }
 growths {
 }
 popularly {
 }
 competition {
-	comprinted
-	coemption
-	computing
-	coemptions
-	compotier
-	competing
-	competitor
-	compliment
-	completion
-	completing
 }
 creeper {
 }
@@ -12700,8 +10103,6 @@ vigour {
 luxuriance {
 }
 imprisonment {
-	imprisoned
-	importunes
 }
 cactus {
 }
@@ -12722,19 +10123,6 @@ visual {
 different {
 }
 philips {
-	spilth
-	shiplap
-	shilpit
-	phials
-	phallism
-	shiplaps
-	shipless
-	philtres
-	philters
-	plinths
-	plights
-	philippics
-	pholidosis
 }
 commonly {
 }
@@ -12753,10 +10141,9 @@ surviving {
 performing {
 }
 elaborately {
-	elaborator
-	elaborated
-	elaborates
-	elaborate
+	elaborated :: 17
+	elaborates :: 17
+	elaborate :: 18
 }
 preceded {
 }
@@ -12765,20 +10152,11 @@ modulation {
 expiration {
 }
 preparatory {
-	prefatory
-	poetastery
-	prelaty
-	prokaryote
-	predatory
-	precatory
-	prolately
-	portrayer
-	poetastry
-	procaryote
-	preparator
+	preparator :: 20
 }
 suctional {
-	sectional
+	auctions :: 14
+	suction :: 14
 }
 claim {
 }
@@ -12793,23 +10171,8 @@ firmly {
 interchanged {
 }
 intermediation {
-	intermodal
-	internodal
-	moderation
 }
 preconceptions {
-	precisions
-	introspect
-	isentropic
-	preconise
-	precision
-	precincts
-	precession
-	procession
-	preconizes
-	preconises
-	preconised
-	precentors
 }
 vehemence {
 }
@@ -12818,22 +10181,7 @@ telepathic {
 theory {
 }
 conceptions {
-	constipate
-	conceptus
-	correption
-	conceits
-	concepts
-	concepti
-	concettist
-	concettism
-	cispontine
-	consenting
-	conceptive
-	conception
-	inspection
-	tonicities
-	congesting
-	contesting
+	conception :: 20
 }
 ornament {
 }
@@ -12850,7 +10198,6 @@ bodily {
 resources {
 }
 superiority {
-	superiorly
 }
 skates {
 }
@@ -12887,8 +10234,7 @@ motions {
 thereabout {
 }
 beautifully {
-	beautiful
-	beautify
+	beautiful :: 18
 }
 friction {
 }
@@ -12909,21 +10255,9 @@ powerfully {
 traversed {
 }
 electricity {
-	erectility
-	electrize
-	electrise
-	electrify
-	electrics
-	electric
-	celebrity
-	leiotrichy
-	clericity
-	electrizes
-	electrized
-	electrises
-	electrised
 }
 parallelism {
+	parallels :: 17
 }
 disturbing {
 }
@@ -12980,17 +10314,6 @@ dazzle {
 incurred {
 }
 irresistible {
-	bristliest
-	trilobites
-	brittlest
-	bristles
-	resistible
-	trilbies
-	tribeless
-	dribblets
-	triblets
-	tribbles
-	bristle
 }
 starvation {
 }
@@ -13003,40 +10326,11 @@ exposure {
 incompatible {
 }
 dispositions {
-	dystopian
-	diplonts
-	disponing
-	dispondee
-	disponees
-	disport
-	dispone
-	tinpots
-	piston
-	disporting
-	disponging
-	mispointed
-	midpoints
-	disappoint
-	pinpoints
-	disports
-	dispones
-	disponer
-	disponge
-	disponee
-	disponed
-	mispoint
-	dismount
-	disjoint
-	discount
 }
 isolation {
 }
 accentuated {
-	chaunted
-	accentual
-	accented
-	cadent
-	adducent
+	accentuate :: 20
 }
 incompatibility {
 }
@@ -13053,15 +10347,6 @@ monologue {
 vitiated {
 }
 intensified {
-	infest
-	intends
-	infests
-	fetidness
-	snifted
-	intensify
-	interfolds
-	infested
-	interfused
 }
 craziness {
 }
@@ -13076,33 +10361,17 @@ spoiled {
 efficacious {
 }
 importunities {
-	imposture
-	importune
-	impostures
-	importuned
-	importunes
-	importuner
 }
 patience {
 }
 impulsively {
-	impulsive
+	impulsive :: 18
 }
 meals {
 }
 carelessness {
-	carnelians
-	careens
-	cereals
-	carlines
-	careless
-	rancels
-	lancers
-	caserns
 }
 consideration {
-	consider
-	considers
 }
 loathed {
 }
@@ -13151,8 +10420,6 @@ completed {
 serving {
 }
 contrivances {
-	contrives
-	contrivers
 }
 oscillated {
 }
@@ -13163,7 +10430,7 @@ receptacle {
 basin {
 }
 oscillatory {
-	oscillator
+	oscillator :: 20
 }
 imparted {
 }
@@ -13212,10 +10479,6 @@ observed {
 rubbish {
 }
 resignation {
-	obsignate
-	designator
-	resonating
-	originates
 }
 gleams {
 }
@@ -13230,57 +10493,8 @@ clangour {
 suspicion {
 }
 entertained {
-	inebriated
-	interacted
-	indurate
-	antheridia
-	indurated
-	endarting
-	retarding
-	attainder
-	retreading
-	antitrade
-	denitrate
-	eradiating
-	eradiation
-	incarnated
-	intreated
-	inearthed
-	endart
-	unstriated
-	detrained
-	entrained
-	retrained
-	antitrades
-	denitrated
-	retained
-	detainer
-	detraining
-	interradii
-	intertidal
-	innervated
-	interlards
-	interlaced
-	endermatic
-	detrain
-	entertain
-	interlard
-	interlaid
-	interdeal
-	interdash
-	interplead
-	deliriant
-	interpaged
-	indurative
-	itinerated
-	interdealt
-	interdeals
-	interfaced
-	intergrade
-	integrand
-	infuriated
-	integrated
-	inthralled
+	entertains :: 17
+	entertain :: 18
 }
 satisfying {
 }
@@ -13293,17 +10507,7 @@ stout {
 aged {
 }
 consequence {
-	reconquers
-	construe
-	conquers
-	conquest
-	conquerors
-	conqueress
-	construer
-	consequent
-	consume
-	consensus
-	conquests
+	consequent :: 17
 }
 studs {
 }
@@ -13322,10 +10526,6 @@ balanced {
 discussion {
 }
 culminating {
-	culminates
-	culminated
-	culminant
-	culminate
 }
 atrocity {
 }
@@ -13342,6 +10542,7 @@ facts {
 justification {
 }
 permanently {
+	permanent :: 18
 }
 weighed {
 }
@@ -13362,9 +10563,6 @@ tussle {
 threatening {
 }
 determination {
-	metromania
-	intermodal
-	determine
 }
 divided {
 }
@@ -13393,10 +10591,10 @@ attacks {
 babbling {
 }
 rudimentary {
-	rudimental
+	rudimental :: 17
 }
 precautions {
-	precaution
+	precaution :: 20
 }
 endurable {
 }
@@ -13501,8 +10699,6 @@ keys {
 briareus {
 }
 scrutinizing {
-	scruzing
-	scrutinize
 }
 therein {
 }
@@ -13513,12 +10709,10 @@ jingle {
 traced {
 }
 insufficient {
-	infuscate
 }
 copiously {
 }
 intolerable {
-	intolerant
 }
 fumbling {
 }
@@ -13583,13 +10777,13 @@ pumping {
 rambling {
 }
 inconclusive {
-	involucels
 }
 thirteenth {
 }
 dozed {
 }
 disjointedly {
+	disjointed :: 20
 }
 dozed {
 }
@@ -13646,6 +10840,7 @@ rubble {
 sheerly {
 }
 practicable {
+	practical :: 17
 }
 resolution {
 }
@@ -13654,10 +10849,6 @@ straggling {
 comfortable {
 }
 interspersed {
-	unstriped
-	inters
-	interspace
-	interposed
 }
 shady {
 }
@@ -13668,6 +10859,7 @@ roofless {
 slink {
 }
 crouchingly {
+	crouching :: 18
 }
 confinement {
 }
@@ -13688,8 +10880,7 @@ regardless {
 noisome {
 }
 anticipated {
-	anticked
-	anticipate
+	anticipate :: 20
 }
 dominate {
 }
@@ -13704,15 +10895,6 @@ navvies {
 inkling {
 }
 dethronement {
-	dethroned
-	dethrones
-	dethroner
-	enthroned
-	unthroned
-	dethrone
-	dethroning
-	dethroners
-	heteronym
 }
 unburied {
 }
@@ -13721,25 +10903,7 @@ hint {
 density {
 }
 rockwork {
-	rockaways
-	rowlock
-	rackwork
-	backword
-	rocky
-	rocks
-	rocket
-	rocker
-	rocked
-	cookware
-	rockweed
-	rockaway
-	corkwoods
-	cocker
-	work
-	rock
-	cork
-	corkwood
-	corkwing
+	rackwork :: 12
 }
 tumble {
 }
@@ -13774,24 +10938,13 @@ tropical {
 exuberance {
 }
 encountered {
-	encounter
-	recounted
+	encounter :: 18
+	encounters :: 17
 }
 straightway {
-	straightly
 }
 unparalleled {
-	unheralded
-	unpanelled
-	unrepealed
-	underlap
-	unpillared
-	unparallel
-	underlaps
-	underplay
-	underplays
-	underplant
-	uplander
+	unparallel :: 20
 }
 fecundity {
 }
@@ -13848,13 +11001,10 @@ scenery {
 exhibited {
 }
 devastation {
-	deviations
 }
 cyclone {
 }
 undisturbed {
-	unsistered
-	underbites
 }
 spaces {
 }
@@ -13879,6 +11029,7 @@ fatigued {
 dogs {
 }
 circuitously {
+	circuitous :: 20
 }
 bones {
 }
@@ -13901,15 +11052,16 @@ dislocated {
 stragglers {
 }
 accomplished {
+	accomplish :: 20
 }
 elsewhere {
 }
 berlin {
 }
 paris {
-	parison
-	pairs
-	parish
+	parison :: 8
+	pairs :: 8
+	parish :: 9
 }
 stands {
 }
@@ -13930,9 +11082,6 @@ rotten {
 stayed {
 }
 restlessness {
-	resilient
-	rentals
-	resultant
 }
 thinking {
 }
@@ -13941,44 +11090,19 @@ consecutively {
 argument {
 }
 intervening {
-	invert
-	inter
-	inverts
-	integer
-	interval
-	entering
-	revetting
-	rivetting
-	inverting
-	reverting
-	diverting
-	riveting
-	intervenes
-	intervened
-	interview
-	intervene
-	intervein
-	intervale
-	intervals
-	interning
-	venerating
-	retrieving
-	innerving
 }
 states {
 }
 receptivity {
-	receptive
 }
 whereabouts {
-	whereabout
+	whereabout :: 20
 }
 remorse {
 }
 accidents {
 }
 condemnation {
-	condiment
 }
 static {
 }
@@ -14025,6 +11149,7 @@ pleading {
 sanely {
 }
 confidently {
+	confident :: 18
 }
 taught {
 }
@@ -14043,18 +11168,9 @@ inscribed {
 thomas {
 }
 lobb {
-	lobus
-	lobos
-	lobes
-	lobed
-	lobby
-	lobar
-	lobs
-	lobo
-	lobi
-	lobe
-	boll
-	lob
+	lobby :: 7
+	lobbed :: 6
+	lob :: 6
 }
 languid {
 }
@@ -14093,8 +11209,7 @@ coaly {
 clapham {
 }
 weren {
-	wiriness
-	wren
+	were :: 8
 }
 recognised {
 }
@@ -14109,11 +11224,9 @@ bigger {
 camp {
 }
 hammersmith {
-	hetaerism
-	mastership
-	hetaerisms
 }
 impressively {
+	impressive :: 20
 }
 bower {
 }
@@ -14130,11 +11243,10 @@ devise {
 countervailing {
 }
 isn {
-	sins
-	ions
-	inns
-	sin
-	ins
+	ions :: 4
+	sin :: 4
+	ins :: 4
+	is :: 4
 }
 recalled {
 }
@@ -14143,8 +11255,9 @@ builds {
 cities {
 }
 revolutions {
-	resolution
-	revolution
+	resolution :: 19
+	revolution :: 20
+	devolution :: 17
 }
 squealing {
 }
@@ -14167,7 +11280,11 @@ awkwardly {
 lots {
 }
 france {
-	franc
+	trance :: 9
+	franc :: 10
+	prance :: 9
+	francs :: 9
+	fiance :: 9
 }
 apologise {
 }
@@ -14206,17 +11323,17 @@ foolery {
 crowds {
 }
 wasn {
-	warns
-	wains
-	wanness
-	waeness
-	wans
-	sawn
+	warns :: 6
+	wains :: 6
+	wans :: 6
+	sawn :: 6
+	was :: 6
 }
 bother {
 }
 couldn {
-	could
+	nould :: 9
+	could :: 10
 }
 likely {
 }
@@ -14243,31 +11360,7 @@ arts {
 feeds {
 }
 restaurants {
-	tersanctus
-	nectarous
-	unstabler
-	restaging
-	sustainer
-	resaluting
-	resiant
-	centaurs
-	rentals
-	restaurant
-	centaureas
-	centauries
-	recusant
-	restaffing
-	sustainers
-	resultants
-	retinulas
-	neutrals
-	neurations
-	resnatron
-	testamur
-	ruinates
-	subterrane
-	recusants
-	resultant
+	restaurant :: 20
 }
 amusement {
 }
@@ -14308,10 +11401,6 @@ creepers {
 planned {
 }
 independent {
-	endopodite
-	indent
-	incepted
-	inputted
 }
 profoundly {
 }
@@ -14336,7 +11425,9 @@ businesses {
 skedaddling {
 }
 wouldn {
-	would
+	wound :: 9
+	would :: 10
+	nould :: 9
 }
 indoors {
 }
@@ -14347,9 +11438,8 @@ insured {
 invested {
 }
 sundays {
-	sunray
-	sundry
-	sundae
+	sunrays :: 11
+	sundaes :: 11
 }
 hereafter {
 }
@@ -14398,12 +11488,8 @@ pets {
 tricks {
 }
 sentimental {
-	manliest
-	stamineal
-	mentalists
-	mentalisms
-	mentalist
-	mentalism
+	sentiment :: 18
+	sentiments :: 17
 }
 lies {
 }
@@ -14456,11 +11542,6 @@ mothers {
 teachers {
 }
 lackadaisical {
-	lackadays
-	backslid
-	lackadaisy
-	backslides
-	backslide
 }
 cumbersome {
 }
@@ -14489,18 +11570,15 @@ poetry {
 swipes {
 }
 british {
-	brits
-	brutishly
-	britches
-	brutish
-	births
+	brinish :: 11
 }
 museum {
 }
 spies {
 }
 mustn {
-	munts
+	munts :: 8
+	must :: 8
 }
 steal {
 }
@@ -14513,9 +11591,6 @@ vermin {
 lovely {
 }
 smithereens {
-	smithery
-	smithers
-	smothering
 }
 puffing {
 }
@@ -14542,7 +11617,6 @@ apprehension {
 scanning {
 }
 precipitately {
-	prelatical
 }
 lair {
 }
@@ -14569,26 +11643,6 @@ inconveniently {
 chosen {
 }
 reconnoitred {
-	decoration
-	decorating
-	decryption
-	centroid
-	threnodic
-	reduction
-	reconvicts
-	rection
-	redaction
-	recoined
-	endocritic
-	recoding
-	doctrine
-	reconvict
-	recondite
-	recounting
-	retinoid
-	cretinoid
-	detraction
-	recitation
 }
 safer {
 }
@@ -14607,9 +11661,6 @@ clusters {
 dependent {
 }
 propagation {
-	pronating
-	probating
-	prognathic
 }
 laburnums {
 }
@@ -14680,79 +11731,10 @@ southern {
 parish {
 }
 interesting {
-	restrings
-	restringe
-	girniest
-	enregister
-	greetings
-	inters
-	insert
-	ingest
-	steerling
-	steerings
-	stressing
-	inter
-	entries
-	gentries
-	entires
-	eternising
-	inverts
-	introrse
-	interns
-	integer
-	inserts
-	intersex
-	internes
-	interest
-	interess
-	entering
-	interims
-	integers
-	instress
-	ingests
-	resetting
-	inserting
-	asserting
-	deserting
-	exserting
-	resenting
-	intrigues
-	instresses
-	restringes
-	restring
-	angriest
-	ingrates
-	interreges
-	intersexes
-	etherising
-	steerlings
-	enteritis
-	interning
-	internees
-	interests
-	caterings
-	insurgent
-	enterings
-	afterings
-	waterings
-	utterings
-	interpages
-	generosity
-	intriguers
-	synergists
-	interested
-	insurgents
-	intergrows
-	integrals
-	synergist
-	integrates
-	integrands
-	steering
 }
 appalling {
 }
 degradation {
-	denigrator
 }
 pasteboard {
 }
@@ -14777,46 +11759,12 @@ thoughtful {
 variety {
 }
 intermittence {
-	inter
-	enteric
-	increments
-	increment
-	incremate
-	interim
-	intermix
-	intermit
-	intercom
-	intercut
-	interims
-	interact
-	centimetre
-	centimeter
-	endermatic
-	intermezzo
-	intermezzi
-	intermarry
-	intermits
-	interment
-	intermure
-	intercoms
-	intercede
-	interceded
-	iconometer
 }
 blazed {
 }
 greenly {
 }
 unintelligently {
-	minutely
-	untimely
-	unitedly
-	unsettling
-	unaltering
-	exultingly
-	unliterary
-	unsteeling
-	tunnelling
 }
 shrouded {
 }
@@ -14825,15 +11773,13 @@ redly {
 orange {
 }
 fluorescent {
+	fluoresced :: 17
+	fluoresces :: 17
+	fluoresce :: 18
 }
 breeze {
 }
 irradiation {
-	tradition
-	orientated
-	ordinant
-	ordinants
-	ritardando
 }
 dormant {
 }
@@ -14866,8 +11812,7 @@ fulham {
 whitened {
 }
 speechlessly {
-	speechless
-	sleechy
+	speechless :: 20
 }
 lunges {
 }
@@ -14906,14 +11851,6 @@ penetrated {
 singed {
 }
 northwestern {
-	worthiness
-	worthless
-	northerns
-	worthiest
-	notchers
-	narrowest
-	northers
-	worthies
 }
 borders {
 }
@@ -14928,25 +11865,10 @@ senses {
 sobbing {
 }
 alternation {
-	altern
-	internal
-	rationale
-	alienator
-	interzonal
-	altering
-	internodal
-	alternatim
-	literation
-	toleration
-	alteration
-	anteriorly
+	alternatim :: 17
 }
 ulla {
-	ulnar
-	ulnae
-	ulva
-	ulna
-	aula
+	ullage :: 6
 }
 tide {
 }
@@ -14967,7 +11889,7 @@ northwards {
 marvelling {
 }
 hyde {
-	hyped
+	hyped :: 6
 }
 summits {
 }
@@ -15028,25 +11950,15 @@ pursuit {
 reasserted {
 }
 samson {
-	camions
-	salmons
-	mascons
-	maroons
-	soman
-	salmon
-	gammons
-	damsons
-	tampons
-	ramson
-	mammonism
-	damson
-	mascon
+	salmons :: 9
+	damsons :: 9
+	ramsons :: 9
 }
 forepart {
 }
 overwhelmed {
-	overwhelms
-	overwhelm
+	overwhelms :: 17
+	overwhelm :: 18
 }
 gristle {
 }
@@ -15079,8 +11991,6 @@ tarred {
 pathway {
 }
 unendurable {
-	unreadable
-	unridable
 }
 harrow {
 }
@@ -15141,23 +12051,8 @@ immune {
 fed {
 }
 microscopic {
-	microscopy
-	microscope
-	microspore
-	microsome
-	micropsia
-	micro
-	microchip
-	micropyles
-	microprism
-	macroprism
-	myrioscope
-	microchips
-	microns
-	microbes
-	microbus
-	microhms
-	micros
+	microscopy :: 17
+	microscope :: 17
 }
 allies {
 }
@@ -15190,7 +12085,7 @@ tortuous {
 depth {
 }
 experimenting {
-	experiment
+	experiment :: 20
 }
 decay {
 }
@@ -15297,19 +12192,15 @@ ghastly {
 apprehensions {
 }
 illuminations {
-	illuminato
+	illuminati :: 20
 }
 dublin {
-	unblinds
-	unblind
-	unblinded
-	dunlin
+	dubbin :: 9
+	dualin :: 9
 }
 edinburgh {
 }
 manchester {
-	manchets
-	merchants
 }
 shake {
 }
@@ -15322,8 +12213,6 @@ deliverance {
 irish {
 }
 atlantic {
-	talionic
-	tantalic
 }
 kindly {
 }
@@ -15382,7 +12271,6 @@ vestries {
 indiscriminately {
 }
 distributing {
-	disturbing
 }
 ribs {
 }
@@ -15419,11 +12307,6 @@ homes {
 casual {
 }
 compartment {
-	compart
-	comparted
-	compacter
-	compearant
-	comparting
 }
 folded {
 }
@@ -15432,8 +12315,6 @@ jolted {
 grimy {
 }
 thunderstorms {
-	thunderous
-	thunders
 }
 customary {
 }
@@ -15492,9 +12373,9 @@ weeks {
 ruffled {
 }
 discoloured {
-	discolours
-	discolour
-	disclosure
+	discolours :: 17
+	discolored :: 17
+	discolour :: 18
 }
 selenite {
 }
@@ -15547,109 +12428,17 @@ bury {
 slaughter {
 }
 perpetrated {
-	departure
-	reparteed
-	departers
-	partite
-	partied
-	uprated
-	preadapted
-	tapaderas
-	adapter
-	readapted
-	repeated
-	departer
-	departed
-	paltered
-	pirated
-	perorated
-	peart
-	pronated
-	parenthood
-	perennated
-	probated
-	tapered
-	depredate
-	predate
-	depredated
-	parquetted
-	pattered
-	predator
-	predated
-	predates
-	spreathed
-	readopt
-	readapt
-	patterned
-	paederast
-	pederast
-	predative
-	predatory
-	predators
-	pedantry
-	prated
-	pardalote
-	permeated
-	petard
-	petara
-	portate
-	parted
-	parget
-	parent
-	parroted
-	carpeted
-	petards
-	penetrated
-	operated
-	pargeted
-	trapped
-	strapped
-	attrapped
-	tetrapod
-	parented
-	sprattled
-	prattled
-	parapeted
-	partnered
-	drapet
-	readapts
-	pertained
-	depart
-	paederasts
-	periodate
-	tapadera
-	pederasts
-	pediatrics
-	departs
-	permutated
-	predentate
-	parqueted
-	preheated
+	perpetrate :: 20
+	perpetuate :: 17
 }
 puzzle {
 }
 disasters {
 }
 laboratories {
-	laborists
-	laborist
-	liberators
 }
 disinclined {
-	pendicles
-	discipline
-	scandalise
-	disentitle
-	disenclose
-	denticles
-	disincline
-	declines
-	unsliced
-	decolonise
-	decencies
-	silenced
-	licensed
-	licenced
+	disincline :: 20
 }
 analysts {
 }
@@ -15664,9 +12453,7 @@ compound {
 acts {
 }
 constituent {
-	constitute
-	contusive
-	counties
+	constitute :: 18
 }
 unproven {
 }
@@ -15677,7 +12464,6 @@ forthcoming {
 prowling {
 }
 magnificent {
-	magnetic
 }
 specimen {
 }
@@ -15688,11 +12474,6 @@ purely {
 graver {
 }
 conjunction {
-	conjunct
-	conjoint
-	conjugate
-	conduit
-	conjurator
 }
 renewal {
 }
@@ -15703,59 +12484,8 @@ butchered {
 failure {
 }
 lessing {
-	jestingly
-	leggings
-	lugeings
-	leerings
-	keelings
-	peelings
-	reelings
-	feelings
-	heelings
-	sensings
-	lendings
-	legions
-	legging
-	lemmings
-	leasing
-	meltings
-	peltings
-	beltings
-	feltings
-	yelpings
-	helpings
-	tellings
-	wellings
-	yellings
-	weldings
-	geldings
-	sensing
-	leavings
-	selling
-	selfing
-	seising
-	seining
-	leasings
-	seiling
-	lettings
-	seeling
-	leanings
-	sealings
-	dealings
-	healings
-	sealing
-	legginess
-	leadings
-	slueing
-	seinings
-	veilings
-	ceilings
-	testing
-	listing
-	lisping
-	herlings
-	slewing
-	nesting
+	messing :: 11
+	leasings :: 11
 }
 reasons {
 }
@@ -15770,21 +12500,11 @@ months {
 alignment {
 }
 subsequently {
+	subsequent :: 20
 }
 sinuous {
 }
 unillumined {
-	undecimal
-	unmilked
-	unmilled
-	unmailed
-	unlimed
-	undecimole
-	unillumed
-	unclimbed
-	unfilmed
-	unlimited
-	unclaimed
 }
 inner {
 }
@@ -15827,7 +12547,7 @@ sons {
 resulted {
 }
 exaggerated {
-	exaggerate
+	exaggerate :: 20
 }
 sphere {
 }
@@ -15850,6 +12570,7 @@ insecurity {
 lamplight {
 }
 cabful {
+	canful :: 9
 }
 unreal {
 }
@@ -15870,27 +12591,7 @@ paler {
 uglier {
 }
 distortions {
-	distorted
-	disrooting
-	discretion
-	distort
-	disroot
-	disport
-	discounter
-	discordant
-	disporting
-	disorient
-	desertion
-	disconcert
-	dystrophin
-	disruption
-	distrainor
-	distortion
-	distorting
-	neoterised
-	distorts
-	disports
-	desorption
+	distortion :: 20
 }
 haunting {
 }
@@ -15905,9 +12606,6 @@ seers {
 file {
 }
 txt {
-	taxa
-	tux
-	tax
 }
 zip {
 }
@@ -16000,12 +12698,6 @@ archive {
 pglaf {
 }
 compilation {
-	complaints
-	compilator
-	compital
-	compliant
-	complaint
-	complicant
 }
 collection {
 }
@@ -16034,22 +12726,11 @@ constant {
 downloading {
 }
 representations {
-	repoints
-	repaints
-	overpaints
-	reptations
-	reappoints
-	reposting
-	separation
-	repottings
-	recaptions
-	reappoint
-	reposition
-	periastron
 }
 status {
 }
 prominently {
+	prominent :: 18
 }
 accessed {
 }
@@ -16084,7 +12765,6 @@ imposed {
 unlink {
 }
 redistribute {
-	reduits
 }
 convert {
 }
@@ -16095,6 +12775,8 @@ compressed {
 nonproprietary {
 }
 proprietary {
+	propriety :: 17
+	proprietor :: 17
 }
 including {
 }
@@ -16153,11 +12835,6 @@ receipt {
 medium {
 }
 discontinue {
-	discounter
-	discounted
-	miscounted
-	discontent
-	discount
 }
 accordance {
 }
@@ -16178,8 +12855,6 @@ identify {
 transcribe {
 }
 proofread {
-	proffered
-	profaned
 }
 despite {
 }
@@ -16190,15 +12865,11 @@ incomplete {
 corrupt {
 }
 transcription {
-	crispation
-	transonics
-	transcript
-	transonic
+	transcript :: 20
 }
 errors {
 }
 infringement {
-	refringent
 }
 defective {
 }
@@ -16233,17 +12904,14 @@ strict {
 breach {
 }
 distributor {
-	disturb
-	distrouble
-	distribute
-	disturbs
-	disturber
+	distribute :: 17
 }
 liable {
 }
 indirect {
 }
 consequential {
+	consequent :: 20
 }
 punitive {
 }
@@ -16256,8 +12924,6 @@ electronically {
 demand {
 }
 opportunities {
-	supertonic
-	importunes
 }
 warranties {
 }
@@ -16268,8 +12934,8 @@ merchantibility {
 fitness {
 }
 disclaimers {
-	disclaimer
-	disclaimed
+	disclaimer :: 20
+	disclaims :: 17
 }
 exclusion {
 }
@@ -16280,24 +12946,8 @@ types {
 violates {
 }
 interpreted {
-	inter
-	intrepidly
-	intrepid
-	interred
-	interned
-	interloped
-	interpose
-	interpone
-	interplay
-	interpage
-	interpret
-	intercede
-	interposes
-	interposed
-	interponed
-	interplead
-	interpaged
-	interceded
+	interpret :: 18
+	interprets :: 17
 }
 maximum {
 }
@@ -16344,59 +12994,30 @@ ensuring {
 sections {
 }
 educational {
-	education
-	educations
+	education :: 18
+	educations :: 17
 }
 corporation {
 }
 organized {
 }
 mississippi {
-	misapply
-	misspells
-	wimps
-	timps
-	simps
-	mistype
-	misstep
-	piums
-	pimps
-	misplay
-	mishaps
-	miscopy
-	impis
-	gimps
-	mishap
-	missteps
-	misspell
-	simp
-	imps
-	pis
-	mis
 }
 granted {
 }
 revenue {
 }
 ein {
-	sines
-	nines
-	ennui
-	dined
-	zine
-	wine
-	vine
-	tine
-	sine
-	rine
-	pine
-	nine
-	mine
-	line
-	kine
-	fine
-	dine
-	bine
+	zine :: 4
+	wine :: 4
+	vine :: 4
+	sine :: 4
+	pine :: 4
+	mine :: 4
+	line :: 4
+	kine :: 4
+	dine :: 4
+	bine :: 4
 }
 federal {
 }
@@ -16407,7 +13028,6 @@ letter {
 fundraising {
 }
 contributions {
-	contribute
 }
 deductible {
 }
@@ -16448,32 +13068,11 @@ outdated {
 important {
 }
 maintaining {
-	magnesite
-	magnetize
-	magnetise
-	magnetite
-	magnetist
-	matting
-	masting
-	malting
-	maintop
-	taming
-	mattings
-	mitigating
-	magnetic
-	mutating
-	micating
-	mitigant
-	maistring
-	mating
-	magnetises
-	magnetists
-	giantism
-	mantling
 }
 irs {
-	irks
-	ires
+	irks :: 4
+	iris :: 4
+	ires :: 4
 }
 committed {
 }
@@ -16488,18 +13087,10 @@ paperwork {
 solicit {
 }
 confirmation {
-	confirmand
-	conformity
-	formicant
-	confirm
 }
 solicitation {
-	soliciting
-	solicitant
 }
 prohibition {
-	prohibits
-	prohibit
 }
 accepting {
 }
@@ -16510,53 +13101,6 @@ donors {
 offers {
 }
 international {
-	orientally
-	rationales
-	interval
-	interlay
-	internal
-	anterior
-	integral
-	rationale
-	orientals
-	alienator
-	irrelation
-	intolerant
-	interzonal
-	interramal
-	notarial
-	interleave
-	interlards
-	interlaces
-	interlaced
-	intermodal
-	internodal
-	internally
-	intervale
-	intervals
-	interleaf
-	interlays
-	interlard
-	interlace
-	interlaid
-	internals
-	interplay
-	interdeal
-	interposal
-	interpolar
-	oriental
-	literation
-	laceration
-	liberation
-	toleration
-	tolerating
-	intercalar
-	alteration
-	iconolater
-	anteriorly
-	integrals
-	integrator
-	integrally
 }
 gratefully {
 }
