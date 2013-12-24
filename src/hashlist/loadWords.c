@@ -1,9 +1,13 @@
 // Author: Emmanuel Odeke <odeke@ualberta.ca>
 #include <stdio.h>
 #include <stdlib.h>
-#include "loadWords.h"
+#include <ctype.h>
 
-#define tolower(x) (x | 'a' - 'A')
+#include "hashList.h"
+#include "loadWords.h"
+#include "wordTransition.h"
+
+#define tolower(x) (x | ('a' - 'A'))
 
 #define BUF_SIZ 10 // Starting element size for buffers
 

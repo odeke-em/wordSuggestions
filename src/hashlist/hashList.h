@@ -42,6 +42,8 @@
   Element **get(HashList *hl, hashValue hashCode);
   Element *pop(HashList *hM, const hashValue hashCode);
 
+  void insertElem(HashList *hl, void *data, const hashValue hashCode);
+
   // Returns the number of values freed
   long int destroySList(Element *sl);
 

@@ -1,21 +1,67 @@
 // Author: Emmanuel Odeke <odeke@ualberta.ca>
+// Main For the auto correct program
+
+#include <ctype.h>
+#include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <stdarg.h>
 
 #include "trie/Trie.h"
 #include "hashlist/errors.h"
 #include "hashlist/hashList.h"
 #include "hashlist/loadWords.h"
 
-#define tolower(x) (x | 'a' - 'A')
+#define INTERACTIVE
+#define THRESHOLD_RANK 0.8
 #define WORD_INCREMENT_LEN 10
 
+#define tolower(x) (x | 'a' - 'A')
+
+#define checkLoading(handle, funcPtr, libKey) {\
+  funcPtr = dlsym(handle, libKey);\
+  if ((error = dlerror()) != NULL) {\
+    fputs(error, stderr);\
+    exit(-1);\
+  }\
+}
+
 int main(int argc, char *argv[]) {
+  void *handle = dlopen("./exec/libaCorrect.so.1", RTLD_LAZY);
+  if (handle == NULL) {
+    fputs(dlerror(), stderr);
+    exit(-1);
+  }
+
+  char *(*getWord)(FILE *);
+  Trie *(*destroyTrie)(Trie *);
+  Trie *(*createTrie)(const int);
+  Element *(*getNext)(Element *);
+  long int (*destroyHashList)(HashList *hl);
+  int (*searchTrie)(Trie *tr, const char *);
+  HashList * (*loadWordsInFile)(const char *); 
+  Trie *(*addSequence)(Trie *tr, const char *);
+  Element *(*getCloseMatches)(const char *, HashList *, const double);
+
+  char *error;
+  // Loading the functions
+  checkLoading(handle, getWord, "getWord");
+  checkLoading(handle, getNext, "getNext");
+  checkLoading(handle, createTrie, "createTrie");
+  checkLoading(handle, searchTrie, "searchTrie");
+  checkLoading(handle, addSequence, "addSequence");
+  checkLoading(handle, destroyTrie, "destroyTrie");
+  checkLoading(handle, getCloseMatches, "getCloseMatches");
+  checkLoading(handle, loadWordsInFile, "loadWordsInFile");
+  checkLoading(handle, destroyHashList, "destroyHashList");
+
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
     dictPath = argv[1];
   }
+#ifdef INTERACTIVIE
+  fprintf(stderr, "\033[93mDictionary path: %s\n", dictPath);
+#endif
 
   HashList *dict = loadWordsInFile(dictPath);
   if (dict == NULL) {
@@ -32,16 +78,27 @@ int main(int argc, char *argv[]) {
       );
       ifp = stdin;
     }
+  } else {
+    #ifdef INTERACTIVE
+      fprintf(
+	stderr, "\033[93mWe'll be reading from standard input\033[00m\n"
+      );
+    #endif
   }
 
-  float thresholdMatch = 0.8;
+  float thresholdMatch = THRESHOLD_RANK;
   if (argc >= 4) {
     if (sscanf(argv[3], "%f", &thresholdMatch) != 1) {
     #ifdef DEBUG
       raiseWarning("Couldn't parse the threshold rank");;
     #endif
+    thresholdMatch = THRESHOLD_RANK;
     }
   }
+ 
+#ifdef INTERACTIVE
+  fprintf(stdout, "ThresholdMatch percentage: %.2f\n", thresholdMatch);
+#endif
 
 #ifdef DEBUG
   printf("Dict: %p\n", dict);
@@ -49,11 +106,10 @@ int main(int argc, char *argv[]) {
 
   Trie *memoizeTrie = createTrie(0);
 
-  printf("Threshold rank: %.2f\n", thresholdMatch);
   while (! feof(ifp)) {
     char *inW = getWord(ifp);
     if (inW != NULL && searchTrie(memoizeTrie, inW) == -1) {
-      // Word already discovered
+      // Word not yet discovered
       Element *match = getCloseMatches(inW, dict, thresholdMatch);
       printf("%s {\n", inW);
       while (match != NULL) {

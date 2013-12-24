@@ -1,22 +1,25 @@
 GCC := gcc
+FLAGS := -Wall -g -fPIC
+LIBNAME := libaCorrect.so.1
 
-hq:	src/hq.c trie.o hashlist.o loadwords.o wordTransition.o
-	$(CC) src/hq.c exec/trie.o exec/hashlist.o exec/wordTransition.o exec/loadWords.o -o exec/hq
+autoCorrect: libaCorrect src/autoCorrect.c
+	$(CC) $(FLAGS) src/autoCorrect.c -o exec/autoCorrect -ldl
 
-wordSuggestion: src/autoCorrect.c trie.o hashlist.o loadwords.o wordTransition.o
-	$(CC) src/autoCorrect.c exec/loadWords.o exec/trie.o exec/hashlist.o exec/wordTransition.o -o exec/autoCorrect
+libaCorrect:	  trie.o hashlist.o loadwords.o wordTransition.o
+	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/trie.o exec/hashlist.o exec/loadWords.o exec/wordTransition.o -o exec/libaCorrect.so.1 -lc
 
 trie.o:	  src/trie/Trie.*
-	$(CC) -c src/trie/Trie.c -o exec/trie.o
+	$(CC) $(FLAGS) -c src/trie/Trie.c -o exec/trie.o
 
 hashlist.o: src/hashlist/hashList.*
-	$(CC) -c src/hashlist/hashList.c -o exec/hashlist.o
+	$(CC) $(FLAGS) -c src/hashlist/hashList.c -o exec/hashlist.o
 
 loadwords.o:  src/hashlist/loadWords.*
-	$(CC) -c src/hashlist/loadWords.c -o exec/loadWords.o
+	$(CC) $(FLAGS) -c src/hashlist/loadWords.c -o exec/loadWords.o
 
 wordTransition.o: src/hashlist/wordTransition.*
-	$(CC) -c src/hashlist/wordTransition.c -o exec/wordTransition.o
+	$(CC) $(FLAGS) -c src/hashlist/wordTransition.c -o exec/wordTransition.o
+
 
 clean:
-	rm exec/*.o exec/autoCorrect
+	rm exec/*.o exec/autoCorrect exec/*.so

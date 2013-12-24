@@ -12,5 +12,6 @@ wordTransition.o:   hashlist.o wordTransition.c wordTransition.h
 hashlist.o:   hashList.c hashList.h
 	    $(CC) -c hashList.c -o hashlist.o
 
+
 clean:	  
 	    rm -f *.o loadWords

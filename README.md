@@ -12,31 +12,32 @@ Goal:
 
   recognized next time, to the dictionary.
 
-
 Usage:
 ========
-  First run:	
+  + make && ./exec/autoCorrect resources/wordlist.txt resources/stitched.ch 0.75
 
-      make
+    Expands to:
 
-    + For an interactive session:
-  
-       cd exec OR make spellCorrect && cd exec
-  
-       ./spellCorrect 
+      To run the autoCorrect program with:
 
-    + For testing out correction of a file:
+	+  resources/wordlist.txt as the dictionary/source of vocabulary.
 
-       cd exec OR make autoCorrect && cd exec
+	+  resources/stitched.ch as the file to correct.
 
-      ./autoCorrect <sourcePath> <destinationOfLearntWords> [optional correctedTxtPath]
+	+  0.75 as the match threshold percentage.
 
-    +To test out the multi-threaded autoCorrection:
+  + make && ./exec/autoCorrect
 
-      cd exec OR make workSplitter && cd exec
+    Expands to:
 
-      ./workSplitter <sourcePath> <nThreads_or_Cores_available>
+      Run the autoCorrect program:
 
+      + With the default dictionary, and default threshold match percentage.
+
+      + Reading from standard input.
+
+  NOTE: The threshold match percentage should be expressed as a number over 100
+    ie 0.9 translates to 90%, 0.35 translates to 35%
 
 Future features:
 =================
@@ -45,22 +46,22 @@ Future features:
 
     resources eg the dictionary.
 
-  + Context detection instead of plain  word lookup/matching from a dictionary.
+  + Context detection instead of plain word lookup/matching from a dictionary 
+
+    and word edit calculations.
+
+  + Building of vocabulary from learnt words.
 
   + Conjugation detection. 
-
-  + Hash-precomputation of dictionary words, and string interning.
 
 Hierachy:
 ==========
 
-  + All the \*.c files are in directory src/
-
-  + All the \*.h files are in directory include/
+  + All the \*.c \*.h files are in directory src/
 
   + All the \*.o and executable files will be stored in directory exec/
 
-  + All sample files from will be stored in directory samples/
+  + All sample files will be stored in directory samples/
 
   + All resources like the dictionary will be stored in directory resources/
 
