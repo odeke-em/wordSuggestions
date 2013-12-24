@@ -2,7 +2,9 @@
 #ifndef _HASHLIST_H
 #define _HASHLIST_H
 
-  #define INIT_HASH_LIST_SIZE 100000
+  #define INIT_HASH_LIST_SIZE 100201
+  #define MAX_SAFETY_HASHLIST_SIZE 1002001 // Arbitrary value
+
   typedef int hashValue;
 
   typedef enum {
@@ -10,9 +12,9 @@
   } Bool;
 
   typedef struct Element_ {
-    int rank;
     Bool dTag; // Discovery tag
     void *value;
+    int rank, metaInfo;
     struct Element_ *next;
   } Element;
 
@@ -37,6 +39,12 @@
   // Adds the data as well as it's rank to the head 
   Element *addToHeadWithRank(Element *sl, void *data, unsigned int rank);
 
+
+  Element *addToTailWithMetaInfo(
+    Element *sl, void *data, const int metaInfo, const Bool overWriteOnDup
+  );
+
+  // Just invokes addToTailWithMetaInfo and passes metaInfo as '0'
   Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup);
 
   Element **get(HashList *hl, hashValue hashCode);

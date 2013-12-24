@@ -1,0 +1,1028 @@
+[92mEstimated wordCount 140539 Dict size: 983773[00m
+ThresholdMatch percentage: 0.65
+author {
+}
+emmanuel {
+}
+odeke {
+	doek :: 6
+	ode :: 6
+	evoked :: 6
+}
+ualberta {
+	halbert :: 11
+	halberts :: 10
+}
+ca {
+}
+ifndef {
+	finder :: 7
+}
+errors {
+}
+h {
+}
+define {
+}
+include {
+}
+stdio {
+	stridor :: 6
+	studio :: 6
+	stolid :: 6
+	stoited :: 6
+	todies :: 6
+	codist :: 6
+	styloid :: 6
+	strid :: 6
+	stoit :: 6
+	stoic :: 6
+	staid :: 6
+	sodic :: 6
+	steroid :: 6
+	modist :: 6
+}
+typedef {
+	typed :: 10
+}
+enum {
+}
+typeerror {
+}
+valueerror {
+}
+indexerror {
+	indexer :: 14
+	indexers :: 13
+}
+syntaxerror {
+}
+bufferoverflow {
+}
+assertionerror {
+	assertion :: 18
+}
+nullpointerexception {
+}
+indexoutofboundsexception {
+}
+zerodivisionexception {
+}
+corrupteddataexception {
+}
+exception {
+}
+raisewarning {
+}
+errmsg {
+	errings :: 7
+	errs :: 7
+	germs :: 7
+}
+fprintf {
+	forint :: 9
+	sprint :: 9
+}
+stderr {
+	storer :: 7
+	starred :: 7
+	steard :: 7
+	starer :: 7
+	stirred :: 7
+}
+m {
+}
+on {
+}
+line {
+}
+function {
+}
+file {
+}
+throwexception {
+}
+errcode {
+	rescored :: 9
+}
+exit {
+}
+validexpression {
+}
+raiseerror {
+}
+args {
+	argus :: 6
+	rags :: 6
+	ergs :: 5
+	argues :: 5
+	argots :: 5
+	argosy :: 5
+	argols :: 5
+	argils :: 5
+	argans :: 5
+	arts :: 5
+	arms :: 5
+	arks :: 5
+	ares :: 5
+	ards :: 5
+	arcs :: 5
+	arbs :: 5
+	grass :: 5
+	grasp :: 5
+}
+traceback {
+	braccate :: 11
+	trackball :: 11
+	trackable :: 11
+}
+most {
+}
+recent {
+}
+call {
+}
+at {
+}
+of {
+}
+raiseexceptionifnull {
+}
+expression {
+}
+endif {
+	enfixed :: 6
+	enfiled :: 6
+	endive :: 6
+	endite :: 6
+	ending :: 6
+	enfix :: 6
+	eldin :: 6
+	end :: 6
+}
+hashlist {
+	hailshots :: 10
+}
+init {
+}
+list {
+}
+size {
+}
+int {
+	antis :: 3
+	antic :: 3
+	intuse :: 3
+	intuit :: 3
+	intros :: 3
+	intown :: 3
+	intone :: 3
+	intomb :: 3
+	intoed :: 3
+	intire :: 3
+	intine :: 3
+	intime :: 3
+	intima :: 3
+	inters :: 3
+	intern :: 3
+	intent :: 3
+	intend :: 3
+	intake :: 3
+	intact :: 3
+	unit :: 3
+	snit :: 3
+	nits :: 3
+	nite :: 3
+	inust :: 3
+	intro :: 4
+	intis :: 4
+	intil :: 4
+	inter :: 4
+	inset :: 3
+	input :: 3
+	inlet :: 3
+	ingot :: 3
+	inert :: 3
+	inept :: 3
+	incut :: 3
+	inapt :: 3
+	knit :: 3
+	inti :: 5
+	inte :: 5
+	anti :: 4
+	untin :: 3
+	until :: 3
+	untie :: 3
+	entia :: 3
+	tin :: 3
+	nit :: 4
+	ins :: 3
+	inn :: 3
+	ant :: 3
+	it :: 3
+	in :: 4
+}
+hashvalue {
+}
+false {
+}
+true {
+}
+bool {
+	obols :: 5
+	oboli :: 5
+	looby :: 5
+	wool :: 5
+	tool :: 5
+	sool :: 5
+	pool :: 5
+	obol :: 6
+	mool :: 5
+	lobo :: 5
+	gool :: 5
+	fool :: 5
+	dool :: 5
+	cool :: 5
+	bowl :: 5
+	boot :: 5
+	boos :: 5
+	boor :: 5
+	boon :: 5
+	boom :: 5
+	book :: 5
+	boob :: 5
+	bolo :: 6
+	boil :: 5
+	boodle :: 5
+	boolean :: 5
+	loo :: 5
+	boo :: 6
+	bolos :: 5
+}
+struct {
+	structure :: 9
+	strunts :: 8
+	strouts :: 7
+	struts :: 8
+	strunt :: 9
+	struck :: 9
+	strout :: 8
+	strict :: 9
+	straucht :: 7
+	scruto :: 7
+	scrunt :: 7
+	strumatic :: 7
+	strictures :: 7
+	strictured :: 7
+	sturt :: 7
+	strut :: 9
+	strum :: 7
+	strictly :: 7
+	stricter :: 7
+	stricture :: 8
+	structural :: 8
+	structures :: 8
+	structured :: 8
+	thrust :: 7
+	strunted :: 7
+}
+element {
+}
+void {
+}
+next {
+}
+capacity {
+}
+size {
+}
+returns {
+}
+the {
+}
+entry {
+}
+is {
+}
+non {
+}
+inline {
+}
+hasnext {
+	hasten :: 10
+	haste :: 9
+}
+attribute {
+}
+accessor {
+	accusers :: 10
+	accessed :: 10
+	accesses :: 10
+	acceptor :: 10
+	accentor :: 10
+	acceptors :: 11
+	accentors :: 11
+	across :: 10
+	access :: 12
+	accessions :: 10
+	accessory :: 15
+	accessary :: 12
+	accession :: 11
+	ancestors :: 10
+}
+getnext {
+}
+getsize {
+	egotizes :: 9
+}
+hl {
+}
+initelement {
+}
+inithashlistwithsize {
+}
+const {
+}
+size {
+}
+addtohead {
+}
+sl {
+}
+data {
+}
+addtotail {
+}
+overwriteondup {
+}
+hashcode {
+	hashed :: 10
+}
+pop {
+}
+hm {
+	hum :: 2
+	ham :: 2
+}
+number {
+}
+values {
+}
+freed {
+}
+long {
+}
+destroyslist {
+	desirously :: 15
+	destroys :: 16
+}
+destroyhashlist {
+}
+miscellaneous {
+}
+pjwcharhash {
+}
+char {
+}
+srcw {
+	crows :: 5
+	crews :: 5
+	craws :: 5
+}
+hlru {
+}
+cache {
+}
+lru {
+	loury :: 3
+	lours :: 3
+	loure :: 3
+	laura :: 3
+	slur :: 3
+	lurs :: 3
+	lurk :: 3
+	lour :: 4
+	blur :: 3
+	gruel :: 3
+	truly :: 3
+	cruel :: 3
+	lur :: 4
+	leu :: 3
+	cru :: 3
+	ur :: 3
+}
+mutex {
+}
+cond {
+}
+pair {
+}
+pthread {
+	pothead :: 9
+	pithead :: 9
+}
+condvar {
+	cordovan :: 9
+	candor :: 9
+	candour :: 9
+}
+mutexcondpair {
+}
+allocmutexcondpair {
+}
+freemutexcond {
+}
+mcpair {
+	impair :: 7
+	mepacrine :: 7
+}
+initmutexcondpair {
+}
+scrooge {
+}
+consumerlist {
+	consumers :: 17
+	consulters :: 15
+	consumes :: 15
+	consumer :: 16
+	costumers :: 15
+}
+unsigned {
+}
+maxcapacity {
+}
+consumercount {
+	consumer :: 16
+}
+mutexcondlist {
+}
+workgenerate {
+}
+producer {
+}
+allocproducer {
+}
+initproducer {
+}
+insertjob {
+	inserts :: 11
+	insertion :: 12
+	insert :: 12
+	injectors :: 11
+	insertions :: 11
+}
+job {
+}
+jobid {
+	jibed :: 6
+	job :: 6
+	bovid :: 6
+}
+implementation {
+	implement :: 18
+}
+stdlib {
+	stolid :: 8
+	stiled :: 7
+	stilbs :: 7
+	styli :: 7
+	stilb :: 8
+}
+string {
+}
+ifdef {
+	fide :: 6
+	fifed :: 6
+}
+debug {
+}
+undef {
+	unfeued :: 6
+	underfed :: 6
+	underfur :: 6
+	undefied :: 7
+	undeify :: 7
+	unde :: 8
+	nude :: 6
+	unfeed :: 7
+	undern :: 6
+	undear :: 6
+	undeaf :: 8
+	undead :: 6
+	unwed :: 6
+	unred :: 6
+	unled :: 6
+	unked :: 6
+	unfed :: 8
+	undue :: 6
+	under :: 7
+	unbed :: 6
+	undefiled :: 6
+	undefined :: 6
+	undefaced :: 6
+}
+handle {
+}
+collisions {
+}
+exhibit {
+}
+by {
+}
+reference {
+}
+getsize {
+	egotizes :: 9
+}
+size {
+}
+else {
+}
+do {
+}
+something {
+}
+interesting {
+	interties :: 14
+	interested :: 14
+	internist :: 14
+	interests :: 15
+	internet :: 14
+	interest :: 16
+	interreign :: 14
+}
+eg {
+	egos :: 2
+	egma :: 2
+	egis :: 2
+	eger :: 2
+	egal :: 2
+	erg :: 2
+	ego :: 3
+	egg :: 3
+	age :: 2
+	ge :: 2
+}
+store {
+}
+visits {
+}
+newelem {
+	newel :: 10
+	newels :: 9
+	newell :: 9
+	newelled :: 9
+}
+malloc {
+	mallows :: 8
+	ballocks :: 7
+	mallecho :: 9
+	molla :: 8
+	molal :: 7
+	millocrat :: 8
+	malls :: 7
+	mall :: 8
+	callow :: 8
+	callop :: 8
+	call :: 7
+	millocrats :: 7
+	millocracy :: 7
+	hallo :: 7
+	calomel :: 7
+	callous :: 7
+	callows :: 7
+	mullock :: 8
+	mallow :: 9
+	mollas :: 7
+	mollah :: 7
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+inithashlistwithsize {
+}
+size {
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+size {
+}
+size {
+}
+size {
+}
+printf {
+	printed :: 8
+	printer :: 8
+	prunt :: 7
+	print :: 10
+	prink :: 7
+	prent :: 7
+	point :: 7
+	paint :: 7
+	painter :: 7
+	printery :: 7
+	printers :: 7
+	printing :: 7
+	pointer :: 7
+	trin :: 7
+	prints :: 9
+	driftpin :: 7
+}
+size {
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+size {
+}
+run {
+}
+out {
+}
+memory {
+}
+trying {
+}
+to {
+}
+create {
+}
+space {
+}
+for {
+}
+elements {
+}
+set {
+}
+listiter {
+	lithite :: 10
+	siltier :: 10
+	lithites :: 11
+	lister :: 10
+	mistitle :: 11
+	listeria :: 10
+	mistitles :: 10
+	mistitled :: 10
+	lintiest :: 10
+}
+size {
+}
+while {
+}
+lit {
+}
+inithashlistwithsize {
+}
+size {
+}
+insertelem {
+}
+cannot {
+}
+size {
+}
+size {
+}
+zero {
+}
+initializing {
+	initialize :: 17
+	initialing :: 18
+	initiating :: 15
+}
+it {
+}
+now {
+}
+size {
+}
+elemindex {
+	examinee :: 11
+}
+size {
+}
+we {
+}
+ve {
+	vext :: 2
+	veur :: 2
+	vets :: 2
+	veto :: 2
+	vest :: 2
+	very :: 2
+	vert :: 2
+	vers :: 2
+	verb :: 2
+	vent :: 2
+	vend :: 2
+	vena :: 2
+	vell :: 2
+	veld :: 2
+	vela :: 2
+	vein :: 2
+	veil :: 2
+	vega :: 2
+	vees :: 2
+	veer :: 2
+	veep :: 2
+	veal :: 2
+	vre :: 2
+	voe :: 2
+	vie :: 2
+	vex :: 3
+	vet :: 3
+	veg :: 3
+	rev :: 2
+	lev :: 2
+	v :: 2
+}
+found {
+}
+first {
+}
+matching {
+}
+that {
+}
+always {
+}
+update {
+}
+latest {
+}
+size {
+}
+size {
+}
+nvaluefrees {
+}
+tmp {
+	tymp :: 3
+	tump :: 3
+	tamp :: 3
+	impot :: 3
+	umpty :: 3
+	empty :: 3
+	twp :: 3
+	tup :: 3
+	top :: 3
+	tip :: 3
+	tap :: 3
+	imp :: 3
+	amp :: 3
+}
+freeing {
+}
+curhead {
+	cudbear :: 9
+	cuphead :: 11
+	ruched :: 9
+	cupheads :: 10
+}
+pelement {
+	cerement :: 10
+	vehemently :: 10
+	helpmeet :: 10
+	belemnite :: 10
+}
+getsize {
+	egotizes :: 9
+}
+calcindex {
+}
+getsize {
+	egotizes :: 9
+}
+hpelement {
+	exilement :: 11
+	elopement :: 12
+	elopements :: 11
+}
+size {
+}
+hashing {
+}
+algorithm {
+}
+srclen {
+}
+strlen {
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+xf {
+}
+sample {
+}
+main {
+}
+hsize {
+	chizes :: 7
+	hoise :: 6
+}
+inithashlistwithsize {
+}
+hsize {
+	chizes :: 7
+	hoise :: 6
+}
+inithashlistwithsize {
+}
+hsize {
+	chizes :: 7
+	hoise :: 6
+}
+hsize {
+	chizes :: 7
+	hoise :: 6
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+fnd {
+	fund :: 3
+	fond :: 3
+	find :: 3
+	fend :: 3
+	fand :: 3
+	fud :: 3
+	fid :: 3
+	fed :: 3
+	fad :: 3
+	end :: 3
+	and :: 3
+}
+curholder {
+}
+htest {
+	stet :: 6
+	stept :: 6
+	stent :: 6
+	thefts :: 6
+}
+popd {
+}
+with {
+}
+default {
+}
+size {
+}
+destroyhlru {
+	destroyer :: 14
+	dextrously :: 14
+	destroy :: 14
+}
+inithashlistwithsize {
+}
+size {
+}
+execifnotnull {
+}
+var {
+	varvel :: 3
+	varved :: 3
+	varsal :: 3
+	varnas :: 3
+	varlet :: 3
+	varies :: 3
+	varier :: 3
+	varied :: 3
+	vargue :: 3
+	varecs :: 3
+	varans :: 3
+	larva :: 3
+	voar :: 3
+	vary :: 5
+	vara :: 5
+	vair :: 4
+	rave :: 3
+	viral :: 3
+	varve :: 4
+	varus :: 4
+	varna :: 4
+	varix :: 4
+	vardy :: 4
+	varec :: 4
+	varas :: 4
+	vapor :: 3
+	vairy :: 3
+	vairs :: 3
+	zar :: 3
+	war :: 3
+	vas :: 3
+	van :: 3
+	tar :: 3
+	sar :: 3
+	carvy :: 3
+	carve :: 3
+	oar :: 3
+	mar :: 3
+	lar :: 3
+	jar :: 3
+	gar :: 3
+	far :: 3
+	ear :: 3
+	car :: 3
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+inithashlistwithsize {
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+destroyproducer {
+}
+mindex {
+	mixed :: 7
+	minge :: 7
+	mined :: 8
+	minds :: 7
+	mince :: 7
+	minae :: 7
+	minged :: 8
+	minder :: 9
+	minded :: 9
+	minced :: 8
+	milden :: 8
+	midden :: 7
+	minuend :: 7
+	minders :: 8
+	mine :: 7
+	mind :: 8
+	mend :: 7
+	jinxed :: 7
+	meninx :: 7
+	mildens :: 7
+	maiden :: 7
+	monied :: 7
+}
+generatedata {
+	generate :: 16
+	venerated :: 15
+	generated :: 18
+	generates :: 15
+}
+googre {
+}
+intptr {
+}
+sizeof {
+	size :: 8
+	sizes :: 7
+	sizer :: 7
+	sized :: 7
+}
+minserting {
+	maistering :: 12
+	monetising :: 13
+	tinkerings :: 12
+	mismetring :: 13
+	unmeriting :: 12
+	tinselling :: 13
+	minters :: 12
+	missending :: 12
+	fingertips :: 12
+	dissenting :: 12
+	misterming :: 14
+	discerning :: 12
+	misweening :: 12
+	disserting :: 12
+	resinating :: 12
+	impresting :: 12
+	moistening :: 13
+	mistering :: 13
+}

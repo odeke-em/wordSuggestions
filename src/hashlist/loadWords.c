@@ -5,6 +5,7 @@
 
 #include "hashList.h"
 #include "loadWords.h"
+#include "estimateNWords.h"
 #include "wordTransition.h"
 
 #define tolower(x) (x | ('a' - 'A'))
@@ -45,8 +46,18 @@ HashList *loadWordsInFile(const char *filePath) {
   HashList *hl = NULL;
 
   if (filePath != NULL) {
-    hl = initHashListWithSize(hl, 10000001);
     FILE *ifp = fopen(filePath, "r");
+    LLInt dictSize = estimatedWordCount(ifp, 0);
+    printf("\033[92mEstimated wordCount %lld", dictSize);
+    dictSize *= 7; // Arbitrarily X 7
+
+    if (dictSize > MAX_SAFETY_HASHLIST_SIZE) {
+      dictSize  = MAX_SAFETY_HASHLIST_SIZE;
+    }
+
+    printf(" Dict size: %lld\033[00m\n", dictSize);
+    hl = initHashListWithSize(hl, dictSize);
+
     if (ifp == NULL) {
       raiseWarning("Invalid filePath");
       return NULL;
