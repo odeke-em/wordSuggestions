@@ -13,7 +13,7 @@
 #include "hashlist/loadWords.h"
 
 #define INTERACTIVE
-#define THRESHOLD_RANK 0.65
+#define THRESHOLD_RANK 0.80
 #define WORD_INCREMENT_LEN 10
 
 #define tolower(x) (x | 'a' - 'A')
@@ -106,21 +106,27 @@ int main(int argc, char *argv[]) {
 
   Trie *memoizeTrie = createTrie(0);
 
+  int indentLevel = 0;
   while (! feof(ifp)) {
     char *inW = getWord(ifp);
-    if (inW != NULL && searchTrie(memoizeTrie, inW) == -1) {
-      // Word not yet discovered
-      Element *match = getCloseMatches(inW, dict, thresholdMatch);
-      printf("%s {\n", inW);
-      while (match != NULL) {
-	printf("\t%s :: %d\n", (char *)match->value, match->rank);
-	match = getNext(match);
-      } 
-      printf("}\n");
-      memoizeTrie = addSequence(memoizeTrie, inW);
+    if (inW != NULL) {
+      printf("%s ", inW);
+      if (searchTrie(memoizeTrie, inW) == -1) {
+	printf(" {\n");
+	// Word not yet discovered
+	Element *match = getCloseMatches(inW, dict, thresholdMatch);
+	while (match != NULL) {
+	  printf("\t%*s :: %d\n", indentLevel, (char *)match->value, match->rank);
+	  match = getNext(match);
+	} 
+	memoizeTrie = addSequence(memoizeTrie, inW);
+	printf("%*s\n", indentLevel, " }");
+	indentLevel = 0;
+      } else {
+	indentLevel += 1;
+      }
+      free(inW);
     }
-
-    if (inW != NULL) free(inW);
   }
 
 #ifdef DEBUG
