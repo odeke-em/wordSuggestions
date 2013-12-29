@@ -12,7 +12,7 @@
   #undef DEBUG
 #endif
 
-#define HANDLE_COLLISIONS
+#define HANDLE_COLLISIONS_X
 #define EXHIBIT_COLLISION
 #define EXHIBIT_GET_BY_REFERENCE
 
@@ -32,14 +32,11 @@ Element *addToTailWithMetaInfo(
     sl = initElement(sl);
     sl->value = data;
     sl->metaInfo = metaInfo;
-  } else if (sl->value != data) {
-    sl->next = addToTailWithMetaInfo(sl->next, data, metaInfo, overWriteOnDup);
   } else {
-    // if (overWriteOnDup) {
-    //   sl->value = data;
-    // } else {
-    //   //Do something interesting eg store number of visits
-    // }
+    sl->next = initElement(sl->next);
+    sl->value = data;
+    sl->metaInfo = metaInfo;
+    sl->next = sl->next->next;
   }
 
   return sl;
@@ -137,9 +134,9 @@ void insertElem(HashList *hl, void *data, const hashValue hashCode) {
     hl->list[elemIndex]->value = data;
   } else {
     #ifdef HANDLE_COLLISIONS
-      // Always update to the latest value
-      hl->list[elemIndex] = addToTail(hl->list[elemIndex], data, True);
+      hl->list[elemIndex] = addToHead(hl->list[elemIndex], data);
     #else 
+      // Always update to the latest value
       hl->list[elemIndex]->value = data;
     #endif
   }

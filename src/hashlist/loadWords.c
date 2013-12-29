@@ -21,7 +21,7 @@ char *getWord(FILE *ifp) {
 
   char c;
   int idx = 0;
-  while ((! feof(ifp)) && (c = getc(ifp)) != EOF) {
+  while ((c = getc(ifp)) != EOF) {
     if ((idx + 1) >= bufLen) {
       bufLen += BUF_SIZ;
       wordIn = (char *)realloc(wordIn, sizeof(char) * bufLen);
@@ -51,9 +51,11 @@ HashList *loadWordsInFile(const char *filePath) {
     printf("\033[92mEstimated wordCount %lld", dictSize);
     dictSize *= 7; // Arbitrarily X 7
 
+  #ifdef HANDLE_LIMITS
     if (dictSize > MAX_SAFETY_HASHLIST_SIZE) {
       dictSize  = MAX_SAFETY_HASHLIST_SIZE;
     }
+  #endif
 
     printf(" Dict size: %lld\033[00m\n", dictSize);
     hl = initHashListWithSize(hl, dictSize);
@@ -117,7 +119,7 @@ Element *getCloseMatches(
 #ifdef SAMPLE_RUN
 int main() {
   HashList *hl = loadWordsInFile("../../resources/wordlist.txt");
-  HashList *curFileHL = loadWordsInFile("../../resources/waroftheworlds.txt");
+  HashList *curFileHL = loadWordsInFile(__FILE__);
 
   int i;
   printf("hl: %p\n", hl);
@@ -126,15 +128,15 @@ int main() {
     if (curFileHL->list[i] != NULL) {
       char *value = (char *)(curFileHL->list[i]->value);
       Element *match = getCloseMatches(value, hl, 0.6);
-      // printf("For: %s\n", value);
+      printf("For: %s %p\n", value, curFileHL->list[i]);
       while (match != NULL) {
-	//printf("\t%s\n", (char *)match->value);
+	printf("\t%s\n", (char *)match->value);
 	match = getNext(match);
       }
     }
   }
 
-  // destroyHashList(hl);
+  destroyHashList(hl);
   destroyHashList(curFileHL);
   return 0;
 }
