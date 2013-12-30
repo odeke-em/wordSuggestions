@@ -7,17 +7,15 @@
 
   typedef struct Trie_ {
     int radixSz;
-    unsigned int index;
     struct Trie_ **keys;
   } Trie;
 
-  // Get a Trie's worth off the heap
+  // Get a heap's worth of a Trie
   Trie *allocTrie();
 
   Trie *destroyTrie(Trie *tr);
 
-  Trie *createTrie(const int index);
-  Trie *addSequence(Trie *tr, const char *seq);
+  Trie *createTrie();
  
   // Utilities here 
 

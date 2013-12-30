@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
   char *(*getWord)(FILE *);
   Trie *(*destroyTrie)(Trie *);
-  Trie *(*createTrie)(const int);
+  Trie *(*createTrie)();
   Element *(*getNext)(Element *);
   long int (*destroyHashList)(HashList *hl);
   int (*searchTrie)(Trie *tr, const char *);
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
   printf("Dict: %p\n", dict);
 #endif
 
-  Trie *memoizeTrie = createTrie(0);
+  Trie *memoizeTrie = createTrie();
 
   int indentLevel = 0;
   while (! feof(ifp)) {
