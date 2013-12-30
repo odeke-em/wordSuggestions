@@ -20,14 +20,12 @@ inline Bool hasNext(Element *e) { return e != NULL && e->next != NULL; }
 inline Element *getNext(Element *e) { return e == NULL ? NULL : e->next; }
 inline int getSize(HashList *hl) { return hl == NULL ? 0 : hl->size; }
 
-Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup) {
-  sl = addToTailWithMetaInfo(sl, data, 0, overWriteOnDup);
+Element *addToTail(Element *sl, void *data) {
+  sl = addToTailWithMetaInfo(sl, data, 0);
   return sl;
 }
 
-Element *addToTailWithMetaInfo(
-  Element *sl, void *data, const int metaInfo, const Bool overWriteOnDup
-) {
+Element *addToTailWithMetaInfo(Element *sl, void *data, const int metaInfo) {
   if (sl == NULL) {
     sl = initElement(sl);
     sl->value = data;

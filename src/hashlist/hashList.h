@@ -41,11 +41,11 @@
 
 
   Element *addToTailWithMetaInfo(
-    Element *sl, void *data, const int metaInfo, const Bool overWriteOnDup
+    Element *sl, void *data, const int metaInfo
   );
 
   // Just invokes addToTailWithMetaInfo and passes metaInfo as '0'
-  Element *addToTail(Element *sl, void *data, const Bool overWriteOnDup);
+  Element *addToTail(Element *sl, void *data); 
 
   Element **get(HashList *hl, hashValue hashCode);
   Element *pop(HashList *hM, const hashValue hashCode);
