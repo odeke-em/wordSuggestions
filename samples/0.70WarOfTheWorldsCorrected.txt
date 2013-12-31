@@ -1,5 +1,5 @@
 [92mEstimated wordCount 140539 Dict size: 983773[00m
-ThresholdMatch percentage: 0.80
+ThresholdMatch percentage: 0.70
 the  {
  }
 project  {
@@ -45,6 +45,7 @@ with  {
 almost  {
  }
 no restrictions  {
+	restricts :: 16
  }
 whatsoever  {
  }
@@ -85,6 +86,10 @@ h g wells release  {
 date  {
  }
 july  {
+	puly :: 5
+	jury :: 5
+	judy :: 5
+	guly :: 5
  }
 ebook most  {
  }
@@ -93,10 +98,12 @@ recently  {
 updated  {
  }
 october  {
+	scooter :: 9
  }
 language  {
  }
 english  {
+	ingles :: 10
  }
 character  {
  }
@@ -105,6 +112,10 @@ set  {
 encoding  {
  }
 ascii  {
+	ascidia :: 6
+	asci :: 7
+	ischial :: 6
+	ascidium :: 6
  }
 start  {
  }
@@ -141,6 +152,9 @@ made  {
 for man  {
  }
 kepler  {
+	kemper :: 8
+	kelter :: 8
+	keeler :: 8
  }
 quoted  {
  }
@@ -155,6 +169,13 @@ one  {
 the coming  {
  }
 of the martians  {
+	marinates :: 11
+	mantraps :: 11
+	martins :: 11
+	martial :: 11
+	marinas :: 11
+	tamarins :: 11
+	mantras :: 11
  }
 chapter  {
  }
@@ -217,6 +238,7 @@ concerns  {
 they were  {
  }
 scrutinised  {
+	scrutinize :: 16
 	scrutinise :: 20
 	scrutinies :: 18
  }
@@ -245,6 +267,7 @@ of water  {
 with infinite  {
  }
 complacency  {
+	complacent :: 15
  }
 men went  {
  }
@@ -456,10 +479,13 @@ of the volume  {
  }
 of the earth must have accelerated  {
 	accelerate :: 20
+	decelerate :: 16
     }
 its cooling  {
  }
 to the temperature  {
+	temperated :: 15
+	temperates :: 15
  }
 at which  {
  }
@@ -713,6 +739,7 @@ as are the monkeys  {
 and lemurs  {
  }
 to us the intellectual  {
+	intellect :: 16
   }
 side  {
  }
@@ -737,6 +764,9 @@ warfare  {
 sunward is indeed their only escape  {
     }
 from the destruction  {
+	destruct :: 16
+	destructor :: 15
+	instructed :: 16
  }
 that generation  {
  }
@@ -807,6 +837,7 @@ with amazing  {
 subtlety  {
  }
 their mathematical  {
+	mathematic :: 18
  }
 learning  {
  }
@@ -871,7 +902,11 @@ the opposition  {
  }
 of a great light was seen on the illuminated  {
 	illuminato :: 17
+	illuminati :: 15
 	illuminate :: 20
+	illuminant :: 15
+	illumined :: 16
+	illumine :: 15
        }
 part  {
  }
@@ -887,7 +922,10 @@ observatory  {
 then  {
  }
 by perrotin  {
+	terrapin :: 11
+	perron :: 11
 	parroting :: 12
+	reporting :: 11
  }
 of nice  {
  }
@@ -939,6 +977,7 @@ two  {
  }
 oppositions  {
 	opposition :: 19
+	apposition :: 16
  }
 the storm  {
  }
@@ -951,8 +990,18 @@ years ago  {
 now as mars approached  {
   }
 opposition lavelle  {
+	labelled :: 10
+	levellest :: 9
+	levellers :: 9
+	lapelled :: 10
+	alveole :: 9
+	leveller :: 10
+	levelled :: 10
+	ravelled :: 10
  }
 of java  {
+	lava :: 5
+	kava :: 5
  }
 set the wires  {
  }
@@ -962,10 +1011,13 @@ of the astronomical  {
 exchange  {
  }
 palpitating  {
+	palpitant :: 15
  }
 with the amazing  {
  }
 intelligence of a huge outbreak of incandescent  {
+	intendance :: 16
+	incandesce :: 18
      }
 gas  {
  }
@@ -1066,6 +1118,7 @@ the well known  {
 astronomer  {
  }
 at ottershaw  {
+	otters :: 12
  }
 he was immensely  {
  }
@@ -1128,6 +1181,7 @@ an oblong  {
 profundity  {
  }
 with the stardust  {
+	stratus :: 11
  }
 streaked  {
  }
@@ -1304,6 +1358,7 @@ of the outline  {
 just  {
  }
 as the chronometer  {
+	chromomere :: 16
  }
 struck  {
  }
@@ -1376,6 +1431,8 @@ down  {
 below  {
  }
 in the darkness were ottershaw and chertsey  {
+	chestier :: 11
+	cheatery :: 11
      }
 and all their hundreds  {
   }
@@ -1386,6 +1443,9 @@ in peace  {
 he was full  {
  }
 of speculation  {
+	speculator :: 16
+	spiculate :: 16
+	spinulate :: 15
  }
 that night about the condition of mars and scoffed  {
        }
@@ -1523,6 +1583,7 @@ concerns as they did  {
 i remember how jubilant  {
   }
 markham  {
+	markman :: 10
  }
 was at securing  {
  }
@@ -1636,6 +1697,7 @@ it seemed so safe  {
 and tranquil  {
  }
 chapter two the falling star then came the night of the first falling star it was seen early in the morning rushing over winchester  {
+	                winches :: 13
                       }
 eastward  {
  }
@@ -1710,6 +1772,8 @@ heard nothing of that many people in berkshire  {
 surrey  {
  }
 and middlesex  {
+	middles :: 13
+	meddles :: 12
  }
 must have seen the fall of it and at most have thought that another meteorite had descended  {
                }
@@ -1730,17 +1794,42 @@ on the common  {
 between  {
  }
 horsell  {
+	horseplay :: 9
+	horsey :: 9
+	horsed :: 9
+	holler :: 9
+	horsefly :: 10
+	horse :: 10
+	hollers :: 10
+	hersall :: 10
+	hosteller :: 9
  }
 ottershaw and woking  {
+	jowing :: 8
 	joking :: 9
 	yoking :: 9
 	waking :: 9
+	wowing :: 8
+	wooing :: 8
 	woning :: 9
 	hoking :: 9
+	vowing :: 8
+	towing :: 8
+	yokings :: 8
 	toking :: 9
+	dowing :: 8
+	sowing :: 8
+	wonings :: 8
+	cowing :: 8
+	rowing :: 8
 	roking :: 9
+	bowing :: 8
+	wakings :: 8
 	boking :: 9
 	poking :: 9
+	mowing :: 8
+	ewking :: 8
+	lowing :: 8
  }
 rose  {
  }
@@ -2034,6 +2123,7 @@ had fallen off in the pit that the man simply drove  {
 on he was equally  {
   }
 unsuccessful  {
+	unsuccess :: 16
  }
 with the potman  {
  }
@@ -2188,6 +2278,7 @@ and lost  {
 no time in going  {
   }
 out and across the ottershaw bridge to the sand pits chapter three on horsell common i found a little crowd of perhaps twenty people surrounding  {
+	                surround :: 15
                        }
 the huge hole in which the cylinder lay i have already described the appearance of that colossal bulk embedded  {
                  }
@@ -2260,6 +2351,8 @@ who were accustomed  {
 to hang about the railway station there was very little talking  {
          }
 few of the common people in england  {
+	fenland :: 9
+	endlong :: 9
      }
 had anything but the vaguest  {
    }
@@ -2272,6 +2365,8 @@ table like end of the cylinder which was still as ogilvy and henderson had left 
 it i fancy  {
  }
 the popular expectation  {
+	expectant :: 16
+	expectants :: 15
  }
 of a heap of charred corpses  {
     }
@@ -2355,6 +2450,8 @@ of its containing  {
 manuscript  {
  }
 on the difficulties  {
+	difficile :: 16
+	difficult :: 16
  }
 in translation  {
  }
@@ -2524,6 +2621,8 @@ of the cylinder had been uncovered though its lower  {
 end was still embedded as soon as ogilvy saw me among the staring crowd on the edge of the pit he called to me to come down and asked  {
                            }
 me if i would mind going over to see lord hilton  {
+	   biltong :: 8
+	      hilt :: 8
          }
 the lord of the manor  {
    }
@@ -2536,6 +2635,9 @@ a serious  {
 impediment  {
  }
 to their excavations  {
+	escalation :: 16
+	excavators :: 15
+	excavating :: 16
 	excavation :: 20
  }
 especially  {
@@ -2560,6 +2662,7 @@ no grip  {
 to them the case appeared to be enormously  {
       }
 thick and it was possible that the faint sounds we heard represented  {
+	  represent :: 15
           }
 a noisy  {
  }
@@ -2612,8 +2715,15 @@ and some sort  {
 of struggle appeared to be going on about the pit strange imaginings  {
           }
 passed through my mind as i drew nearer i heard stent s voice keep back keep back a boy came running towards me it s a movin he said to me as he passed a screwin  {
+	                           strewing :: 10
 	                           screwing :: 13
+	                            sericin :: 9
+	                            ceresin :: 9
+	                             scrine :: 9
+	                             screwy :: 9
 	                          screwings :: 11
+	                            sirenic :: 9
+	                              screw :: 10
                                   }
 and a screwin out i don t like it i m a goin ome  {
 	        omers :: 4
@@ -2744,6 +2854,7 @@ i saw the shopman  {
 struggling  {
  }
 still on the edge of the pit i found myself alone and saw the people on the other side of the pit running off stent among them i looked again at the cylinder and ungovernable  {
+	                        ungoverned :: 16
                                  }
 terror  {
  }
@@ -2986,6 +3097,7 @@ after the glimpse i had had of the martians emerging  {
 from the cylinder in which they had come to the earth from their planet a kind  {
               }
 of fascination  {
+	fasciation :: 15
  }
 paralysed  {
  }
@@ -3014,6 +3126,7 @@ seeking  {
 some point of vantage  {
   }
 and continually  {
+	continua :: 16
 	continual :: 17
  }
 looking at the sand heaps that hid these new comers  {
@@ -3176,6 +3289,7 @@ this was the deputation  {
 there had been a hasty  {
    }
 consultation  {
+	consultant :: 17
  }
 and since the martians were evidently in spite of their repulsive  {
          }
@@ -3339,6 +3453,8 @@ slowly out of sight into the pit all this had happened with such swiftness  {
 that i had stood motionless  {
    }
 dumbfounded  {
+	dumbfound :: 16
+	dumbfounds :: 15
  }
 and dazzled  {
  }
@@ -3431,6 +3547,7 @@ men so swiftly and so silently many think that in some way they are able to gene
 an intense heat in a chamber  {
     }
 of practically  {
+	practicals :: 16
 	practical :: 17
  }
 absolute  {
@@ -3450,6 +3567,7 @@ parabolic  {
 mirror of unknown  {
  }
 composition  {
+	compositor :: 15
  }
 much as the parabolic mirror of a lighthouse  {
       }
@@ -3466,6 +3584,7 @@ of the matter heat and invisible instead  {
 of visible light whatever  {
   }
 is combustible  {
+	combustive :: 15
  }
 flashes into flame at its touch lead  {
      }
@@ -3574,6 +3693,7 @@ from stent to keep the people back and deter  {
 them from approaching the cylinder there was some booing  {
        }
 from those more thoughtless  {
+	thoughts :: 15
   }
 and excitable  {
  }
@@ -3586,6 +3706,9 @@ an occasion for noise and horse play stent and ogilvy anticipating  {
 some possibilities of a collision  {
    }
 had telegraphed  {
+	telegraph :: 16
+	telegraphy :: 15
+	telegraphs :: 15
  }
 from horsell to the barracks  {
    }
@@ -3612,6 +3735,9 @@ escape than mine only the fact that a hummock  {
 of heathery  {
  }
 sand intercepted  {
+	intercept :: 16
+	intercede :: 15
+	intercepts :: 15
  }
 the lower part of the heat ray saved  {
       }
@@ -3654,6 +3780,8 @@ of the house nearest the corner in the sudden thud hiss and glare of the ignitin
 trees the panic stricken  {
   }
 crowd seems to have swayed hesitatingly  {
+	levitating :: 16
+	hesitation :: 16
 	hesitating :: 20
     }
 for some moments  {
@@ -3721,6 +3849,7 @@ of the martians that pitiless  {
 sword of heat seemed whirling  {
    }
 to and fro flourishing  {
+	flourish :: 15
   }
 overhead before it descended and smote  {
     }
@@ -3803,7 +3932,11 @@ mumble  {
 and went on over the bridge over the maybury arch a train a billowing  {
             }
 tumult of white firelit  {
+	filthier :: 9
 	firelight :: 11
+	firelights :: 10
+	tireling :: 9
+	fidelity :: 10
   }
 smoke and a long caterpillar  {
    }
@@ -3881,15 +4014,32 @@ t yer  {
 just been there asked the men people seem fair silly  {
         }
 about the common said the woman over the gate what s it all abart  {
+	        apart :: 7
+	        abort :: 6
+	        abate :: 6
+	        abaft :: 7
+	     abattoir :: 6
+	       abator :: 7
+	      ablator :: 6
+	          aba :: 6
+	        rabat :: 6
+	        boart :: 6
             }
 haven  {
  }
 t you heard of the men from mars said i the creatures from mars quite enough  {
               }
 said the woman over the gate thenks  {
+	thankees :: 8
+	thankers :: 8
+	  then :: 8
 	 thens :: 9
+	thinkers :: 8
+	 shent :: 8
 	thinks :: 9
+	thegns :: 8
 	thanks :: 9
+	thanes :: 8
      }
 and all three of them laughed  {
     }
@@ -3954,6 +4104,7 @@ her they can scarcely move i said i began to comfort her and myself by repeating
 all that ogilvy had told me of the impossibility  {
        }
 of the martians establishing  {
+	establish :: 17
   }
 themselves on the earth in particular  {
     }
@@ -4116,6 +4267,7 @@ dinner i was to eat  {
 for very many strange and terrible days chapter eight friday  {
         }
 night the most extraordinary thing to my mind of all the strange and wonderful things that happened upon that friday was the dovetailing  {
+	              dovetail :: 15
                      }
 of the commonplace  {
  }
@@ -4146,7 +4298,16 @@ but it certainly did not make the sensation  {
 that an ultimatum  {
  }
 to germany  {
+	gemman :: 9
+	garment :: 9
+	germinal :: 9
+	merman :: 9
+	geomancy :: 9
+	germanely :: 10
 	germans :: 11
+	germane :: 10
+	germain :: 10
+	germin :: 9
 	german :: 12
  }
 would have done in london that night poor henderson s telegram  {
@@ -4313,6 +4474,7 @@ into the skin of our old planet earth like a poisoned  {
 dart  {
  }
 was this cylinder but the poison was scarcely working yet around it was a patch of silent common smouldering  {
+	          smoulder :: 16
                  }
 in places  {
  }
@@ -4367,11 +4529,17 @@ through chobham to deploy on the north  {
 side of the common several officers  {
     }
 from the inkerman  {
+	interbank :: 11
  }
 barracks had been on the common earlier  {
      }
 in the day and one major eden  {
+	  need :: 5
+	  eten :: 5
+	emends :: 5
 	 emend :: 6
+	edental :: 5
+	   ene :: 5
      }
 was reported  {
  }
@@ -4400,6 +4568,7 @@ two maxims  {
 and about four hundred men of the cardigan  {
       }
 regiment started from aldershot  {
+	undershot :: 12
   }
 a few seconds after midnight the crowd in the chertsey road woking saw a star fall from heaven into the pine woods  {
                     }
@@ -4415,6 +4584,7 @@ this was the second cylinder chapter nine the fighting  {
 begins  {
  }
 saturday  {
+	daturas :: 11
  }
 lives  {
  }
@@ -4454,9 +4624,23 @@ and that guns  {
  }
 were expected then a familiar reassuring note i heard a train running towards woking they aren  {
 	          arena :: 6
+	         urenas :: 5
+	         avenir :: 5
+	         crenas :: 5
+	           wren :: 5
+	           rean :: 5
+	           earn :: 5
+	           bren :: 5
+	           aret :: 5
+	           areg :: 5
+	         arenas :: 5
+	           amen :: 5
+	           agen :: 5
 	          frena :: 6
 	          urena :: 6
 	          crena :: 6
+	          crane :: 5
+	            ane :: 5
               }
 t to be killed said the milkman if that can possibly be avoided  {
            }
@@ -4598,22 +4782,80 @@ beasts like that said the first speaker  {
 why not shell the darned  {
    }
 things strite  {
+	attires :: 8
 	striate :: 9
+	strive :: 8
+	stripe :: 8
+	strike :: 8
+	strift :: 8
+	strife :: 8
+	stride :: 8
+	strict :: 8
+	striae :: 8
+	slitter :: 8
+	triste :: 8
+	strategic :: 8
+	stoited :: 8
 	stoiter :: 10
+	strikeout :: 8
 	sprite :: 9
 	stinter :: 9
 	stilter :: 9
+	strigate :: 8
 	strident :: 9
+	striated :: 8
+	spitter :: 8
+	stoiters :: 8
  }
 off and finish  {
  }
 em said the little dark man you carn  {
+	  narcs :: 5
+	  narco :: 5
+	carnose :: 5
+	carnied :: 5
+	carnify :: 5
+	carnies :: 5
+	carneys :: 5
+	carnets :: 5
+	   yarn :: 5
+	   warn :: 5
+	   tarn :: 5
+	 carven :: 5
+	 carton :: 5
 	 carney :: 6
 	 carnet :: 6
+	 carnal :: 5
+	 caring :: 5
+	 careen :: 5
+	 carbon :: 5
 	   narc :: 6
+	   larn :: 5
+	 canner :: 5
+	   harn :: 5
+	   earn :: 5
+	   darn :: 5
 	   cran :: 6
+	   corn :: 5
+	   cart :: 5
+	   cars :: 5
+	   carp :: 5
+	   carl :: 5
+	   cark :: 5
+	   card :: 5
+	   carb :: 5
+	   cann :: 5
+	   cain :: 5
+	   barn :: 5
+	 cornua :: 5
+	 cornea :: 5
+	  crena :: 5
+	  crans :: 5
+	  crank :: 5
+	  crane :: 5
 	  carny :: 7
 	    car :: 6
+	    can :: 5
       }
 tell what they might do where s your shells  {
        }
@@ -4630,14 +4872,21 @@ towers  {
 were in the hands of the military authorities the soldiers i addressed  {
           }
 didn  {
+	dido :: 5
+	dined :: 5
+	dirndl :: 5
+	dinned :: 5
+	nid :: 5
 	did :: 6
  }
 t know anything the officers were mysterious as well as busy i found people in the town quite secure again in the presence  {
                      }
 of the military and i heard for the first time from marshall  {
+	   marshals :: 11
 	 marshaller :: 13
 	 marshalled :: 14
 	    marshal :: 13
+	  marshalcy :: 11
           }
 the tobacconist  {
  }
@@ -4705,6 +4954,7 @@ about three o clock there began the thud of a gun at measured  {
 intervals  {
  }
 from chertsey or addlestone  {
+	adolescent :: 13
   }
 i learned that the smouldering pine wood into which the second cylinder had fallen was being shelled  {
                }
@@ -4954,6 +5204,7 @@ of evil  {
  }
 i talked to her reassuringly  {
 	reassuring :: 20
+	reassuming :: 16
    }
 pointing  {
  }
@@ -5014,6 +5265,7 @@ mingled there with masses  {
   }
 of black and red smoke ripley  {
 	ripely :: 10
+	replay :: 8
     }
 street was deserted and except for a lighted window or so the village showed not a sign of life but i narrowly escaped  {
                      }
@@ -5042,6 +5294,10 @@ at the reins i saw that the driving clouds had been pierced  {
 as it were by a thread of green fire suddenly lighting their confusion and falling into the field to my left it was the third falling star close on its apparition  {
                              }
 and blindingly  {
+	blindings :: 14
+	grindingly :: 14
+	blinding :: 15
+	nibblingly :: 13
  }
 violet  {
  }
@@ -5081,8 +5337,10 @@ and a thin hail  {
   }
 smote gustily  {
 	rustily :: 11
+	multigyms :: 9
 	mustily :: 11
 	lustily :: 11
+	lusting :: 9
 	fustily :: 11
 	dustily :: 11
  }
@@ -5095,6 +5353,7 @@ movement it was an elusive  {
 vision  {
  }
 a moment of bewildering  {
+	bewilder :: 15
   }
 darkness and then in a flash like daylight  {
       }
@@ -5216,6 +5475,7 @@ that drowned  {
  }
 the thunder aloo  {
 	aloof :: 7
+	alto :: 5
  }
 aloo and in another minute it was with its companion  {
         }
@@ -5408,8 +5668,12 @@ of smoke from some nearer conflagration  {
 drove across the window and hid the martian shapes i could not see what they were doing nor the clear form of them nor recognise the black objects they were busied upon neither  {
                                }
 could i see the nearer fire though the reflections  {
+	prelection :: 15
+	reflecting :: 16
 	reflection :: 20
 	deflection :: 17
+	reflects :: 15
+	perfection :: 15
        }
 of it danced on the wall and ceiling  {
       }
@@ -5530,8 +5794,22 @@ the door and let him in and locked the door again i could not see his face he wa
 and his coat  {
  }
 was unbuttoned my god he said as i drew him in what has happened i asked what hasn  {
+	           haunts :: 5
+	           hasten :: 5
+	             shan :: 5
+	             hisn :: 5
+	             hast :: 5
+	             hasp :: 5
+	             hask :: 5
+	             harn :: 5
+	             hain :: 5
 	            harns :: 6
+	            hanks :: 5
+	            hangs :: 5
+	            hands :: 5
+	              nas :: 5
 	              has :: 6
+	              han :: 5
                 }
 t in the obscurity  {
   }
@@ -5610,8 +5888,10 @@ to and fro across the common among the few fugitives  {
         }
 with its headlike  {
 	headline :: 13
+	headliners :: 11
 	headlines :: 12
 	headliner :: 12
+	headlined :: 11
  }
 hood turning about exactly  {
   }
@@ -5620,6 +5900,7 @@ like the head of a cowled  {
 human being a kind of arm carried a complicated  {
        }
 metallic case about which green flashes scintillated  {
+	scintilla :: 17
      }
 and out of the funnel  {
    }
@@ -5630,6 +5911,8 @@ was burning the hussars had been on the road beyond the curvature  {
 of the ground and he saw nothing of them he heard the martians rattle for a time and then become still the giant saved woking station and its cluster  {
                            }
 of houses until the last then in a moment the heat ray was brought to bear and the town became a heap of fiery ruins then the thing shut off the heat ray and turning its back upon the artilleryman  {
+	                              artillery :: 17
+	                              armillary :: 16
                                       }
 began to waddle  {
  }
@@ -5742,6 +6025,8 @@ dawn streamed up whirled broke and vanished beyond were the pillars  {
 of fire about chobham they became pillars of bloodshot  {
        }
 smoke at the first touch of day chapter twelve what i saw of the destruction of weybridge and shepperton  {
+	           shopper :: 13
+	           stepper :: 13
                  }
 as the dawn grew brighter  {
    }
@@ -5780,6 +6065,13 @@ and in the end i agreed to go with him under cover of the woods northward  {
 as far as street cobham before i parted with him thence i would make a big detour  {
                }
 by epsom  {
+	besom :: 6
+	upcomes :: 6
+	peso :: 6
+	epsomite :: 6
+	epos :: 6
+	spoomed :: 6
+	spoom :: 6
  }
 to reach leatherhead i should have started at once but my companion had been in active service  {
                }
@@ -5901,6 +6193,8 @@ you dead what d ye mean a gun no sir and the artilleryman began a vivid account 
                     }
 through the lieutenant interrupted  {
 	interrupt :: 17
+	interpret :: 15
+	interrupts :: 16
   }
 him and looked up at me i was still standing on the bank by the side of the road it s perfectly true  {
                      }
@@ -5909,7 +6203,16 @@ i said well said the lieutenant i suppose it s my business to see it too look he
 here clearing people out of their houses you d better go along and report yourself to brigadier  {
                }
 general marvin  {
+	harmin :: 8
 	varmint :: 9
+	carving :: 8
+	mauvine :: 8
+	martins :: 8
+	marling :: 8
+	marline :: 8
+	marlins :: 8
+	marking :: 8
+	varmints :: 8
 	mauvin :: 9
 	martin :: 9
 	marlin :: 9
@@ -5947,7 +6250,10 @@ of some of the houses the stirring movement of packing  {
 in others and the knot of soldiers standing on the bridge over the railway and staring down the line towards woking the day would have seemed very like any other sunday  {
 	                        sunray :: 9
 	                        sundry :: 9
+	                        sundra :: 8
 	                        sundae :: 9
+	                       sundari :: 8
+	                         sandy :: 8
                              }
 several farm  {
  }
@@ -5978,8 +6284,17 @@ against the lightning anyhow  {
 said the artilleryman they aven  {
 	avine :: 6
 	avens :: 7
+	avenue :: 5
 	avenir :: 6
+	avenge :: 5
+	oven :: 5
+	aves :: 5
+	aver :: 5
+	amen :: 5
+	agen :: 5
+	veena :: 5
 	 ave :: 6
+	 ane :: 5
    }
 t seen that fire beam yet the officers who were not actively  {
           }
@@ -6035,6 +6350,7 @@ the whole place was in such confusion as i had never seen in any town before car
 miscellany  {
  }
 of conveyances  {
+	convenance :: 16
 	conveyance :: 20
  }
 and horseflesh  {
@@ -6050,6 +6366,7 @@ prettily  {
 dressed were packing river  {
   }
 side loafers energetically  {
+	energetic :: 18
  }
 helping  {
  }
@@ -6074,6 +6391,9 @@ was very pluckily  {
 holding  {
  }
 an early celebration  {
+	celebrant :: 16
+	celebrants :: 15
+	celebrator :: 15
  }
 and his bell was jangling  {
    }
@@ -6109,6 +6429,10 @@ had been stopped i believe in order to allow of the passage of troops and guns t
                         }
 struggle occurred for places in the special trains that were put on at a later hour we remained at weybridge until midday and at that hour we found ourselves at the place near shepperton lock where the wey and thames  {
 	                                 shames :: 9
+	                                 shamer :: 8
+	                                 shamed :: 8
+	                                  thema :: 8
+	                                  teams :: 8
 	                                  shame :: 9
 	                                 thymes :: 9
 	                                 themes :: 9
@@ -6338,7 +6662,14 @@ like a muddy tidal  {
 bore  {
  }
 but almost scaldingly  {
+	scauding :: 13
+	slantingly :: 13
+	scowlingly :: 13
 	scoldingly :: 17
+	snarlingly :: 13
+	scaldings :: 13
+	scalding :: 15
+	scathingly :: 14
  }
 hot came sweeping round the bend  {
     }
@@ -6414,6 +6745,7 @@ shouted inaudibly  {
 to me and pointed looking back i saw the other martians advancing with gigantic strides  {
              }
 down the riverbank  {
+	riverman :: 13
  }
 from the direction of chertsey the shepperton guns spoke this time unavailingly  {
 	 unavailing :: 19
@@ -6529,10 +6861,15 @@ victim  {
 as myself had they left their comrade and pushed on forthwith there was nothing at that time between them and london but batteries of twelve pounder guns and they would certainly have reached the capital  {
                                  }
 in advance of the tidings of their approach as sudden dreadful and destructive  {
+	    destruct :: 15
+	  destructed :: 15
            }
 their advent would have been as the earthquake  {
       }
 that destroyed lisbon  {
+	billons :: 8
+	limbos :: 8
+	lesion :: 8
  }
 a century ago but they were in no hurry cylinder followed cylinder on its interplanetary  {
              }
@@ -6582,6 +6919,7 @@ scouts  {
  }
 with the heliographs  {
 	heliograph :: 20
+	hierograph :: 15
  }
 that were presently to warn the gunners of the martian approach but the martians now understood our command of artillery and the danger of human proximity  {
                         }
@@ -6601,10 +6939,14 @@ pillar of dense green smoke that rose therefrom  {
       }
 could be seen from the hills about merrow  {
 	marrowed :: 9
+	marrowy :: 8
+	marrows :: 8
+	morrows :: 8
 	 marrow :: 9
 	 morrow :: 9
       }
 and even it is said from banstead  {
+	bastinade :: 11
      }
 and epsom downs and while the martians behind me were thus preparing  {
           }
@@ -6641,6 +6983,9 @@ downstream with me so that for the best part of a mile i could see little of eit
 of black figures hurrying across the meadows from the direction of weybridge halliford it seemed was deserted and several of the houses facing  {
                      }
 the river were on fire it was strange to see the place quite tranquil quite desolate under the hot blue sky with the smoke and little threads of flame going straight up into the heat of the afternoon never before had i seen houses burning without the accompaniment of an obstructive  {
+	                                          obstruct :: 16
+	                                        obstructer :: 15
+	                                        obstructed :: 16
                                                  }
 crowd a little farther on the dry reeds up the bank were smoking and glowing and a line of fire inland  {
                    }
@@ -6659,7 +7004,12 @@ overcame  {
 my fears and i landed on the middlesex bank and lay down deadly sick  {
             }
 amid the long grass i suppose the time was then about four or five o clock i got up presently walked perhaps half a mile without meeting a soul and then lay down again in the shadow of a hedge i seem to remember talking wanderingly  {
+	                                    wardering :: 15
+	                                    wardening :: 16
+	                                    pandering :: 15
 	                                    wandering :: 18
+	                                    wondering :: 15
+	                                    dandering :: 15
 	                                   wanderings :: 17
                                             }
 to myself during that last spurt i was also very thirsty and bitterly  {
@@ -6732,7 +7082,19 @@ why are these things permitted what sins  {
 have we done the morning service was over i was walking through the roads  {
             }
 to clear my brain for the afternoon and then fire earthquake death as if it were sodom  {
+	           moods :: 6
+	         bosomed :: 6
+	         spoomed :: 6
 	          sodomy :: 9
+	        sodomize :: 7
+	        sodomise :: 6
+	       sodomitic :: 6
+	         sloomed :: 6
+	           spoom :: 6
+	           dooms :: 6
+	           dodos :: 6
+	           sloom :: 6
+	           bosom :: 6
                }
 and gomorrah  {
  }
@@ -6753,12 +7115,21 @@ it only three years ago gone swept out of existence why another pause  {
 and he broke out again like one demented  {
       }
 the smoke of her burning goeth  {
+	hogtie :: 6
+	goatherd :: 6
+	goety :: 7
+	ghetto :: 6
+	doeth :: 7
+	  goe :: 6
     }
 up for ever and ever he shouted his eyes flamed  {
         }
 and he pointed a lean finger in the direction of weybridge by this time i was beginning to take his measure the tremendous tragedy in which he had been involved  {
                             }
 it was evident he was a fugitive from weybridge had driven him to the very verge of his reason are we far from sunbury  {
+	                sunburn :: 10
+	               sunburnt :: 9
+	               sunburst :: 9
                       }
 i said in a matter of fact tone what are we to do he asked are these creatures everywhere has the earth been given  {
                       }
@@ -6775,12 +7146,14 @@ in his eyes gave place to their former  {
 stare and his regard wandered  {
    }
 from me this must be the beginning of the end he said interrupting  {
+	   interrupt :: 16
            }
 me the end the great and terrible day of the lord when men shall call upon the mountains  {
                 }
 and the rocks  {
  }
 to fall upon them and hide them hide them from the face of him that sitteth  {
+	        fittest :: 9
               }
 upon the throne  {
  }
@@ -6838,6 +7211,7 @@ brother  {
 was in london when the martians fell at woking he was a medical  {
            }
 student working for an imminent examination  {
+	examinant :: 15
     }
 and he heard nothing of the arrival until saturday morning the morning papers on saturday contained in addition to lengthy  {
                   }
@@ -6860,6 +7234,8 @@ their leader  {
 writer expanded  {
  }
 very comfortingly  {
+	comporting :: 17
+	conformity :: 16
  }
 of course all the students in the crammer  {
       }
@@ -6880,6 +7256,7 @@ s gazette  {
 in an extra special edition announced  {
     }
 the bare fact of the interruption  {
+	interrupt :: 16
     }
 of telegraphic  {
 	telegraph :: 18
@@ -6921,6 +7298,7 @@ to alter the route  {
 of the southampton  {
  }
 and portsmouth  {
+	northmost :: 13
  }
 sunday league  {
  }
@@ -6937,6 +7315,8 @@ my brother for the traffic manager  {
 to whom he bears  {
   }
 a slight resemblance  {
+	resemblant :: 15
+	resemble :: 15
  }
 waylaid  {
  }
@@ -6955,6 +7335,7 @@ that very extravagant  {
 phrase plenty  {
  }
 of londoners  {
+	condones :: 12
  }
 did not hear of the martians until the panic of monday  {
          }
@@ -6985,7 +7366,17 @@ of the cardigan regiment no details are known maxims have been absolutely useles
 against their armour the field guns have been disabled  {
        }
 by them flying hussars have been galloping into chertsey the martians appear to be moving slowly towards chertsey or windsor  {
+	          windstorm :: 10
+	          windroses :: 10
+	              winos :: 9
+	              winds :: 10
+	            windrow :: 9
+	            windore :: 9
+	            winders :: 9
+	              rinds :: 9
+	           windsurf :: 10
 	           windrose :: 11
+	           windrows :: 10
                   }
 great anxiety prevails  {
  }
@@ -7041,6 +7432,7 @@ a referee he became alarmed at the news in this and went again to waterloo stati
 the omnibuses  {
  }
 carriages cyclists and innumerable  {
+	innumerate :: 16
   }
 people walking in their best clothes seemed scarcely affected by the strange intelligence that the news venders  {
                }
@@ -7079,6 +7471,7 @@ came and abused  {
 the south western company bitterly to my brother it wants  {
         }
 showing up he said one or two trains came in from richmond putney  {
+	      punnet :: 8
            }
 and kingston containing people who had gone out for a day s boating and found the locks  {
                }
@@ -7089,22 +7482,44 @@ addressed my brother full of strange tidings there s hosts  {
 of people driving into kingston in traps  {
      }
 and carts and things with boxes of valuables and all that he said they come from molesey  {
+	           moles :: 9
+	        molested :: 9
+	        molester :: 9
+	         moseyed :: 9
                }
 and weybridge and walton and they say there s been guns heard at chertsey heavy firing and that mounted soldiers have told them to get off at once because the martians are coming we heard guns firing at hampton  {
+	                               phantom :: 9
+	                                tampon :: 9
+	                               tampion :: 10
+	                              tampions :: 9
                                      }
 court  {
  }
 station but we thought it was thunder what the dickens does it all mean the martians can t get out of their pit can they my brother could not tell him afterwards he found that the vague feeling of alarm had spread to the clients  {
                                            }
 of the underground  {
+	undergrown :: 15
  }
 railway and that the sunday excursionists began to return from all over the south western lung barnes  {
+	           bares :: 8
+	         earnest :: 8
+	          brines :: 8
+	            barn :: 8
 	          baryes :: 9
+	          barres :: 8
+	          barons :: 8
 	          barney :: 9
+	          barmen :: 8
+	          barbes :: 8
 	         banners :: 9
+	         bankers :: 8
+	         bangers :: 8
+	           earns :: 8
                }
 wimbledon  {
 	wimbled :: 14
+	tumbledown :: 12
+	wimble :: 12
  }
 richmond park  {
  }
@@ -7129,6 +7544,7 @@ with soldiers these were the guns that were brought up from woolwich  {
 and chatham  {
  }
 to cover kingston there was an exchange of pleasantries  {
+	pleasanter :: 17
        }
 you ll get eaten we re the beast tamers  {
        }
@@ -7159,6 +7575,7 @@ with long transverse stripes of reddish purple cloud there was talk of a floatin
 body one of the men there a reservist  {
       }
 he said he was told my brother he had seen the heliograph flickering in the west in wellington  {
+	          welling :: 13
                 }
 street my brother met a couple of sturdy roughs  {
        }
@@ -7305,6 +7722,9 @@ bridge and close behind him came a hay waggon with five or six respectable looki
 conspicuously  {
  }
 with the sabbath  {
+	sabbatize :: 9
+	sabbatine :: 9
+	sabbatic :: 10
 	sabbat :: 12
  }
 best appearance of the people on the omnibuses people in fashionable  {
@@ -7318,6 +7738,7 @@ at them out of cabs  {
 they stopped at the square as if undecided  {
       }
 which way to take and finally turned eastward along the strand some way behind these came a man in workday  {
+	           workaday :: 10
                   }
 clothes riding one of those old fashioned  {
      }
@@ -7370,6 +7791,8 @@ s park about two he was now very anxious on my account and disturbed at the evid
 of the trouble his mind was inclined to run even as mine had run on saturday on military details he thought of all those silent expectant guns of the suddenly nomadic  {
                              }
 countryside  {
+	countries :: 15
+	counterbid :: 15
  }
 he tried to imagine boilers on stilts a hundred feet high there were one or two cartloads  {
                }
@@ -7383,6 +7806,7 @@ road but so slowly was the news spreading that regent street and portland  {
            }
 place were full of their usual sunday night promenaders  {
 	promenade :: 17
+	promenaded :: 15
 	promenades :: 18
 	promenader :: 20
        }
@@ -7419,6 +7843,11 @@ were being shouted they are coming bawled a policeman hammering at the door the 
 came from the albany  {
   }
 street barracks and every church within earshot  {
+	harslet :: 9
+	haroset :: 10
+	earths :: 10
+	haroseth :: 9
+	 earth :: 9
      }
 was hard at work killing sleep with a vehement  {
        }
@@ -7427,7 +7856,9 @@ disorderly  {
 tocsin  {
  }
 there was a noise of doors opening and window after window in the houses opposite flashed from darkness into yellow illumination  {
+	          illuminato :: 16
 	          illuminati :: 19
+	          illuminant :: 16
                    }
 up the street came galloping a closed carriage bursting  {
        }
@@ -7445,6 +7876,9 @@ farm station where the north western special trains were loading  {
 up instead of coming down the gradient  {
      }
 into euston  {
+	teston :: 8
+	duotones :: 8
+	deutons :: 8
  }
 for a long time my brother stared out of the window in blank astonishment watching the policemen hammering at door after door and delivering  {
                       }
@@ -7483,9 +7917,14 @@ in the thames valley and all about him in the rooms  {
 below in the houses on each side and across the road and behind in the park terraces  {
                }
 and in the hundred other streets of that part of marylebone and the westbourne  {
+	    westbound :: 13
             }
 park district and st pancras  {
+	pancreases :: 9
+	pangrams :: 9
 	pancreas :: 11
+	canards :: 9
+	pancratist :: 10
    }
 and westward  {
  }
@@ -7500,18 +7939,41 @@ and eastward in shoreditch  {
 and highbury  {
  }
 and haggerston  {
+	taggers :: 13
+	hangers :: 13
+	naggers :: 13
+	hoggers :: 13
  }
 and hoxton  {
  }
 and indeed through all the vastness  {
     }
 of london from ealing  {
+	ailing :: 8
+	eatings :: 8
 	waling :: 9
+	earings :: 8
+	valine :: 8
 	malinger :: 9
 	eating :: 9
 	easing :: 9
+	saline :: 8
+	malingery :: 8
+	malingers :: 8
+	arling :: 8
 	baling :: 9
 	paling :: 9
+	elding :: 8
+	lazing :: 8
+	laying :: 8
+	lawing :: 8
+	laving :: 8
+	lasing :: 8
+	laming :: 8
+	heling :: 8
+	palings :: 8
+	lading :: 8
+	lacing :: 8
   }
 to east ham people were rubbing  {
     }
@@ -7670,11 +8132,25 @@ line between st george s hill weybridge and the village of send southwest of rip
                }
 rockets sprang out of the hills before them so soon as they began to move and warned the waiting batteries about ditton  {
 	              dotting :: 9
+	              dittany :: 8
 	                ditto :: 10
 	               dittos :: 9
                     }
 and esher  {
+	sheers :: 6
+	cheers :: 6
 	ethers :: 8
+	pheers :: 6
+	ashery :: 6
+	sphere :: 6
+	usher :: 7
+	etherist :: 6
+	etherism :: 6
+	ether :: 7
+	ester :: 7
+	esker :: 7
+	sheer :: 7
+	hewers :: 6
  }
 at the same time four of their fighting machines similarly  {
         }
@@ -7697,8 +8173,43 @@ and brambles  {
 into the broad ditch by the side of the road he looked back saw what i was doing and turned to join me the two halted the nearer to us standing and facing sunbury the remoter being a grey indistinctness  {
                                       }
 towards the evening star away towards staines  {
+	steanes :: 10
+	savines :: 10
+	snakiest :: 10
+	stainless :: 9
+	stanzes :: 10
+	steins :: 10
+	steans :: 9
+	stances :: 10
+	satires :: 9
+	stamens :: 9
+	stanes :: 9
 	stains :: 11
+	stained :: 10
+	stainer :: 10
+	ratines :: 9
+	arsines :: 9
+	starnies :: 10
+	sasines :: 9
+	plainest :: 9
+	patines :: 9
+	satins :: 9
+	sasine :: 10
+	nasties :: 9
+	tansies :: 9
+	sandiest :: 9
+	stannels :: 9
+	insanest :: 9
+	staniels :: 10
+	snathes :: 9
+	snaste :: 9
+	artiness :: 9
+	tisanes :: 10
+	salines :: 10
+	matiness :: 9
+	 stain :: 9
 	stainers :: 12
+	staidest :: 9
      }
 the occasional howling of the martians had ceased they took up their positions  {
            }
@@ -7752,6 +8263,7 @@ in a disturbed hive  {
 of bees  {
  }
 did they dream they might exterminate  {
+	extermine :: 16
     }
 us at that time no one knew what food they needed  {
          }
@@ -7770,11 +8282,16 @@ would the londoners have the heart and courage to make a greater moscow  {
 of their mighty province  {
   }
 of houses then after an interminable  {
+	interline :: 16
     }
 time as it seemed to us crouching and peering through the hedge came a sound like the distant concussion of a gun another nearer and then another and then the martian beside us raised his tube on high and discharged  {
                                       }
 it gunwise  {
+	gunwales :: 9
+	gundies :: 9
+	gunfires :: 9
 	sunwise :: 11
+	genius :: 9
  }
 with a heavy report that made the ground heave the one towards staines answered him there was no flash no smoke simply that loaded detonation i was so excited by these heavy minute guns following one another that i so far forgot my personal safety and my scalded hands as to clamber up into the hedge and stare towards sunbury as i did so a second report followed and a big projectile hurtled  {
                                                                        }
@@ -7791,13 +8308,17 @@ these hill like forms grew lower and broader  {
 even as we stared moved by a sudden thought i looked northward and there i perceived a third of these cloudy black kopjes  {
                      }
 had risen everything had suddenly become very still far away to the southeast  {
+	    southers :: 12
            }
 marking the quiet we heard the martians hooting  {
       }
 to one another and then the air quivered again with the distant thud of their guns but the earthly artillery made no reply now at the time we could not understand these things but later i was to learn the meaning of these ominous  {
                                           }
 kopjes that gathered in the twilight each of the martians standing in the great crescent i have described had discharged by means of the gunlike  {
+	                 nutlike :: 10
 	                 sunlike :: 11
+	                 unalike :: 9
+	                  lungie :: 9
                        }
 tube he carried a huge canister  {
     }
@@ -7842,6 +8363,7 @@ than gaseous abandoning  {
 the hills and streaming into the valleys  {
      }
 and ditches and watercourses  {
+	watercress :: 16
   }
 even as i have heard the carbonic  {
      }
@@ -7933,6 +8455,7 @@ far away in the southwest due i believe to guns being fired haphazard  {
 before the black vapour could overwhelm  {
     }
 the gunners so setting about it as methodically  {
+	methodic :: 16
 	methodical :: 19
       }
 as men might smoke out a wasps  {
@@ -7946,10 +8469,17 @@ a line from hanwell  {
 to coombe  {
  }
 and malden  {
+	maidens :: 8
 	milden :: 9
+	lande :: 8
+	maligned :: 8
+	mildens :: 8
+	maddens :: 8
+	malted :: 8
 	maiden :: 9
 	madden :: 9
 	maidenly :: 9
+	mandrel :: 8
  }
 all night through their destructive tubes advanced never once after the martian at st george s hill was brought down did they give the artillery the ghost of a chance against them wherever there was a possibility  {
                                    }
@@ -8096,6 +8626,15 @@ multitude away from the stations and along the northward running roads by midday
 black vapour drove along the thames and across the flats  {
         }
 of lambeth  {
+	lambert :: 10
+	lambent :: 10
+	hamlet :: 10
+	hamble :: 9
+	gambet :: 9
+	hamlets :: 9
+	lamberts :: 9
+	lamber :: 9
+	lambed :: 9
  }
 cutting  {
  }
@@ -8134,6 +8673,7 @@ with no further injury  {
 than a cut wrist  {
   }
 the steep foot of haverstock  {
+	aftershock :: 14
    }
 hill was impassable owing  {
   }
@@ -8142,6 +8682,7 @@ to several overturned horses and my brother struck into belsize  {
 road so he got out of the fury of the panic and skirting  {
            }
 the edgware  {
+	ragweed :: 9
  }
 road reached edgware about seven fasting  {
     }
@@ -8174,6 +8715,7 @@ most of the fugitives at that hour were mounted on cycles  {
 but there were soon motor cars hansom  {
      }
 cabs and carriages hurrying along and the dust hung in heavy clouds along the road to st albans  {
+	           nablas :: 8
 	           ambans :: 9
                 }
 it was perhaps a vague idea of making his way to chelmsford  {
@@ -8191,11 +8733,20 @@ he passed near several farmhouses  {
 and some little places whose names  {
     }
 he did not learn he saw few fugitives until in a grass lane towards high barnet  {
+	        garnets :: 8
 	         burnet :: 9
 	         garnet :: 9
+	        carnets :: 8
+	        baronet :: 8
+	         brunet :: 8
 	         carnet :: 9
+	           barn :: 8
+	         barret :: 8
 	         barney :: 9
+	         barmen :: 8
+	         barbet :: 8
 	         banter :: 9
+	         banket :: 8
               }
 he happened upon two ladies who became his fellow travellers  {
         }
@@ -8257,6 +8808,7 @@ driving along an unknown lane with these two women he learned they were the wife
 of a surgeon  {
  }
 living at stanmore  {
+	starmonger :: 11
  }
 who had come in the small hours from a dangerous case at pinner  {
            }
@@ -8273,6 +8825,7 @@ to be an expert shot with the revolver a weapon strange to him in order to give 
 out and gave place to an uneasy  {
      }
 state of anticipation  {
+	anticipant :: 16
  }
 several wayfarers  {
  }
@@ -8291,7 +8844,12 @@ so have i said my brother she explained that they had as much as thirty pounds i
 that with that they might get upon a train at st albans or new barnet my brother thought that was hopeless seeing the fury of the londoners to crowd upon the trains and broached  {
                                 }
 his own idea of striking across essex  {
+	  sese :: 6
 	  esse :: 8
+	 esnes :: 6
+	 sexes :: 6
+	 desex :: 6
+	excess :: 6
      }
 towards harwich  {
  }
@@ -8340,6 +8898,11 @@ east end factory  {
 girls and a couple of little children crowded in the cart this ll tike  {
             }
 us rahnd  {
+	rand :: 6
+	harn :: 6
+	darn :: 6
+	rah :: 6
+	rahed :: 7
  }
 edgware asked the driver wild eyed  {
     }
@@ -8441,8 +9004,18 @@ s dray  {
 rumbled  {
  }
 by with its two near wheels splashed with fresh blood clear the way cried the voices clear the way eter nity  {
+	               nitty :: 5
 	               nitry :: 6
+	               nifty :: 5
+	              nitryl :: 5
+	              nitery :: 5
 	                tiny :: 6
+	                pity :: 5
+	                nixy :: 5
+	                nits :: 5
+	                nite :: 5
+	                mity :: 5
+	                city :: 5
 	                 nit :: 6
                    }
 eter nity came echoing  {
@@ -8544,6 +9117,7 @@ her up speaking  {
 gently  {
  }
 to her and carried her to miss elphinstone so soon as my brother touched her she became quite still as if frightened ellen  {
+	                 elmen :: 6
                      }
 shrieked a woman in the crowd with tears in her voice ellen and the child suddenly darted away from my brother crying mother  {
                      }
@@ -8556,6 +9130,9 @@ my brother saw dimly through the dust that two men lifted out something on a whi
 and put it gently on the grass beneath the privet  {
         }
 hedge one of the men came running to my brother where is there any water he said he is dying fast and very thirsty it is lord garrick  {
+	                 parrocking :: 9
+	                      karri :: 9
+	                   garlicky :: 9
                           }
 lord garrick said my brother the chief justice  {
       }
@@ -8594,6 +9171,8 @@ the man s collar with his free hand my brother lugged him sideways but he still 
 hammering at his arm with a handful of gold go on go on shouted angry voices behind way way there was a smash as the pole of a carriage crashed  {
                             }
 into the cart that the man on horseback stopped my brother looked up and the man with the gold twisted his head round and bit the wrist that held his collar there was a concussion and the black horse came staggering sideways and the carthorse  {
+	                                    creators :: 12
+	                                   racehorse :: 13
                                            }
 pushed beside it a hoof missed my brother s foot by a hair s breadth  {
              }
@@ -8644,6 +9223,8 @@ repeatedly  {
 and this to some extent relieved  {
     }
 the stress they struck eastward through hadley  {
+	hauled :: 8
+	hailed :: 8
 	 hayle :: 9
      }
 and there on either side of the road and at another place farther on they came upon a great multitude of people drinking at the stream some fighting to come at the water and farther on from a lull  {
@@ -8667,6 +9248,8 @@ exhausted all three of them they began to suffer the beginnings of hunger  {
 the night was cold and none of them dared  {
        }
 to sleep and in the evening many people came hurrying along the road nearby  {
+	        yearn :: 8
+	         near :: 8
 	       nearly :: 9
             }
 their stopping place fleeing  {
@@ -8678,6 +9261,8 @@ the thunder child had the martians aimed  {
 only at destruction they might on monday have annihilated the entire population of london as it spread itself slowly through the home counties  {
                      }
 not only along the road through barnet but also through edgware and waltham  {
+	     malthas :: 10
+	      caltha :: 9
 	      maltha :: 11
            }
 abbey  {
@@ -8689,6 +9274,20 @@ and shoeburyness  {
 and south of the thames to deal and broadstairs  {
        }
 poured the same frantic rout if one could have hung that june  {
+	       tune :: 5
+	       rune :: 5
+	       juve :: 5
+	       jute :: 5
+	       jure :: 5
+	       junk :: 5
+	       juke :: 5
+	       jube :: 5
+	       jane :: 5
+	       dune :: 5
+	     junkie :: 5
+	     junket :: 5
+	     junked :: 5
+	     jungle :: 5
           }
 morning in a balloon  {
   }
@@ -8707,7 +9306,17 @@ i have set forth at length in the last chapter my brother s account of the road 
 appeared to one of those concerned never before in the history of the world had such a mass of human beings moved and suffered together the legendary  {
                          }
 hosts of goths  {
+	oaths :: 6
+	moths :: 7
+	tosh :: 6
+	hots :: 6
+	gosh :: 7
+	gouts :: 6
 	gosht :: 8
+	goats :: 6
+	ghost :: 6
+	coths :: 7
+	got :: 6
  }
 and huns  {
  }
@@ -8716,7 +9325,11 @@ the hugest  {
 armies  {
  }
 asia  {
+	assai :: 5
 	arias :: 6
+	askari :: 5
+	aria :: 5
+	aias :: 5
  }
 has ever seen would have been but a drop in that current  {
           }
@@ -8809,18 +9422,22 @@ clambering down the piers  {
 of the bridge from above when an hour later a martian appeared beyond the clock tower and waded down the river nothing but wreckage floated  {
                        }
 above limehouse  {
+	firehouse :: 12
  }
 of the falling of the fifth cylinder i have presently to tell the sixth  {
             }
 star fell at wimbledon my brother keeping watch beside the women in the chaise in a meadow saw the green flash of it far beyond the hills on tuesday  {
+	                   outstayed :: 9
                            }
 the little party still set upon getting across the sea made its way through the swarming country towards colchester  {
+	        couchettes :: 13
                  }
 the news that the martians were now in possession of the whole of london was confirmed  {
               }
 they had been seen at highgate  {
     }
 and even it was said at neasden  {
+	reascend :: 9
      }
 but they did not come into my brother s view until the morrow  {
            }
@@ -8859,7 +9476,24 @@ counties he was also told that the midland railway company had replaced the dese
 of the first day s panic had resumed traffic and was running northward trains from st albans to relieve the congestion  {
                    }
 of the home counties there was also a placard in chipping ongar  {
+	      argon :: 6
+	      anger :: 6
 	      organ :: 8
+	      orang :: 6
+	    megaron :: 6
+	      nagor :: 7
+	    organum :: 6
+	    organic :: 6
+	    angoras :: 6
+	      groan :: 6
+	     organs :: 7
+	     organa :: 6
+	     ignaro :: 6
+	     angora :: 7
+	     angary :: 6
+	     nagors :: 6
+	     onward :: 6
+	     onager :: 6
           }
 announcing  {
  }
@@ -8872,6 +9506,8 @@ than this promise nor as a matter of fact did anyone else hear more of it that n
 hill it fell while miss elphinstone was watching for she took that duty  {
            }
 alternately  {
+	alternates :: 16
+	alternated :: 16
  }
 with my brother she saw it on wednesday  {
       }
@@ -8884,19 +9520,27 @@ of public supply seized  {
 the pony as provisions and would give nothing in exchange for it but the promise of a share in it the next day here there were rumours  {
                          }
 of martians at epping  {
+	piping :: 8
 	upping :: 9
+	uppings :: 8
   }
 and news of the destruction of waltham abbey powder mills in a vain attempt to blow up one of the invaders people were watching for martians here from the church towers my brother very luckily for him as it chanced preferred  {
                                        }
 to push on at once to the coast  {
       }
 rather than wait for food although all three of them were very hungry by midday they passed through tillingham  {
+	           tilling :: 14
+	           milling :: 13
+	          tillings :: 13
+	           hilling :: 13
                  }
 which strangely enough seemed to be quite silent and deserted save for a few furtive plunderers  {
               }
 hunting for food near tillingham they suddenly came in sight of the sea and the most amazing  {
                }
 crowd of shipping of all sorts that it is possible to imagine for after the sailors could no longer come up the thames they came on to the essex coast to harwich and walton and clacton  {
+	                           coacting :: 9
+	                              coact :: 9
                                   }
 and afterwards to foulness  {
   }
@@ -8915,6 +9559,7 @@ english scotch  {
 french dutch  {
  }
 and swedish  {
+	swished :: 9
  }
 steam launches  {
  }
@@ -8938,12 +9583,20 @@ even neat white and grey liners  {
     }
 from southampton and hamburg  {
 	hamburger :: 11
+	hamburgers :: 10
   }
 and along the blue coast across the blackwater  {
       }
 my brother could make out dimly a dense swarm of boats chaffering  {
           }
 with the people on the beach a swarm which also extended up the blackwater almost to maldon  {
+	        salmonid :: 8
+	          salmon :: 8
+	          dolman :: 8
+	        mandolin :: 8
+	          lardon :: 8
+	         mangold :: 8
+	         mandola :: 8
                }
 about a couple of miles out lay an ironclad very low in the water almost to my brother s perception  {
                   }
@@ -8970,6 +9623,7 @@ herself friendless  {
 in a foreign  {
  }
 country and so forth she seemed poor woman to imagine that the french and the martians might prove very similar she had been growing increasingly  {
+	              encreasing :: 17
                        }
 hysterical  {
  }
@@ -8982,6 +9636,7 @@ her great idea was to return to stanmore things had been always well and safe at
 from the thames they sent a boat and drove a bargain  {
          }
 for thirty six pounds for the three the steamer was going these men said to ostend  {
+	         ostent :: 8
 	         obtend :: 9
               }
 it was about two o clock when my brother having paid  {
@@ -9024,6 +9679,8 @@ some of the passengers were of opinion that this firing came from shoeburyness u
 at the same time far away in the southeast the masts  {
          }
 and upperworks  {
+	paperwork :: 14
+	underworks :: 14
  }
 of three ironclads rose one after the other out of the sea beneath clouds of black smoke but my brother s attention speedily  {
                      }
@@ -9050,7 +9707,9 @@ than terrified watching this titan advancing deliberately towards the shipping w
 trees and then yet another still farther off wading deeply through a shiny  {
            }
 mudflat  {
+	modulate :: 9
 	mudflap :: 11
+	mudflaps :: 10
  }
 that seemed to hang halfway up between sea and sky they were all stalking  {
             }
@@ -9156,6 +9815,7 @@ out beyond the white tumult drove something long and black the flames streaming 
                }
 its ventilators  {
 	ventilator :: 20
+	ventilates :: 15
  }
 and funnels spouting  {
  }
@@ -9264,6 +9924,7 @@ in by the black smoke all that day and the morning of the next there were signs 
 of a door but i do not know who these people were nor what became of them we saw nothing of them next day the black smoke drifted slowly riverward  {
                             }
 all through monday morning creeping nearer and nearer to us driving at last along the roadway outside the house that hid us a martian came across the fields about midday laying the stuff with a jet of superheated  {
+	                            superheat :: 16
                                     }
 steam that hissed  {
  }
@@ -9298,12 +9959,14 @@ all covered thickly  {
 with black dust that pall of cindery powder made me think of what i had read of the destruction of pompeii  {
                    }
 we got to hampton court without misadventure our minds full of strange and unfamiliar appearances and at hampton court our eyes were relieved to find a patch of green that had escaped the suffocating  {
+	                        suffocate :: 15
                                 }
 drift we went through bushey park with its deer  {
        }
 going to and fro under the chestnuts  {
      }
 and some men and women hurrying in the distance towards hampton and so we came to twickenham  {
+	         thicken :: 13
                }
 these were the first people we saw away across the road the woods beyond ham and petersham  {
                }
@@ -9504,6 +10167,7 @@ with smashed hardware  {
 the end of the kitchen towards the house was broken into and since the daylight shone  {
               }
 in there it was evident the greater part of the house had collapsed contrasting  {
+	     contrast :: 15
             }
 vividly with this ruin was the neat dresser stained in the fashion pale green and with a number of copper  {
                   }
@@ -9599,6 +10263,7 @@ but with three long tentacles it was fishing out a number of rods  {
 plates  {
  }
 and bars which lined the covering and apparently strengthened  {
+	strengthen :: 18
        }
 the walls of the cylinder these as it extracted  {
        }
@@ -9624,6 +10289,7 @@ descriptions  {
 of such eye witnesses  {
   }
 as myself to go upon scarcely realise that living quality i recall particularly the illustration  {
+	    illustrate :: 16
              }
 of one of the first pamphlets  {
     }
@@ -9672,6 +10338,8 @@ workman dawned upon me with that realisation  {
 my interest shifted to those other creatures the real martians already i had had a transient impression of these and the first nausea  {
                      }
 no longer obscured my observation  {
+	observant :: 15
+	observator :: 15
    }
 moreover i was concealed  {
   }
@@ -9693,6 +10361,7 @@ tympanic  {
  }
 surface since known to be anatomically  {
 	anatomical :: 19
+	analytical :: 16
     }
 an ear though it must have been almost useless in our dense air in a group round the mouth were sixteen slender almost whiplike  {
                       }
@@ -9711,6 +10380,8 @@ professor  {
 howes  {
  }
 the hands even as i saw these martians for the first time they seemed to be endeavouring  {
+	      endeavours :: 16
+	       endeavour :: 17
                }
 to raise themselves on these hands but of course with the increased weight of terrestrial conditions this was impossible there is reason to suppose that on mars they may have progressed upon them with some facility  {
                                   }
@@ -9759,6 +10430,7 @@ from a still living animal in most cases from a human being was run directly by 
 into the recipient  {
  }
 canal the bare idea of this is no doubt horribly repulsive to us but at the same time i think that we should remember how repulsive our carnivorous  {
+	                 carnivores :: 15
                           }
 habits would seem to an intelligent rabbit the physiological  {
        }
@@ -9801,6 +10473,7 @@ glands but the martians were lifted above all these organic fluctuations  {
 of mood and emotion their undeniable preference  {
      }
 for men as their source of nourishment  {
+	cornishmen :: 15
      }
 is partly explained by the nature of the remains  {
        }
@@ -9827,6 +10500,7 @@ two or three of these seem to have been brought in each cylinder and all were ki
 upon our planet would have broken every bone  {
       }
 in their bodies and while i am engaged in this description i may add in this place certain further details which although they were not all evident to us at the time will enable the reader who is unacquainted  {
+	                            reacquaint :: 16
 	                            unacquaint :: 20
                                      }
 with them to form a clearer picture of these offensive creatures in three other points their physiology  {
@@ -9862,11 +10536,18 @@ in man in all the higher terrestrial animals such a method of increase has disap
 but even on this earth it was certainly the primitive  {
         }
 method among the lower animals up even to those first cousins of the vertebrated  {
+	    vertebrae :: 16
 	   vertebrate :: 20
             }
 animals the tunicates  {
 	tunicate :: 16
 	tunicated :: 15
+	pumicates :: 12
+	tunicae :: 12
+	truncates :: 13
+	suricate :: 12
+	urticates :: 13
+	suricates :: 12
  }
 the two processes occur side by side but finally the sexual method superseded  {
            }
@@ -9875,6 +10556,9 @@ its competitor  {
 altogether on mars however just the reverse  {
      }
 has apparently been the case it is worthy of remark that a certain speculative  {
+	   speculates :: 15
+	   speculated :: 16
+	    spiculate :: 16
 	    speculate :: 17
             }
 writer of quasi scientific repute  {
@@ -9922,8 +10606,11 @@ necessity only one other part of the body had a strong case for survival  {
 and that was the hand teacher  {
     }
 and agent of the brain while the rest of the body dwindled the hands would grow larger there is many a true word written in jest and here in the martians we have beyond dispute the actual accomplishment  {
+	                           accomplish :: 19
                                     }
 of such a suppression  {
+	suppressor :: 15
+	suppress :: 16
   }
 of the animal side of the organism by the intelligence to me it is quite credible  {
               }
@@ -9962,10 +10649,12 @@ and such morbidities  {
 never enter the scheme  {
   }
 of their life and speaking of the differences  {
+	differency :: 15
       }
 between the life on mars and terrestrial life i may allude  {
          }
 here to the curious suggestions  {
+	suggests :: 15
 	suggestion :: 18
    }
 of the red weed  {
@@ -9975,15 +10664,18 @@ apparently the vegetable  {
 kingdom in mars instead of having green for a dominant colour is of a vivid blood red tint at any rate the seeds  {
                      }
 which the martians intentionally  {
+	intention :: 18
   }
 or accidentally  {
 	accidental :: 19
+	occidental :: 16
  }
 brought with them gave rise in all cases to red coloured growths  {
           }
 only that known popularly  {
   }
 as the red weed however gained any footing in competition  {
+	competitor :: 15
         }
 with terrestrial forms the red creeper  {
     }
@@ -10032,6 +10724,7 @@ and which so far has been the chief source of information concerning them now no
 human being saw so much of the martians in action as i did i take no credit to myself for an accident but the fact is so and i assert that i watched them closely time after time and that i have seen four five and once six of them sluggishly performing  {
                                                   }
 the most elaborately  {
+	elaborates :: 16
  }
 complicated operations together without either sound or gesture their peculiar hooting invariably preceded  {
            }
@@ -10043,8 +10736,17 @@ of air preparatory  {
 	preparator :: 20
  }
 to the suctional  {
+	suctions :: 12
 	suction :: 14
+	cautions :: 12
+	auction :: 13
+	tuitional :: 12
+	suctorian :: 12
+	fictional :: 12
+	factional :: 12
 	sectional :: 15
+	pactional :: 12
+	stational :: 12
  }
 operation i have a certain claim  {
     }
@@ -10085,6 +10787,8 @@ to their bodily  {
 resources  {
  }
 that their great superiority  {
+	superior :: 15
+	superiorly :: 15
   }
 over man lay we men with our bicycles and road skates  {
          }
@@ -10144,6 +10848,7 @@ together when traversed  {
 by a current of electricity  {
    }
 in this way the curious parallelism  {
+	parallel :: 16
 	parallels :: 17
     }
 to animal motions which was so striking and disturbing  {
@@ -10378,6 +11083,8 @@ stood across the corner of the pit and then amid the clangour  {
 of the machinery came a drifting suspicion  {
      }
 of human voices that i entertained  {
+	entertain :: 16
+	entertains :: 15
     }
 at first only to dismiss i crouched watching this fighting machine closely satisfying  {
            }
@@ -10424,6 +11131,7 @@ i gripped myself with both hands it grew upon my mind once i could face the fact
 that terrible as our position was there was as yet no justification  {
           }
 for absolute despair our chief chance lay in the possibility of the martians making the pit nothing more than a temporary encampment or even if they kept it permanently  {
+	                  permanency :: 16
 	                   permanent :: 18
                            }
 they might not consider it necessary to guard it and a chance of escape might be afforded us i also weighed  {
@@ -10443,6 +11151,7 @@ and after a long interval six again and that was all chapter four the death of t
 me from the slit the curate had gone back into the scullery i was struck by a sudden thought i went back quickly and quietly into the scullery in the darkness i heard the curate drinking i snatched in the darkness and my fingers caught a bottle of burgundy for a few minutes there was a tussle  {
                                                        }
 the bottle struck the floor and broke and i desisted and rose we stood panting and threatening  {
+	        threaten :: 15
                }
 each other in the end i planted myself between him and the food and told him of my determination  {
                  }
@@ -10476,6 +11185,8 @@ to himself the rudimentary  {
   }
 precautions  {
 	precaution :: 20
+	preclusion :: 16
+	prestation :: 15
  }
 to keep our imprisonment endurable  {
    }
@@ -10490,6 +11201,7 @@ i am inclined to think my own mind wandered at times i had strange and hideous  
 dreams whenever  {
  }
 i slept it sounds paradoxical  {
+	paradoxal :: 16
    }
 but i am inclined to think that the weakness and insanity  {
          }
@@ -10720,6 +11432,7 @@ my eyes all the machinery had gone save for the big mound of greyish blue powder
 i could see in any direction save behind me to the north and neither martians nor sign of martians were to be seen the pit dropped sheerly  {
                          }
 from my feet but a little way along the rubbish afforded a practicable  {
+	  practicals :: 16
 	   practical :: 17
            }
 slope to the summit of the ruins my chance of escape had come i began to tremble i hesitated for some time and then in a gust of desperate resolution  {
@@ -10739,6 +11452,8 @@ the still living stems the neighbouring houses had all been wrecked but none had
 rooms below me was the great pit with the crows struggling for its refuse a number of other birds hopped about among the ruins far away i saw a gaunt cat slink  {
                               }
 crouchingly  {
+	grouching :: 15
+	grouchily :: 15
  }
 along a wall but traces of men there were none the day seemed by contrast with my recent confinement  {
                  }
@@ -10816,8 +11531,12 @@ and then i came upon a brown sheet of flowing shallow water where meadows used t
 exuberance  {
  }
 of the red weed directly this extraordinary growth encountered  {
+	encounter :: 16
+	encounters :: 15
        }
 water it straightway  {
+	straight :: 15
+	straightly :: 15
  }
 became gigantic and of unparalleled  {
 	unparallel :: 19
@@ -10877,6 +11596,8 @@ and came out on putney common here the scenery  {
 changed from the strange and unfamiliar to the wreckage of the familiar patches of ground exhibited  {
               }
 the devastation  {
+	devastator :: 16
+	devastavit :: 15
  }
 of a cyclone  {
  }
@@ -10963,6 +11684,7 @@ consecutively  {
 a thing i do not remember to have done since my last argument  {
            }
 with the curate during all the intervening  {
+	intervein :: 15
      }
 time my mental condition had been a hurrying succession of vague emotional states  {
            }
@@ -11023,6 +11745,9 @@ but now i prayed indeed pleading  {
 steadfastly and sanely  {
  }
 face to face with the darkness of god strange night strangest in this that so soon as dawn had come i who had talked with god crept out of the house like a rat leaving its hiding place a creature scarcely larger an inferior animal a thing that for any passing whim of our masters might be hunted and killed perhaps they also prayed confidently  {
+	                                                      confidante :: 16
+	                                                      confidency :: 15
+	                                                       confidant :: 15
 	                                                       confident :: 18
                                                                }
 to god surely if we have learned nothing else this war has taught  {
@@ -11040,10 +11765,27 @@ with little golden clouds in the road that runs from the top of putney hill to w
 cart inscribed  {
  }
 with the name of thomas  {
+	haomas :: 8
+	stomach :: 8
+	stoma :: 8
    }
 lobb  {
 	lobbed :: 6
 	lobby :: 7
+	hobble :: 5
+	wobbly :: 5
+	wobble :: 5
+	gobble :: 5
+	cobb :: 5
+	blob :: 5
+	cobble :: 5
+	bobbly :: 5
+	lobbyer :: 5
+	lobbing :: 5
+	lobbied :: 5
+	lobbies :: 5
+	lob :: 5
+	mobble :: 5
  }
 greengrocer new malden with a smashed wheel and an abandoned tin trunk there was a straw hat trampled into the now hardened mud and at the top of west hill a lot of blood stained glass about the overturned water trough my movements were languid  {
                                            }
@@ -11080,9 +11822,20 @@ of dried  {
 clay and shiny coaly  {
   }
 patches his black hair fell over his eyes and his face was dark and dirty and sunken so that at first i did not recognise him there was a red cut across the lower part of his face stop he cried when i was within ten yards of him and i stopped his voice was hoarse where do you come from he said i thought surveying him i come from mortlake i said i was buried near the pit the martians made about their cylinder i have worked my way out and escaped there is no food about here he said this is my country all this hill down to the river and back to clapham  {
+	                                                                                                            chapman :: 9
                                                                                                                   }
 and up to the edge of the common there is only food for one which way are you going i answered slowly i don t know i said i have been buried in the ruins of a house thirteen or fourteen days i don t know what has happened he looked at me doubtfully then started and looked with a changed expression i ve no wish to stop about here said i i think i shall go to leatherhead for my wife was there he shot out a pointing finger it is you said he the man from woking and you weren  {
+	                                                                                                newer :: 7
+	                                                                                               renews :: 6
 	                                                                                                 were :: 8
+	                                                                                                 weer :: 6
+	                                                                                                 ween :: 6
+	                                                                                                wheen :: 6
+	                                                                                                weber :: 6
+	                                                                                                sewen :: 6
+	                                                                                                renew :: 7
+	                                                                                               gerent :: 6
+	                                                                                               weaner :: 6
                                                                                                     }
 t killed at weybridge i recognised  {
     }
@@ -11154,11 +11907,20 @@ treading on each other he saw my face and halted awkwardly  {
 no doubt lots  {
  }
 who had money have gone away to france  {
+	franked :: 8
+	 french :: 8
 	 francs :: 9
+	tranced :: 8
+	trances :: 8
 	 trance :: 9
+	pranced :: 8
+	prances :: 8
 	 prance :: 9
+	  frena :: 8
 	  franc :: 10
+	fiances :: 8
 	 fiance :: 9
+	  crane :: 8
       }
 he said he seemed to hesitate whether to apologise  {
        }
@@ -11179,6 +11941,7 @@ of ants we might pull through but we re not it s all too bulky to stop that s th
 eh i assented  {
  }
 it is i ve thought it out very well then next at present we re caught as we re wanted a martian has only to go a few miles to get a crowd on the run and i saw one one day out by wandsworth  {
+	                                  watchwords :: 13
                                            }
 picking houses to pieces and routing  {
     }
@@ -11197,16 +11960,38 @@ them with guns and such foolery  {
 and losing our heads and rushing off in crowds  {
        }
 to where there wasn  {
+	pawns :: 5
+	washen :: 5
+	lawns :: 5
+	wast :: 5
+	wasp :: 5
+	wasm :: 5
+	wash :: 5
+	wase :: 5
+	warn :: 5
 	wans :: 6
+	wain :: 5
+	swan :: 5
 	sawn :: 6
+	yawns :: 5
+	weans :: 5
 	warns :: 6
+	wants :: 5
+	wanks :: 5
+	wanes :: 5
+	wands :: 5
 	wains :: 6
+	fawns :: 5
 	was :: 6
+	wan :: 5
+	rawns :: 5
+	nas :: 5
   }
 t any more safety than where we were they don t want to bother  {
             }
 us yet they re making their things making all the things they couldn  {
 	       nould :: 9
+	    cauldron :: 8
            }
 t bring with them getting things ready for the rest of their people very likely  {
              }
@@ -11258,6 +12043,7 @@ i tell you i m grim set on living and if i m not mistaken  {
 you ll show what insides  {
    }
 you ve got too before long we aren t going to be exterminated  {
+	   extermine :: 16
            }
 and i don t mean to be caught either and tamed  {
          }
@@ -11298,7 +12084,11 @@ if they didn t working at businesses  {
 they were afraid to take the trouble to understand skedaddling  {
         }
 back for fear they wouldn  {
+	wouldst :: 8
 	nould :: 9
+	woundy :: 8
+	wounds :: 8
+	woundily :: 8
 	wound :: 9
 	would :: 10
    }
@@ -11312,7 +12102,9 @@ and a bit invested  {
   }
 for fear of accidents and on sundays  {
 	sunrays :: 11
+	sundras :: 10
 	sundaes :: 11
+	sundaris :: 9
      }
 fear of the hereafter  {
   }
@@ -11345,6 +12137,7 @@ and religion loose among them there s hundreds of things i saw with my eyes that
 and superior and submit  {
   }
 to persecution  {
+	persecutor :: 15
  }
 and the will of the lord very likely you ve seen the same thing it s energy in a gale  {
                   }
@@ -11361,6 +12154,7 @@ he paused very likely these martians will make pets  {
 of some of them train them to do tricks  {
        }
 who knows get sentimental  {
+	sentiments :: 16
 	sentiment :: 18
   }
 over the pet boy who grew up and had to be killed and some maybe they will train to hunt us no i cried that s impossible no human being what s the good of going on with such lies  {
@@ -11380,9 +12174,15 @@ my intellectual superiority to his i a professed and recognised writer on philos
 and he a common soldier and yet he had already formulated  {
          }
 a situation that i had scarcely realised what are you doing i said presently what plans have you made he hesitated well it s like this he said what have we to do we have to invent a sort of life where men can live and breed and be sufficiently secure to bring the children up yes wait a bit and i ll make it clearer what i think ought to be done the tame ones will go like all tame beasts in a few generations  {
+	                                                                           regelation :: 15
+	                                                                            generants :: 15
+	                                                                           relegation :: 15
 	                                                                           renegation :: 18
+	                                                                           denegation :: 16
 	                                                                           veneration :: 17
+	                                                                           venerating :: 15
 	                                                                           generation :: 20
+	                                                                           generating :: 15
                                                                                     }
 they ll be big beautiful rich blooded  {
      }
@@ -11451,7 +12251,25 @@ museum  {
 and pick all those books through especially we must keep up our science learn more we must watch these martians some of us must go as spies  {
                          }
 when it s all working perhaps i will get caught i mean and the great thing is we must leave the martians alone we mustn  {
+	                 mistune :: 6
+	                 muttons :: 6
+	                   muton :: 6
+	                   musty :: 7
+	                   musth :: 7
+	                   musit :: 6
+	                   muset :: 6
 	                   munts :: 8
+	                 mustang :: 7
+	                 mutants :: 6
+	                  mutons :: 7
+	                    munt :: 7
+	                  mustee :: 6
+	                  musing :: 6
+	                  musang :: 6
+	                  muntus :: 6
+	                 muntins :: 6
+	                 dustmen :: 6
+	                 dustman :: 6
                        }
 t even steal  {
  }
@@ -11480,6 +12298,7 @@ both in his forecast of human destiny  {
 and in the practicability  {
   }
 of his astonishing scheme and the reader who thinks me susceptible  {
+	susceptive :: 16
          }
 and foolish must contrast his position reading steadily with all his thoughts about his subject  {
              }
@@ -11534,6 +12353,8 @@ and their branches stretched gaunt and dead and set with shrivelled leaves from 
 it was strange how entirely dependent  {
     }
 both these things were upon flowing water for their propagation  {
+	propagator :: 15
+	protanopia :: 15
         }
 about us neither had gained a footing laburnums  {
       }
@@ -11550,6 +12371,7 @@ rose out of laurels  {
 and hydrangeas  {
  }
 green and brilliant into the sunlight beyond kensington  {
+	kennings :: 13
       }
 dense smoke was rising and that and a blue haze  {
         }
@@ -11566,6 +12388,8 @@ and ragged  {
 drunkards men and women dancing  {
    }
 and shouting till dawn a man who was there told me and as the day came they became aware of a fighting machine standing near by the langham  {
+	                     kangha :: 9
+	                     mangal :: 9
                           }
 and looking down at them heaven knows how long he had been there it must have given some of them a nasty turn he came down the road towards them and picked up nearly a hundred too drunk or frightened to run away grotesque gleam of a time no history will ever fully describe from that in answer to my questions he came round to his grandiose  {
                                                                  }
@@ -11647,6 +12471,7 @@ and now and then an orange  {
     }
 red tongue of flame flashed up and vanished in the deep blue night all the rest of london was black then nearer i perceived a strange light a pale violet purple fluorescent  {
 	                      fluoresce :: 18
+	                     fluoresces :: 16
                               }
 glow quivering under the night breeze  {
     }
@@ -11693,6 +12518,7 @@ and it grew thicker  {
 in fulham the streets were horribly quiet i got food sour hard and mouldy but quite eatable in a baker  {
                   }
 s shop here some way towards walham  {
+	 halma :: 8
      }
 green the streets became clear of powder and i passed a white terrace of houses on fire the noise of the burning was an absolute relief going on towards brompton  {
                             }
@@ -11735,9 +12561,16 @@ upon my senses  {
 it was a sobbing  {
   }
 alternation  {
+	alternant :: 16
+	alternants :: 15
+	alteration :: 15
  }
 of two notes ulla  {
+	olla :: 5
 	ullage :: 6
+	all :: 5
+	ullaged :: 5
+	ullages :: 5
   }
 ulla ulla ulla keeping on perpetually when i passed streets that ran northward it grew in volume and houses and buildings seemed to deaden and cut it off again it came in a full tide  {
                                  }
@@ -11758,7 +12591,18 @@ roadway between the tall buildings on each side i turned northwards  {
 marvelling  {
  }
 towards the iron gates of hyde  {
+	 tyde :: 5
+	 hype :: 5
+	 hyke :: 5
 	hyped :: 6
+	hynde :: 5
+	 hide :: 5
+	 hade :: 5
+	hoyed :: 5
+	hedgy :: 5
+	hayed :: 5
+	hydrae :: 5
+	  hye :: 5
     }
 park i had half a mind to break into the natural history museum and find my way up to the summits  {
                    }
@@ -11819,14 +12663,19 @@ in pursuit  {
 of him he made a wide curve to avoid me as though he feared i might prove a fresh competitor as the yelping died away down the silent road the wailing sound of ulla ulla ulla ulla reasserted  {
                                     }
 itself i came upon the wrecked handling machine halfway to st john s wood station at first i thought a house had fallen across the road it was only as i clambered among the ruins that i saw with a start this mechanical samson  {
+	                                     season :: 8
 	                                     damson :: 9
+	                                     sambos :: 8
 	                                     ramson :: 9
 	                                    damsons :: 9
+	                                    mascons :: 8
 	                                    salmons :: 9
                                           }
 lying with its tentacles bent and smashed and twisted among the ruins it had made the forepart  {
                }
 was shattered it seemed as if it had driven blindly straight at the house and had been overwhelmed  {
+	        overwhelm :: 16
+	       overwhelms :: 15
                 }
 in its overthrow it seemed to me then that this might have happened by a handling machine escaping from the guidance of its martian i could not clamber among the ruins to see it and the twilight was now so far advanced that the blood with which its seat was smeared and the gnawed gristle  {
                                                      }
@@ -11935,6 +12784,7 @@ deaths  {
 man has bought his birthright  {
    }
 of the earth and it is his against all comers it would still be his were the martians ten times as mighty as they are for neither do men live nor die in vain here and there they were scattered nearly fifty altogether in that great gulf they had made overtaken by a death that must have seemed to them as incomprehensible as any death could be to me also at that time this death was incomprehensible all i knew was that these things that had been alive and so terrible to men were dead for a moment i believed that the destruction of sennacherib  {
+	                                                                                               sennachie :: 16
                                                                                                        }
 had been repeated that god had repented  {
      }
@@ -11951,6 +12801,7 @@ so unearthly in their tortuous  {
 forms rose weird and vague and strange out of the shadows towards the light a multitude of dogs i could hear fought over the bodies that lay darkly in the depth  {
                              }
 of the pit far below me across the pit on its farther lip flat and vast and strange lay the great flying machine with which they had been experimenting  {
+	                  experiment :: 18
                            }
 upon our denser atmosphere when decay  {
     }
@@ -12057,15 +12908,25 @@ by ghastly  {
 apprehensions  {
  }
 suddenly flashed into frantic illuminations  {
+	illuminati :: 19
    }
 they knew of it in dublin  {
 	dunlin :: 9
+	dubbin :: 8
 	dualin :: 9
+	dunlins :: 8
+	dulling :: 8
 	unblind :: 9
+	unblinds :: 8
     }
 edinburgh  {
  }
 manchester  {
+	manches :: 13
+	merchants :: 13
+	marchese :: 14
+	merchanted :: 13
+	manchets :: 13
  }
 birmingham at the time when i stood upon the verge of the pit already men weeping with joy as i have heard shouting and staying their work to shake  {
                            }
@@ -12076,6 +12937,10 @@ to descend upon london the church bells that had ceased a fortnight since sudden
 deliverance  {
  }
 shouting to gaunt staring figures of despair and for the food across the channel across the irish  {
+	          irised :: 6
+	           arish :: 7
+	           irids :: 6
+	           sirih :: 6
                }
 sea across the atlantic  {
   }
@@ -12100,6 +12965,7 @@ me from myself apparently they had learned something of my story from me during 
 very gently when my mind was assured again did they break to me what they had learned of the fate of leatherhead two days after i was imprisoned  {
                           }
 it had been destroyed with every soul in it by a martian he had swept it out of existence as it seemed without any provocation  {
+	              provocator :: 15
                        }
 as a boy might crush an ant hill in the mere wantonness  {
           }
@@ -12238,7 +13104,9 @@ out of the open window from which i and the artilleryman had watched the dawn no
 ago i stumbled into the hall and the house felt empty the stair carpet was ruffled  {
               }
 and discoloured  {
+	miscolour :: 15
 	discolour :: 17
+	discolours :: 15
 	discolored :: 17
  }
 where i had crouched soaked to the skin from the thunderstorm the night of the catastrophe our muddy footsteps i saw still went up the stairs i followed them to my study and found lying on my writing table still with the selenite  {
@@ -12299,6 +13167,9 @@ point also to an entire ignorance of the putrefactive process but probable as th
 the terrible disasters  {
  }
 at the ealing and south kensington laboratories  {
+	laboratory :: 17
+	liberator :: 16
+	liberators :: 17
      }
 have disinclined  {
 	disincline :: 19
@@ -12323,6 +13194,7 @@ in the blood but such unproven  {
 speculations  {
  }
 will scarcely be of interest to the general reader to whom this story is addressed none of the brown scum that drifted down the thames after the destruction of shepperton was examined at the time and now none is forthcoming  {
+	                              forthcome :: 15
                                       }
 the results of an anatomical examination of the martians so far as the prowling  {
             }
@@ -12347,9 +13219,35 @@ the position of the gun from which the shots are discharged to keep a sustained 
 by means of guns so soon as the screw opened it seems to me that they have lost a vast advantage in the failure  {
                       }
 of their first surprise possibly they see it in the same light lessing  {
+	    leavings :: 9
 	     cessing :: 11
+	    leadings :: 9
 	    leasings :: 11
+	     sealing :: 9
 	     messing :: 11
+	     sensing :: 10
+	    lendings :: 9
+	   lessoning :: 9
+	     slusing :: 9
+	     lesions :: 9
+	     selling :: 9
+	     selfing :: 9
+	    leanings :: 9
+	    listings :: 9
+	    leggings :: 9
+	      lesson :: 9
+	    sealings :: 10
+	     seising :: 10
+	     seiling :: 9
+	    meshings :: 9
+	    lemmings :: 9
+	    lispings :: 9
+	    lettings :: 9
+	    restings :: 9
+	    testings :: 9
+	    westings :: 9
+	    vestings :: 9
+	    lashings :: 9
            }
 has advanced excellent reasons  {
   }
@@ -12559,8 +13457,11 @@ free future access to project gutenberg tm electronic works see paragraph e belo
 archive  {
  }
 foundation the foundation or pglaf  {
+	pilaf :: 7
+	pilafs :: 6
    }
 owns a compilation  {
+	compilator :: 15
  }
 copyright in the collection  {
   }
@@ -12587,6 +13488,7 @@ of the place where you are located also govern what you can do with this work co
 are in a constant  {
   }
 state of change if you are outside the united states check the laws of your country in addition to the terms of this agreement before downloading  {
+	                 download :: 15
                         }
 copying displaying performing distributing or creating derivative works based on this work or any other project gutenberg tm work the foundation makes no representations  {
                       }
@@ -12594,6 +13496,7 @@ concerning the copyright status  {
   }
 of any work in any country outside the united states e unless you have removed all references to project gutenberg e the following sentence with active links to or other immediate access to the full project gutenberg tm license must appear prominently  {
 	                                prominent :: 18
+	                               prominency :: 16
                                         }
 whenever any copy of a project gutenberg tm work any work on which the phrase project gutenberg appears or with which the phrase project gutenberg is associated is accessed  {
                            }
@@ -12638,6 +13541,9 @@ compressed  {
 marked up nonproprietary  {
  }
 or proprietary  {
+	propraetor :: 15
+	proprietor :: 16
+	propriety :: 15
  }
 form including  {
  }
@@ -12696,6 +13602,7 @@ you in writing or by e mail within days of receipt  {
 that s he does not agree to the terms of the full project gutenberg tm license you must require such a user to return or destroy all copies of the works possessed in a physical medium  {
                                   }
 and discontinue  {
+	cispontine :: 15
  }
 all use of and all access to other copies of project gutenberg tm works you provide in accordance  {
                 }
@@ -12704,6 +13611,8 @@ with paragraph f a full refund of any money paid for a work or a replacement  {
 copy if a defect  {
   }
 in the electronic work is discovered and reported to you within days of receipt of the work you comply with all other terms of this agreement for free distribution of project gutenberg tm works e if you wish to charge a fee or distribute a project gutenberg tm electronic work or group of works on different terms than are set forth in this agreement you must obtain permission in writing from both the project gutenberg literary archive foundation and michael  {
+	                                                                       inchmeal :: 9
+	                                                                          miche :: 9
                                                                               }
 hart  {
  }
@@ -12726,6 +13635,7 @@ such as but not limited to incomplete  {
 inaccurate or corrupt  {
  }
 data transcription  {
+	transcript :: 18
  }
 errors  {
  }
@@ -12764,6 +13674,7 @@ strict  {
 liability breach  {
  }
 of warranty or breach of contract except those provided in paragraph f you agree that the foundation the trademark owner and any distributor  {
+	            distribute :: 16
                      }
 under this agreement will not be liable  {
      }
@@ -12779,6 +13690,7 @@ or incidental  {
 damages even if you give notice of the possibility of such damage f limited right of replacement or refund if you discover a defect in this electronic work within days of receiving it you can receive a refund of the money if any you paid for it by sending a written explanation  {
                                                   }
 to the person you received the work from if you received the work on a physical medium you must return the medium with your written explanation the person or entity that provided you with the defective work may elect to provide a replacement copy in lieu of a refund if you received the work electronically  {
+	                                            electronic :: 19
                                                      }
 the person or entity providing it to you may choose to give you a second opportunity to receive the work electronically in lieu of a refund if the second copy is also defective you may demand  {
                                   }
@@ -12794,7 +13706,9 @@ or fitness  {
  }
 for any purpose f some states do not allow disclaimers  {
 	disclaimer :: 19
+	disclaimed :: 15
 	disclaims :: 17
+	 disclaim :: 15
         }
 of certain implied warranties or the exclusion  {
      }
@@ -12805,6 +13719,8 @@ of certain types  {
 of damages if any disclaimer or limitation set forth in this agreement violates  {
            }
 the law of the state applicable to this agreement the agreement shall be interpreted  {
+	    interpret :: 16
+	   interprets :: 15
             }
 to make the maximum  {
   }
@@ -12852,6 +13768,7 @@ that the project gutenberg tm collection will remain freely available for genera
                                                        }
 and and the foundation web page at http www pglaf org section information about the project gutenberg literary archive foundation the project gutenberg literary archive foundation is a non profit c educational  {
 	                      education :: 17
+	                      adulation :: 15
                               }
 corporation  {
  }
@@ -12902,10 +13819,16 @@ its business office is located at north west salt  {
 lake  {
  }
 city ut email  {
+	impale :: 6
  }
 business pglaf org email contact links and up to date contact information can be found at the foundation s web site and official page at http pglaf org for additional contact information dr gregory  {
                                 }
 b newby  {
+	newsboy :: 6
+	newsy :: 7
+	newly :: 7
+	webby :: 6
+	new :: 6
  }
 chief executive  {
  }
@@ -12954,6 +13877,8 @@ requirements we know of no prohibition  {
 against accepting  {
  }
 unsolicited  {
+	unsolidity :: 16
+	unpolicied :: 15
  }
 donations from donors  {
  }
