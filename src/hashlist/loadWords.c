@@ -14,7 +14,7 @@
 
 #define DEBUG_MATCH
 
-char *getWord(FILE *ifp) {
+char *getWord(FILE *ifp, int *lenStorage) {
   int bufLen = BUF_SIZ;
   char *wordIn = (char *)malloc(sizeof(char) * bufLen);
   assert(wordIn);
@@ -35,6 +35,9 @@ char *getWord(FILE *ifp) {
   if (idx) {
     wordIn[idx++] = '\0';
     wordIn = (char *)realloc(wordIn, sizeof(char) * idx);
+
+    if (lenStorage) *lenStorage = idx;
+
     return wordIn;
   } else {
     free(wordIn);
@@ -65,8 +68,9 @@ HashList *loadWordsInFile(const char *filePath) {
       return NULL;
     }
 
+    int curLen = 0;
     while (! feof(ifp)) {
-      char *wordIn = getWord(ifp);
+      char *wordIn = getWord(ifp, &curLen);
       if (wordIn != NULL) insertElem(hl, wordIn, pjwCharHash(wordIn));
       // Note we won't be freeing any memory yet as it
       // will be stored in the hashList

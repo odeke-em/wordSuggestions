@@ -33,14 +33,16 @@ int main(int argc, char *argv[]) {
     exit(-1);
   }
 
-  char *(*getWord)(FILE *);
-  Trie *(*destroyTrie)(Trie *);
+  char *(*getWord)(FILE *, int *);
+
   Trie *(*createTrie)();
+  Trie *(*destroyTrie)(Trie *);
+  int (*searchTrie)(Trie *tr, const char *);
+  Trie *(*addSequence)(Trie *tr, const char *);
+
   Element *(*getNext)(Element *);
   long int (*destroyHashList)(HashList *hl);
-  int (*searchTrie)(Trie *tr, const char *);
   HashList * (*loadWordsInFile)(const char *); 
-  Trie *(*addSequence)(Trie *tr, const char *);
   Element *(*getCloseMatches)(const char *, HashList *, const double);
 
   char *error;
@@ -107,8 +109,9 @@ int main(int argc, char *argv[]) {
   Trie *memoizeTrie = createTrie();
 
   int indentLevel = 0;
+  int curLen = 0;
   while (! feof(ifp)) {
-    char *inW = getWord(ifp);
+    char *inW = getWord(ifp, &curLen);
     if (inW != NULL) {
       printf("%s ", inW);
       if (searchTrie(memoizeTrie, inW) == -1) {
