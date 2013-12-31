@@ -12,7 +12,7 @@
   #undef DEBUG
 #endif
 
-#define HANDLE_COLLISIONS_X
+#define HANDLE_COLLISIONS
 #define EXHIBIT_COLLISION
 #define EXHIBIT_GET_BY_REFERENCE
 
@@ -84,6 +84,9 @@ HashList *initHashListWithSize(HashList *hl, const int size) {
     raiseExceptionIfNull(hl);
   }
 
+  // By default not allowing collisons 
+  hl->allowCollisions = False;
+
   if (size > 0) {
     hl->size = size;
   #ifdef DEBUG
@@ -103,6 +106,9 @@ HashList *initHashListWithSize(HashList *hl, const int size) {
     #endif
       *listIter++ = NULL;
     }
+  } else {
+    hl->list = NULL;
+    hl->size = 0;
   }
 
   return hl;
@@ -131,12 +137,18 @@ void insertElem(HashList *hl, void *data, const hashValue hashCode) {
     hl->list[elemIndex] = initElement(hl->list[elemIndex]);
     hl->list[elemIndex]->value = data;
   } else {
-    #ifdef HANDLE_COLLISIONS
+    if (hl->allowCollisions) {
       hl->list[elemIndex] = addToHead(hl->list[elemIndex], data);
-    #else 
+    } else {
+      void *prevData = hl->list[elemIndex]->value;
+      if (prevData != NULL) {
+	free(prevData);
+	// Or better will use the custom freer function
+      }
+
       // Always update to the latest value
       hl->list[elemIndex]->value = data;
-    #endif
+    }
   }
 }
 

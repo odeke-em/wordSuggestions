@@ -50,6 +50,7 @@ EditStat *getEditStats(const char *subject, const char *base) {
   // alphabetic characters wrapping over the small hashlist size
   baseIndices = initHashListWithSize(baseIndices, baseLen + 'a' - 'A');
 
+  baseIndices->allowCollisions = True;
   for (i=0; i < baseLen; ++i) {
     int *indexCopy = (int *)malloc(sizeof(int));
     *indexCopy = i;
@@ -64,14 +65,23 @@ EditStat *getEditStats(const char *subject, const char *base) {
 #endif
   est->stringLen = subjectLen;
 
-  for (i=0; i < subjectLen; ++i) {
+  for (i=subjectLen-1; i >= 0; --i) {
     int subIndex = subject[i] - 'a';
     Element **found = get(baseIndices, subIndex);
     if (*found != NULL) {
       Element *trav = *found;
-      while (trav != NULL && trav->dTag != False) 
+    #ifdef DEBUG
+      printf("found: %p ch: %c dTag: %d\n", trav, subject[i], trav->dTag);
+    #endif
+      while (trav != NULL && trav->dTag != False) { 
+    #ifdef DEBUG
+	printf("it: %p ch: %c dTag: %d\n", trav, subject[i], trav->dTag);
+    #endif
 	trav = trav->next;
-
+      }
+    #ifdef DEBUG
+      printf("trav now: %p ch: %c\n", trav, subject[i]);
+    #endif
       if (trav != NULL) {
 	++est->reuses;
 	trav->dTag = True;
@@ -123,7 +133,7 @@ int getRank(const char *query, const char *from) {
 int main() {
 
   char *w = "googre\0", *base[] = {
-    "monk\0", "bolton\0", "google\0", "tatsambone\0", "satton\0", "suttons\0", "agonies\0"
+    "monk\0", "bolton\0", "google\0"
   };
 
   char **trav = base, **end = base + sizeof(base)/sizeof(base[0]);

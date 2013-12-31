@@ -20,6 +20,7 @@
 
   typedef struct {
     int capacity, size;
+    Bool allowCollisions;
     Element **list;
   } HashList;
 
