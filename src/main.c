@@ -246,8 +246,8 @@ void runMenu(int argc, char *argv[]) {
   }
 
   float thresholdMatch = THRESHOLD_RANK;
-  if (argc >= 4) {
-    if (sscanf(argv[3], "%f", &thresholdMatch) != 1) {
+  if (argc >= 3) {
+    if (sscanf(argv[2], "%f", &thresholdMatch) != 1) {
     #ifdef DEBUG
       raiseWarning("Couldn't parse the threshold rank");;
     #endif
