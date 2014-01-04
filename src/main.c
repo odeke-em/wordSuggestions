@@ -27,6 +27,9 @@
 
 static HashList *dict = NULL;
 
+// This dict will allow overriding of the value of keys with collisions
+static HashList *recentlyUsedDict = NULL;
+
 typedef struct {
   int size;
   void **block;
@@ -113,6 +116,47 @@ WordsBlock *destroyWordsBlock(WordsBlock *wb) {
   return wb;
 }
 
+long int freeRecentlyUsedDict(HashList *rUDict) {
+  long int freeCount = 0;
+  if (rUDict != NULL) {
+    if (rUDict->list != NULL) {
+      // Knowing that each entry in the recently used dict
+      // is a memoize wordBlock of which the wordBlock's content 
+      // are mere pointers to content in the word dictionary
+      Element **it = rUDict->list; 
+      Element **end = it + rUDict->size;
+      while (it != end) {
+	if (*it != NULL) {
+	  Element *trav = *it;
+          while (trav != NULL) {
+            if (trav->value != NULL) {
+               WordsBlock *wb = (WordsBlock *)trav->value;
+               wb->size = 0; // Merely fake it's size to zero so that the 
+                             // read-only pointers to the content of the 
+                             // main dictionary aren't touched
+	       wb = destroyWordsBlock(wb);
+               ++freeCount;
+            }
+            Element *nextSav = trav->next;
+            free(trav);
+            trav = nextSav;
+          }
+          *it = NULL;
+	}
+        ++it;
+      }
+      free(rUDict->list);
+      rUDict->list = NULL;
+    }
+
+    free(rUDict);
+    rUDict = NULL;
+  }
+
+  return freeCount;
+}
+
+
 void searchTerms(GtkWidget *widget, gpointer *arg) {
   if (arg != NULL) {
     SearchParam *params = (SearchParam *)arg;
@@ -143,9 +187,9 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
 	    Deliberately clear the size to avoid freeing any 
 	    word suggestions that will explicitly be freed once
 	    their source dictionary is freed
+	    genBlock->size = 0; 
+	    genBlock = destroyWordsBlock(genBlock);
 	  */
-	  genBlock->size = 0; 
-	  genBlock = destroyWordsBlock(genBlock);
 	} else {
 	  addToListView(lV, NO_SUGGESTIONS_NOTIFICATION);
 	}
@@ -167,13 +211,22 @@ void runMenu(int argc, char *argv[]) {
   long int (*destroyHashList)(HashList *hl);
   HashList * (*loadWordsInFile)(const char *); 
   Element *(*getCloseMatches)(const char *, HashList *, const double);
+  hashValue (*pjwCharHash)(const char *srcW);
+  void (*insertElem)(HashList *hl, void *data, const hashValue hashCode);
+  HashList *(*initHashListWithSize)(HashList *hl, const int size);
+  Element **(*get)(HashList *hl, hashValue hashCode);
 
   char *error;
   // Loading the functions
   checkLoading(handle, getNext, "getNext");
   checkLoading(handle, getCloseMatches, "getCloseMatches");
   checkLoading(handle, loadWordsInFile, "loadWordsInFile");
+
+  checkLoading(handle, insertElem, "insertElem");
+  checkLoading(handle, pjwCharHash, "pjwCharHash");
+  checkLoading(handle, initHashListWithSize, "initHashListWithSize");
   checkLoading(handle, destroyHashList, "destroyHashList");
+  checkLoading(handle, get, "get");
 
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
@@ -187,6 +240,9 @@ void runMenu(int argc, char *argv[]) {
   if (dict == NULL) {
     fprintf(stderr, "FilePath :: \033[32m%s\033[00m\n", dictPath);
     return;
+  } else {
+    // Arbitrarily assuming 1/10 of the suggestions in the dict will be used
+    recentlyUsedDict = initHashListWithSize(recentlyUsedDict, dict->size / 10);
   }
 
   float thresholdMatch = THRESHOLD_RANK;
@@ -208,7 +264,20 @@ void runMenu(int argc, char *argv[]) {
     } else {
       // Remember we shouldn't mutate the data returned
       // it's memory will be managed after freeing it's source dict
+      hashValue hV = pjwCharHash(w);
+      // First try the recently used entries -- assuming we are maintaining
+      // the same threshold match percentage
+      Element **ruSav = get(recentlyUsedDict, hV);
+
+      if (ruSav != NULL && *ruSav != NULL) { // Memoized hit
+	printf("Memoized hit for word: %s\n", w);
+	return (*ruSav)->value;
+      }
+
+      // Miss detected
       Element *match = getCloseMatches(w, dict, thresholdMatch);
+
+      // Finally if there is no suggestion
       if (match == NULL) return NULL;
 
       WordsBlock *bSav = (WordsBlock *)malloc(sizeof(WordsBlock));
@@ -233,6 +302,8 @@ void runMenu(int argc, char *argv[]) {
 
       bSav->size = index;
 
+      // Let's now memoize this value
+      insertElem(recentlyUsedDict, bSav, hV);
       return bSav;
     }
   }
@@ -335,6 +406,8 @@ void runMenu(int argc, char *argv[]) {
 
   // Clean up
   destroyHashList(dict);
+  long int freeCount = freeRecentlyUsedDict(recentlyUsedDict);
+  printf("RUFreeCount: %ld\n", freeCount);
 }
 
 int main(int argc, char *argv[]) {
