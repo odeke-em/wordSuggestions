@@ -14,7 +14,9 @@ Goal:
 
 Usage:
 ========
-  + make && ./exec/autoCorrect resources/wordlist.txt resources/stitched.ch 0.75
+  To fire up the program which now has a GUI:
+
+  + make && ./exec/main resources/wordlist.txt resources/stitched.ch 0.75
 
     Expands to:
 
@@ -26,7 +28,7 @@ Usage:
 
 	+  0.75 as the match threshold percentage.
 
-  + make && ./exec/autoCorrect
+  + make && ./exec/main
 
     Expands to:
 
@@ -72,3 +74,11 @@ Samples:
     included as the result of passing in 'waroftheworlds.txt' as the 
 
     subject file.
+
+
+Dependancies:
+=============
+
+  + GTK. 
+  
+  + C compiler [dev done with gcc version 4.6.3]
