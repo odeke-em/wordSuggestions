@@ -87,11 +87,11 @@ HashList *loadWordsInFile(const char *filePath) {
 Element *matches(const char *query, HashList *dict, const int threshHold) {
   Element **matchList = NULL;
   if (query != NULL && dict != NULL) {
+    Element *matchL = NULL;
     // First check if the query exists in the dict
     matchList = get(dict, pjwCharHash(query)); 
     if (*matchList == NULL) { // Not found time to do ranking
       Element **trav = dict->list, **end = trav + getSize(dict);
-      Element *matchL = NULL;
       while (trav != end) {
 	if (*trav != NULL && (*trav)->value != NULL) {
 	  int rank = getRank(query, (*trav)->value);
@@ -102,9 +102,11 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
 	}
 	++trav;
       }
+    } else {
+      matchL = *matchList;
+    }
 
-      return matchL;
-    } else return NULL;
+    return matchL;
   } else 
     return NULL;
 }
