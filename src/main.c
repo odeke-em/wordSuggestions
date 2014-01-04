@@ -95,21 +95,24 @@ void initList(GtkWidget *list) {
 }
 
 WordsBlock *destroyWordsBlock(WordsBlock *wb) {
-  if (wb != NULL && wb->block != NULL) {
-    if (wb->size > 0) {
-      void **it = wb->block; 
-      void **end = it + wb->size;
-      while (it != end) {
-	if (*it != NULL) {
-	  free(*it);
-	  *it = NULL;
-	}
+  if (wb != NULL) { 
+    if (wb->block != NULL) {
+      if (wb->size > 0) {
+	void **it = wb->block; 
+	void **end = it + wb->size;
+	while (it != end) {
+	  if (*it != NULL) {
+	    free(*it);
+	    *it = NULL;
+	  }
 
-	++it;
+	  ++it;
+	}
       }
+
+      free(wb->block);
     }
 
-    free(wb->block);
     free(wb);
   }
 
