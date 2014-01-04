@@ -5,8 +5,13 @@ LIBNAME := libaCorrect.so.1
 LIBS := $(shell pkg-config --libs gtk+-2.0)
 INCS := $(shell pkg-config --cflags gtk+-2.0)
 
+all:	main cliCorrect
+
 main: libaCorrect src/main.c
 	$(CC) $(FLAGS) src/main.c -o exec/main -ldl $(LIBS) $(INCS) $(CFLAGS)
+
+cliCorrect: libaCorrect src/cliCorrect.c
+	$(CC) $(FLAGS) src/cliCorrect.c -o exec/cliCorrect -ldl $(CFLAGS)
 
 
 libaCorrect:	  trie.o hashlist.o loadwords.o wordTransition.o estimateNWords.o

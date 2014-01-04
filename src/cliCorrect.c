@@ -13,7 +13,7 @@
 #include "hashlist/loadWords.h"
 
 #define INTERACTIVE
-#define THRESHOLD_RANK 0.80
+#define THRESHOLD_RANK 0.65
 #define WORD_INCREMENT_LEN 10
 
 #define tolower(x) (x | 'a' - 'A')
