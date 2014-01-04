@@ -118,8 +118,7 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
     SearchParam *params = (SearchParam *)arg;
     GtkEntry *searchEntry = (GtkEntry *)widget;
     GtkWidget *lV = params->resultsList;
-    const gchar *searchTerm =\
-       searchTerm = gtk_entry_get_text((GtkEntry *)searchEntry);
+    const gchar *searchTerm = gtk_entry_get_text((GtkEntry *)searchEntry);
 
     if (searchTerm != NULL && lV != NULL) {
       const gint len = strlen(searchTerm)/1;
