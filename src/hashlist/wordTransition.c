@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "errors.h"
 #include "hashList.h"
@@ -51,10 +52,14 @@ EditStat *getEditStats(const char *subject, const char *base) {
   baseIndices = initHashListWithSize(baseIndices, baseLen + 'a' - 'A');
 
   baseIndices->allowCollisions = True;
-  for (i=0; i < baseLen; ++i) {
-    int *indexCopy = (int *)malloc(sizeof(int));
-    *indexCopy = i;
-    insertElem(baseIndices, indexCopy, base[i]-'a');
+  int alphaIndex = 0;
+  for (i=0, alphaIndex=0; i < baseLen; ++i) {
+    if (isalpha(base[i])) {
+      int *indexCopy = (int *)malloc(sizeof(int));
+      *indexCopy = alphaIndex;
+      insertElem(baseIndices, indexCopy, tolower(base[i])-'a');
+      ++alphaIndex;
+    }
   }
 
   EditStat *est = allocAndInitEditStat();
@@ -66,7 +71,9 @@ EditStat *getEditStats(const char *subject, const char *base) {
   est->stringLen = subjectLen;
 
   for (i=subjectLen-1; i >= 0; --i) {
-    int subIndex = subject[i] - 'a';
+    if (! isalpha(subject[i])) continue;
+
+    int subIndex = tolower(subject[i]) - 'a';
     Element **found = get(baseIndices, subIndex);
     if (*found != NULL) {
       Element *trav = *found;
@@ -133,7 +140,7 @@ int getRank(const char *query, const char *from) {
 int main() {
 
   char *w = "googre\0", *base[] = {
-    "monk\0", "bolton\0", "google\0"
+    "monk\0", "bolton\0", "goo gle\0"
   };
 
   char **trav = base, **end = base + sizeof(base)/sizeof(base[0]);
