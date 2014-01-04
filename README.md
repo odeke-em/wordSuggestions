@@ -1,8 +1,11 @@
 Word Suggestions:
 ==============================================================================
+
   A spell checker that generates for the user suggestions of words from a 
 
   dictionary, based off their similarity to the query.
+
+  It can be invoked via either it's command line or graphical user interface. 
 
 Goal: 
 =====
@@ -16,7 +19,15 @@ Usage:
 ========
   To fire up the program which now has a GUI:
 
-  + make && ./exec/main resources/wordlist.txt resources/stitched.ch 0.75
+    ./exec/main
+
+  For the command line based interface:
+
+    ./exec/cliCorrect
+
+  Where bin is either: exec/cliCorrect or exec/main
+
+  + make && ./bin resources/wordlist.txt resources/stitched.ch 0.75
 
     Expands to:
 
@@ -28,7 +39,7 @@ Usage:
 
 	+  0.75 as the match threshold percentage.
 
-  + make && ./exec/main
+  + make && ./bin
 
     Expands to:
 
@@ -39,7 +50,8 @@ Usage:
       + Reading from standard input.
 
   NOTE: The threshold match percentage should be expressed as a number over 100
-    ie 0.9 translates to 90%, 0.35 translates to 35%
+
+	ie 0.9 translates to 90%, 0.35 translates to 35%
 
 Future features:
 =================
