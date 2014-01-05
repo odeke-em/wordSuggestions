@@ -68,14 +68,34 @@ HashList *loadWordsInFile(const char *filePath) {
       return NULL;
     }
 
+    if (hl == NULL) {
+      raiseError("No memory available to create a dict of size: "dictSize);
+
+      const char *memLack = "No memory available to create a dict of size: ";
+      char errMsg[(sizeof(memLack)/sizeof(memLack[0])) + 15];
+      sprintf(errMsg, "%s%lld", memLack, dictSize);
+      raiseWarning(errMsg);
+      exit(-1);
+    }
+
     int curLen = 0;
+    int wordCount = 0;
+    long long int totalLen = 0;
     while (! feof(ifp)) {
       char *wordIn = getWord(ifp, &curLen);
-      if (wordIn != NULL) insertElem(hl, wordIn, pjwCharHash(wordIn));
+      if (wordIn != NULL) {
+        insertElem(hl, wordIn, pjwCharHash(wordIn));
+        totalLen += curLen;
+        ++wordCount;
+      }
       // Note we won't be freeing any memory yet as it
       // will be stored in the hashList
     }
 
+  #ifdef DEBUG
+    printf("averageWordLen: %d\n", wordCount ? totalLen/wordCount : 0);
+  #endif
+    hl->averageElemLen = (wordCount ? totalLen/wordCount : 0);
     fclose(ifp);
   }
 

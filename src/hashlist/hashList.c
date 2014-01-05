@@ -87,6 +87,8 @@ HashList *initHashListWithSize(HashList *hl, const int size) {
   // By default not allowing collisons 
   hl->allowCollisions = False;
 
+  hl->averageElemLen = 0;
+
   if (size > 0) {
     hl->size = size;
   #ifdef DEBUG

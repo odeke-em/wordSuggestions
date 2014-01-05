@@ -11,6 +11,12 @@
     False=0, True=1
   } Bool;
 
+  typedef struct MetaRankMule_ {
+    int rank;
+    int metaInfo;
+    hashValue hash;
+  } MetaRankMule;
+
   typedef struct Element_ {
     Bool dTag; // Discovery tag
     void *value;
@@ -19,7 +25,9 @@
   } Element;
 
   typedef struct {
-    int capacity, size;
+    int size; 
+    int capacity; 
+    int averageElemLen;
     Bool allowCollisions;
     Element **list;
   } HashList;
