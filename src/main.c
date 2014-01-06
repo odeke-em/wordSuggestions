@@ -1,19 +1,19 @@
 // Author: Emmanuel Odeke <odeke@ualberta.ca>
-#include <string.h>
 #include <gtk/gtk.h>
 
 #include <ctype.h>
 #include <dlfcn.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
+#include <string.h>
+#include <signal.h>
+#include <sys/wait.h>
 
 #include "trie/Trie.h"
 #include "hashlist/errors.h"
 #include "hashlist/hashList.h"
 #include "hashlist/loadWords.h"
 
-#define INTERACTIVE
 #define THRESHOLD_RANK 0.70
 #define NO_SUGGESTIONS_NOTIFICATION "No suggestions"
 
@@ -25,10 +25,13 @@
   }\
 }
 
-static HashList *dict = NULL;
+static char *error = NULL;
+static void *handle = NULL;
 
+static HashList *dict = NULL;
 // This dict will allow overriding of the value of keys with collisions
 static Trie *recentlyUsedTrie = NULL;
+
 
 typedef struct {
   int size;
@@ -105,14 +108,11 @@ WordsBlock *destroyWordsBlock(WordsBlock *wb) {
 	    free(*it);
 	    *it = NULL;
 	  }
-
 	  ++it;
 	}
       }
-
       free(wb->block);
     }
-
     free(wb);
   }
 
@@ -145,13 +145,6 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
 	    char *wIn = (char *)genBlock->block[i];
 	    addToListView(lV, wIn);
 	  }
-	  /* 
-	    Deliberately clear the size to avoid freeing any 
-	    word suggestions that will explicitly be freed once
-	    their source dictionary is freed
-	    genBlock->size = 0; 
-	    genBlock = destroyWordsBlock(genBlock);
-	  */
 	} else {
 	  addToListView(lV, NO_SUGGESTIONS_NOTIFICATION);
 	}
@@ -163,37 +156,25 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
 void runMenu(int argc, char *argv[]) {
   // Phase 1: Load all the necessary data and functions
   //          for the logical operation of program
-  void *handle = dlopen("./exec/libaCorrect.so.1", RTLD_LAZY);
-  if (handle == NULL) {
-    fputs(dlerror(), stderr);
-    exit(-1);
-  }
-
-  char *error;
-
   // Loading the hashlist functionality
   Element *(*getNext)(Element *);
-  long int (*destroyHashList)(HashList *hl);
-  HashList * (*loadWordsInFile)(const char *); 
-  Element *(*getCloseMatches)(const char *, HashList *, const double);
-
   checkLoading(handle, getNext, "getNext");
-  checkLoading(handle, getCloseMatches, "getCloseMatches");
+
+  HashList * (*loadWordsInFile)(const char *); 
   checkLoading(handle, loadWordsInFile, "loadWordsInFile");
 
-  checkLoading(handle, destroyHashList, "destroyHashList");
+  Element *(*getCloseMatches)(const char *, HashList *, const double);
+  checkLoading(handle, getCloseMatches, "getCloseMatches");
 
   // Trie functionality
   Trie *(*createTrie)();
-  Trie *(*destroyTrie)(Trie *);
-  int (*searchTrie)(Trie *tr, const char *, void **);
-  Trie *(*addSequenceWithLoad)(Trie *, const char *, void *, const TrieTag);
-
   checkLoading(handle, createTrie, "createTrie");
-  checkLoading(handle, destroyTrie, "destroyTrie");
-  checkLoading(handle, searchTrie, "searchTrie");
-  checkLoading(handle, addSequenceWithLoad, "addSequenceWithLoad");
 
+  int (*searchTrie)(Trie *tr, const char *, void **);
+  checkLoading(handle, searchTrie, "searchTrie");
+
+  Trie *(*addSequenceWithLoad)(Trie *, const char *, void *, const TrieTag);
+  checkLoading(handle, addSequenceWithLoad, "addSequenceWithLoad");
 
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
@@ -369,13 +350,55 @@ void runMenu(int argc, char *argv[]) {
  
   gtk_widget_show(window); 
   gtk_main();
+}
 
+void cleanUpExit() {
   // Clean up
+  long int (*destroyHashList)(HashList *hl);
+  checkLoading(handle, destroyHashList, "destroyHashList");
   destroyHashList(dict);
+
+  Trie *(*destroyTrie)(Trie *);
+  checkLoading(handle, destroyTrie, "destroyTrie");
   recentlyUsedTrie = destroyTrie(recentlyUsedTrie);
+
+  fprintf(stderr, "\033[94m\nBye..\n\033[00m");
+  exit(0);
+}
+
+void sigHandler(const int sig) {
+  switch(sig) {
+    case SIGINT:
+      cleanUpExit();
+      break;
+    case SIGTERM:
+      cleanUpExit();
+      break;
+    default:
+      fprintf(stderr, "Unhandled signal: %d\n", sig);
+  }
 }
 
 int main(int argc, char *argv[]) {
+  // Load up the library first
+  handle = dlopen("./exec/libaCorrect.so.1", RTLD_LAZY);
+
+  if (handle == NULL) {
+    fputs(dlerror(), stderr);
+    exit(-1);
+  }
+
+  // Signal handling here
+  static struct sigaction actH;
+  actH.sa_handler = sigHandler;
+
+  sigaction(SIGINT, &actH, NULL);
+  sigaction(SIGTERM, &actH, NULL);
+  sigaction(SIGSTOP, &actH, NULL);
+
   runMenu(argc, argv);
+
+  // By this time it is safe to cleanUp and exit
+  cleanUpExit();
   return 0;
 }
