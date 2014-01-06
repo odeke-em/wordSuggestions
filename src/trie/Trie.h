@@ -33,6 +33,8 @@
 
   void *searchTrie(Trie *tr, const char *seq);
 
+  void exploreTrie(Trie *t, const char *pAxiom);
+
   // Utilities here 
   Trie *trieFromFile(FILE *ifp);
 

@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "Trie.h"
 #include "errors.h"
@@ -100,6 +101,28 @@ Trie *destroyTrie(Trie *tr) {
   return tr;
 }
 
+void exploreTrie(Trie *t, const char *pAxiom) {
+  if (t != NULL) {
+    if (t->keys != NULL) {
+      Trie **start = t->keys, 
+	   **end = start + t->radixSz, 
+	   **it;
+      ssize_t pAxiomLen = strlen(pAxiom);
+      for (it = start; it != end; ++it) {
+	if (*it != NULL) {
+	  char *ownAxiom = (char *)malloc(pAxiomLen + 2); // Space for own len
+	  memcpy(ownAxiom, pAxiom, pAxiomLen);
+          ownAxiom[pAxiomLen] = (it - start) + radixStart; //Own index
+	  ownAxiom[pAxiomLen + 1] = '\0'; // NULL terminate this one as well
+          printf("%s\n", ownAxiom);
+	  exploreTrie(*it, ownAxiom);
+	  free(ownAxiom);
+	}
+      }
+    }
+  }
+}
+
 Trie *addSequenceWithLoad(
   Trie *tr, const char *seq, void *payLoad, const TrieTag tag
 ) {
@@ -181,6 +204,7 @@ int main() {
 
   Trie *fTrie = trieFromFile(ifp);
   fTrie = addSequenceWithLoad(fTrie, "mbc\0", "flux\0", StackD);
+  exploreTrie(fTrie, "");
   found = searchTrie(fTrie, "mbc\0");
   printf("\033[%dmfTrieFound: %p\033[00m\n", found == NULL ? 31 : 33, found);
   fTrie = destroyTrie(fTrie);
