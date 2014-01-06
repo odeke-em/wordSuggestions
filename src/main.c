@@ -35,6 +35,7 @@ static Trie *recentlyUsedTrie = NULL;
 
 typedef struct {
   int size;
+  unsigned int hasHeapdElems:1;
   void **block;
 } WordsBlock;
 
@@ -100,7 +101,7 @@ void initList(GtkWidget *list) {
 WordsBlock *destroyWordsBlock(WordsBlock *wb) {
   if (wb != NULL) { 
     if (wb->block != NULL) {
-      if (wb->size > 0) {
+      if (wb->size > 0 && wb->hasHeapdElems) {
 	void **it = wb->block; 
 	void **end = it + wb->size;
 	while (it != end) {
@@ -114,6 +115,14 @@ WordsBlock *destroyWordsBlock(WordsBlock *wb) {
       free(wb->block);
     }
     free(wb);
+  }
+
+  return wb;
+}
+
+void *voidDestroyWordsBlock(void *wb) {
+  if (wb != NULL) {
+    wb = (void *)destroyWordsBlock((WordsBlock *)wb);
   }
 
   return wb;
@@ -245,12 +254,15 @@ void runMenu(int argc, char *argv[]) {
       }
 
       bSav->block =\
-         (void **)realloc(bSav->block, sizeof(void *) * index);
+         (void **)realloc(bSav->block, sizeof(void *) * index-1);
 
       bSav->size = index;
 
+      // It's elements are just pointers to memory owned by the dictionary
+      bSav->hasHeapdElems = 0;
+
       // Let's now memoize this value
-      recentlyUsedTrie = addSequenceWithLoad(recentlyUsedTrie, w, bSav, StackD);
+      recentlyUsedTrie = addSequenceWithLoad(recentlyUsedTrie, w, bSav, HeapD);
       return bSav;
     }
   }
@@ -358,9 +370,11 @@ void cleanUpExit() {
   checkLoading(handle, destroyHashList, "destroyHashList");
   destroyHashList(dict);
 
-  Trie *(*destroyTrie)(Trie *);
-  checkLoading(handle, destroyTrie, "destroyTrie");
-  recentlyUsedTrie = destroyTrie(recentlyUsedTrie);
+  Trie *(*destroyTrieAndPayLoads)(Trie *t, void *(*loadFreer)(void *));
+  checkLoading(handle, destroyTrieAndPayLoads, "destroyTrieAndPayLoads");
+
+  recentlyUsedTrie =\
+    destroyTrieAndPayLoads(recentlyUsedTrie, voidDestroyWordsBlock);
 
   fprintf(stderr, "\033[94m\nBye..\n\033[00m");
   exit(0);

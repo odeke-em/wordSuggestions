@@ -20,7 +20,11 @@
 
   // Get a heap's worth of a Trie
   Trie *allocTrie();
+  
+  // Pass in the custom function to free the payload data
+  Trie *destroyTrieAndPayLoads(Trie *t, void *(*loadFreer)(void *));
 
+  // Pass the payload freer as NULL
   Trie *destroyTrie(Trie *tr);
 
   Trie *createTrie();

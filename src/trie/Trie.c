@@ -44,11 +44,12 @@ Trie *trieFromFile(FILE *ifp) {
   Trie *fTrie = NULL;
   if (ifp != NULL) {
     fTrie = createTrie();
+    int MAX_SZ = 50;
     while (! feof(ifp)) {
       int bufSiz = 10, index = 0;
       char c;
       char *wIn = (char *)malloc(sizeof(char) * bufSiz);
-      while ((c = getc(ifp)) && isalnum(c)) {
+      while ((c = getc(ifp)) && isalnum(c) && index < MAX_SZ) {
 	if (index >= bufSiz) {
 	  bufSiz += 10; // Arbitrary increase of 10
           wIn = (char *)realloc(wIn, sizeof(char) * bufSiz);
@@ -71,6 +72,10 @@ Trie *trieFromFile(FILE *ifp) {
 }
 
 Trie *destroyTrie(Trie *tr) {
+  return destroyTrieAndPayLoads(tr, NULL);
+}
+
+Trie *destroyTrieAndPayLoads(Trie *tr, void *(*pLoadFreer)(void *)) {
 #ifdef DEBUG
   printf("In %s\n", __func__);
 #endif
@@ -81,14 +86,14 @@ Trie *destroyTrie(Trie *tr) {
     Trie **end = tr->keys + tr->radixSz;
     while (it < end) {
       if (*it != NULL) {
-	*it = destroyTrie(*it);
+	*it = destroyTrieAndPayLoads(*it, pLoadFreer);
       }
       ++it;
     }
 
     if (tr->loadTag == HeapD) { // Memory from the heap
-      if (tr->payLoad != NULL) {
-	free(tr->payLoad);
+      if (tr->payLoad != NULL && pLoadFreer != NULL) {
+	pLoadFreer(tr->payLoad);
 	tr->payLoad = NULL;
       }
     }
@@ -109,7 +114,7 @@ void exploreTrie(Trie *t, const char *pAxiom) {
 	   **end = start + t->radixSz, 
 	   **it;
       ssize_t pAxiomLen = strlen(pAxiom);
-      for (it = start; it != end; ++it) {
+      for (it = start; it < end; ++it) {
 	if (*it != NULL) {
 	  char *ownAxiom = (char *)malloc(pAxiomLen + 2); // Space for own len
 	  memcpy(ownAxiom, pAxiom, pAxiomLen);
@@ -153,6 +158,7 @@ Trie *addSequenceWithLoad(
     } else { // End of this sequence, time to deploy the payLoad
       tr->EOS = 1;
       tr->payLoad = payLoad;
+      tr->loadTag = tag;
     }
   }
 
@@ -212,7 +218,7 @@ int main() {
   printf("\033[%dmFound: %d\033[00m\n", iQuery == -1 ? 31 : 33, iQuery);
 
   // Consume self
-  FILE *ifp = fopen(__FILE__, "r");
+  FILE *ifp = fopen("words.txt", "r");
   int BUF_STEP = 10, MAX_SINGLE_ALLOC_SZ = 60;
   char c;
 
