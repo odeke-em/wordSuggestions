@@ -163,18 +163,27 @@ Trie *addSequence(Trie *tr, const char *seq) {
   return addSequenceWithLoad(tr, seq, NULL, StackD);
 }
 
-void *searchTrie(Trie *tr, const char *seq) {
+int searchTrie(Trie *tr, const char *seq, void **ptrSav) {
   if (seq == NULL || tr == NULL || tr->keys == NULL) {
-    return NULL;
+    return -1;
   }
 
-  if (*seq == '\0') return tr->payLoad;
+  if (*seq == '\0') {
+    if (ptrSav != NULL) {
+      *ptrSav = tr->payLoad;
+    }
+
+    return 1;
+  }
 
   int resIndex = resolveIndex(*seq);
-  if (resIndex < 0 || resIndex >= radixSize || tr->keys[resIndex] == NULL) {
-    return NULL;
+  if (resIndex < 0 || resIndex >= radixSize) {
+    return -1; 
+  } 
+  if (tr->keys[resIndex] == NULL) {
+    return 0;
   } else {
-    return searchTrie(tr->keys[resIndex], seq+1);
+    return searchTrie(tr->keys[resIndex], seq+1, ptrSav);
   }
 }
 
@@ -198,8 +207,9 @@ int main() {
   tR = addSequenceWithLoad(tR, "mbc\0", "flux\0", StackD);
   tR = addSequenceWithLoad(tR, "mb\0", "fox\0", StackD);
   tR = addSequence(tR, "mac\0");
-  void *found = searchTrie(tR, "mb\0");
-  printf("\033[%dmFound: %p\033[00m\n", found == NULL ? 31 : 33, found);
+  void *found = NULL;
+  int iQuery = searchTrie(tR, "mb\0", &found);
+  printf("\033[%dmFound: %d\033[00m\n", iQuery == -1 ? 31 : 33, iQuery);
 
   // Consume self
   FILE *ifp = fopen(__FILE__, "r");
@@ -209,8 +219,10 @@ int main() {
   Trie *fTrie = trieFromFile(ifp);
   fTrie = addSequenceWithLoad(fTrie, "mbc\0", "flux\0", StackD);
   exploreTrie(fTrie, "");
-  found = searchTrie(fTrie, "mbc\0");
-  printf("\033[%dmfTrieFound: %p\033[00m\n", found == NULL ? 31 : 33, found);
+  iQuery = searchTrie(fTrie, "mbc\0", &found);
+  printf(
+    "\033[%dmFound: %d ptr: %p\033[00m\n", iQuery == -1 ? 31: 33, iQuery, found
+  );
   fTrie = destroyTrie(fTrie);
   tR = destroyTrie(tR);
 

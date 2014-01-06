@@ -186,7 +186,7 @@ void runMenu(int argc, char *argv[]) {
   // Trie functionality
   Trie *(*createTrie)();
   Trie *(*destroyTrie)(Trie *);
-  void *(*searchTrie)(Trie *tr, const char *);
+  int (*searchTrie)(Trie *tr, const char *, void **);
   Trie *(*addSequenceWithLoad)(Trie *, const char *, void *, const TrieTag);
 
   checkLoading(handle, createTrie, "createTrie");
@@ -232,9 +232,10 @@ void runMenu(int argc, char *argv[]) {
       // it's memory will be managed after freeing it's source dict
       // First try the recently used entries -- assuming we are maintaining
       // the same threshold match percentage
-      void *ruSav = searchTrie(recentlyUsedTrie, w);
+      void *ruSav = NULL;
+      int found = searchTrie(recentlyUsedTrie, w, &ruSav);
 
-      if (ruSav != NULL) { // Memoized hit
+      if (found == 1) { // Memoized hit
 	printf("Memoized hit for word: %s\n", w);
 	return ruSav;
       }
