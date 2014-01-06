@@ -18,20 +18,54 @@ Trie *createTrie() {
     raiseError("Run-out of memory");
   }
 
+  freshTrie->loadTag = StackD;
+  freshTrie->payLoad = NULL;
+  freshTrie->radixSz = radixSize;
+
   freshTrie->keys = (Trie **)malloc(sizeof(Trie *) * radixSize);
 
   if (freshTrie->keys == NULL) {
     raiseError("Run-out of memory");
   }
 
-  freshTrie->radixSz = radixSize;
+  Trie **it = freshTrie->keys,
+       **end= it + freshTrie->radixSz;
 
-  int i;
-  for (i=0; i < radixSize; ++i) {
-    freshTrie->keys[i] = NULL;
+  while (it != end) {
+    *it++ = NULL;
   }
 
   return freshTrie;
+}
+
+Trie *trieFromFile(FILE *ifp) {
+  Trie *fTrie = NULL;
+  if (ifp != NULL) {
+    fTrie = createTrie();
+    while (! feof(ifp)) {
+      int bufSiz = 10, index = 0;
+      char c;
+      char *wIn = (char *)malloc(sizeof(char) * bufSiz);
+      while ((c = getc(ifp)) && isalnum(c)) {
+	if (index >= bufSiz) {
+	  bufSiz += 10; // Arbitrary increase of 10
+          wIn = (char *)realloc(wIn, sizeof(char) * bufSiz);
+	}
+	
+	wIn[index++] = c;
+      }
+
+      if (index) {
+	wIn[index++] = '\0';
+	wIn = (char *)realloc(wIn, sizeof(char) * index);
+	fTrie = addSequence(fTrie, wIn);
+      }
+
+      free(wIn);
+    }
+  }
+
+  return fTrie;
 }
 
 Trie *destroyTrie(Trie *tr) {
@@ -42,7 +76,7 @@ Trie *destroyTrie(Trie *tr) {
 
   if (tr->keys != NULL) {
     Trie **it = tr->keys;
-    Trie **end = tr->keys+ tr->radixSz;
+    Trie **end = tr->keys + tr->radixSz;
     while (it < end) {
       if (*it != NULL) {
 	*it = destroyTrie(*it);
@@ -50,6 +84,12 @@ Trie *destroyTrie(Trie *tr) {
       ++it;
     }
 
+    if (tr->loadTag == HeapD) { // Memory from the heap
+      if (tr->payLoad != NULL) {
+	free(tr->payLoad);
+	tr->payLoad = NULL;
+      }
+    }
     free(tr->keys);
     tr->keys = NULL;
   }
@@ -60,7 +100,9 @@ Trie *destroyTrie(Trie *tr) {
   return tr;
 }
 
-Trie *addSequence(Trie *tr, const char *seq) {
+Trie *addSequenceWithLoad(
+  Trie *tr, const char *seq, void *payLoad, const TrieTag tag
+) {
 #ifdef DEBUG
   printf("%s seq: %s\n", __func__, seq);
 #endif
@@ -68,43 +110,45 @@ Trie *addSequence(Trie *tr, const char *seq) {
     raiseError("Cannot add elements to a NULL Trie");
   }
 
-  if (seq != NULL || *seq != '\0') {
-    int targetIndex = resolveIndex(*seq);
-    if (targetIndex >= 0 && targetIndex < radixSize) {
-      if (tr->keys[targetIndex] == NULL) {
-	tr->keys[targetIndex] = createTrie();
-      #ifdef DEBUG
-	printf("New Trie alloc index: %d\n", targetIndex);
-      #endif
-      }
+  if (seq != NULL) {
+    if (*seq != '\0') {
+      int targetIndex = resolveIndex(*seq);
+      if (targetIndex >= 0 && targetIndex < radixSize) {
+	if (tr->keys[targetIndex] == NULL) {
+	  tr->keys[targetIndex] = createTrie();
+	#ifdef DEBUG
+	  printf("New Trie alloc index: %d\n", targetIndex);
+	#endif
+	}
 
-      tr->keys[targetIndex] = addSequence(tr->keys[targetIndex], seq+1);
+	tr->keys[targetIndex] =\
+	   addSequenceWithLoad(tr->keys[targetIndex], seq+1, payLoad, tag);
+      }
+    } else { // End of this sequence, time to deploy the payLoad
+      tr->payLoad = payLoad;
     }
   }
 
   return tr;
 }
 
-int searchTrie(Trie *tr, const char *seq) {
-  if (seq == NULL) return -1;
-  else if (tr == NULL || tr->keys == NULL) return 0;
+Trie *addSequence(Trie *tr, const char *seq) {
+  return addSequenceWithLoad(tr, seq, NULL, StackD);
+}
 
-  if (*seq == '\0') return 1;
+void *searchTrie(Trie *tr, const char *seq) {
+  if (seq == NULL || tr == NULL || tr->keys == NULL) {
+    return 0;
+  }
+
+  if (*seq == '\0') return tr->payLoad;
 
   int resIndex = resolveIndex(*seq);
-  if (resIndex < 0 || resIndex >= radixSize) return -1;
-
-  if (tr->keys[resIndex] == NULL) {
-    return -1;
+  if (resIndex < 0 || resIndex >= radixSize || tr->keys[resIndex] == NULL) {
+    return NULL;
   } else {
     return searchTrie(tr->keys[resIndex], seq+1);
   }
-}
-
-inline int bitLen(unsigned int n) {
-  int bLength = 1;
-  while (n) { ++bLength; n >>= 1;}
-  return bLength;
 }
 
 Trie *allocTrie() { 
@@ -119,42 +163,30 @@ int resolveIndex(const char c) {
 
   return resIndex;
 }
+
+#ifdef REV_TRIE
 int main() {
   Trie *tR = createTrie();
   tR = addSequence(tR, "abc\0");
-  tR = addSequence(tR, "mbc\0");
+  tR = addSequenceWithLoad(tR, "mbc\0", "flux\0", StackD);
+  tR = addSequenceWithLoad(tR, "mb\0", "fox\0", StackD);
   tR = addSequence(tR, "mac\0");
-  int found = searchTrie(tR, "mb\0");
-  printf("\033[%dmFound: %d\033[00m\n", found == 1 ? 33 : 31, found);
+  void *found = searchTrie(tR, "mb\0");
+  printf("\033[%dmFound: %p\033[00m\n", found == NULL ? 31 : 33, found);
 
   // Consume self
   FILE *ifp = fopen(__FILE__, "r");
   int BUF_STEP = 10, MAX_SINGLE_ALLOC_SZ = 60;
   char c;
 
-  while (! feof(ifp)) {
-    int i = 0, dBufSize = BUF_STEP;
-
-    char *wordIn = (char *)malloc(sizeof(char) * dBufSize);
-
-    while ((c = getc(ifp)) != EOF && isalpha(c) && i < MAX_SINGLE_ALLOC_SZ) {
-      if (i >= dBufSize) {
-	dBufSize += BUF_STEP;
-	wordIn = (char *)realloc(wordIn, sizeof(char) * dBufSize);
-      }
-      wordIn[i++] = c;
-    }
-
-    if (i) {
-      wordIn[i] = '\0';
-      tR = addSequence(tR, wordIn);
-    }
-
-    free(wordIn);
-  }
-
+  Trie *fTrie = trieFromFile(ifp);
+  fTrie = addSequenceWithLoad(fTrie, "mbc\0", "flux\0", StackD);
+  found = searchTrie(fTrie, "mbc\0");
+  printf("\033[%dmfTrieFound: %p\033[00m\n", found == NULL ? 31 : 33, found);
+  fTrie = destroyTrie(fTrie);
   tR = destroyTrie(tR);
 
   fclose(ifp);
   return 0;
 }
+#endif
