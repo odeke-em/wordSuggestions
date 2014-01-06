@@ -165,7 +165,7 @@ Trie *addSequence(Trie *tr, const char *seq) {
 
 void *searchTrie(Trie *tr, const char *seq) {
   if (seq == NULL || tr == NULL || tr->keys == NULL) {
-    return 0;
+    return NULL;
   }
 
   if (*seq == '\0') return tr->payLoad;
