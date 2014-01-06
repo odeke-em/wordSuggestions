@@ -13,6 +13,7 @@
     int radixSz;
     void *payLoad;
     TrieTag loadTag;
+    unsigned int EOS:1; //End-Of-Sequence
     struct Trie_ **keys;
   } Trie;
 

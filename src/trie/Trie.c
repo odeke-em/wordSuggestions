@@ -19,6 +19,7 @@ Trie *createTrie() {
     raiseError("Run-out of memory");
   }
 
+  freshTrie->EOS = 0;
   freshTrie->loadTag = StackD;
   freshTrie->payLoad = NULL;
   freshTrie->radixSz = radixSize;
@@ -114,7 +115,9 @@ void exploreTrie(Trie *t, const char *pAxiom) {
 	  memcpy(ownAxiom, pAxiom, pAxiomLen);
           ownAxiom[pAxiomLen] = (it - start) + radixStart; //Own index
 	  ownAxiom[pAxiomLen + 1] = '\0'; // NULL terminate this one as well
-          printf("%s\n", ownAxiom);
+	  if ((*it)->EOS) {
+	    printf("%s\n", ownAxiom);
+	  }
 	  exploreTrie(*it, ownAxiom);
 	  free(ownAxiom);
 	}
@@ -148,6 +151,7 @@ Trie *addSequenceWithLoad(
 	   addSequenceWithLoad(tr->keys[targetIndex], seq+1, payLoad, tag);
       }
     } else { // End of this sequence, time to deploy the payLoad
+      tr->EOS = 1;
       tr->payLoad = payLoad;
     }
   }
