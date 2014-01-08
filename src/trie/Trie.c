@@ -118,7 +118,7 @@ void exploreTrie(Trie *t, const char *pAxiom) {
 	if (*it != NULL) {
 	  char *ownAxiom = (char *)malloc(pAxiomLen + 2); // Space for own len
 	  memcpy(ownAxiom, pAxiom, pAxiomLen);
-          ownAxiom[pAxiomLen] = (it - start) + radixStart; //Own index
+          ownAxiom[pAxiomLen] = (it - start) + alphaStart; //Own index
 	  ownAxiom[pAxiomLen + 1] = '\0'; // NULL terminate this one as well
 	  if ((*it)->EOS) {
 	    printf("%s\n", ownAxiom);
@@ -200,7 +200,9 @@ Trie *allocTrie() {
 int resolveIndex(const char c) {
   int resIndex = -1;
   if (isalpha(c)) {
-    resIndex = c-radixStart;
+    resIndex = c-alphaStart;
+  } else if (isspace(c)) {
+    resIndex = (alphaDiff + 1);
   }
 
   return resIndex;
@@ -218,7 +220,7 @@ int main() {
   printf("\033[%dmFound: %d\033[00m\n", iQuery == -1 ? 31 : 33, iQuery);
 
   // Consume self
-  FILE *ifp = fopen("words.txt", "r");
+  FILE *ifp = fopen(__FILE__, "r");
   int BUF_STEP = 10, MAX_SINGLE_ALLOC_SZ = 60;
   char c;
 

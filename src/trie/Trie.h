@@ -2,9 +2,12 @@
 #ifndef _TRIE_H
 #define _TRIE_H
   #include <stdio.h>
-  #define radixStart 'a'
-  #define radixEnd   'z'
-  #define radixSize (radixEnd - radixStart) + 1 // Accomodate the end itself
+  #define alphaStart 'a'
+  #define alphaEnd   'z'
+  #define alphaDiff  alphaEnd - alphaStart
+  #define space ' '
+  #define radixSize (alphaDiff + 2) // Accomodate a space char' '
+						// and the end itself
 
   typedef enum TrieTag_ {
     StackD=0, HeapD=1
