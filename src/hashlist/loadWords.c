@@ -110,13 +110,12 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
     Element *matchL = NULL;
     // First check if the query exists in the dict
     matchList = get(dict, pjwCharHash(query)); 
-    if (*matchList == NULL) { // Not found time to do ranking
+    if (*matchList == NULL) { // Not found time, to do ranking
       Element **trav = dict->list, **end = trav + getSize(dict);
       while (trav != end) {
 	if (*trav != NULL && (*trav)->value != NULL) {
 	  int rank = getRank(query, (*trav)->value);
 	  if (rank >= threshHold) {
-	    // printf("Threshold: %d %s %s :: %d\n", threshHold, query, (char *)(*trav)->value, rank);
 	    matchL = addToHeadWithRank(matchL, (*trav)->value, rank);
 	  } 
 	}

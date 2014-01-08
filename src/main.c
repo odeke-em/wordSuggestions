@@ -14,7 +14,7 @@
 #include "hashlist/hashList.h"
 #include "hashlist/loadWords.h"
 
-#define THRESHOLD_RANK 0.70
+#define THRESHOLD_RANK 0.60
 #define NO_SUGGESTIONS_NOTIFICATION "No suggestions"
 
 #define checkLoading(handle, funcPtr, libKey) {\
@@ -32,15 +32,16 @@ static HashList *dict = NULL;
 // This dict will allow overriding of the value of keys with collisions
 static Trie *recentlyUsedTrie = NULL;
 
-
-typedef struct {
-  int size;
-  unsigned int hasHeapdElems:1;
-  void **block;
-} WordsBlock;
+// Function pointers declared here
+Trie *(*freshTrie)() = NULL;
+Element *(*fetchNext)(Element *) = NULL;
+HashList * (*dictFromFile)(const char *) = NULL; 
+int (*queryTrie)(Trie *tr, const char *, void **) = NULL;
+Element *(*getMatches)(const char *, HashList *, const double) = NULL;
+Trie *(*addSeqWithLoad)(Trie *, const char *, void *, const TrieTag) = NULL;
 
 typedef struct SearchParam_ {
-  WordsBlock *(*blockGenerator)(const char *);
+  Element *(*suggestionsGen)(const char *);
   GtkWidget *resultsList;
 } SearchParam;
 
@@ -72,7 +73,23 @@ void addToListView(GtkWidget *list, const gchar *str) {
   );
 
   gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0 , str, -1);
+  gtk_list_store_set(store, &iter, 0, str, -1);
+}
+
+void *freeMemoizedSuggestions(void *e) {
+  if (e != NULL) {
+    Element *sug = (Element *)e;
+    Element *tmpNext;
+    while (sug != NULL) {
+      tmpNext = fetchNext(sug);
+      // Not touching the data that explicitly belongs to the dict
+      // Only the element shell itself
+      free(sug);
+      sug = tmpNext;
+    }
+  }
+
+  return e;
 }
 
 void initList(GtkWidget *list) {
@@ -98,36 +115,6 @@ void initList(GtkWidget *list) {
   g_object_unref(store);
 }
 
-WordsBlock *destroyWordsBlock(WordsBlock *wb) {
-  if (wb != NULL) { 
-    if (wb->block != NULL) {
-      if (wb->size > 0 && wb->hasHeapdElems) {
-	void **it = wb->block; 
-	void **end = it + wb->size;
-	while (it != end) {
-	  if (*it != NULL) {
-	    free(*it);
-	    *it = NULL;
-	  }
-	  ++it;
-	}
-      }
-      free(wb->block);
-    }
-    free(wb);
-  }
-
-  return wb;
-}
-
-void *voidDestroyWordsBlock(void *wb) {
-  if (wb != NULL) {
-    wb = (void *)destroyWordsBlock((WordsBlock *)wb);
-  }
-
-  return wb;
-}
-
 void searchTerms(GtkWidget *widget, gpointer *arg) {
   if (arg != NULL) {
     SearchParam *params = (SearchParam *)arg;
@@ -142,17 +129,17 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
       "\033[35msearchTerm: %s len: %d\033[00m\n", searchTerm, len
       );
     #endif
-     
-      WordsBlock *(*blockGenerator)(const char *) =\
-	   params->blockGenerator;
-      if (len && blockGenerator) { 
-	clearListView(lV, NULL);
-	WordsBlock *genBlock = blockGenerator(searchTerm);
-	if (genBlock != NULL && genBlock->block != NULL) {
-	  int i;
-	  for (i=0; i < genBlock->size; ++i) {
-	    char *wIn = (char *)genBlock->block[i];
-	    addToListView(lV, wIn);
+
+      // Freshen up the listView     
+      clearListView(lV, NULL);
+
+      Element *(*suggestionsGen)(const char *) = params->suggestionsGen;
+      if (len && suggestionsGen) {
+	Element *suggestions = suggestionsGen(searchTerm);
+	if (suggestions != NULL) {
+	  while (suggestions != NULL) {
+	    addToListView(lV, suggestions->value);
+	    suggestions = fetchNext(suggestions);
 	  }
 	} else {
 	  addToListView(lV, NO_SUGGESTIONS_NOTIFICATION);
@@ -162,28 +149,22 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
   }
 }
 
-void runMenu(int argc, char *argv[]) {
+void handleLibLoading() {
   // Phase 1: Load all the necessary data and functions
   //          for the logical operation of program
   // Loading the hashlist functionality
-  Element *(*getNext)(Element *);
-  checkLoading(handle, getNext, "getNext");
-
-  HashList * (*loadWordsInFile)(const char *); 
-  checkLoading(handle, loadWordsInFile, "loadWordsInFile");
-
-  Element *(*getCloseMatches)(const char *, HashList *, const double);
-  checkLoading(handle, getCloseMatches, "getCloseMatches");
+  checkLoading(handle, fetchNext, "getNext");
+  checkLoading(handle, dictFromFile, "loadWordsInFile");
+  checkLoading(handle, getMatches, "getCloseMatches");
 
   // Trie functionality
-  Trie *(*createTrie)();
-  checkLoading(handle, createTrie, "createTrie");
+  checkLoading(handle, freshTrie, "createTrie");
+  checkLoading(handle, queryTrie, "searchTrie");
+  checkLoading(handle, addSeqWithLoad, "addSequenceWithLoad");
+}
 
-  int (*searchTrie)(Trie *tr, const char *, void **);
-  checkLoading(handle, searchTrie, "searchTrie");
-
-  Trie *(*addSequenceWithLoad)(Trie *, const char *, void *, const TrieTag);
-  checkLoading(handle, addSequenceWithLoad, "addSequenceWithLoad");
+void runMenu(int argc, char *argv[]) {
+  handleLibLoading();
 
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
@@ -193,13 +174,13 @@ void runMenu(int argc, char *argv[]) {
   fprintf(stderr, "\033[93mDictionary path: %s\n", dictPath);
 #endif
 
-  dict = loadWordsInFile(dictPath);
+  dict = dictFromFile(dictPath);
   if (dict == NULL) {
     fprintf(stderr, "FilePath :: \033[32m%s\033[00m\n", dictPath);
     return;
   }
   
-  recentlyUsedTrie = createTrie();
+  recentlyUsedTrie = freshTrie();
 
   float thresholdMatch = THRESHOLD_RANK;
   if (argc >= 3) {
@@ -211,7 +192,7 @@ void runMenu(int argc, char *argv[]) {
     }
   }
 
-  WordsBlock *wordsBlockGen(const char *w) {
+  Element *wordsBlockGen(const char *w) {
   #ifdef DEBUG
     printf("w: %s\n", w);
   #endif
@@ -223,7 +204,7 @@ void runMenu(int argc, char *argv[]) {
       // First try the recently used entries -- assuming we are maintaining
       // the same threshold match percentage
       void *ruSav = NULL;
-      int found = searchTrie(recentlyUsedTrie, w, &ruSav);
+      int found = queryTrie(recentlyUsedTrie, w, &ruSav);
 
       if (found == 1) { // Memoized hit
 	printf("Memoized hit for word: %s\n", w);
@@ -231,39 +212,14 @@ void runMenu(int argc, char *argv[]) {
       }
 
       // Miss detected
-      Element *match = getCloseMatches(w, dict, thresholdMatch);
+      Element *match = getMatches(w, dict, thresholdMatch);
 
-      // Finally if there is no suggestion
-      if (match == NULL) return NULL;
-
-      WordsBlock *bSav = (WordsBlock *)malloc(sizeof(WordsBlock));
-
-      int index=0, bSz = 100;
-      bSav->block = (void **)malloc(sizeof(void *) * bSz);
-
-      while (match != NULL) {
-	if (index >= bSz) {
-	  bSz += 10;
-	  bSav->block =\
-            (void **)realloc(bSav->block, sizeof(void *) * bSz);
-	}
-
-	bSav->block[index] = match->value;
-	match = getNext(match);
-	++index;
+      // Finally if there is suggestion, memoize it
+      if (match != NULL) {
+	recentlyUsedTrie = addSeqWithLoad(recentlyUsedTrie, w, match, HeapD);
       }
 
-      bSav->block =\
-         (void **)realloc(bSav->block, sizeof(void *) * index-1);
-
-      bSav->size = index;
-
-      // It's elements are just pointers to memory owned by the dictionary
-      bSav->hasHeapdElems = 0;
-
-      // Let's now memoize this value
-      recentlyUsedTrie = addSequenceWithLoad(recentlyUsedTrie, w, bSav, HeapD);
-      return bSav;
+      return match;
     }
   }
 
@@ -341,7 +297,7 @@ void runMenu(int argc, char *argv[]) {
   gtk_widget_show(resultsListView);
 
   SearchParam paramSav;
-  paramSav.blockGenerator = wordsBlockGen;
+  paramSav.suggestionsGen = wordsBlockGen;
   paramSav.resultsList = resultsListView;
 
   // Monitor any changes with the searchEntry
@@ -374,7 +330,7 @@ void cleanUpExit() {
   checkLoading(handle, destroyTrieAndPayLoads, "destroyTrieAndPayLoads");
 
   recentlyUsedTrie =\
-    destroyTrieAndPayLoads(recentlyUsedTrie, voidDestroyWordsBlock);
+    destroyTrieAndPayLoads(recentlyUsedTrie, freeMemoizedSuggestions);
 
   fprintf(stderr, "\033[94m\nBye..\n\033[00m");
   exit(0);
