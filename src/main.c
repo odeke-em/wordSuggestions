@@ -192,6 +192,8 @@ void runMenu(int argc, char *argv[]) {
     }
   }
 
+  printf("Threshold rank: %.3f\n", thresholdMatch);
+
   Element *wordsBlockGen(const char *w) {
   #ifdef DEBUG
     printf("w: %s\n", w);
