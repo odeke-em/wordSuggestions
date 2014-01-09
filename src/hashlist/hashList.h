@@ -20,7 +20,8 @@
   typedef struct Element_ {
     Bool dTag; // Discovery tag
     void *value;
-    int rank, metaInfo;
+    double rank;
+    int metaInfo;
     struct Element_ *next;
   } Element;
 
@@ -46,7 +47,7 @@
   Element *addToHead(Element *sl, void *data);
 
   // Adds the data as well as it's rank to the head 
-  Element *addToHeadWithRank(Element *sl, void *data, unsigned int rank);
+  Element *addToHeadWithRank(Element *sl, void *data, const double rank);
 
 
   Element *addToTailWithMetaInfo(

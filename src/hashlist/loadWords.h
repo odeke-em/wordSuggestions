@@ -6,7 +6,10 @@
 
   char *getWord(FILE *ifp, int *lenStorage);
   HashList *loadWordsInFile(const char *filePath);
-  Element *matches(const char *query, HashList *dict, const int threshHold);
+  Element *matches(
+    const char *query, HashList *dict, 
+    const unsigned int ownRank, const double threshHold
+  );
   Element *getCloseMatches(
     const char *query, HashList *dict, const double percentMatch
   );

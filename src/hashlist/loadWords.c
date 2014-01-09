@@ -52,8 +52,11 @@ HashList *loadWordsInFile(const char *filePath) {
   if (filePath != NULL) {
     FILE *ifp = fopen(filePath, "r");
     LLInt dictSize = estimatedWordCount(ifp, 0);
-    printf("\033[92mEstimated wordCount %lld", dictSize);
-    dictSize *= 7; // Arbitrarily X 7
+    printf("\033[92mEstimated wordCount %lld ", dictSize);
+
+    if (dictSize <= fileSize(ifp)) { // Account for congested hashing space
+      dictSize *= 1.5; // Arbitrarily X 1.5
+    }
 
   #ifdef HANDLE_LIMITS
     if (dictSize > MAX_SAFETY_HASHLIST_SIZE) {
@@ -105,7 +108,10 @@ HashList *loadWordsInFile(const char *filePath) {
 
 // Do not free data returned from this function as it just contains pointers
 // to data associated with the dictionary that will be explicitly freed
-Element *matches(const char *query, HashList *dict, const int threshHold) {
+Element *matches(
+  const char *query, HashList *dict, 
+  const unsigned int ownRank, const double percentMatch
+) {
   Element **matchList = NULL;
   if (query != NULL && dict != NULL) {
     Element *matchL = NULL;
@@ -123,12 +129,14 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
 
     if (! matchFound) {
       // Not found :: time to do ranking
+      double threshHold = ownRank * percentMatch;
       Element **trav = dict->list, **end = trav + getSize(dict);
       while (trav != end) {
 	if (*trav != NULL && (*trav)->value != NULL) {
 	  int rank = getRank(query, (*trav)->value);
 	  if (rank >= threshHold) {
-	    matchL = addToHeadWithRank(matchL, (*trav)->value, rank);
+	    matchL = \
+              addToHeadWithRank(matchL, (*trav)->value, (double)rank/ownRank);
 	  } 
 	}
 	++trav;
@@ -149,7 +157,7 @@ Element *getCloseMatches(
     return NULL;
   } else {
     int ownRank = getRank(query, query);
-    return matches(query, dict, ownRank * percentMatch);
+    return matches(query, dict, ownRank, percentMatch);
   }
 }
 

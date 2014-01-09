@@ -40,7 +40,7 @@ Element *addToTailWithMetaInfo(Element *sl, void *data, const int metaInfo) {
   return sl;
 }
 
-Element *addToHeadWithRank(Element *sl, void *data, unsigned int rank) {
+Element *addToHeadWithRank(Element *sl, void *data, const double rank) {
   sl = addToHead(sl, data);
   if (sl != NULL) {
     sl->rank = rank;
@@ -71,7 +71,7 @@ Element *initElement(Element *elem) {
 
   elem->next = NULL;
   elem->value = NULL;
-  elem->rank = -1000;
+  elem->rank = 1; // Iniitally rank is at 100%
   elem->metaInfo = 0;
   elem->dTag = False; // Hasn't been discovered
 
