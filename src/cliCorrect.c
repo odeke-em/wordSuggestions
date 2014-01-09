@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 
   Trie *(*createTrie)();
   Trie *(*destroyTrie)(Trie *);
-  int (*searchTrie)(Trie *tr, const char *);
+  int (*searchTrie)(Trie *tr, const char *, void *);
   Trie *(*addSequence)(Trie *tr, const char *);
 
   Element *(*getNext)(Element *);
@@ -114,9 +114,9 @@ int main(int argc, char *argv[]) {
     char *inW = getWord(ifp, &curLen);
     if (inW != NULL) {
       printf("%s ", inW);
-      if (searchTrie(memoizeTrie, inW) == -1) {
-	printf(" {\n");
+      if (searchTrie(memoizeTrie, inW, NULL) != 1) {
 	// Word not yet discovered
+	printf(" {\n");
 	Element *match = getCloseMatches(inW, dict, thresholdMatch);
 	while (match != NULL) {
 	  printf("\t%*s :: %d\n", indentLevel, (char *)match->value, match->rank);
