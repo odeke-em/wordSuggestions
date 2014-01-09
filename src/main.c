@@ -64,7 +64,7 @@ void clearListView(GtkWidget *list, const gchar *initV) {
   }
 }
 
-void addToListView(GtkWidget *list, const gchar *str) {
+void addToListView(GtkWidget *list, const gchar *str, const gdouble rank) {
   // Function copied straight from www.gtkforums.com
   GtkListStore *store;
   GtkTreeIter iter;
@@ -73,7 +73,7 @@ void addToListView(GtkWidget *list, const gchar *str) {
   );
 
   gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, str, -1);
+  gtk_list_store_set(store, &iter, 0, str, 1, rank, -1);
 }
 
 void *freeMemoizedSuggestions(void *e) {
@@ -94,7 +94,7 @@ void *freeMemoizedSuggestions(void *e) {
 
 void initList(GtkWidget *list) {
   GtkCellRenderer  *renderer;
-  GtkTreeViewColumn *column;
+  GtkTreeViewColumn *column, *rankColumn;
   GtkListStore *store;
   
   // Create and append the single column
@@ -102,11 +102,15 @@ void initList(GtkWidget *list) {
   column = gtk_tree_view_column_new_with_attributes (
     "Suggestions", renderer, "text", 0, NULL
   );
+  rankColumn = gtk_tree_view_column_new_with_attributes (
+    "Rank", renderer, "text", 1, NULL
+  );
   gtk_tree_view_append_column(GTK_TREE_VIEW(list), column);
+  gtk_tree_view_append_column(GTK_TREE_VIEW(list), rankColumn);
 
   // Create the model and add to tree view
   // One column only
-  store = gtk_list_store_new(1, G_TYPE_STRING);
+  store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_DOUBLE);
   gtk_tree_view_set_model(
     GTK_TREE_VIEW(list), GTK_TREE_MODEL(store)
   );
@@ -138,12 +142,11 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
 	Element *suggestions = suggestionsGen(searchTerm);
 	if (suggestions != NULL) {
 	  while (suggestions != NULL) {
-	    addToListView(lV, suggestions->value);
-            printf("%s %.2f\n", (char *)suggestions->value, suggestions->rank);
+	    addToListView(lV, suggestions->value, suggestions->rank);
 	    suggestions = fetchNext(suggestions);
 	  }
 	} else {
-	  addToListView(lV, NO_SUGGESTIONS_NOTIFICATION);
+	  addToListView(lV, NO_SUGGESTIONS_NOTIFICATION, 0);
 	}
       }
     }
@@ -167,7 +170,7 @@ void handleLibLoading() {
 void runMenu(int argc, char *argv[]) {
   handleLibLoading();
 
-  const char *dictPath = "./resources/wordlist.txt";
+  const char *dictPath = "./resources/mergedWords.txt";
   if (argc >= 2) {
     dictPath = argv[1];
   }
