@@ -139,6 +139,7 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
 	if (suggestions != NULL) {
 	  while (suggestions != NULL) {
 	    addToListView(lV, suggestions->value);
+            printf("%s %.2f\n", (char *)suggestions->value, suggestions->rank);
 	    suggestions = fetchNext(suggestions);
 	  }
 	} else {
