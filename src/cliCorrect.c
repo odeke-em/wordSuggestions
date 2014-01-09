@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
 	printf(" {\n");
 	Element *match = getCloseMatches(inW, dict, thresholdMatch);
 	while (match != NULL) {
-	  printf("\t%*s :: %d\n", indentLevel, (char *)match->value, match->rank);
+	  printf("\t%*s :: %.2f\n", indentLevel, (char *)match->value, match->rank);
 	  match = getNext(match);
 	} 
 	memoizeTrie = addSequence(memoizeTrie, inW);

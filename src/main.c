@@ -170,7 +170,7 @@ void handleLibLoading() {
 void runMenu(int argc, char *argv[]) {
   handleLibLoading();
 
-  const char *dictPath = "./resources/wordlist.txt";
+  const char *dictPath = "./resources/mergedWords.txt";
   if (argc >= 2) {
     dictPath = argv[1];
   }
