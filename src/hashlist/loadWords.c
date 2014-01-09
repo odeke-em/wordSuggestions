@@ -1,5 +1,6 @@
 // Author: Emmanuel Odeke <odeke@ualberta.ca>
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -110,7 +111,18 @@ Element *matches(const char *query, HashList *dict, const int threshHold) {
     Element *matchL = NULL;
     // First check if the query exists in the dict
     matchList = get(dict, pjwCharHash(query)); 
-    if (*matchList == NULL) { // Not found time, to do ranking
+    int matchFound = 0;
+
+    if (*matchList != NULL) { // An entry with the same hash value found
+      // In case of any collisions, strcmp should help sort things out
+      if ((*matchList)->value && strcmp(query, (*matchList)->value) == 0) {
+	// Absolute match found
+	matchFound = 1;
+      }
+    }
+
+    if (! matchFound) {
+      // Not found :: time to do ranking
       Element **trav = dict->list, **end = trav + getSize(dict);
       while (trav != end) {
 	if (*trav != NULL && (*trav)->value != NULL) {
