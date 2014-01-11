@@ -2,23 +2,17 @@
 // Module to handle platform agnostic loading of dynamic libraries
 
 #include <stdio.h>
+#include <stdlib.h> // For exit(...)
 #include <stdarg.h>
 #include "libLoading.h"
 
-#ifdef WIN32
-  #include <windows.h>
-#else
-  #include <dlfcn.h>
-#endif
+static errorReporter errReporter = NULL;
 
-typedef char *(*errorReporter)(void);
-typedef int (*libCloser)(void *handle);
-
-static errorReporter getErrorReporter(void) {
-  static errorReporter errReporter = NULL;
+errorReporter getErrorReporter(void) {
+  errorReporter errR = NULL;
 #ifdef WIN32
   char *win32DLError(void) {
-    // Source:: Armin Rigo <arigo@tunes.org> from Python commit
+    // Source:: Armin Rigo <arigo@tunes.org> from PyPy commit
     static char buf[32];
     DWORD dw = GetLastError();
     if (dw == 0) 
@@ -28,15 +22,15 @@ static errorReporter getErrorReporter(void) {
     return buf;
   }
 
-  errReporter = win32DLError;
+  errR = win32DLError;
 #else
-  errReporter = dlerror;
+  errR = dlerror;
 #endif
 
-  return errReporter;
+  return errR;
 }
 
-void *libloader(const char *libName, ...) {
+void *libLoader(const char *libName, ...) {
   void *handle = NULL;
 #ifdef WIN32
   handle = LoadLibrary(libName);
@@ -73,8 +67,38 @@ void closeLib(void *handle) {
   }
 }
 
+char *getLastError() {
+  if (errReporter == NULL) {
+    errReporter = getErrorReporter();
+  }
+
+  return errReporter();
+}
+
+inline void *lazyLoad(const char *libName) {
+  int flag = 0;
+#ifndef WIN32
+  flag = RTLD_LAZY;
+#endif
+  return libLoader(libName, flag);
+}
+
+void checkLoading(void *handle, void *funcPtr, const char *libKey) {
+  funcPtr = loadSymbol(handle, libKey);
+  char *err = getLastError();
+  if (err != NULL) {
+    fprintf(stderr, "\033[31m%s\033[00m\n", err);
+    exit(-1);
+  }
+}
+
 int main() {
   errorReporter er = getErrorReporter();
   printf("er: %p\n", er);
+  void *handle = lazyLoad("../exec/libaCorrect.so.1");
+  printf("handle: %p\n", handle);
+  void *tp = NULL;
+  checkLoading(handle, tp, "grocery");
+  closeLib(handle);
   return 0;
 }
