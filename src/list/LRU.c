@@ -2,34 +2,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "list.h"
+#include "LRU.h"
+
 #define CLEAR_TAGS_AFTER_PURGE
 
-typedef List Cache;
 Cache *setTagValue(Cache *c, unsigned int tagValue) {
   if (c != NULL) {
     Node *start = c->head, *end = c->tail;
-    do {
-      if (start == NULL) break;
+    while (start != NULL) {
       start->tag = tagValue;
+      if (start == end) break;
       start = start->next;
-    } while (start != end);
+    }
   }
 
   return c;
 }
 
 Cache *purgeLRU(Cache *c) {
+  return purgeAndSave(c, NULL);
+}
+
+Cache *purgeAndSave(Cache *c, Cache **purgedSav) {
   if (c != NULL) {
     Node *it = c->head, *end = c->tail, *prev = c->head;
-    while (it != end) {
+    while (it != NULL) {
       if (it->tag == 0) { // Hasn't been accessed since the last cycle
    
 	if (it->data != NULL) {
 	#ifdef DEBUG
 	  printf("Purging: %d\n", *(int *)it->data);
 	#endif
-	  free(it->data);
+	  --c->size;
+          if (purgedSav != NULL) { 
+	    *purgedSav = append(*purgedSav, it->data);
+          } else {
+            free(it->data);
+          }
 	  it->data = NULL;
 	}
 
@@ -48,6 +57,8 @@ Cache *purgeLRU(Cache *c) {
 	prev = it;
 	it = it->next;
       }
+
+      if (it == end) break;
     }
   }
 
@@ -57,16 +68,19 @@ Cache *purgeLRU(Cache *c) {
   return c;
 }
 
-Cache *accessMember(Cache *c, void *entry, Comparator comp) {
+void *lookUpEntry(Cache *c, void *key, Comparator comp) {
   if (c != NULL) {
-    Node *entryNode = find(c, entry, comp);
-    if (entryNode != NULL) 
-      entryNode->tag = 1;
+    Node *queryNode = find(c, key, comp);
+    if (queryNode != NULL) {
+      queryNode->tag = 1;
+      return queryNode->data;
+    }
   }
 
-  return c;
+  return NULL;
 }
 
+#ifdef SAMPLE_LRU
 int main() {
   Cache *c = NULL;
   int i=0;
@@ -76,40 +90,50 @@ int main() {
     c = prepend(c, newI);
   }
 
-  printList(c);
   c = setTagValue(c, 0);
+  printList(c);
   printf("\n");
-
-  for (i= 2; i < 8; ++i) {
-    c = accessMember(c, &i, intPtrComp);
-  }
 
   printf("Before purge 1\n");
   printList(c);
+
+  for (i= 2; i < 8; ++i) {
+    lookUpEntry(c, &i, intPtrComp);
+  }
+
+  printf("\nAfter lookUp 1\n");
+  printList(c);
+
   printf("\nAfter purge 1\n");
   c = purgeLRU(c);
   printList(c);
   printf("\n");
   printf("Next cycle\n");
 
-  for (i=0; i < 15000; ++i) {
+  for (i=0; i < 15; ++i) {
     int *newI = (int *)malloc(sizeof(int));
     *newI = i;
-    c = prepend(c, newI);
+    c = append(c, newI);
   }
 
-  for (i=10; i < 1000; ++i) {
-    c = accessMember(c, &i, intPtrComp);
+  for (i=90; i < 100; ++i) {
+    lookUpEntry(c, &i, intPtrComp);
   }
 
   printf("After second set of accesses\n");
   printList(c);
 
-  c = purgeLRU(c);
-  printf("\nAfter purge 2\n");
+  Cache *purgeSav=NULL;
+  c = purgeAndSave(c, &purgeSav);
+  printf("\nAfter purge 2:: Fresh list\n");
   printList(c);
   printf("\n");
+  printf("Purged and saved\n");
+  printList(purgeSav);
+  printf("\n");
 
+  destroyList(purgeSav);
   destroyList(c);
   return 0;
 }
+#endif
