@@ -107,7 +107,7 @@ Trie *destroyTrieAndPayLoads(Trie *tr, void *(*pLoadFreer)(void *)) {
   return tr;
 }
 
-void exploreTrie(Trie *t, const char *pAxiom) {
+void exploreTrie(const Trie *t, const char *pAxiom, FILE *ofp) {
   if (t != NULL) {
     if (t->keys != NULL) {
       Trie **start = t->keys, 
@@ -121,9 +121,9 @@ void exploreTrie(Trie *t, const char *pAxiom) {
           ownAxiom[pAxiomLen] = (it - start) + alphaStart; //Own index
 	  ownAxiom[pAxiomLen + 1] = '\0'; // NULL terminate this one as well
 	  if ((*it)->EOS) {
-	    printf("%s\n", ownAxiom);
+	    fprintf(ofp, "%s\n", ownAxiom);
 	  }
-	  exploreTrie(*it, ownAxiom);
+	  exploreTrie(*it, ownAxiom, ofp);
 	  free(ownAxiom);
 	}
       }
@@ -169,7 +169,7 @@ Trie *addSequence(Trie *tr, const char *seq) {
   return addSequenceWithLoad(tr, seq, NULL, StackD);
 }
 
-int searchTrie(Trie *tr, const char *seq, void **ptrSav) {
+int searchTrie(const Trie *tr, const char *seq, void **ptrSav) {
   if (seq == NULL || tr == NULL || tr->keys == NULL) {
     return -1;
   }
@@ -226,7 +226,7 @@ int main() {
 
   Trie *fTrie = trieFromFile(ifp);
   fTrie = addSequenceWithLoad(fTrie, "mbc\0", "flux\0", StackD);
-  exploreTrie(fTrie, "");
+  exploreTrie(fTrie, "", stdout);
   iQuery = searchTrie(fTrie, "mbc\0", &found);
   printf(
     "\033[%dmFound: %d ptr: %p\033[00m\n", iQuery == -1 ? 31: 33, iQuery, found

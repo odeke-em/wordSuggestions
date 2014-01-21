@@ -40,9 +40,9 @@
   // Normal routine adding except that the payload is set to NULL
   Trie *addSequence(Trie *tr, const char *seq);
 
-  int searchTrie(Trie *tr, const char *seq, void **ptrSav);
+  int searchTrie(const Trie *tr, const char *seq, void **ptrSav);
 
-  void exploreTrie(Trie *t, const char *pAxiom);
+  void exploreTrie(const Trie *t, const char *pAxiom, FILE *ofp);
 
   // Utilities here 
   Trie *trieFromFile(FILE *ifp);
