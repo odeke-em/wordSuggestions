@@ -24,18 +24,8 @@ Trie *createTrie() {
   freshTrie->payLoad = NULL;
   freshTrie->radixSz = radixSize;
 
-  freshTrie->keys = (Trie **)malloc(sizeof(Trie *) * radixSize);
-
-  if (freshTrie->keys == NULL) {
-    raiseError("Run-out of memory");
-  }
-
-  Trie **it = freshTrie->keys,
-       **end= it + freshTrie->radixSz;
-
-  while (it != end) {
-    *it++ = NULL;
-  }
+  freshTrie->keys = NULL; 
+  
 
   return freshTrie;
 }
@@ -82,8 +72,7 @@ Trie *destroyTrieAndPayLoads(Trie *tr, void *(*pLoadFreer)(void *)) {
   if (tr == NULL) return tr;
 
   if (tr->keys != NULL) {
-    Trie **it = tr->keys;
-    Trie **end = tr->keys + tr->radixSz;
+    Trie **it = tr->keys, **end = it + tr->radixSz;
     while (it < end) {
       if (*it != NULL) {
 	*it = destroyTrieAndPayLoads(*it, pLoadFreer);
@@ -110,23 +99,21 @@ Trie *destroyTrieAndPayLoads(Trie *tr, void *(*pLoadFreer)(void *)) {
 void exploreTrie(const Trie *t, const char *pAxiom, FILE *ofp) {
   if (t != NULL) {
     if (t->keys != NULL) {
-      Trie **start = t->keys, 
-	   **end = start + t->radixSz, 
-	   **it;
+      Trie **start = t->keys, **end = start + t->radixSz, **it;
       ssize_t pAxiomLen = strlen(pAxiom);
+      char *ownAxiom = (char *)malloc(pAxiomLen + 2); // Space for own len
+      memcpy(ownAxiom, pAxiom, pAxiomLen);
+      *(ownAxiom + pAxiomLen + 1) = '\0'; // NULL terminate this one as well
       for (it = start; it < end; ++it) {
-	if (*it != NULL) {
-	  char *ownAxiom = (char *)malloc(pAxiomLen + 2); // Space for own len
-	  memcpy(ownAxiom, pAxiom, pAxiomLen);
-          ownAxiom[pAxiomLen] = (it - start) + alphaStart; //Own index
-	  ownAxiom[pAxiomLen + 1] = '\0'; // NULL terminate this one as well
-	  if ((*it)->EOS) {
-	    fprintf(ofp, "%s\n", ownAxiom);
-	  }
-	  exploreTrie(*it, ownAxiom, ofp);
-	  free(ownAxiom);
-	}
+        if (*it != NULL) {
+          *(ownAxiom + pAxiomLen) = (it - start) + alphaStart; //Own index
+          if ((*it)->EOS) {
+            fprintf(ofp, "%s\n", ownAxiom);
+          }
+          exploreTrie(*it, ownAxiom, ofp);
+        }
       }
+      free(ownAxiom);
     }
   }
 }
@@ -137,7 +124,7 @@ Trie *addSequenceWithLoad(
 #ifdef DEBUG
   printf("%s seq: %s\n", __func__, seq);
 #endif
-  if (tr == NULL || tr->keys == NULL) {
+  if (tr == NULL) {
     raiseError("Cannot add elements to a NULL Trie");
   }
 
@@ -145,15 +132,29 @@ Trie *addSequenceWithLoad(
     if (*seq != '\0') {
       int targetIndex = resolveIndex(*seq);
       if (targetIndex >= 0 && targetIndex < radixSize) {
-	if (tr->keys[targetIndex] == NULL) {
-	  tr->keys[targetIndex] = createTrie();
-	#ifdef DEBUG
-	  printf("New Trie alloc index: %d\n", targetIndex);
-	#endif
-	}
+        if (tr->keys == NULL) { // Time to allocate space for keys
+          tr->keys = (Trie **)malloc(sizeof(Trie *) * radixSize);
 
-	tr->keys[targetIndex] =\
-	   addSequenceWithLoad(tr->keys[targetIndex], seq+1, payLoad, tag);
+          if (tr->keys == NULL) {
+            raiseError("Run-out of memory");
+          }
+
+          Trie **it = tr->keys, **end= it + tr->radixSz;
+
+          while (it != end) {
+            *it++ = NULL;
+          }
+        }
+
+        if (*(tr->keys + targetIndex) == NULL) {
+	  *(tr->keys + targetIndex) = createTrie();
+	  #ifdef DEBUG
+	    printf("New Trie alloc index: %d\n", targetIndex);
+	  #endif
+        }
+
+	*(tr->keys + targetIndex) =\
+	   addSequenceWithLoad(*(tr->keys + targetIndex), seq+1, payLoad, tag);
       }
     } else { // End of this sequence, time to deploy the payLoad
       tr->EOS = 1;
