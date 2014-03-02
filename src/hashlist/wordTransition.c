@@ -5,10 +5,25 @@
 #include <ctype.h>
 
 #include "errors.h"
-#include "hashList.h"
 #include "wordTransition.h"
 
+#define ALPHA_SIZE 26
+
 // #define DEBUG
+
+void printIndexNode(IndexNode **r) {
+  int i=0;
+  for (i=0; i < ALPHA_SIZE; ++i) {
+    printf("%c => [", i + 'a');
+    IndexNode *t = *(r + i);
+    while (t != NULL) {
+      printf("%d", t->index);
+      if (t->next != NULL) printf(", ");
+      t = t->next;
+    }
+    printf("]\n");
+  }
+}
 
 void initEditStat(EditStat *est) {
   if (est != NULL) {
@@ -41,96 +56,70 @@ void printStat(const EditStat *est) {
   }
 }
 
-EditStat *getEditStats(const char *subject, const char *base) {
-  if (subject == NULL || base == NULL) return NULL;
-  HashList *baseIndices = NULL;
-
-  int i, baseLen = strlen(base);
-
-  // Note 'a' - 'A' to account for collisions that will result from 
-  // alphabetic characters wrapping over the small hashlist size
-  baseIndices = initHashListWithSize(baseIndices, baseLen + 'a' - 'A');
-
-  baseIndices->allowCollisions = True;
-  int alphaIndex = 0;
-  for (i=0, alphaIndex=0; i < baseLen; ++i) {
-    if (isalpha(base[i])) {
-      int *indexCopy = (int *)malloc(sizeof(int));
-      *indexCopy = alphaIndex;
-      insertElem(baseIndices, indexCopy, tolower(base[i])-'a');
-      ++alphaIndex;
+int getRank(const char *subject, const char *base) {
+  int rank = -1;
+  if (subject != NULL && base != NULL) {
+    IndexNode *r[ALPHA_SIZE];
+    int i;
+    for (i=0; i < ALPHA_SIZE; ++i) {
+      *(r + i) = NULL;
     }
-  }
 
-  EditStat *est = allocAndInitEditStat();
-  int subjectLen = strlen(subject);
-
-#ifdef DEBUG
-  printf("SubjectLen: %d\n", subjectLen);
-#endif
-  est->stringLen = subjectLen;
-
-  for (i=subjectLen-1; i >= 0; --i) {
-    if (! isalpha(subject[i])) continue;
-
-    int subIndex = tolower(subject[i]) - 'a';
-    Element **found = get(baseIndices, subIndex);
-    if (*found != NULL) {
-      Element *trav = *found;
-    #ifdef DEBUG
-      printf("found: %p ch: %c dTag: %d\n", trav, subject[i], trav->dTag);
-    #endif
-      while (trav != NULL && trav->dTag != False) { 
-    #ifdef DEBUG
-	printf("it: %p ch: %c dTag: %d\n", trav, subject[i], trav->dTag);
-    #endif
-	trav = trav->next;
+    // For later ascending order traversal, add indices from high to low
+    i = strlen(subject)/1;
+    while (--i >= 0) {
+      if (isalpha(*(subject + i))) {
+        int index = tolower(*(subject + i)) - 'a';
+        IndexNode *t = (IndexNode *)malloc(sizeof(IndexNode));
+        t->index = i;
+        t->next  = *(r + index);
+        *(r + index) = t;
       }
-    #ifdef DEBUG
-      printf("trav now: %p ch: %c\n", trav, subject[i]);
-    #endif
-      if (trav != NULL) {
-	++est->reuses;
-	trav->dTag = True;
-
-	int storedIndex = *(int *)trav->value;
-	if (storedIndex == i) {
-	#ifdef DEBUG
-	  printf("Reusing: %c at %d\n", subject[i], i);
-	#endif
-	  ++est->inplace;
-	} else {
-	#ifdef DEBUG
-	  printf("Move %c from %d to %d\n", subject[i], i, storedIndex);
-	#endif
-	  ++est->moves;
-	}
-
-      #ifdef DEBUG_STORED_INDICES
-	printf("Found %c at i %d: %d\n", subject[i], i, storedIndex);
-      #endif
-      }
-    } else { // Element not in base
-    #ifdef DEBUG
-      printf("Delete %c from %d\n", subject[i], i);
-      ++est->deletions;
-    #endif
     }
-  }
 
-  int nValueFrees = destroyHashList(baseIndices);
-  est->additions += nValueFrees; // Elements leftover and not matched by subject
-  return est;
-}
+    // printIndexNode(r);
 
-int getRank(const char *query, const char *from) {
-  int rank = -1000; // Arbitrary most negative
+    int reuses=0, moves=0, inplace=0, deletions=0, additions=0;
+    int baseLen = strlen(base)/1;
 
-  EditStat *et = getEditStats(query, from);
-  if (et != NULL) {
-    rank = (et->inplace*3)+(et->moves*2)+((et->deletions+et->additions)*-1);
+    for (i =0; i < baseLen; ++i) {
+      if (isalpha(*(base + i))) {
+        int index = tolower(*(base + i)) - 'a';
+        if (*(r + index) == NULL) {
+          ++deletions;
+        } else {
+          ++reuses;
+          if ((*(r + index))->index == i) {
+            ++inplace;
+          } else {
+            ++moves;
+          }
+          // Time to pop it off
+          IndexNode *tmp = (*(r + index))->next;
+          free(*(r + index));
+          *(r + index) = tmp;
+        }
+      }
+    }
 
-    free(et);
+    // Cleaning up
+    IndexNode **tIt = r, **tEnd = tIt + ALPHA_SIZE, *tmp;
+    while (tIt < tEnd) {
+      while (*tIt != NULL) {
+        tmp = (*tIt)->next;
+        free(*tIt);
+        *tIt = tmp;
+        ++additions;
+      }
+      ++tIt;
+    }
+
+  #ifdef DEBUG
+    printf("Add: %d Move: %d Delete: %d Keep: %d\n", 
+      additions, moves, deletions, inplace
+    );
+  #endif
+    rank = (inplace * 3) + (moves * 2) + ((deletions + additions) * -1);
   }
 
   return rank;
