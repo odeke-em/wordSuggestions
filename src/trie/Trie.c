@@ -12,7 +12,6 @@
   #undef DEBUG
 #endif
 
-
 Trie *createTrie() {
   Trie *freshTrie = allocTrie();
   if (freshTrie == NULL) {
@@ -40,18 +39,18 @@ Trie *trieFromFile(FILE *ifp) {
       char c;
       char *wIn = (char *)malloc(sizeof(char) * bufSiz);
       while ((c = getc(ifp)) && isalnum(c) && index < MAX_SZ) {
-	if (index >= bufSiz) {
-	  bufSiz += 10; // Arbitrary increase of 10
-          wIn = (char *)realloc(wIn, sizeof(char) * bufSiz);
-	}
+	    if (index >= bufSiz) {
+	        bufSiz += 10; // Arbitrary increase of 10
+            wIn = (char *)realloc(wIn, sizeof(char) * bufSiz);
+	    }
 	
-	wIn[index++] = c;
+	    wIn[index++] = c;
       }
 
       if (index) {
-	wIn[index++] = '\0';
-	wIn = (char *)realloc(wIn, sizeof(char) * index);
-	fTrie = addSequence(fTrie, wIn);
+	    wIn[index++] = '\0';
+	    wIn = (char *)realloc(wIn, sizeof(char) * index);
+	    fTrie = addSequence(fTrie, wIn);
       }
 
       free(wIn);
@@ -75,15 +74,15 @@ Trie *destroyTrieAndPayLoads(Trie *tr, void *(*pLoadFreer)(void *)) {
     Trie **it = tr->keys, **end = it + tr->radixSz;
     while (it < end) {
       if (*it != NULL) {
-	*it = destroyTrieAndPayLoads(*it, pLoadFreer);
+	    *it = destroyTrieAndPayLoads(*it, pLoadFreer);
       }
       ++it;
     }
 
     if (tr->loadTag == HeapD) { // Memory from the heap
       if (tr->payLoad != NULL && pLoadFreer != NULL) {
-	pLoadFreer(tr->payLoad);
-	tr->payLoad = NULL;
+	    pLoadFreer(tr->payLoad);
+	    tr->payLoad = NULL;
       }
     }
     free(tr->keys);
