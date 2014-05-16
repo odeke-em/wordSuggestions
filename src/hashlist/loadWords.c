@@ -190,42 +190,24 @@ Element *matchesOnUniThread(
   const char *query, HashList *dict, 
   const unsigned int ownRank, const double percentMatch
 ) {
-  Element **matchList = NULL;
+  Element *matchL = NULL;
   if (query != NULL && dict != NULL) {
-    Element *matchL = NULL;
-    // First check if the query exists in the dict
-    matchList = get(dict, pjwCharHash(query)); 
-    int matchFound = 0;
-
-    if (*matchList != NULL) { // An entry with the same hash value found
-      // In case of any collisions, strcmp should help sort things out
-      if ((*matchList)->value && strcmp(query, (*matchList)->value) == 0) {
-        // Absolute match found
-        matchFound = 1;
-      }
-    }
-
-    if (! matchFound) {
-      // Not found :: time to do ranking
-      double threshHold = ownRank * percentMatch;
-      Element **trav = dict->list, **end = trav + getSize(dict);
-      while (trav != end) {
-        if (*trav != NULL && (*trav)->value != NULL) {
-          int rank = getRank(query, (*trav)->value);
-          if (rank >= threshHold) {
-            matchL = \
-              addToHeadWithRank(matchL, (*trav)->value, (double)rank/ownRank);
+    double threshHold = ownRank * percentMatch;
+    Element **trav = dict->list, **end = trav + getSize(dict);
+    while (trav != end) {
+      if (*trav != NULL && (*trav)->value != NULL) {
+        int rank = getRank(query, (*trav)->value);
+        if (rank >= threshHold) {
+          matchL = \
+            addToHeadWithRank(matchL, (*trav)->value, (double)rank/ownRank);
           } 
-        }
-        ++trav;
       }
-    } else {
-      matchL = *matchList;
-    }
 
-    return matchL;
-  } else 
-    return NULL;
+      ++trav;
+    }
+  }
+
+  return matchL;
 }
 
 Element *getCloseMatches(
@@ -234,17 +216,28 @@ Element *getCloseMatches(
   if (query == NULL || dict == NULL) {
     return NULL;
   } else {
+    // First check if the query exists in the dict
+    Element **matchList = get(dict, pjwCharHash(query)); 
+
+    if (*matchList != NULL) { // An entry with the same hash value found
+      // In case of any collisions, strcmp should help sort things out
+      if ((*matchList)->value && strcmp(query, (*matchList)->value) == 0) {
+        // Absolute match found
+        return *matchList;
+      }
+    }
+
     int ownRank = getRank(query, query);
 
     long int processorCount = sysconf(_SC_NPROCESSORS_CONF);
     // printf("PC: %ld\n", processorCount);
     if (processorCount < 2) {
-        return matchesOnUniThread(query, dict, ownRank, percentMatch);
+      return matchesOnUniThread(query, dict, ownRank, percentMatch);
     }
     else {
-        return matchesOnUniThreadOnMultiThread(
-            query, dict, ownRank, percentMatch, processorCount
-        );
+      return matchesOnUniThreadOnMultiThread(
+        query, dict, ownRank, percentMatch, processorCount
+      );
     }
   }
 }
