@@ -151,7 +151,7 @@ Element *matchesOnUniThreadOnMultiThread(
     pthread_t thL[thCount];
     MatchUnit muL[thCount];
 
-    unsigned int i=0, stepSize=dict->size/thCount, stepCounter=0;
+    unsigned int i=0, stepSize= 1 + dict->size/thCount, stepCounter=0;
 
     int threshold = ownRank * percentMatch;
     while (stepCounter < dict->size && i < thCount) {
