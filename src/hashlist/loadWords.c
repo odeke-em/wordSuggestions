@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <pthread.h>
 
 #include "hashList.h"
@@ -112,11 +113,10 @@ void *subUnitMatch(void *data) {
   MatchUnit *mu = (MatchUnit *)data;
   if (mu != NULL) {
     Element **trav = mu->start;
-    int threshold = mu->ownRank * mu->threshold;
     while (trav < mu->end && trav < mu->absEnd) {
       if (*trav != NULL && (*trav)->value != NULL) {
         int rank = getRank(mu->query, (*trav)->value);
-        if (rank >= threshold) {
+        if (rank >= mu->threshold) {
            resultL = addToHeadWithRank(resultL, (*trav)->value, (double)rank/mu->ownRank);
         }
       } 
@@ -153,12 +153,14 @@ Element *matchesOnUniThreadOnMultiThread(
 
     unsigned int i=0, stepSize=dict->size/thCount, stepCounter=0;
 
+    int threshold = ownRank * percentMatch;
     while (stepCounter < dict->size && i < thCount) {
       MatchUnit *mu = &muL[i];
+      mu->query = (char *)query;
       mu->absEnd = dict->list + dict->size;
       mu->start =  dict->list + stepCounter;
       mu->ownRank = ownRank;
-      mu->threshold = percentMatch; 
+      mu->threshold = threshold; 
 
       stepCounter += stepSize;
       mu->end    =  dict->list + stepCounter;
@@ -234,12 +236,16 @@ Element *getCloseMatches(
   } else {
     int ownRank = getRank(query, query);
 
-  #ifdef RUN_ON_SINGLE_THREAD
-    return matchesOnUniThread(query, dict, ownRank, percentMatch);
-  #else
-    // TODO: Pass in the thread count
-    return matchesOnUniThreadOnMultiThread(query, dict, ownRank, percentMatch, 4);
-  #endif
+    long int processorCount = sysconf(_SC_NPROCESSORS_CONF);
+    // printf("PC: %ld\n", processorCount);
+    if (processorCount < 2) {
+        return matchesOnUniThread(query, dict, ownRank, percentMatch);
+    }
+    else {
+        return matchesOnUniThreadOnMultiThread(
+            query, dict, ownRank, percentMatch, processorCount
+        );
+    }
   }
 }
 

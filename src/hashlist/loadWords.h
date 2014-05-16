@@ -6,8 +6,8 @@
 
     typedef struct {
         char *query;
+        int threshold;
         unsigned int ownRank;
-        double threshold;
         Element **start, **end, **absEnd; 
     } MatchUnit;
 
