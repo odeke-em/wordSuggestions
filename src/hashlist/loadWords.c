@@ -63,6 +63,7 @@ HashList *loadWordsInFile(const char *filePath) {
   else {
     struct stat st;
     if (fstat(fd, &st) != 0) {
+      close(fd);
       raiseError(strerror(errno));
     }
     else {

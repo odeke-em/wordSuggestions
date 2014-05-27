@@ -92,6 +92,7 @@ void checkLoading(void *handle, void *funcPtr, const char *libKey) {
   }
 }
 
+#ifdef SAMPLE_MAIN
 int main() {
   errorReporter er = getErrorReporter();
   printf("er: %p\n", er);
@@ -102,3 +103,4 @@ int main() {
   closeLib(handle);
   return 0;
 }
+#endif
