@@ -92,7 +92,7 @@ void checkLoading(void *handle, void *funcPtr, const char *libKey) {
   }
 }
 
-#ifdef SAMPLE_MAIN
+#ifdef SAMPLE_RUN
 int main() {
   errorReporter er = getErrorReporter();
   printf("er: %p\n", er);
