@@ -1,19 +1,23 @@
 // Author: Emmanuel Odeke <odeke@ualberta.ca>
+#include <errno.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <fcntl.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
 
 #include "hashList.h"
 #include "loadWords.h"
-#include "estimateNWords.h"
 #include "wordTransition.h"
 
 #define tolower(x) (x | ('a' - 'A'))
 
 #define BUF_SIZ 10 // Starting element size for buffers
+#define ALIGN_PAGE_SIZE(x, pageSize) (((x) + (pageSize) -1)/(pageSize) * (pageSize))
 
 #define DEBUG_MATCH
 
@@ -50,59 +54,73 @@ char *getWord(FILE *ifp, int *lenStorage) {
 
 HashList *loadWordsInFile(const char *filePath) {
   HashList *hl = NULL;
+  long long int dictSize = 0;
 
-  if (filePath != NULL) {
-    FILE *ifp = fopen(filePath, "r");
-    LLInt dictSize = estimatedWordCount(ifp, 0);
-    printf("\033[92mEstimated wordCount %lld ", dictSize);
-
-    if (dictSize <= fileSize(ifp)) { // Account for congested hashing space
-      dictSize *= 1.5; // Arbitrarily X 1.5
+  int fd = open(filePath, 0, O_RDONLY);
+  if (fd < 0) {
+    raiseError(strerror(errno));
+  }
+  else {
+    struct stat st;
+    if (fstat(fd, &st) != 0) {
+      raiseError(strerror(errno));
     }
+    else {
+      int pageSize = sysconf(_SC_PAGE_SIZE);
+      int mapLength = ALIGN_PAGE_SIZE(st.st_size, pageSize);
 
-  #ifdef HANDLE_LIMITS
-    if (dictSize > MAX_SAFETY_HASHLIST_SIZE) {
-      dictSize  = MAX_SAFETY_HASHLIST_SIZE;
-    }
-  #endif
+    #ifdef DEBUG
+      printf("pageSize: %d mapLength: %d stSize: %d\n", pageSize, mapLength, st.st_size);
+    #endif
 
-    printf(" Dict size: %lld\033[00m\n", dictSize);
-    hl = initHashListWithSize(hl, dictSize);
-
-    if (ifp == NULL) {
-      raiseWarning("Invalid filePath");
-      return NULL;
-    }
-
-    if (hl == NULL) {
-      raiseError("No memory available to create a dict of size: "dictSize);
-
-      const char *memLack = "No memory available to create a dict of size: ";
-      char errMsg[(sizeof(memLack)/sizeof(memLack[0])) + 15];
-      sprintf(errMsg, "%s%lld", memLack, dictSize);
-      raiseWarning(errMsg);
-      exit(-1);
-    }
-
-    int curLen = 0;
-    int wordCount = 0;
-    long long int totalLen = 0;
-    while (! feof(ifp)) {
-      char *wordIn = getWord(ifp, &curLen);
-      if (wordIn != NULL) {
-        insertElem(hl, wordIn, pjwCharHash(wordIn));
-        totalLen += curLen;
-        ++wordCount;
+      char *buf = mmap(NULL, mapLength, PROT_READ, MAP_SHARED, fd, 0);
+      if (buf == MAP_FAILED) {
+        raiseError(strerror(errno));
       }
-      // Note we won't be freeing any memory yet as it
-      // will be stored in the hashList
+      else {
+        dictSize = st.st_size / AVERAGE_WORD_LEN;
+        printf(" Dict size: %lld\033[00m\n", dictSize);
+        hl = initHashListWithSize(hl, dictSize);
+
+        if (hl == NULL) {
+          raiseWarning("No memory available to create dict");
+          exit(-1);
+        }
+
+        register int i=0, j;
+        char c;
+        while (i < st.st_size) {
+          int wBufLen = 10;
+          j = 0; 
+          char *wordIn = (char *)malloc(sizeof(char) * wBufLen);
+          while (isalpha(c = buf[i++])) {
+            if (j >= wBufLen) {
+               wBufLen += 10;
+               wordIn = (char *)realloc(wordIn, sizeof(char) * wBufLen);
+            }
+
+            wordIn[j++] = tolower(c);
+          }
+
+          if (! j) {
+            if (wordIn != NULL)
+                free(wordIn);
+          }
+          else {
+            wordIn = (char *)realloc(wordIn, sizeof(char) * (j + 1));
+            wordIn[j] = '\0';
+            insertElem(hl, wordIn, pjwCharHash(wordIn));
+          }
+        }
+
+        // Now for the clean-up
+        if (munmap(buf, mapLength)) {
+          raiseWarning(strerror(errno));
+        }
+      }
     }
 
-  #ifdef DEBUG
-    printf("averageWordLen: %d\n", wordCount ? totalLen/wordCount : 0);
-  #endif
-    hl->averageElemLen = (wordCount ? totalLen/wordCount : 0);
-    fclose(ifp);
+    close(fd);
   }
 
   return hl;
