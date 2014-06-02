@@ -15,7 +15,7 @@ cliCorrect: libaCorrect src/cliCorrect.c libLoading.o
 
 
 libaCorrect:	  trie.o hashlist.o loadwords.o wordTransition.o
-	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/trie.o exec/hashlist.o exec/loadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
+	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/element.o exec/trie.o exec/hashlist.o exec/loadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
 
 libLoading.o:	 src/libLoading/libLoading.*
 	$(CC) $(FLAGS) -c src/libLoading/libLoading.c -o exec/libLoading.o -ldl
@@ -23,7 +23,10 @@ libLoading.o:	 src/libLoading/libLoading.*
 trie.o:	  src/trie/Trie.*
 	$(CC) $(FLAGS) -c src/trie/Trie.c -o exec/trie.o
 
-hashlist.o: src/hashlist/hashList.*
+element.o:	src/hashlist/element.*
+	$(CC) $(FLAGS) -c src/hashlist/element.c -o exec/element.o
+
+hashlist.o: src/hashlist/hashList.* element.o
 	$(CC) $(FLAGS) -c src/hashlist/hashList.c -o exec/hashlist.o
 
 loadwords.o:  src/hashlist/loadWords.*

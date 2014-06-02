@@ -5,25 +5,9 @@
   #define INIT_HASH_LIST_SIZE 100201
   #define MAX_SAFETY_HASHLIST_SIZE 1002001 // Arbitrary value
 
+  #include "element.h"
+
   typedef int hashValue;
-
-  typedef enum {
-    False=0, True=1
-  } Bool;
-
-  typedef struct MetaRankMule_ {
-    int rank;
-    int metaInfo;
-    hashValue hash;
-  } MetaRankMule;
-
-  typedef struct Element_ {
-    Bool dTag; // Discovery tag
-    void *value;
-    double rank;
-    int metaInfo;
-    struct Element_ *next;
-  } Element;
 
   typedef struct {
     int size; 

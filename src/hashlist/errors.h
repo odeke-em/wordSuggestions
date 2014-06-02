@@ -20,7 +20,8 @@
     raiseWarning(#errCode);\
     exit(-1);\
   }
- 
+
+  #undef assert 
   #define assert(validExpression){\
     if (! (validExpression))\
       raiseError((validExpression));\
