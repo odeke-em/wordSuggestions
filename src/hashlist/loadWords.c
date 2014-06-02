@@ -14,9 +14,7 @@
 #include "loadWords.h"
 #include "wordTransition.h"
 
-#define tolower(x) (x | ('a' - 'A'))
 
-#define BUF_SIZ 10 // Starting element size for buffers
 #define ALIGN_PAGE_SIZE(x, pageSize) (((x) + (pageSize) -1)/(pageSize) * (pageSize))
 
 #define DEBUG_MATCH

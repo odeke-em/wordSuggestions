@@ -11,8 +11,9 @@
 
 #include "trie/Trie.h"
 #include "hashlist/errors.h"
-#include "hashlist/hashList.h"
-#include "hashlist/loadWords.h"
+#include "hashlist/element.h"
+#include "hashlist/radTrie.h"
+#include "hashlist/radLoadWords.h"
 
 #define THRESHOLD_RANK 0.60
 #define NO_SUGGESTIONS_NOTIFICATION "No suggestions"
@@ -28,16 +29,16 @@
 static char *error = NULL;
 static void *handle = NULL;
 
-static HashList *dict = NULL;
+static RTrie *dict = NULL;
 // This dict will allow overriding of the value of keys with collisions
 static Trie *recentlyUsedTrie = NULL;
 
 // Function pointers declared here
 Trie *(*freshTrie)() = NULL;
 Element *(*fetchNext)(Element *) = NULL;
-HashList * (*dictFromFile)(const char *) = NULL; 
+RTrie * (*dictFromFile)(const char *) = NULL; 
 int (*queryTrie)(Trie *tr, const char *, void **) = NULL;
-Element *(*getMatches)(const char *, HashList *, const double) = NULL;
+Element *(*getMatches)(const char *, RTrie *, const double) = NULL;
 Trie *(*addSeqWithLoad)(Trie *, const char *, void *, const TrieTag) = NULL;
 
 typedef struct SearchParam_ {
@@ -156,9 +157,8 @@ void searchTerms(GtkWidget *widget, gpointer *arg) {
 void handleLibLoading() {
   // Phase 1: Load all the necessary data and functions
   //          for the logical operation of program
-  // Loading the hashlist functionality
   checkLoading(handle, fetchNext, "getNext");
-  checkLoading(handle, dictFromFile, "loadWordsInFile");
+  checkLoading(handle, dictFromFile, "fileToRTrie");
   checkLoading(handle, getMatches, "getCloseMatches");
 
   // Trie functionality
@@ -328,9 +328,9 @@ void runMenu(int argc, char *argv[]) {
 
 void cleanUpExit() {
   // Clean up
-  long int (*destroyHashList)(HashList *hl);
-  checkLoading(handle, destroyHashList, "destroyHashList");
-  destroyHashList(dict);
+  RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
+  checkLoading(handle, destroyRTrie, "destroyRTrie");
+  destroyRTrie(dict);
 
   Trie *(*destroyTrieAndPayLoads)(Trie *t, void *(*loadFreer)(void *));
   checkLoading(handle, destroyTrieAndPayLoads, "destroyTrieAndPayLoads");

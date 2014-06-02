@@ -13,9 +13,11 @@ main: libaCorrect src/main.c libLoading.o
 cliCorrect: libaCorrect src/cliCorrect.c libLoading.o
 	$(CC) $(FLAGS) exec/libLoading.o src/cliCorrect.c -o exec/cliCorrect -ldl $(CFLAGS)
 
+libaCorrect:	trie.o radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
+	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/element.o exec/trie.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
 
-libaCorrect:	  trie.o hashlist.o loadwords.o wordTransition.o
-	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/element.o exec/trie.o exec/hashlist.o exec/loadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
+radTrie.o:	src/hashlist/radTrie.c element.o
+	$(CC) $(FLAGS) -c src/hashlist/radTrie.c -o exec/radTrie.o
 
 libLoading.o:	 src/libLoading/libLoading.*
 	$(CC) $(FLAGS) -c src/libLoading/libLoading.c -o exec/libLoading.o -ldl
@@ -26,13 +28,10 @@ trie.o:	  src/trie/Trie.*
 element.o:	src/hashlist/element.*
 	$(CC) $(FLAGS) -c src/hashlist/element.c -o exec/element.o
 
-hashlist.o: src/hashlist/hashList.* element.o
-	$(CC) $(FLAGS) -c src/hashlist/hashList.c -o exec/hashlist.o
+radLoadWords.o:  src/hashlist/radLoadWords.* element.o radTrie.o
+	$(CC) $(FLAGS) -c src/hashlist/radLoadWords.c -o exec/radLoadWords.o
 
-loadwords.o:  src/hashlist/loadWords.*
-	$(CC) $(FLAGS) -c src/hashlist/loadWords.c -o exec/loadWords.o
-
-wordTransition.o: src/hashlist/wordTransition.*
+wordTransition.o: src/hashlist/wordTransition.* element.o
 	$(CC) $(FLAGS) -c src/hashlist/wordTransition.c -o exec/wordTransition.o
 
 clean:

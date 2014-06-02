@@ -9,14 +9,16 @@
 
 #include "trie/Trie.h"
 #include "hashlist/errors.h"
-#include "hashlist/hashList.h"
-#include "hashlist/loadWords.h"
+#include "hashlist/element.h"
+#include "hashlist/radTrie.h"
+#include "hashlist/radLoadWords.h"
 
 #define INTERACTIVE
 #define THRESHOLD_RANK 0.65
 #define WORD_INCREMENT_LEN 10
+#define BUF_SIZ 10 // Starting element size for buffers
 
-#define tolower(x) (x | 'a' - 'A')
+#define tolower(x) (x | ('a' - 'A'))
 
 #define checkLoading(handle, funcPtr, libKey) {\
   funcPtr = dlsym(handle, libKey);\
@@ -26,6 +28,36 @@
   }\
 }
 
+char *getWord(FILE *ifp, int *lenStorage) {
+  int bufLen = BUF_SIZ;
+  char *wordIn = (char *)malloc(sizeof(char) * bufLen);
+  assert(wordIn);
+
+  char c;
+  int idx = 0;
+  while ((c = getc(ifp)) != EOF) {
+    if ((idx + 1) >= bufLen) {
+      bufLen += BUF_SIZ;
+      wordIn = (char *)realloc(wordIn, sizeof(char) * bufLen);
+    }
+
+    if (isalpha(c)) { 
+      wordIn[idx++] = tolower(c);
+    } else break;
+  }
+
+  if (idx) {
+    wordIn[idx++] = '\0';
+    wordIn = (char *)realloc(wordIn, sizeof(char) * idx);
+
+    if (lenStorage) *lenStorage = idx;
+
+    return wordIn;
+  } else {
+    free(wordIn);
+    return NULL;
+  }
+}
 int main(int argc, char *argv[]) {
   void *handle = dlopen("./exec/libaCorrect.so.1", RTLD_LAZY);
   if (handle == NULL) {
@@ -33,7 +65,6 @@ int main(int argc, char *argv[]) {
     exit(-1);
   }
 
-  char *(*getWord)(FILE *, int *);
 
   Trie *(*createTrie)();
   Trie *(*destroyTrie)(Trie *);
@@ -41,21 +72,20 @@ int main(int argc, char *argv[]) {
   Trie *(*addSequence)(Trie *tr, const char *);
 
   Element *(*getNext)(Element *);
-  long int (*destroyHashList)(HashList *hl);
-  HashList * (*loadWordsInFile)(const char *); 
-  Element *(*getCloseMatches)(const char *, HashList *, const double);
+  RTrie * (*destroyRTrie)(RTrie *);
+  RTrie * (*fileToRTrie)(const char *);
+  Element *(*getCloseMatches)(const char *, RTrie *, const double);
 
   char *error;
   // Loading the functions
-  checkLoading(handle, getWord, "getWord");
   checkLoading(handle, getNext, "getNext");
   checkLoading(handle, createTrie, "createTrie");
   checkLoading(handle, searchTrie, "searchTrie");
   checkLoading(handle, addSequence, "addSequence");
   checkLoading(handle, destroyTrie, "destroyTrie");
   checkLoading(handle, getCloseMatches, "getCloseMatches");
-  checkLoading(handle, loadWordsInFile, "loadWordsInFile");
-  checkLoading(handle, destroyHashList, "destroyHashList");
+  checkLoading(handle, fileToRTrie, "fileToRTrie");
+  checkLoading(handle, destroyRTrie, "destroyRTrie");
 
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
@@ -65,7 +95,7 @@ int main(int argc, char *argv[]) {
   fprintf(stderr, "\033[93mDictionary path: %s\n", dictPath);
 #endif
 
-  HashList *dict = loadWordsInFile(dictPath);
+  RTrie *dict = fileToRTrie(dictPath);
   if (dict == NULL) {
     fprintf(stderr, "FilePath :: \033[32m%s\033[00m\n", dictPath);
     return -1;
@@ -137,9 +167,10 @@ int main(int argc, char *argv[]) {
 #endif
 
   // CleanUp
-  destroyHashList(dict);
+  destroyRTrie(dict);
   memoizeTrie = destroyTrie(memoizeTrie);
 
   if (ifp != NULL) fclose(ifp);
   return 0;
 }
+

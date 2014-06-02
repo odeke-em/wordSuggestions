@@ -1,9 +1,11 @@
 #ifndef _ELEMENT_H
 #define _ELEMENT_H
-
+    #ifndef _BOOL_D
+    #define _BOOL_D
     typedef enum {
         False=0, True=1
     } Bool;
+    #endif // _BOOL_H
 
     typedef struct MetaRankMule_ {
         int rank;
