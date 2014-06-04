@@ -158,7 +158,7 @@ Element *getCloseMatches(const char *query, RTrie *dict, const double percentMat
         void *check = get(dict, pjwCharHash(query));
 
         // In case of any collisions, strcmp should help sort things out
-        if (check != NULL && strcmp(query, (char *)check) == 0) {
+        if (check != NULL) {
             Element *matchList = NULL;
             matchList = addToHead(matchList, check);
             return matchList;
