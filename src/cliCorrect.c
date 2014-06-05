@@ -8,10 +8,10 @@
 #include <stdarg.h>
 
 #include "trie/Trie.h"
-#include "hashlist/errors.h"
-#include "hashlist/element.h"
-#include "hashlist/radTrie.h"
-#include "hashlist/radLoadWords.h"
+#include "hashmap/errors.h"
+#include "hashmap/element.h"
+#include "hashmap/radTrie.h"
+#include "hashmap/radLoadWords.h"
 
 #define INTERACTIVE
 #define THRESHOLD_RANK 0.65
