@@ -182,12 +182,12 @@ void printLinearizedTrie(LinearizedTrie *lt) {
 
 #ifdef TEST_LOAD_WORDS
 int main() {
-    RTrie *rt = fileToRTrie("../../resources/enable1.txt");
+    RTrie *rt = fileToRTrie(__FILE__);
     printf("\033[47mDone loading words\033[00m\n");
 
     LinearizedTrie *linear = NULL;
     linear = linearizeRTrie(rt, linear);
-    // printLinearizedTrie(linear);
+    printLinearizedTrie(linear);
     linear = destroyLinearizedTrie(linear);
 
     Element *matches = getCloseMatches("matchong\0", rt, 0.6);
