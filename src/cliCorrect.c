@@ -58,6 +58,20 @@ char *getWord(FILE *ifp, int *lenStorage) {
     return NULL;
   }
 }
+
+void destroyRTrieWithMemLinearized(void *handle, RTrie *dict) {
+    if (dict != NULL) {
+        char *error;
+        RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
+        LinearizedTrie * (*destroyLinearizedTrie)(LinearizedTrie *l) = NULL;
+        checkLoading(handle, destroyRTrie, "destroyRTrie");
+        checkLoading(handle, destroyLinearizedTrie, "destroyLinearizedTrie");
+        dict->meta = destroyLinearizedTrie((LinearizedTrie *)dict->meta);
+        dict->meta = NULL;
+        dict = destroyRTrie(dict);
+    }
+}
+
 int main(int argc, char *argv[]) {
   void *handle = dlopen("./exec/libaCorrect.so.1", RTLD_LAZY);
   if (handle == NULL) {
@@ -72,7 +86,6 @@ int main(int argc, char *argv[]) {
   Trie *(*addSequence)(Trie *tr, const char *);
 
   Element *(*getNext)(Element *);
-  RTrie * (*destroyRTrie)(RTrie *);
   RTrie * (*fileToRTrie)(const char *);
   Element *(*getCloseMatches)(const char *, RTrie *, const double);
 
@@ -85,7 +98,6 @@ int main(int argc, char *argv[]) {
   checkLoading(handle, destroyTrie, "destroyTrie");
   checkLoading(handle, getCloseMatches, "getCloseMatches");
   checkLoading(handle, fileToRTrie, "fileToRTrie");
-  checkLoading(handle, destroyRTrie, "destroyRTrie");
 
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
@@ -167,7 +179,7 @@ int main(int argc, char *argv[]) {
 #endif
 
   // CleanUp
-  destroyRTrie(dict);
+  destroyRTrieWithMemLinearized(handle, dict);
   memoizeTrie = destroyTrie(memoizeTrie);
 
   if (ifp != NULL) fclose(ifp);

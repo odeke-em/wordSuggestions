@@ -128,32 +128,28 @@ Element *matches(
     Element *matchL = NULL;
     if (query != NULL && dict != NULL) {
         double threshHold = ownRank * percentMatch;
-        LinearizedTrie *lt = NULL, *trav;
-        lt = linearizeRTrie(dict, lt);
-
-        trav = lt;
+        if (dict->meta == NULL)
+            dict->meta = linearizeRTrie(dict, (LinearizedTrie *)dict->meta);
+        
+        LinearizedTrie *trav= (LinearizedTrie *)dict->meta;
         while (trav != NULL) {
             if (trav->value != NULL) {
                 int rank = getRank(query, (char *)trav->value);
-                if (rank >= threshHold) {
-                    matchL =\
-                        addToHeadWithRank(matchL, trav->value, (double)rank/ownRank);
-                }
+                if (rank >= threshHold)
+                    matchL = addToHeadWithRank(matchL, trav->value, (double)rank/ownRank);
             }
 
             trav = trav->next;
         }
-
-        lt = destroyLinearizedTrie(lt);
     }
 
     return matchL;
 }
 
 Element *getCloseMatches(const char *query, RTrie *dict, const double percentMatch) {
-    if (query == NULL || dict == NULL) {
+    if (query == NULL || dict == NULL)
         return NULL;
-    } else {
+    else {
         // First check if the query exists in the dict
         void *check = get(dict, pjwCharHash(query));
 

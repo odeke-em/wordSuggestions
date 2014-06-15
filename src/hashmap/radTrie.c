@@ -41,6 +41,7 @@ RTrie *newRTrie(void) {
     rt->EOS = 0;
     rt->keys = NULL;
     rt->value = NULL;
+    rt->meta  = NULL;
     rt->availBlock = 0;
     return rt;
 }
@@ -140,7 +141,10 @@ RTrie *destroyRTrie(RTrie *rt) {
             rt->value = NULL;
         }
 
-        // printf("Freeing rt: %p\n", rt);
+        // Note the 'meta' attribute will be freed by it's rightful user
+        if (rt->meta != NULL)
+            raiseWarning("Possible memory leak since 'meta' attribute was not freed");
+
         free(rt);
         rt = NULL;
     }

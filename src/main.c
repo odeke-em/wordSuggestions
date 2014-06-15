@@ -326,11 +326,21 @@ void runMenu(int argc, char *argv[]) {
   gtk_main();
 }
 
+void destroyRTrieWithMemLinearized(RTrie *dict) {
+    if (dict != NULL) {
+        RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
+        LinearizedTrie * (*destroyLinearizedTrie)(LinearizedTrie *l) = NULL;
+        checkLoading(handle, destroyRTrie, "destroyRTrie");
+        checkLoading(handle, destroyLinearizedTrie, "destroyLinearizedTrie");
+        dict->meta = destroyLinearizedTrie((LinearizedTrie *)dict->meta);
+        dict->meta = NULL;
+        dict = destroyRTrie(dict);
+    }
+}
+
 void cleanUpExit() {
   // Clean up
-  RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
-  checkLoading(handle, destroyRTrie, "destroyRTrie");
-  destroyRTrie(dict);
+  destroyRTrieWithMemLinearized(dict);
 
   Trie *(*destroyTrieAndPayLoads)(Trie *t, void *(*loadFreer)(void *));
   checkLoading(handle, destroyTrieAndPayLoads, "destroyTrieAndPayLoads");

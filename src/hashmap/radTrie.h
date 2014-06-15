@@ -11,6 +11,8 @@
 
 #ifndef _RAD_TRIE_H
 #define _RAD_TRIE_H
+    #define BASE 10
+
     #ifndef _BOOL_D
     #define _BOOL_D
     typedef enum {
@@ -18,11 +20,10 @@
     } Bool;
     #endif // _BOOL_D
 
-    static unsigned int BASE = 10;
     typedef struct RTrie_ {
-        void *value;
         Bool EOS:1;             // EndOfSequence
         Bool valueIsHeapd:1;
+        void *value, *meta; // Meta attribute to store extra content eg the linearized equivalent
         struct RTrie_ **keys;
         unsigned int availBlock; // Each set bit will indicate the presence of a key in that position
     } RTrie;
