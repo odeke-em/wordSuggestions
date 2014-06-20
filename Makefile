@@ -1,6 +1,7 @@
-GCC := gcc
+CC := gcc
 FLAGS := -Wall -g -fPIC
 CFLAGS := -Wall
+OS  := $(shell uname -s)
 LIBNAME := libaCorrect.so.1
 LIBS := $(shell pkg-config --libs gtk+-2.0)
 INCS := $(shell pkg-config --cflags gtk+-2.0)
@@ -13,8 +14,14 @@ main: libaCorrect src/main.c libLoading.o
 cliCorrect: libaCorrect src/cliCorrect.c libLoading.o
 	$(CC) $(FLAGS) exec/libLoading.o src/cliCorrect.c -o exec/cliCorrect -ldl $(CFLAGS)
 
+ifeq ($(OS), Darwin)
+libaCorrect:	trie.o radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
+	$(CC)  -shared -Wl,-install_name,$(LIBNAME) exec/element.o exec/trie.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
+else
 libaCorrect:	trie.o radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
 	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/element.o exec/trie.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
+	
+endif
 
 radTrie.o:	src/hashmap/radTrie.c element.o
 	$(CC) $(FLAGS) -c src/hashmap/radTrie.c -o exec/radTrie.o

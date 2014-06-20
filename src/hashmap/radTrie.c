@@ -20,10 +20,10 @@ inline RTrie *allocRTrie(void) {
 
 unsigned int pjwCharHash(const char *srcW) {
     // PJW hashing algorithm
-    unsigned int h = 0, g, i, srcLen = strlen(srcW) / sizeof(char);
+    unsigned int h, g;
 
-    for (i=0; i < srcLen; ++i) {
-        h = (h << 4) + srcW[i];
+    for (h=0; *srcW; ++srcW) {
+        h = (h << 4) + *srcW;
         g = h & 0xf0000000;
         if (g) {
             h ^= (g >> 24);
