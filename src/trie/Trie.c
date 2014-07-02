@@ -117,52 +117,50 @@ void exploreTrie(const Trie *t, const char *pAxiom, FILE *ofp) {
   }
 }
 
-Trie *addSequenceWithLoad(
-  Trie *tr, const char *seq, void *payLoad, const TrieTag tag
-) {
+Trie *addSequenceWithLoad(Trie *tr, const char *seq, void *payLoad, const TrieTag tag) {
 #ifdef DEBUG
-  printf("%s seq: %s\n", __func__, seq);
+    printf("%s seq: %s\n", __func__, seq);
 #endif
-  if (tr == NULL) {
-    raiseError("Cannot add elements to a NULL Trie");
-  }
-
-  if (seq != NULL) {
-    if (*seq != '\0') {
-      int targetIndex = resolveIndex(*seq);
-      if (targetIndex >= 0 && targetIndex < radixSize) {
-        if (tr->keys == NULL) { // Time to allocate space for keys
-          tr->keys = (Trie **)malloc(sizeof(Trie *) * radixSize);
-
-          if (tr->keys == NULL) {
-            raiseError("Run-out of memory");
-          }
-
-          Trie **it = tr->keys, **end= it + tr->radixSz;
-
-          while (it != end) {
-            *it++ = NULL;
-          }
-        }
-
-        if (*(tr->keys + targetIndex) == NULL) {
-	  *(tr->keys + targetIndex) = createTrie();
-	  #ifdef DEBUG
-	    printf("New Trie alloc index: %d\n", targetIndex);
-	  #endif
-        }
-
-	*(tr->keys + targetIndex) =\
-	   addSequenceWithLoad(*(tr->keys + targetIndex), seq+1, payLoad, tag);
-      }
-    } else { // End of this sequence, time to deploy the payLoad
-      tr->EOS = 1;
-      tr->payLoad = payLoad;
-      tr->loadTag = tag;
+    if (tr == NULL) {
+        raiseError("Cannot add elements to a NULL Trie");
     }
-  }
 
-  return tr;
+    if (seq != NULL) {
+        register int targetIndex;
+        Trie *trav = tr;
+        while (*seq != '\0') {
+            targetIndex = resolveIndex(*seq);
+            if (! (targetIndex >= 0 && targetIndex < radixSize))
+                goto doneHere; 
+            else {
+                if (trav->keys == NULL) {
+                    trav->keys = (Trie **)calloc(radixSize, sizeof(Trie *));
+                    if (trav->keys == NULL) {
+                        raiseError("Run out of memory for allocation Trie keys");
+                    }
+                }
+        
+                if (*(trav->keys + targetIndex) == NULL) {
+                    *(trav->keys + targetIndex) = createTrie();
+                #ifdef DEBUG
+                    printf("New Trie alloc index: %d\n", targetIndex);
+                #endif
+                }
+
+                trav = *(trav->keys + targetIndex);
+            }
+            ++seq;
+        }
+
+        // End of this sequence, time to deploy the payLoad
+        trav->EOS = 1;
+        printf("Deploying: %s\n", (char *)payLoad);
+        trav->payLoad = payLoad;
+        trav->loadTag = tag;
+    }
+
+    doneHere:
+        return tr;
 }
 
 Trie *addSequence(Trie *tr, const char *seq) {
