@@ -25,7 +25,6 @@
         Bool valueIsHeapd:1;
         void *value, *meta; // Meta attribute to store extra content eg the linearized equivalent
         struct RTrie_ **keys;
-        unsigned int availBlock; // Each set bit will indicate the presence of a key in that position
     } RTrie;
 
     inline RTrie *allocRTrie(void);

@@ -96,12 +96,10 @@ LinearizedTrie *linearizeRTrie(RTrie *rt, LinearizedTrie *mp) {
         if (rt->value != NULL)
             mp = addToHead(mp, rt->value);
         
-        register unsigned int i=0, bitPos;
+        register unsigned int i=0;
         while (i < BASE) {
-            bitPos = 1<<i;
-            if (rt->availBlock & bitPos) {
+            if (*(rt->keys + i) != NULL)
                 mp = linearizeRTrie(*(rt->keys + i), mp);
-            }
             ++i;
         }
     }
@@ -131,7 +129,7 @@ Element *matches(
         if (dict->meta == NULL)
             dict->meta = linearizeRTrie(dict, (LinearizedTrie *)dict->meta);
         
-        LinearizedTrie *trav= (LinearizedTrie *)dict->meta;
+        LinearizedTrie *trav = (LinearizedTrie *)dict->meta;
         while (trav != NULL) {
             if (trav->value != NULL) {
                 int rank = getRank(query, (char *)trav->value);

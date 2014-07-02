@@ -154,7 +154,6 @@ Trie *addSequenceWithLoad(Trie *tr, const char *seq, void *payLoad, const TrieTa
 
         // End of this sequence, time to deploy the payLoad
         trav->EOS = 1;
-        printf("Deploying: %s\n", (char *)payLoad);
         trav->payLoad = payLoad;
         trav->loadTag = tag;
     }

@@ -42,72 +42,66 @@ RTrie *newRTrie(void) {
     rt->keys = NULL;
     rt->value = NULL;
     rt->meta  = NULL;
-    rt->availBlock = 0;
     return rt;
 }
 
 RTrie *put(RTrie *rt, unsigned long int hash, void *data, Bool heapBool) {
     if (rt == NULL) {
         rt = newRTrie();
+        rt->keys = (RTrie **)calloc(BASE, sizeof(RTrie *));
     }
 
-    if (rt->keys == NULL) {
-        rt->keys = (RTrie **)malloc(sizeof(RTrie *) * BASE);
-    }
+    RTrie *rTrav = rt;
 
-    unsigned int residue = hash % BASE;
-    unsigned int bitPos = 1 << residue;
-    hash /= BASE;
+    register unsigned int residue;
+    do {
+        residue = hash % BASE;
+        if (residue < 0 || residue >= BASE)
+            goto doneHere;
 
-    if (! (rt->availBlock & bitPos)) {
-        rt->availBlock |= bitPos;
-        // printf("bP: %d residue: %d hash: %ld avB: %d\n", bitPos, residue, hash, rt->availBlock);
-        *(rt->keys + residue) = NULL;
-    }
+        if (*(rTrav->keys + residue) == NULL)
+            *(rTrav->keys + residue) = newRTrie();
 
-    if (hash || residue) {
-        *(rt->keys + residue) = put(*(rt->keys + residue), hash, data, heapBool);
-    }
-    else {
-        // TODO: Define what to do if the value was already present
-        // printf("setting eos for %p\n", data);
-        // printf("origValue: %s newValue: %s\n", (char *)rt->value, (char *)data);
-        rt->EOS = 1;
-        rt->value = data;
-        rt->valueIsHeapd = heapBool;
-    }
+        rTrav = *(rTrav->keys + residue);
+        if (rTrav->keys == NULL)
+            rTrav->keys = (RTrie **)calloc(BASE, sizeof(RTrie *));
 
-    return rt;
+        hash /= BASE;
+    } while (hash);
+
+    // TODO: Define what to do if the value was already present
+    // printf("setting eos for %p\n", data);
+    // printf("origValue: %s newValue: %s\n", (char *)rt->value, (char *)data);
+    rTrav->EOS = 1;
+    rTrav->value = data;
+    rTrav->valueIsHeapd = heapBool;
+
+    doneHere:
+        return rt;
 }
 
 void *__rAccess(RTrie *rt, unsigned long int hash, Bool isGetOp) {
-    if (rt == NULL)
+    RTrie *rTrav = rt;
+
+    do {
+        if (rTrav == NULL)
+            return NULL;
+
+        rTrav = *(rTrav->keys + (hash % BASE));
+        hash /= BASE;
+    } while (hash);
+      
+    if (! (rTrav && rTrav->EOS))
         return NULL;
     else {
-        unsigned int residue = hash % BASE, bitPos;
-        bitPos = 1 << residue;
-        hash /= BASE;
-        if (! (rt->availBlock & bitPos))
-            return NULL;
+        if (isGetOp)
+            return rTrav->value;
         else {
-            if (hash || residue)
-                return __rAccess(*(rt->keys + residue), hash, isGetOp);
-            else {
-                // printf("EOS: %d data: %p\n", rt->EOS, rt->value);
-                if (rt->EOS) {
-                    if (isGetOp)
-                        return rt->value;
-                    else {
-                        void *popd = rt->value;
-                        rt->value = NULL;
-                        rt->EOS = False;
-                        return popd;
-                    }
-                }
-                else
-                    return NULL;
-            }
-        }
+            void *popd = rTrav->value;
+            rTrav->value = NULL;
+            rTrav->EOS = False;
+            return popd;
+       }
     }
 }
 
@@ -122,11 +116,9 @@ void *pop(RTrie *rt, unsigned long int hash) {
 RTrie *destroyRTrie(RTrie *rt) {
     if (rt != NULL) {
         if (rt->keys != NULL) {
-            unsigned int i=0, bitPos;
+            unsigned int i=0;
             while (i < BASE) {
-                bitPos = 1<<i;
-                if (rt->availBlock & bitPos) {
-                    // printf("bitPos: %d avB: %d\n", bitPos, rt->availBlock);
+                if (*(rt->keys + i) != NULL) {
                     *(rt->keys + i) = destroyRTrie(*(rt->keys + i));
                 }
                 ++i;
