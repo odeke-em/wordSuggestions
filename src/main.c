@@ -9,7 +9,6 @@
 #include <signal.h>
 #include <sys/wait.h>
 
-#include "trie/Trie.h"
 #include "hashmap/errors.h"
 #include "hashmap/element.h"
 #include "hashmap/radTrie.h"
@@ -31,15 +30,15 @@ static void *handle = NULL;
 
 static RTrie *dict = NULL;
 // This dict will allow overriding of the value of keys with collisions
-static Trie *recentlyUsedTrie = NULL;
+static RTrie *recentlyUsedTrie = NULL;
 
 // Function pointers declared here
-Trie *(*freshTrie)() = NULL;
 Element *(*fetchNext)(Element *) = NULL;
 RTrie * (*dictFromFile)(const char *) = NULL; 
-int (*queryTrie)(Trie *tr, const char *, void **) = NULL;
 Element *(*getMatches)(const char *, RTrie *, const double) = NULL;
-Trie *(*addSeqWithLoad)(Trie *, const char *, void *, const TrieTag) = NULL;
+unsigned int (*pjwCharHasher)(const char *srcW) = NULL;
+RTrie *(*putItem)(RTrie *, unsigned long int, void *, Bool);
+void *(*getItem)(RTrie *, unsigned long int);
 
 typedef struct SearchParam_ {
   Element *(*suggestionsGen)(const char *);
@@ -160,11 +159,9 @@ void handleLibLoading() {
   checkLoading(handle, fetchNext, "getNext");
   checkLoading(handle, dictFromFile, "fileToRTrie");
   checkLoading(handle, getMatches, "getCloseMatches");
-
-  // Trie functionality
-  checkLoading(handle, freshTrie, "createTrie");
-  checkLoading(handle, queryTrie, "searchTrie");
-  checkLoading(handle, addSeqWithLoad, "addSequenceWithLoad");
+  checkLoading(handle, pjwCharHasher, "pjwCharHash");
+  checkLoading(handle, putItem, "put");
+  checkLoading(handle, getItem, "get");
 }
 
 void runMenu(int argc, char *argv[]) {
@@ -184,7 +181,7 @@ void runMenu(int argc, char *argv[]) {
     return;
   }
   
-  recentlyUsedTrie = freshTrie();
+  recentlyUsedTrie = NULL;
 
   float thresholdMatch = THRESHOLD_RANK;
   if (argc >= 3) {
@@ -204,28 +201,29 @@ void runMenu(int argc, char *argv[]) {
   #endif
     if (w == NULL) {
       return NULL;
-    } else {
+    }
+    else {
       // Remember we shouldn't mutate the data returned
       // it's memory will be managed after freeing it's source dict
       // First try the recently used entries -- assuming we are maintaining
       // the same threshold match percentage
-      void *ruSav = NULL;
-      int found = queryTrie(recentlyUsedTrie, w, &ruSav);
+      unsigned long int hValue = pjwCharHasher(w);
+      void *retr = getItem(recentlyUsedTrie, hValue);
 
-      if (found == 1) { // Memoized hit
-	printf("Memoized hit for word: %s\n", w);
-	return ruSav;
+      if (retr != NULL) { // Memoized hit
+	    printf("Memoized hit for word: %s\n", w);
+	    return retr;
       }
+      else {
+        // Miss detected
+        Element *match = getMatches(w, dict, thresholdMatch);
 
-      // Miss detected
-      Element *match = getMatches(w, dict, thresholdMatch);
+        // Finally if there is suggestion, memoize it
+        if (match != NULL)
+            recentlyUsedTrie = putItem(recentlyUsedTrie, hValue, match, False);
 
-      // Finally if there is suggestion, memoize it
-      if (match != NULL) {
-	recentlyUsedTrie = addSeqWithLoad(recentlyUsedTrie, w, match, HeapD);
+        return match;
       }
-
-      return match;
     }
   }
 
@@ -326,30 +324,22 @@ void runMenu(int argc, char *argv[]) {
   gtk_main();
 }
 
-void destroyRTrieWithMemLinearized(RTrie *dict) {
+void cleanUpExit() {
+    // Clean up
+    RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
+    checkLoading(handle, destroyRTrie, "destroyRTrie");
+    recentlyUsedTrie = destroyRTrie(recentlyUsedTrie);
+
     if (dict != NULL) {
-        RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
         LinearizedTrie * (*destroyLinearizedTrie)(LinearizedTrie *l) = NULL;
-        checkLoading(handle, destroyRTrie, "destroyRTrie");
         checkLoading(handle, destroyLinearizedTrie, "destroyLinearizedTrie");
         dict->meta = destroyLinearizedTrie((LinearizedTrie *)dict->meta);
         dict->meta = NULL;
         dict = destroyRTrie(dict);
     }
-}
 
-void cleanUpExit() {
-  // Clean up
-  destroyRTrieWithMemLinearized(dict);
-
-  Trie *(*destroyTrieAndPayLoads)(Trie *t, void *(*loadFreer)(void *));
-  checkLoading(handle, destroyTrieAndPayLoads, "destroyTrieAndPayLoads");
-
-  recentlyUsedTrie =\
-    destroyTrieAndPayLoads(recentlyUsedTrie, freeMemoizedSuggestions);
-
-  fprintf(stderr, "\033[94m\nBye..\n\033[00m");
-  exit(0);
+    fprintf(stderr, "\033[94m\nBye..\n\033[00m");
+    exit(0);
 }
 
 void sigHandler(const int sig) {

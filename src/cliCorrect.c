@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-#include "trie/Trie.h"
 #include "hashmap/errors.h"
 #include "hashmap/element.h"
 #include "hashmap/radTrie.h"
@@ -60,17 +59,7 @@ char *getWord(FILE *ifp, int *lenStorage) {
 }
 
 void destroyRTrieWithMemLinearized(void *handle, RTrie *dict) {
-    if (dict != NULL) {
-        char *error;
-        RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
-        LinearizedTrie * (*destroyLinearizedTrie)(LinearizedTrie *l) = NULL;
-        checkLoading(handle, destroyRTrie, "destroyRTrie");
-        checkLoading(handle, destroyLinearizedTrie, "destroyLinearizedTrie");
-        dict->meta = destroyLinearizedTrie((LinearizedTrie *)dict->meta);
-        dict->meta = NULL;
-        dict = destroyRTrie(dict);
     }
-}
 
 int main(int argc, char *argv[]) {
   void *handle = dlopen("./exec/libaCorrect.so.1", RTLD_LAZY);
@@ -79,25 +68,23 @@ int main(int argc, char *argv[]) {
     exit(-1);
   }
 
-
-  Trie *(*createTrie)();
-  Trie *(*destroyTrie)(Trie *);
-  int (*searchTrie)(Trie *tr, const char *, void *);
-  Trie *(*addSequence)(Trie *tr, const char *);
-
-  Element *(*getNext)(Element *);
-  RTrie * (*fileToRTrie)(const char *);
-  Element *(*getCloseMatches)(const char *, RTrie *, const double);
+  // Function pointers declared here
+  RTrie * (*dictFromFile)(const char *) = NULL; 
+  void *(*getItem)(RTrie *, unsigned long int) = NULL;
+  unsigned int (*pjwCharHasher)(const char *srcW) = NULL;
+  Element *(*getMatches)(const char *, RTrie *, const double) = NULL;
+  RTrie *(*putItem)(RTrie *, unsigned long int, void *, Bool) = NULL;
+  Element *(*getNext)(Element *) = NULL;
+  RTrie * (*destroyRTrie)(RTrie *rt) = NULL;
 
   char *error;
   // Loading the functions
   checkLoading(handle, getNext, "getNext");
-  checkLoading(handle, createTrie, "createTrie");
-  checkLoading(handle, searchTrie, "searchTrie");
-  checkLoading(handle, addSequence, "addSequence");
-  checkLoading(handle, destroyTrie, "destroyTrie");
-  checkLoading(handle, getCloseMatches, "getCloseMatches");
-  checkLoading(handle, fileToRTrie, "fileToRTrie");
+  checkLoading(handle, dictFromFile, "fileToRTrie");
+  checkLoading(handle, getMatches, "getCloseMatches");
+  checkLoading(handle, pjwCharHasher, "pjwCharHash");
+  checkLoading(handle, putItem, "put");
+  checkLoading(handle, getItem, "get");
 
   const char *dictPath = "./resources/wordlist.txt";
   if (argc >= 2) {
@@ -107,7 +94,7 @@ int main(int argc, char *argv[]) {
   fprintf(stderr, "\033[93mDictionary path: %s\n", dictPath);
 #endif
 
-  RTrie *dict = fileToRTrie(dictPath);
+  RTrie *dict = dictFromFile(dictPath);
   if (dict == NULL) {
     fprintf(stderr, "FilePath :: \033[32m%s\033[00m\n", dictPath);
     return -1;
@@ -148,7 +135,7 @@ int main(int argc, char *argv[]) {
   printf("Dict: %p\n", dict);
 #endif
 
-  Trie *memoizeTrie = createTrie();
+  RTrie *memoizeTrie = NULL;
 
   int indentLevel = 0;
   int curLen = 0;
@@ -156,33 +143,46 @@ int main(int argc, char *argv[]) {
     char *inW = getWord(ifp, &curLen);
     if (inW != NULL) {
       printf("%s ", inW);
-      if (searchTrie(memoizeTrie, inW, NULL) != 1) {
-	// Word not yet discovered
-	printf(" {\n");
-	Element *match = getCloseMatches(inW, dict, thresholdMatch);
-	while (match != NULL) {
-	  printf("\t%*s :: %.2f\n", indentLevel, (char *)match->value, match->rank);
-	  match = getNext(match);
-	} 
-	memoizeTrie = addSequence(memoizeTrie, inW);
-	printf("%*s\n", indentLevel, " }");
-	indentLevel = 0;
-      } else {
-	indentLevel += 1;
+
+      unsigned long int hValue = pjwCharHasher(inW);
+      void *retr = getItem(memoizeTrie, hValue);
+
+	  Element *match = getItem(memoizeTrie, hValue);
+      if (retr == NULL) { // Word not yet discovered
+        match = getMatches(inW, dict, thresholdMatch);
+        memoizeTrie = putItem(memoizeTrie, hValue, match, False);
       }
+	  printf(" {\n");
+      indentLevel += 1;
+	  while (match != NULL) {
+	    printf("\t%*s :: %.2f\n", indentLevel, (char *)match->value, match->rank);
+	    match = getNext(match);
+      }
+	  indentLevel = 0;
+	  printf("%*s\n", indentLevel, " }");
       free(inW);
     }
   }
 
-#ifdef DEBUG
   printf("Done ici");
-#endif
 
   // CleanUp
-  destroyRTrieWithMemLinearized(handle, dict);
-  memoizeTrie = destroyTrie(memoizeTrie);
+  checkLoading(handle, destroyRTrie, "destroyRTrie");
+  memoizeTrie = destroyRTrie(memoizeTrie);
 
-  if (ifp != NULL) fclose(ifp);
+  if (dict != NULL) {
+    char *error;
+    LinearizedTrie * (*destroyLinearizedTrie)(LinearizedTrie *l) = NULL;
+    checkLoading(handle, destroyLinearizedTrie, "destroyLinearizedTrie");
+
+    dict->meta = destroyLinearizedTrie((LinearizedTrie *)dict->meta);
+    dict->meta = NULL;
+
+    dict = destroyRTrie(dict);
+  }
+
+  if (ifp != NULL)
+    fclose(ifp);
+
   return 0;
 }
-

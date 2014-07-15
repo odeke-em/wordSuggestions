@@ -15,11 +15,11 @@ cliCorrect: libaCorrect src/cliCorrect.c libLoading.o
 	$(CC) $(FLAGS) exec/libLoading.o src/cliCorrect.c -o exec/cliCorrect -ldl $(CFLAGS)
 
 ifeq ($(OS), Darwin)
-libaCorrect:	trie.o radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
-	$(CC)  -shared -Wl,-install_name,$(LIBNAME) exec/element.o exec/trie.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
+libaCorrect:	radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
+	$(CC)  -shared -Wl,-install_name,$(LIBNAME) exec/element.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
 else
-libaCorrect:	trie.o radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
-	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/element.o exec/trie.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
+libaCorrect:	radTrie.o radLoadWords.o wordTransition.o element.o libLoading.o
+	$(CC)  -shared -Wl,-soname,$(LIBNAME) exec/element.o exec/radTrie.o exec/radLoadWords.o  exec/wordTransition.o -o exec/libaCorrect.so.1 -lc 
 	
 endif
 
@@ -28,9 +28,6 @@ radTrie.o:	src/hashmap/radTrie.c element.o
 
 libLoading.o:	 src/libLoading/libLoading.*
 	$(CC) $(FLAGS) -c src/libLoading/libLoading.c -o exec/libLoading.o -ldl
-
-trie.o:	  src/trie/Trie.*
-	$(CC) $(FLAGS) -c src/trie/Trie.c -o exec/trie.o
 
 element.o:	src/hashmap/element.*
 	$(CC) $(FLAGS) -c src/hashmap/element.c -o exec/element.o

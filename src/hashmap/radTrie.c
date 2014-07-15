@@ -84,7 +84,7 @@ void *__rAccess(RTrie *rt, unsigned long int hash, Bool isGetOp) {
     RTrie *rTrav = rt;
 
     do {
-        if (rTrav == NULL)
+        if (rTrav == NULL || rTrav->keys == NULL)
             return NULL;
 
         rTrav = *(rTrav->keys + (hash % BASE));
