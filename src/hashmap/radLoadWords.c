@@ -47,12 +47,12 @@ RTrie *fileToRTrie(const char *filePath) {
             }
             else {
                 register int i=0, j;
-                char c;
-                while (i < st.st_size) {
+                char c = '\0';
+                while (i < st.st_size && c != EOF) {
                     int wBufLen = 10;
                     j = 0;
                     char *wordIn = (char *)malloc(sizeof(char) * wBufLen);
-                    while (isalpha(c = buf[i++])) {
+                    while ((c = buf[i++]) != EOF && isalpha(c)) {
                         if (j >= wBufLen) {
                             wBufLen += 10;
                             wordIn = (char *)realloc(wordIn, sizeof(char) * wBufLen);
