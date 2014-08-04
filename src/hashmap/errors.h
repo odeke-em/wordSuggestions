@@ -1,6 +1,9 @@
+// Author: Emmanuel Odeke <odeke@ualberta.ca>
 #ifndef _ERRORS_H
 #define _ERRORS_H
   #include <stdio.h>
+  #include <stdlib.h>
+  #include <stdarg.h>
 
   typedef enum {
     TypeError, ValueError, IndexError, SyntaxError, BufferOverFlow,
@@ -8,9 +11,9 @@
     ZeroDivisionException, CorruptedDataException
   } Exception;
   
-  #define raiseWarning(errMsg){\
-    fprintf(stderr,"\033[31m%s on line %d in function '%s' file '%s'\033[00m\n",\
-      errMsg,__LINE__,__func__,__FILE__);\
+  #define raiseWarning(...){\
+    fprintf(stderr, "\033[31m[%s: %s]\033[00m Traceback to line: %d:: ", __FILE__, __func__, __LINE__);\
+    fprintf(stderr, __VA_ARGS__);\
   }
 
   #define throwException(errCode,errMsg){\
@@ -21,16 +24,17 @@
     exit(-1);\
   }
 
-  #undef assert 
+  #ifdef assert 
+    #undef assert
+  #endif // assert
+
   #define assert(validExpression){\
     if (! (validExpression))\
-      raiseError((validExpression));\
+      raiseError(#validExpression);\
   }
 
-  #define raiseError(args) {\
-    fprintf(stderr, "Traceback most recent call at line: %d ", __LINE__);\
-    fprintf(stderr, "of file: %s\n\033[31m%s\033[00m\n", \
-         __FILE__, #args);\
+  #define raiseError(...) {\
+    raiseWarning(__VA_ARGS__);\
     exit(-2);\
   }
 
@@ -38,4 +42,4 @@
     if (! expression)\
       throwException(NullPointerException, expression);\
   }
-#endif
+#endif // _ERRORS_H
